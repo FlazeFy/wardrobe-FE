@@ -201,7 +201,7 @@ a {
 .box-footer {
   bottom: -15px;
   border-radius: var(--roundedMD);
-  padding: var(--spaceMini) var(--spaceJumbo);
+  padding: var(--spaceMini) var(--spaceSM);
   font-size: var(--textMD) !important;
   font-weight: 500;
   background: var(--whiteColor);
