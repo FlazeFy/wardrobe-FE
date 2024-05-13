@@ -181,6 +181,7 @@ a {
   transition: all 0.3s;
   height: 19vh;
   position: relative;
+  margin-bottom: var(--spaceMD);
 }
 .box img {
   width: 100%;

@@ -67,7 +67,7 @@ export default function GetClotchesByCategory({ctx}) {
                         <h6 className='mb-0'>{items ? items.length : 0} Item | {getCleanTitleFromCtx(ctx)}</h6>
                     </div>
                     <div>
-                        <a href={"/clothes/category/"+ctx}>See More {getCleanTitleFromCtx(ctx)} <FontAwesomeIcon icon={faArrowRight}/></a>
+                        <a href={"/clothes/"+ctx}>See More {getCleanTitleFromCtx(ctx)} <FontAwesomeIcon icon={faArrowRight}/></a>
                     </div>
                 </div>
                 <div id={"carouselClothes-"+ctx} className="carousel slide" data-bs-ride="carousel">
