@@ -13,6 +13,11 @@ export default function CategoryPage({ params }) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
+
+    const [errorHistory, setErrorHistory] = useState(null)
+    const [isLoadedHistory, setIsLoadedHistory] = useState(false)
+    const [itemsHistory, setItemsHistory] = useState([])
+
     const [maxPage, setMaxPage] = useState(0)
     const [currPage, setCurrPage] = useState(0)
     const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
@@ -65,7 +70,10 @@ export default function CategoryPage({ params }) {
                 <span style="font-size:var(--textXLG);" class="bg-dark rounded-pill mx-2 px-3 py-1 text-white">${data.clothes_type}</span>
             </div>
             <p>${data.clothes_desc ?? '<span class="fst-italic text-secondary">- No Description -</span>'}</p>
-            <hr><div class="d-flex justify-content-between mb-3">
+            
+            <hr>
+            <h5 class="text-start">Detail</h5>
+            <div class="d-flex justify-content-between mb-3">
                 <div>
                     <h6>Price</h6>
                     <p>Rp. ${data.clothes_price}</p>
@@ -82,7 +90,9 @@ export default function CategoryPage({ params }) {
                 </div>
             </div>
 
-            <hr><div class="d-flex justify-content-between mb-3">
+            <hr>
+            <h5 class="text-start">Properties</h5>
+            <div class="d-flex justify-content-between mb-3">
                 <div>
                     <h6>Created At</h6>
                     <p>${data.created_at}</p>
@@ -97,6 +107,31 @@ export default function CategoryPage({ params }) {
                 </div>
             </div>
         `
+        get_history(data.id)
+    }
+
+    function get_history(id){
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/${id}/desc`, {
+            headers: {
+                Authorization: `Bearer ${keyToken}`
+            }
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                setIsLoadedHistory(true)
+                setItemsHistory(result.data)        
+            },
+            (error) => {
+                if(getLocal(params.category + "_sess") !== undefined){
+                    setIsLoadedHistory(true)
+                    setItemsHistory(JSON.parse(getLocal(params.category + "_sess")))
+                } else {
+                    setIsLoadedHistory(true)
+                    setErrorHistory(error)
+                }
+            }
+        )
     }
 
     if (error) {
@@ -133,6 +168,23 @@ export default function CategoryPage({ params }) {
                     <div className='col text-start'>
                         <a className='btn btn-danger text-white rounded-pill py-2 px-3' href='/home'><FontAwesomeIcon icon={faArrowCircleLeft}/> Back</a>
                         <div id="detail-clothes" className='text-center'></div>
+                        <hr></hr><div class="mb-3 text-start">
+                            <h5>History</h5>
+                            <div id="history_holder"></div>
+                        </div>
+                        {
+                            itemsHistory != null && itemsHistory.length > 0 ?
+                                itemsHistory.map((data, i, idx) => {
+                                    return (
+                                        <div key={idx} className='mb-2'>
+                                            <p className='mb-0'>{i+1}. Used for <b>{data.used_context}</b> {data.created_at}</p>
+                                            <a>Notes : {data.clothes_note ?? '-'}</a>
+                                        </div>
+                                    )
+                                })
+                            :
+                                <p className='text-secondary'>No history found!</p>
+                        }
                     </div>
                 </div>
             </div>

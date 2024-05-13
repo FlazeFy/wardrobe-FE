@@ -26,7 +26,7 @@ export default function GetClotchesByCategory({ctx}) {
             storeLocal("get_"+ctx,"DESC")
         }
         
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/${ctx}/${keyOrder}`, {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/header/${ctx}/${keyOrder}`, {
             headers: {
                 Authorization: `Bearer ${keyToken}`
             }
