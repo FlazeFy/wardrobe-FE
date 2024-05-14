@@ -7,19 +7,19 @@ import { useEffect, useState } from 'react'
 //Font awesome classicon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowCircleLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
+import PostHistory from './usecases/post_history'
 
 export default function CategoryPage({ params }) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
+    const [selectedClothesName, setSelectedClothesName] = useState(null)
+    const [selectedClothesId, setSelectedClothesId] = useState(null)
 
     const [errorHistory, setErrorHistory] = useState(null)
     const [isLoadedHistory, setIsLoadedHistory] = useState(false)
     const [itemsHistory, setItemsHistory] = useState([])
-
-    const [maxPage, setMaxPage] = useState(0)
-    const [currPage, setCurrPage] = useState(0)
     const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
 
     useEffect(() => {
@@ -58,6 +58,9 @@ export default function CategoryPage({ params }) {
     function showDetail(data){
         let holder = document.getElementById('detail-clothes')
         const colors = data.clothes_color.split(", ")
+
+        setSelectedClothesName(data.clothes_name)
+        setSelectedClothesId(data.id)
 
         holder.innerHTML = `
             <img src=${"/images/"+params.category+".png"}/>
@@ -167,8 +170,14 @@ export default function CategoryPage({ params }) {
                     </div>
                     <div className='col text-start'>
                         <a className='btn btn-danger text-white rounded-pill py-2 px-3' href='/home'><FontAwesomeIcon icon={faArrowCircleLeft}/> Back</a>
+                        {
+                            selectedClothesName ?
+                                <PostHistory ctx="post_history" clothesName={selectedClothesName} clothesId={selectedClothesId}/> 
+                            :
+                                <></>
+                        }
                         <div id="detail-clothes" className='text-center'></div>
-                        <hr></hr><div class="mb-3 text-start">
+                        <hr></hr><div className="mb-3 text-start">
                             <h5>History</h5>
                             <div id="history_holder"></div>
                         </div>
