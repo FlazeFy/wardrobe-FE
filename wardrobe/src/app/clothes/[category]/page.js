@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowCircleLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
 import PostHistory from './usecases/post_history'
+import GetClotchesBySimiliar from './usecases/get_clothes_by_similiar'
 
 export default function CategoryPage({ params }) {
     //Initial variable
@@ -16,6 +17,11 @@ export default function CategoryPage({ params }) {
     const [items, setItems] = useState([])
     const [selectedClothesName, setSelectedClothesName] = useState(null)
     const [selectedClothesId, setSelectedClothesId] = useState(null)
+
+    const [selectedClothesMerk, setSelectedClothesMerk] = useState(null)
+    const [selectedClothesMade, setSelectedClothesMade] = useState(null)
+    const [selectedClothesType, setSelectedClothesType] = useState(null)
+    const [allDetailsSet, setAllDetailsSet] = useState(false)
 
     const [errorHistory, setErrorHistory] = useState(null)
     const [isLoadedHistory, setIsLoadedHistory] = useState(false)
@@ -61,6 +67,11 @@ export default function CategoryPage({ params }) {
 
         setSelectedClothesName(data.clothes_name)
         setSelectedClothesId(data.id)
+        setSelectedClothesMerk(data.clothes_merk)
+        setSelectedClothesMade(data.clothes_made_from)
+        setSelectedClothesType(data.clothes_type)
+
+        setAllDetailsSet(true);
 
         holder.innerHTML = `
             <img src=${"/images/"+params.category+".png"}/>
@@ -193,6 +204,20 @@ export default function CategoryPage({ params }) {
                                 })
                             :
                                 <p className='text-secondary'>No history found!</p>
+                        }
+                        {
+                            selectedClothesMerk && selectedClothesMade && selectedClothesType && (
+                                <>
+                                    <h5>See Others ...</h5>
+                                    <GetClotchesBySimiliar ctx={"clothes_merk"} val={selectedClothesMerk} exc={selectedClothesId}/>
+                                    <hr></hr>
+                                    <h5>See Others ...</h5>
+                                    <GetClotchesBySimiliar ctx={"clothes_made_from"} val={selectedClothesMade} exc={selectedClothesId}/>
+                                    <hr></hr>
+                                    <h5>See Others ...</h5>
+                                    <GetClotchesBySimiliar ctx={"clothes_type"} val={selectedClothesType} exc={selectedClothesId}/>
+                                </>
+                            )
                         }
                     </div>
                 </div>
