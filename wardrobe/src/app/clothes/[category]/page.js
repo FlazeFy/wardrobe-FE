@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowCircleLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
 import PostHistory from './usecases/post_history'
 import GetClotchesBySimiliar from './usecases/get_clothes_by_similiar'
+import GetClothesWashedStatus from './usecases/get_clothes_washed_status'
 
 export default function CategoryPage({ params }) {
     //Initial variable
@@ -17,11 +18,9 @@ export default function CategoryPage({ params }) {
     const [items, setItems] = useState([])
     const [selectedClothesName, setSelectedClothesName] = useState(null)
     const [selectedClothesId, setSelectedClothesId] = useState(null)
-
     const [selectedClothesMerk, setSelectedClothesMerk] = useState(null)
     const [selectedClothesMade, setSelectedClothesMade] = useState(null)
     const [selectedClothesType, setSelectedClothesType] = useState(null)
-    const [allDetailsSet, setAllDetailsSet] = useState(false)
 
     const [errorHistory, setErrorHistory] = useState(null)
     const [isLoadedHistory, setIsLoadedHistory] = useState(false)
@@ -70,8 +69,6 @@ export default function CategoryPage({ params }) {
         setSelectedClothesMerk(data.clothes_merk)
         setSelectedClothesMade(data.clothes_made_from)
         setSelectedClothesType(data.clothes_type)
-
-        setAllDetailsSet(true);
 
         holder.innerHTML = `
             <img src=${"/images/"+params.category+".png"}/>
@@ -184,6 +181,12 @@ export default function CategoryPage({ params }) {
                         {
                             selectedClothesName ?
                                 <PostHistory ctx="post_history" clothesName={selectedClothesName} clothesId={selectedClothesId}/> 
+                            :
+                                <></>
+                        }
+                        {
+                            selectedClothesName ?
+                                <GetClothesWashedStatus key={selectedClothesId} ctx={"clothes_washed_status"} id={selectedClothesId}/> 
                             :
                                 <></>
                         }
