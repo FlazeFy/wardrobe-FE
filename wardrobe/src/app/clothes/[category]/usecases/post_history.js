@@ -84,10 +84,10 @@ export default function PostHistory({ctx, clothesName, clothesId}) {
     } else {
         return (
             <>
-                <button type="button" className="btn btn-primary rounded-pill py-2 px-3 ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" className="btn btn-primary rounded-pill py-2 px-3 ms-2" data-bs-toggle="modal" data-bs-target={`#${ctx}Modal`}>
                     <FontAwesomeIcon icon={faPlusCircle}/> Use this Clothes
                 </button>
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id={`${ctx}Modal`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
                         <div className="modal-header">
