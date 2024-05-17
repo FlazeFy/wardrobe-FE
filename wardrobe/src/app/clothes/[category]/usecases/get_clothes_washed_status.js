@@ -6,11 +6,13 @@ import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { getLocal, storeLocal } from '@/modules/storages/local'
+import PostWash from './post_wash'
+import PutWashFinished from './put_wash_finished'
 
 // Modules
 
 
-export default function GetClothesWashedStatus({ctx,id}) {
+export default function GetClothesWashedStatus({ctx,id,clothesName}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -55,6 +57,14 @@ export default function GetClothesWashedStatus({ctx,id}) {
         return (
             <div className={`mt-3 alert alert-${status == true ? 'danger' : 'success'}`} role="alert">
                 {message}
+                <div className='mt-1'>
+                {
+                    status == false ?
+                        <PostWash key={id+"_post_wash"} ctx="post_wash" clothesName={clothesName} clothesId={id}/> 
+                    :
+                        <PutWashFinished key={id+"_put_wash"} ctx="put_wash" clothesId={id}/>
+                }
+                </div>
             </div>
         )
     }

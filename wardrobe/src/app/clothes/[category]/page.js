@@ -10,7 +10,6 @@ import { faArrowCircleLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
 import PostHistory from './usecases/post_history'
 import GetClotchesBySimiliar from './usecases/get_clothes_by_similiar'
 import GetClothesWashedStatus from './usecases/get_clothes_washed_status'
-import PostWash from './usecases/post_wash'
 
 export default function CategoryPage({ params }) {
     //Initial variable
@@ -187,13 +186,7 @@ export default function CategoryPage({ params }) {
                         }
                         {
                             selectedClothesName ?
-                                <PostWash key={selectedClothesId+"_post_wash"} ctx="post_wash" clothesName={selectedClothesName} clothesId={selectedClothesId}/> 
-                            :
-                                <></>
-                        }
-                        {
-                            selectedClothesName ?
-                                <GetClothesWashedStatus key={selectedClothesId+"_wash_status"} ctx={"clothes_washed_status"} id={selectedClothesId}/> 
+                                <GetClothesWashedStatus clothesName={selectedClothesName} key={selectedClothesId+"_wash_status"} ctx={"clothes_washed_status"} id={selectedClothesId}/> 
                             :
                                 <></>
                         }

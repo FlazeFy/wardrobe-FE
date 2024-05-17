@@ -133,7 +133,7 @@ export default function PostWash({ctx, clothesName, clothesId}) {
                                         <>
                                             <label className='mt-2'>Checkpoint to Achieve</label>
                                             <div className="form-check mb-1" key={index}>
-                                                <input className="form-check-input mt-2" type="checkbox" checked={checkpoint.is_finished} id={`checkpoint${index}`} 
+                                                <input className="form-check-input mt-2" type="checkbox" defaultChecked={checkpoint.is_finished} id={`checkpoint${index}`} 
                                                     onChange={handleCheckboxChange} />
                                                 <input type="text" className='form-control' defaultValue={checkpoint.checkpoint_name} 
                                                     onInput={(e) => validateCheckpoint(e, index)} 
@@ -142,7 +142,7 @@ export default function PostWash({ctx, clothesName, clothesId}) {
                                         </>
                                     :
                                         <div className="form-check mb-2" key={index}>
-                                            <input className="form-check-input mt-2" type="checkbox" checked={checkpoint.is_finished} id={`checkpoint${index}`} 
+                                            <input className="form-check-input mt-2" type="checkbox" defaultChecked={checkpoint.is_finished} id={`checkpoint${index}`} 
                                                 onChange={handleCheckboxChange} />
                                             <input type="text" className='form-control' defaultValue={checkpoint.checkpoint_name} 
                                                 onInput={(e) => validateCheckpoint(e, index)} 
