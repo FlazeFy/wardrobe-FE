@@ -1,0 +1,25 @@
+.navbar-brand {
+    font-size: var(--textJumbo) !important;
+    color: var(--blackColor) !important;
+}
+.navbar {
+    border-top: 1.5px solid var(--blackColor);
+    border-bottom: 1.5px solid var(--blackColor);
+    position: sticky !important;
+    top: var(--spaceLG) !important;
+    padding: var(--spaceLG) 0 !important;
+    background: var(--whiteColor);
+    z-index: 999;
+}
+.navbar .nav-item {
+    padding: var(--spaceSM) var(--spaceMD);
+    cursor: pointer;
+    margin-right: var(--spaceSM);
+    color: var(--blackColor) !important;
+    font-weight: 500;
+    font-size: var(--textXLG) !important;
+    border-radius: var(--roundedLG);
+}
+.navbar .nav-item:hover {
+    background: var(--greyColor);
+}

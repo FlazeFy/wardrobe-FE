@@ -1,95 +1,50 @@
-import Image from "next/image";
+import AtomsBreakLine from "@/components/atoms/atoms_breakline";
+import OrganismsNavbar from "../components/organisms/organisms_navbar";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <OrganismsNavbar/>
+
+      <div className="mx-4" style={{marginTop:"14vh"}}>
+        <div className="row">
+          <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <AtomsBreakLine length={4}/>
+            <h2 className="mb-0">Wardrobe is your ultimate clothing assistant, helping you organize outfits, track history, manage schedules, and plan weekly looks</h2>
+            <hr></hr>
+            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Effortless style decision and Organize</h1>
+            <h2 className="mb-0">Join us Now. Its <span className="text-success fw-bold">Free!</span></h2>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-12 col-12 text-end">
+            <div className="d-flex justify-content-end align-items-center">
+              <div className="p-2">
+                <img src={"/images/people.jpg"} style={{maxWidth:"50%", minWidth:"200px"}} className="img img-fluid mb-2 img-rounded"/>
+                <h3 className="fw-bold mb-0">40 +</h3>
+                <h5 className="text-secondary">Active User</h5>
+              </div>
+              <div className="p-2 me-3" style={{maxWidth:"200px"}}>
+                <div className="text-start">
+                  <h3 className="fw-bold mb-0">40 +</h3>
+                  <h5 className="text-secondary">Outfit Decision</h5>
+                  <img src={"/images/outfit.jpg"} style={{maxWidth:"50%", minWidth:"200px"}} className="img img-fluid mb-2 img-rounded"/>
+                </div>
+                <div className="text-end">
+                  <img src={"/images/reminder.jpg"} style={{maxWidth:"50%", minWidth:"200px"}} className="img img-fluid mb-2 img-rounded"/>
+                  <h3 className="fw-bold mb-0">40 +</h3>
+                  <h5 className="text-secondary">Average Weekly Reminder</h5>
+                </div>
+              </div>
+              <div className="p-2 text-start">
+                <img src={"/images/clothes.jpg"} style={{maxWidth:"50%", minWidth:"200px"}} className="img img-fluid mb-2 img-rounded"/>
+                <h3 className="fw-bold mb-0">40 +</h3>
+                <h5 className="text-secondary">Clothes</h5>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
   );
 }
