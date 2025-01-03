@@ -2,9 +2,11 @@
     font-size: var(--textJumbo) !important;
     color: var(--blackColor) !important;
 }
-.navbar {
+.navbar, .footer {
     border-top: 1.5px solid var(--blackColor);
     border-bottom: 1.5px solid var(--blackColor);
+}
+.navbar {
     position: sticky !important;
     top: var(--spaceLG) !important;
     padding: var(--spaceLG) 0 !important;

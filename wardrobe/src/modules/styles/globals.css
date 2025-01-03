@@ -154,7 +154,7 @@ hr {
   opacity: 0.75 !important;
 }
 
-button {
+.btn {
   border-radius: var(--roundedLG) !important;
   padding: var(--spaceMD) var(--spaceLG) !important;
   cursor: pointer;
@@ -174,4 +174,23 @@ button {
   margin-top: 100px;
   color: var(--darkColor) !important;
   background: var(--whiteColor) !important;
+}
+
+.container-generator {
+  width: 100%;
+  height: 40vh;
+  border-radius: var(--roundedLG);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/generate_outfit.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-size: cover;
+  background-color: var(--greyColor);
+  color: var(--whiteColor);
+  padding: var(--spaceXLG);
+  display: flex;
+  flex-direction: column; 
+  text-align: start;
+  align-items: flex-start; 
+  justify-content: flex-end;
 }
