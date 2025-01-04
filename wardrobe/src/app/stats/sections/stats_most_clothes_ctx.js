@@ -17,7 +17,7 @@ export default function StatsSectionMostClothesCtx({ctx}) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category`, {
+        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/by/clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

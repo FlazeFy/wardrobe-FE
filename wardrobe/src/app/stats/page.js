@@ -3,6 +3,7 @@ import OrganismsNavbar from "../../components/organisms/organisms_navbar";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import MoleculesFooter from "../../components/molecules/molecules_footer";
 import StatsSectionMostClothesCtx from "./sections/stats_most_clothes_ctx";
+import StatsSectionSummary from "./sections/stats_summary";
 
 export default function StatsPage() {
     return (
@@ -20,6 +21,7 @@ export default function StatsPage() {
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <AtomsBreakLine length={2}/>
                     <AtomsBreakLine length={2}/>
+                    <StatsSectionSummary ctx="clothes_summary"/>
                 </div>
             </div>
             <AtomsBreakLine length={2}/>
