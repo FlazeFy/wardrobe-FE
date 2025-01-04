@@ -147,6 +147,12 @@ h1 {
 h2 {
   letter-spacing: 2.25px;
 }
+h3, h4 {
+  letter-spacing: 2px;
+}
+h5, h6 {
+  letter-spacing: 1.75px;
+}
 hr {
   background-color: var(--blackColor) !important;
   border: none;
@@ -162,6 +168,14 @@ hr {
 
 .img-rounded {
   border-radius: var(--roundedXLG);
+}
+
+.card {
+  background: var(--whiteColor);
+  border: 1.5px solid var(--greyColor) !important;
+  padding: var(--spaceLG);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: var(--roundedLG) !important;
 }
 
 /* Carousel */
