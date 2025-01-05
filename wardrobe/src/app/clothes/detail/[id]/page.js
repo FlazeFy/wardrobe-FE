@@ -8,6 +8,9 @@ import Swal from "sweetalert2";
 import { getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
 import ClothesDetailEditForm from "./sections/clothes_detail_edit_form";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
 
 export default function ClothesDetailPage(props) {
     //Initial variable
@@ -60,12 +63,19 @@ export default function ClothesDetailPage(props) {
                         <AtomsBreakLine length={4}/>
                         <div className="d-flex justify-content-start">
                             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
+                                <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
+                            </div>
+                            <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
                                 <h2 className="mb-0">Category</h2>
                                 <h4 className="mb-0 text-secondary">{getCleanTitleFromCtx(items.detail.clothes_category)}</h4>
                             </div>
-                            <div>
+                            <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
                                 <h2 className="mb-0">Type</h2>
                                 <h4 className="mb-0 text-secondary">{items.detail.clothes_type}</h4>
+                            </div>
+                            <div>
+                                <h2 className="mb-0">Size</h2>
+                                <h4 className="mb-0 text-secondary">{items.detail.clothes_size}</h4>
                             </div>
                         </div>
                         <hr></hr>
@@ -88,6 +98,22 @@ export default function ClothesDetailPage(props) {
                 <AtomsBreakLine length={1}/>
                 <ClothesDetailEditForm ctx="clothes_detail" item={items.detail}/>
                 <AtomsBreakLine length={2}/>
+
+                <div className="row">
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <AtomsBreakLine length={2}/>
+                        <div style={{maxWidth:"50vw"}}>
+                            <h2 className="mb-0 fw-bold">Used History</h2>
+                            <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times</h5>
+                        </div>
+                        <AtomsBreakLine length={1}/>
+                        <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history}/>
+                        <AtomsBreakLine length={2}/>
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                        
+                    </div>
+                </div>
 
                 <MoleculesFooter/>
             </main>

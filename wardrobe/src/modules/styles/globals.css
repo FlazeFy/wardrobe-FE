@@ -248,6 +248,10 @@ hr {
   margin-right: var(--spaceXSM);
 }
 
+.table thead th {
+  text-align: center;
+}
+
 /* Field */
 .field {
   margin-bottom: var(--spaceMD);
