@@ -144,6 +144,10 @@ a:hover {
   text-underline-offset: 4px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  text-transform: capitalize;
+}
+
 h1 {
   letter-spacing: var(--spaceMini);
 }
@@ -242,4 +246,21 @@ hr {
   font-size: var(--spaceLG);
   color: var(--whiteColor);
   margin-right: var(--spaceXSM);
+}
+
+/* Field */
+.field {
+  margin-bottom: var(--spaceMD);
+}
+.field label {
+  font-size: var(--textXLG);
+  font-weight: 500;
+  color: var(--darkColor);
+  margin-bottom: var(--spaceXSM);
+}
+.field .form-control,  .field .form-select{
+  border-radius: var(--roundedLG);
+  font-size: var(--textXLG);
+  padding: var(--spaceMD);
+  border: 1.5px solid var(--shadowColor);
 }

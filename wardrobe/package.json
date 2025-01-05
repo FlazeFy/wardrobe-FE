@@ -22,6 +22,7 @@
     "react": "^18",
     "react-apexcharts": "^1.7.0",
     "react-dom": "^18",
+    "react-switch": "^7.1.0",
     "sweetalert2": "^11.15.10"
   },
   "devDependencies": {
