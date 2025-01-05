@@ -5,6 +5,7 @@ import MoleculesFooter from "../../components/molecules/molecules_footer";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesSectionAllHeader from "./sections/clothes_all_header";
+import ClothesSectionTotalByType from "./sections/total_clothes_by_type";
 
 export default function ClothesPage() {
     return (
@@ -20,7 +21,8 @@ export default function ClothesPage() {
                     <AtomsBreakLine length={2}/>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <AtomsBreakLine length={2}/>
+                    <AtomsBreakLine length={3}/>
+                    <ClothesSectionTotalByType ctx="total_clothes_by_type"/>
                     <AtomsBreakLine length={2}/>
                 </div>
             </div>
