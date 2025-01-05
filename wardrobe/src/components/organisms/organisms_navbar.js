@@ -14,7 +14,6 @@ export default function OrganismsNavbar() {
                         <AtomsNavItem title="Clothes" url="clothes"/>
                         <AtomsNavItem title="Calendar" url="calendar"/>
                         <AtomsNavItem title="Stats" url="stats"/>
-                        <AtomsNavItem title="Help Center" url="help"/>
                         <AtomsNavItem title="About Us" url="about"/>
                         <AtomsNavItem title="Feedback" url="feedback"/>
                     </ul>

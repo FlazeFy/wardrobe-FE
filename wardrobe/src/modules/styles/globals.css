@@ -73,6 +73,12 @@ a {
   margin-inline: auto;
 }
 
+.box, .box-clothes {
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 .box {
   border: calc(var(--spaceMini) / 1.5) solid var(--darkColor);
   padding: var(--spaceMD);
@@ -81,9 +87,6 @@ a {
   margin-inline: auto;
   display: block;
   cursor: pointer;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
   height: 19vh;
   position: relative;
   margin-bottom: var(--spaceMD);
@@ -117,15 +120,15 @@ a {
   margin-right: var(--spaceMini);
   display: inline-block !important;
 }
-.box-header .box-icon img {
-  height: 30px;
-  width: 30px;
+.box-icon img {
+  height: 26px;
+  width: 28px;
 }
 .box-icon {
   background: var(--whiteColor);
   border: calc(var(--spaceMini) / 2.5) solid var(--darkColor) !important;
   border-radius: 100%;
-  padding: var(--spaceXSM);
+  padding: 2px var(--spaceXXSM) var(--spaceXXSM) var(--spaceXXSM);
 }
 
 a {
@@ -207,4 +210,36 @@ hr {
   text-align: start;
   align-items: flex-start; 
   justify-content: flex-end;
+}
+
+.box-clothes, .img-clothes, .label-clothes {
+  border-radius: var(--roundedLG);
+}
+.box-clothes {
+  padding: var(--spaceLG);
+  background: var(--hoverBG);
+  margin-bottom: var(--spaceLG);
+  position: relative;
+  cursor: pointer;
+}
+.box-clothes:hover {
+  transform: scale(1.05);
+}
+.box-clothes .img-clothes {
+  width: 100%;
+  background: var(--greyColor);
+}
+.box-clothes .body-clothes {
+  margin-top: var(--spaceMD);
+}
+.box-clothes .label-holder {
+  position: absolute;
+  top: var(--spaceMD);
+  left: var(--spaceMD);
+}
+.box-clothes .label-holder .label-clothes {
+  padding: var(--spaceXXSM) var(--spaceMD);
+  font-size: var(--spaceLG);
+  color: var(--whiteColor);
+  margin-right: var(--spaceXSM);
 }
