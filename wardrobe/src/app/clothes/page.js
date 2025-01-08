@@ -29,7 +29,7 @@ export default function ClothesPage() {
             <AtomsBreakLine length={2}/>
             <div style={{maxWidth:"50vw"}}>
                 <h2 className="mb-0 fw-bold">All Clothes</h2>
-                <h5 className="text-secondary">For more detail you can see the <a className="btn btn-success"><FontAwesomeIcon icon={faArrowRight}/> Table View</a></h5>
+                <h5 className="text-secondary">For more detail you can see the <a className="btn btn-success" href={"/clothes/by/table"}><FontAwesomeIcon icon={faArrowRight}/> Table View</a></h5>
             </div>
             <AtomsBreakLine length={1}/>
             <ClothesSectionAllHeader ctx="all_header"/>
