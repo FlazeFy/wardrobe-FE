@@ -12,15 +12,19 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
 
-export default function ClothesDetailPage(props) {
+export default function ClothesDetailPage({params}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
 
     useEffect(() => {
+        fetchClothes()
+    },[])
+
+    const fetchClothes = () => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/detail/10bacb64-e819-11ed-a05b-0242ac120003`, {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/detail/${params.id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
@@ -43,7 +47,7 @@ export default function ClothesDetailPage(props) {
                 setError(error)
             }
         )
-    },[])
+    }
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
@@ -107,7 +111,7 @@ export default function ClothesDetailPage(props) {
                             <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times</h5>
                         </div>
                         <AtomsBreakLine length={1}/>
-                        <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history}/>
+                        <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>
                         <AtomsBreakLine length={2}/>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">

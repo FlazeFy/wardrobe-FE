@@ -1,7 +1,6 @@
 "use client"
 import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
 import { getLocal } from '@/modules/storages/local'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 //Font awesome classicon
