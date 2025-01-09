@@ -47,7 +47,7 @@ export default function ClothesSectionAllDetail(props) {
         )
     } else {
         return (
-            <table className='table bordered'>
+            <table className='table table-bordered'>
                 <thead>
                     <tr>
                         <th>Qty</th>
@@ -64,12 +64,12 @@ export default function ClothesSectionAllDetail(props) {
                     {
                         items.map((el)=>{
                             return <tr>
-                                <td>{el.clothes_qty}x</td>
+                                <td className='text-center'>{el.clothes_qty}x</td>
                                 <td>{el.clothes_name}</td>
                                 <td>{el.clothes_desc ?? <span class="fst-italic text-secondary">- No Description Provided -</span>}</td>
                                 <td>
                                     <h6 className='m-0'>Merk</h6>
-                                    <p className='m-0 mb-2'>{el.clothes_merk}</p>
+                                    <p className='m-0 mb-2'>{el.clothes_merk ?? '-'}</p>
                                     <h6 className='m-0'>Size</h6>
                                     <p className='m-0 mb-2'>{el.clothes_size}</p>
                                     <h6 className='m-0'>Gender</h6>
@@ -85,8 +85,8 @@ export default function ClothesSectionAllDetail(props) {
                                     <h6 className='m-0'>Type</h6>
                                     <p className='m-0'>{el.clothes_type}</p>
                                 </td>
-                                <td>Rp. {numberToPrice(el.clothes_price)}</td>
-                                <td>
+                                <td>{el.clothes_price ? <>Rp. {numberToPrice(el.clothes_price)}</> : '-'}</td>
+                                <td className='text-center'>
                                     {
                                         el.is_favorite == 1 && (
                                             <div className='box-icon' title="Favorited">
