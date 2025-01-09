@@ -6,17 +6,10 @@ import MoleculesFooter from "../../components/molecules/molecules_footer";
 import CalendarSectionSchedule from "./sections/calendar_schedule";
 import CalendarSectionMonthYear from "./sections/calendar_month_year";
 import { useState } from "react";
+import { getCurrentMonthYear } from "../../modules/helpers/generator";
 
 export default function CalendarPage() {
-    const getCurrentMonthYear = () => {
-        const today = new Date();
-        const month = String(today.getMonth() + 1).padStart(2, '0')
-        const year = today.getFullYear();
-        return `${month}-${year}`;
-    };
-
-    const [monthYear, setMonthYear] = useState(getCurrentMonthYear()); 
-
+    const [monthYear, setMonthYear] = useState(getCurrentMonthYear()) 
     const handleMonthYearChange = (val) => {
         setMonthYear(val)
     };

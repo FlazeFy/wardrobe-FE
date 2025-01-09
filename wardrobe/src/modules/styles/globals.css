@@ -166,6 +166,9 @@ hr {
   height: 1.25px;
   opacity: 0.75 !important;
 }
+.bg-highlight {
+  background: var(--hoverBG) !important;
+}
 
 .btn {
   border-radius: var(--roundedLG) !important;

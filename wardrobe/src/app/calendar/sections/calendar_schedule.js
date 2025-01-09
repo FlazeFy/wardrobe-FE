@@ -1,9 +1,57 @@
-import { faPenToSquare, faPlus, faPrint } from "@fortawesome/free-solid-svg-icons";
+"use client"
+import OrganismsClothesHeader from "../../../components/organisms/organisms_clothes_header";
+import { getCurrentMonthYear } from "../../../modules/helpers/generator";
+import { faPenToSquare, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function CalendarSectionSchedule(props) {
+    //Initial variable
+    const [error, setError] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [items, setItems] = useState(null)
     const { month_year } = props
     const [month, year] = month_year.split('-').map(Number)
+    const [today, setToday] = useState() 
+
+    useEffect(() => {
+        fetchCalendar()
+    }, [month_year])
+
+    const fetchCalendar = () => {
+        Swal.showLoading()
+        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/${month}/${year}`, {
+            headers: {
+                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+            },
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                setIsLoaded(true)
+                setItems(result.data) 
+
+                const currentDate = new Date()
+                const formattedDate = currentDate.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                });
+                setToday(formattedDate)
+            },
+            (error) => {
+                Swal.close()
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                })
+                setError(error)
+            }
+        )
+    }
 
     const getDatesForMonth = (month, year) => {
         const dates = [];
@@ -22,62 +70,60 @@ export default function CalendarSectionSchedule(props) {
 
     const dates = getDatesForMonth(month, year);
 
-    return (
-        <table className='table table-bordered'>
-            <thead>
-                <tr>
-                    <th style={{ width: '140px' }}>Date</th>
-                    <th>Used History</th>
-                    <th>Weekly Schedule</th>
-                    <th>Wash Schedule</th>
-                    <th>Buyed History</th>
-                    <th>Add to Wardrobe</th>
-                    <th>Manage</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    dates.map((date, index) => (
-                        <tr key={index}>
-                            <td className="text-center">{date.formattedDate}</td>
-                            {
-                                Array.from({ length: 6 }).map((_, dayIndex) => (
-                                    <td key={dayIndex}>
-                                        { date.dayOfWeek === dayIndex ? '' : '' }
-                                        {
-                                            dayIndex != 5 ?
-                                            <>
-                                                <h6 className="mb-0">At 04:00-05:00</h6>
-                                                <div className="row mt-2 mb-3">
-                                                    {
-                                                        Array.from({ length: 6 }).map((_, dayIndex) => (
-                                                            <div className="col-lg-6">
-                                                                <div className='box-clothes p-2' onClick={(e)=> handleBoxClick(props.items.id)}>
-                                                                    <img src={"/images/footwear.png"} className="img-clothes"/>
-                                                                    <div className='body-clothes'>
-                                                                        <p className='mb-0' style={{fontSize:"var(--textMD)"}}>Shoes A</p>
-                                                                        <p className='text-secondary m-0' style={{textTransform:"capitalize", fontSize:"var(--textSM)"}}>Upper Body | Head</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ))
-                                                    }
-                                                </div>
-                                            </>
-                                            : 
-                                            <>
-                                                <button className="btn btn-warning w-100 mb-2"><FontAwesomeIcon icon={faPenToSquare}/></button>
-                                                <button className="btn btn-success w-100 mb-2"><FontAwesomeIcon icon={faPlus}/></button>
-                                                <button className="btn btn-primary w-100"><FontAwesomeIcon icon={faPrint}/></button>
-                                            </>
-                                        }
-                                    </td>
-                                ))
-                            }
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
-    );
+    if (error) {
+        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+    } else if (!isLoaded) {
+        return (
+            <div>
+                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
+            </div>
+        )
+    } else {
+        return (
+            <table className='table table-bordered'>
+                <thead>
+                    <tr>
+                        <th style={{ width: '120px' }}>Date</th>
+                        <th style={{ width: "17.25%" }}>Used History</th>
+                        <th style={{ width: "17.25%" }}>Weekly Schedule</th>
+                        <th style={{ width: "17.25%" }}>Wash Schedule</th>
+                        <th style={{ width: "17.25%" }}>Buyed History</th>
+                        <th style={{ width: "17.25%" }}>Add to Wardrobe</th>
+                        <th>Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        items.map((item, index) => (
+                            <tr key={index}>
+                                <td className={`text-center ${today == item.date ? 'bg-highlight':''}`} style={{fontSize:"var(--textXMD)"}}>{ item.date }</td>
+                                {
+                                    ['used_history', 'weekly_schedule', 'wash_schedule', 'buyed_history', 'add_wardrobe'].map((key) => (
+                                        <td key={key} className={today == item.date ? 'bg-highlight':''}>
+                                            <div className="row">
+                                                {
+                                                    item[key] ? (
+                                                    item[key].map((dt, idx) => (
+                                                        <div key={idx} className="col-lg-6 col-sm-12 col-12">
+                                                            <OrganismsClothesHeader items={dt} type="schedule" />
+                                                        </div>
+                                                    )
+                                                )
+                                                ) : ( <></> )}
+                                            </div>
+                                        </td>
+                                    ))
+                                }
+                                <td className={today == item.date ? 'bg-highlight':''}>
+                                    <button className="btn btn-warning w-100 mb-2"><FontAwesomeIcon icon={faPenToSquare}/></button>
+                                    <button className="btn btn-primary w-100"><FontAwesomeIcon icon={faPrint}/></button>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+            
+        );
+    }
 }

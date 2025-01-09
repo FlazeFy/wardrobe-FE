@@ -51,7 +51,7 @@ export default function ClothesSectionAllHeader({ctx}) {
                 {
                     items.map((dt, idx) => (
                         <div key={idx} className='col-lg-3 col-md-4 col-sm-12 col-12'>
-                            <OrganismsClothesHeader items={dt}/>
+                            <OrganismsClothesHeader items={dt} type="clothes"/>
                         </div>
                     ))
                 }
