@@ -66,7 +66,7 @@ export default function ClothesSectionAllDetail(props) {
                             return <tr>
                                 <td className='text-center'>{el.clothes_qty}x</td>
                                 <td>{el.clothes_name}</td>
-                                <td>{el.clothes_desc ?? <span class="fst-italic text-secondary">- No Description Provided -</span>}</td>
+                                <td>{el.clothes_desc ?? <span className="fst-italic text-secondary">- No Description Provided -</span>}</td>
                                 <td>
                                     <h6 className='m-0'>Merk</h6>
                                     <p className='m-0 mb-2'>{el.clothes_merk ?? '-'}</p>

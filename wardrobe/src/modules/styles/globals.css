@@ -175,6 +175,10 @@ hr {
   padding: var(--spaceMD) var(--spaceLG) !important;
   cursor: pointer;
 }
+.btn-link {
+  border: 1.75px solid var(--blackColor) !important;
+  color: var(--blackColor) !important;
+}
 
 .img-rounded {
   border-radius: var(--roundedXLG);

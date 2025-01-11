@@ -151,10 +151,10 @@ export default function GetClotchesByCategory({ctx}) {
                 {
                     items ?
                         <>
-                        <button class="carousel-control-prev" type="button" data-bs-target={"#carouselClothes-"+ctx} data-bs-slide="prev">
+                        <button className="carousel-control-prev" type="button" data-bs-target={"#carouselClothes-"+ctx} data-bs-slide="prev">
                             <FontAwesomeIcon icon={faArrowLeft}/>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target={"#carouselClothes-"+ctx} data-bs-slide="next">
+                        <button className="carousel-control-next" type="button" data-bs-target={"#carouselClothes-"+ctx} data-bs-slide="next">
                             <FontAwesomeIcon icon={faArrowRight}/>
                         </button>
                         </>
