@@ -101,17 +101,6 @@ export default function ClothesDetailAddUsedHistory(props) {
         }
     }
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0]
-        if (file) {
-            const reader = new FileReader()
-            reader.onload = () => {
-                setClothesImage(reader.result)
-            };
-            reader.readAsDataURL(file)
-        }
-    }
-
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
     } else if (!isLoaded) {

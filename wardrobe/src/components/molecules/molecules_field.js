@@ -1,9 +1,10 @@
 import { getCleanTitleFromCtx } from "@/modules/helpers/converter"
+import ReactStars from "react-stars"
 import Switch from "react-switch"
 
 export default function MoleculesField(props){
     return (
-        <div className="field">
+        <div className={`field ${props.type == 'rating' ? 'text-start' :''}`}>
             {
                 props.type != 'file' && <label className="me-2">{props.title}</label>
             }
@@ -27,6 +28,8 @@ export default function MoleculesField(props){
                         <label htmlFor="formFile" className="form-label">{props.title}</label>
                         <input className="form-control" type="file" accept={props.accept} onChange={props.handleChange}></input>
                     </div>
+                : props.type == 'rating' ?
+                    <ReactStars count={5} onChange={props.handleChange} size={24} half={false} color2={'#ffd700'}/>
                 :
                     <></>
             }
