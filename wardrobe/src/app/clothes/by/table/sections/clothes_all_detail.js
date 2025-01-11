@@ -1,5 +1,7 @@
 "use client"
 import { getCleanTitleFromCtx, numberToPrice } from '@/modules/helpers/converter'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
@@ -58,6 +60,7 @@ export default function ClothesSectionAllDetail(props) {
                         <th style={{width:'120px'}}>Price</th>
                         <th style={{width:'200px'}}>Status</th>
                         <th>Properties</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,6 +126,9 @@ export default function ClothesSectionAllDetail(props) {
                                     <p className='m-0 mb-2'>{el.created_at}</p>
                                     <h6 className='m-0'>Updated At</h6>
                                     <p className='m-0'>{el.updated_at}</p>
+                                </td>
+                                <td>
+                                    <a className='btn btn-warning' href={`/clothes/detail/${el.id}`}><FontAwesomeIcon icon={faPenToSquare}/></a>
                                 </td>
                             </tr>
                         })

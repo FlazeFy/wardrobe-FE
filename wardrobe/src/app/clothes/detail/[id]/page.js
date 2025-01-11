@@ -8,10 +8,11 @@ import Swal from "sweetalert2";
 import { getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
 import ClothesDetailEditForm from "./sections/clothes_detail_edit_form";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
 import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history";
+import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
@@ -85,6 +86,14 @@ export default function ClothesDetailPage({params}) {
                         </div>
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.detail.clothes_name}</h1>
+                        {
+                            items.detail.deleted_at && (
+                                <div className='alert alert-danger' role='alert'>
+                                    <h4><FontAwesomeIcon icon={faTriangleExclamation}/> Warning</h4>
+                                    <p className="mb-0">This item has been deleted</p>
+                                </div>
+                            )
+                        }
                         <p className="text-secondary">{items.detail.clothes_desc}</p>
                         <AtomsBreakLine length={2}/>
                     </div>
@@ -118,6 +127,15 @@ export default function ClothesDetailPage({params}) {
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <ClothesDetailDeleteClothesById id={params.id} type_delete={items.detail.deleted_at ? 'hard' : 'soft'} deleted_at={items.detail.deleted_at} clothes_name={items.detail.clothes_name} fetchClothes={fetchClothes}/>
                     </div>
                 </div>
 

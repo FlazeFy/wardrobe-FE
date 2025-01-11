@@ -83,7 +83,7 @@ export default function LandingFeedback() {
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>What they say?</h1>
                         <h2 className="mb-2">Give your experience when using us too</h2>
-                        <a className="btn btn-success fw-bold"><FontAwesomeIcon icon={faArrowRight}/> Feedback</a>
+                        <a className="btn btn-success fw-bold" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> Feedback</a>
                     </div>
                 </div>
             </div>

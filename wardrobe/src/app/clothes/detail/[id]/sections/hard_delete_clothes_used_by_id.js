@@ -14,7 +14,7 @@ export default function HardDeleteClothesUsedById(props) {
     const handleSubmit = async (id) => {
         Swal.fire({
             title: "Are you sure?",
-            text: "Want to permanentally delete this clothes used",
+            text: "Want to permanentally delete this clothes used?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Yes, Delete it!",

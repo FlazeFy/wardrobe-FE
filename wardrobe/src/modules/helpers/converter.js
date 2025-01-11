@@ -10,6 +10,27 @@ export const getCleanTitleFromCtx = (val) => {
     }
 }
 
+export const countDiffInDays = (val) => {
+    try {
+        const inputDate = new Date(val)
+        if (isNaN(inputDate)) {
+            throw new Error("Invalid date format")
+        }
+
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+        inputDate.setHours(0, 0, 0, 0)
+
+        const diffInMs = today - inputDate
+        const diffInDays = Math.round(diffInMs / (1000 * 60 * 60 * 24))
+
+        return diffInDays
+    } catch (error) {
+        throw error;
+    }
+};
+
+
 export const numberToPrice = (val) => {
     try {
         if (val >= 1000) {
