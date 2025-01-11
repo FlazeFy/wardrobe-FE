@@ -7,6 +7,7 @@ import { faCircleInfo, faTrash, faTriangleExclamation } from '@fortawesome/free-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { countDiffInDays } from '../../../../../modules/helpers/converter'
+import RecoverClothesUsedById from './recover_clothes_used_by_id'
 
 export default function ClothesDetailDeleteClothesById(props) {
     //Initial variable
@@ -84,6 +85,9 @@ export default function ClothesDetailDeleteClothesById(props) {
                     }}/>
                     <div className='d-flex justify-content-start'>
                         <button className='btn btn-danger' disabled={!isValidated} onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/> Delete</button>
+                        {
+                            props.type_delete == 'hard' && <RecoverClothesUsedById id={props.id} fetchClothes={props.fetchClothes}/>
+                        }
                     </div>
                 </div>
             </div>
