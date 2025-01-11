@@ -5,6 +5,7 @@ import MoleculesFooter from "../../components/molecules/molecules_footer";
 import StatsSectionMostClothesCtx from "./sections/stats_most_clothes_ctx";
 import StatsSectionSummary from "./sections/stats_summary";
 import StatsYearlyActivity from "./sections/stats_yearly_activity";
+import StatsMonthlyClothes from "./sections/stats_monthly_clothes";
 
 export default function StatsPage() {
     return (
@@ -43,6 +44,16 @@ export default function StatsPage() {
             </div>
             <div className="row">
                 <StatsYearlyActivity ctx={"yearly_activity"}/>
+            </div>
+            <AtomsBreakLine length={1}/>
+
+            <AtomsBreakLine length={2}/>
+            <div style={{maxWidth:"50vw"}}>
+                <h2 className="mb-0 fw-bold">Clothes Monthly Activity</h2>
+                <h5 className="text-secondary">We analyze the total clothes you buy and total clothes you have added to our system based on selected year</h5>
+            </div>
+            <div className="row">
+                <StatsMonthlyClothes ctx="monthly_clothes_activity"/>
             </div>
             <AtomsBreakLine length={1}/>
 

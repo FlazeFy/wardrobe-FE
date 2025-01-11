@@ -89,7 +89,7 @@ export default function ClothesDetailPage({params}) {
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>
-                        <img src={"/images/shoes_sample.jpg"} style={{maxWidth:"50%", minWidth:"100px"}} className="img img-fluid img-rounded d-block mx-auto"/>
+                        <img src={items.detail.clothes_image ?? "/images/shoes_sample.jpg"} style={{maxWidth:"50%", minWidth:"100px"}} className="img img-fluid img-rounded d-block mx-auto"/>
                         <AtomsBreakLine length={2}/>
                     </div>
                 </div>

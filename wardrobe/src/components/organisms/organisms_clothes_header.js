@@ -24,7 +24,7 @@ export default function OrganismsClothesHeader(props) {
                 : 
                     <></>
             }
-            <img src={"/images/footwear.png"} className="img-clothes"/>
+            <img src={props.items.clothes_image ?? "/images/footwear.png"} className="img-clothes"/>
             <div className='body-clothes'>
                 <h4 className='mb-0' style={{fontSize: props.type == 'schedule' ? "var(--textSM)":""}}>{props.items.clothes_name}</h4>
                 <h6 className={`text-secondary ${props.type == 'schedule' ? 'm-0':''}`} style={{textTransform:"capitalize", fontSize: props.type == 'schedule' ? "var(--textXSM)":""}}>{getCleanTitleFromCtx(props.items.clothes_category)} | {props.items.clothes_type}</h6>

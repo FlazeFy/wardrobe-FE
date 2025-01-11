@@ -2,12 +2,12 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import GetLimit from '../controls/limit'
 
-export default function GetBarChart({items, filter_name}) {
+export default function MoleculesBarChart(props) {
     //Initial variable
     var chart = [];
 
     //Converter
-    const data = Object.values(items);
+    const data = Object.values(props.items);
 
     function getSeries(val){
         let catSeries = [];
@@ -35,23 +35,13 @@ export default function GetBarChart({items, filter_name}) {
     };
 
     return (
-        <div className='custom-tbody' style={{padding:"6px"}}>
-            <div className="me-4">
-                {
-                    filter_name ? 
-                        <>
-                            <GetLimit ctx={filter_name} type={"bar"}/><br></br><br></br>
-                        </>
-                    :
-                        <></>
-                }
-                <Chart
-                    options={chart.options}
-                    series={chart.series}
-                    type="bar"
-                    // height="800"
-                />
-            </div>
+        <div className="m-2 p-2">
+            <Chart
+                options={chart.options}
+                series={chart.series}
+                type="bar"
+                height={props.height ?? 720}
+            />
         </div>
     );
 }

@@ -4,7 +4,7 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function MoleculesChartPie(props) {
     //Initial variable
-    var chart = [];
+    var chart = []
 
     //Converter
     const data = Object.values(props.items);
