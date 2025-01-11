@@ -11,6 +11,7 @@ import ClothesDetailEditForm from "./sections/clothes_detail_edit_form";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
+import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
@@ -108,7 +109,8 @@ export default function ClothesDetailPage({params}) {
                         <AtomsBreakLine length={2}/>
                         <div style={{maxWidth:"50vw"}}>
                             <h2 className="mb-0 fw-bold">Used History</h2>
-                            <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times</h5>
+                            <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
+                                <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history"/></h5>
                         </div>
                         <AtomsBreakLine length={1}/>
                         <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>

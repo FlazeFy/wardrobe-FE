@@ -148,7 +148,7 @@ export default function ClothesAddForm(props) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!"+error,
+                text: "Something went wrong!",
             })
             setResMsgAll(error)
         }
