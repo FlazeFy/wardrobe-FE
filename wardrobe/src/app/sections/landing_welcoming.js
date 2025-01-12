@@ -3,15 +3,19 @@ import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { getCookie } from "../../modules/storages/cookie";
 
 export default function LandingSectionWelcoming() {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
+    const [usernameKey, setUsernameKey] = useState(null)
 
     useEffect(() => {
         Swal.showLoading()
+        setUsernameKey(getCookie('username_key'))
+
         fetch(`http://127.0.0.1:8000/api/v1/stats/all`)
         .then(res => res.json())
             .then(
@@ -49,7 +53,7 @@ export default function LandingSectionWelcoming() {
                         <h2 className="mb-0">Wardrobe is your ultimate clothing assistant, helping you organize outfits, track history, manage schedules, and plan weekly looks</h2>
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Effortless style decision and Organize</h1>
-                        <h2 className="mb-0">Join us Now. Its <span className="text-success fw-bold">Free!</span></h2>
+                        <h2 className="mb-0">{usernameKey ? <>Welcome, {usernameKey}</> : <>Join us Now. Its <span className="text-success fw-bold">Free!</span></>}</h2>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12 text-end">
                         <div className="d-flex justify-content-end align-items-center">
