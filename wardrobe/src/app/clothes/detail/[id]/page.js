@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
 import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history";
 import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete";
+import ClothesDetailSchedule from "./sections/clothes_detail_schedule";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
@@ -126,7 +127,10 @@ export default function ClothesDetailPage({params}) {
                         <AtomsBreakLine length={2}/>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        
+                        <AtomsBreakLine length={2}/>
+                        <h2 className="mb-0 fw-bold">Schedule</h2>
+                        <ClothesDetailSchedule items={items.schedule} fetchClothes={fetchClothes}/>
+                        <AtomsBreakLine length={2}/>
                     </div>
                 </div>
 
