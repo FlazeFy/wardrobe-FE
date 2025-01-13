@@ -10,6 +10,20 @@ export const getCleanTitleFromCtx = (val) => {
     }
 }
 
+export const getUTCHourOffset = () => {
+    const offsetMi = new Date().getTimezoneOffset()
+    const offsetHr = -offsetMi / 60
+    return offsetHr
+}
+
+export const convertDatetimeBasedLocal = (datetime) => {
+    const result = new Date(datetime)
+    const offsetHours = getUTCHourOffset()
+    result.setUTCHours(result.getUTCHours() + offsetHours)
+
+    return `${result.getFullYear()}-${("0" + (result.getMonth() + 1)).slice(-2)}-${("0" + result.getDate()).slice(-2)} ${("0" + result.getHours()).slice(-2)}:${("0" + result.getMinutes()).slice(-2)}`
+}
+
 export const countDiffInDays = (val) => {
     try {
         const inputDate = new Date(val)
@@ -29,7 +43,6 @@ export const countDiffInDays = (val) => {
         throw error;
     }
 };
-
 
 export const numberToPrice = (val) => {
     try {
