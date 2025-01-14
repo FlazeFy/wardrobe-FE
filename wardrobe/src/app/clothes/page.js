@@ -15,7 +15,7 @@ export default function ClothesPage() {
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <AtomsBreakLine length={2}/>
-                    <h2 className="mb-0">In this page, you will see all of your inventory in catalog view. Do you want to see the <a className="btn btn-link"><FontAwesomeIcon icon={faArrowRight}/> Category View</a> or <a className="btn btn-link"><FontAwesomeIcon icon={faArrowRight}/> Generated Outfit</a></h2>
+                    <h2 className="mb-0">In this page, you will see all of your inventory in catalog view. Do you want to see the <a className="btn btn-link"><FontAwesomeIcon icon={faArrowRight}/> Category View</a> or <a className="btn btn-link" href="/clothes/generated"><FontAwesomeIcon icon={faArrowRight}/> Generated Outfit</a></h2>
                     <hr></hr>
                     <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Clothes Page</h1>
                     <AtomsBreakLine length={2}/>
