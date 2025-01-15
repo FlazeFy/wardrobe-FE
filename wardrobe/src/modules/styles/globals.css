@@ -276,8 +276,16 @@ hr {
   border: 1.5px solid var(--shadowColor);
 }
 
-.modal-content {
+.modal-content, .swal2-modal {
   border-radius: var(--roundedJumbo) !important;
   border: none !important;
   padding: var(--spaceMD);
+}
+.swal2-loading {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  border-radius: 0 !important;
+  margin: 0 !important;
 }
