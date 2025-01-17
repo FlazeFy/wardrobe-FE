@@ -1,6 +1,6 @@
 "use client"
 import MoleculesField from "../../../../components/molecules/molecules_field";
-import { faFloppyDisk, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react"
 

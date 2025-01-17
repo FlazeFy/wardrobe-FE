@@ -1,51 +1,61 @@
 "use client"
-import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
 import { faCheck, faFire, faFloppyDisk, faMagnifyingGlass, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useRef } from "react"
 import Swal from "sweetalert2";
 import { getLocal } from "../../../../modules/storages/local";
+import GeneratedSectionSaveLocalGenerated from "./generated_save_local_generated";
 
 const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
+    const [error, setError] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [items, setItems] = useState([])
 
     useImperativeHandle(ref, () => ({
         fetchLocalHistory
     }));
 
     useEffect(() => {
-        fetchLocalHistory();
+        fetchLocalHistory()
 
-        // Add event listener for the modal
-        const modalElement = document.getElementById("saveOutfitModal");
+        const modalElement = document.getElementById("saveOutfitModal")
         if (modalElement) {
-            modalElement.addEventListener("shown.bs.modal", fetchLocalHistory);
+            modalElement.addEventListener("shown.bs.modal", fetchLocalHistory)
         }
 
-        // Cleanup event listener on component unmount
         return () => {
             if (modalElement) {
-                modalElement.removeEventListener("shown.bs.modal", fetchLocalHistory);
+                modalElement.removeEventListener("shown.bs.modal", fetchLocalHistory)
             }
-        };
-    }, []);
+        }
+    }, [])
 
     const fetchLocalHistory = () => {
         try {
-            Swal.showLoading();
-            const localHistory = localStorage.getItem('generated_outfit_history');
+            Swal.showLoading()
+            const localHistory = getLocal('generated_outfit_history')
             if (localHistory) {
-                setItems(JSON.parse(localHistory));
+                setItems(JSON.parse(localHistory))
+            } else {
+                setItems([])
             }
-            setIsLoaded(true);
-            Swal.close();
-        } catch (error) {
-            setError(error);
-            Swal.close();
+            setIsLoaded(true)
+            Swal.close()
+        } catch (err) {
+            setError(err)
+            Swal.close()
         }
-    };
+    }
+
+    const resetHistory = () => {
+        localStorage.removeItem('generated_outfit_history')
+        fetchLocalHistory()
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Generated outfit has been reset!",
+        })
+    }
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -109,8 +119,8 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
                                     <a className="btn btn-primary"><FontAwesomeIcon icon={faCheck}/> Validate Existing</a>
                                 </div>
                                 <div>
-                                    <a className="btn btn-danger me-2"><FontAwesomeIcon icon={faFire}/> Reset History</a>
-                                    <a className="btn btn-success"><FontAwesomeIcon icon={faFloppyDisk}/> Save All</a>
+                                    <a className="btn btn-danger me-2" onClick={resetHistory}><FontAwesomeIcon icon={faFire}/> Reset History</a>
+                                    <GeneratedSectionSaveLocalGenerated/>
                                 </div>
                             </div>
                         </div>

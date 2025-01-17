@@ -25,6 +25,12 @@ export default function GeneratedSectionRandomOutift() {
 
     const fetchClothesCategoryType = () => {
         Swal.showLoading()
+
+        const localHistory = getLocal('generated_outfit_history')
+        if (localHistory) {
+            setIsGenerated(true)
+        } 
+        
         fetch(`http://127.0.0.1:8000/api/v1/dct/clothes/category_type`, {
             headers: {
                 'Content-Type': 'application/json',
