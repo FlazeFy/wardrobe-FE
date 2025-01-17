@@ -24,7 +24,7 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
                         'list_outfit' : data
                     }
 
-                    let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/save/outfit`, JSON.stringify(body), {
+                    let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/save`, JSON.stringify(body), {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',

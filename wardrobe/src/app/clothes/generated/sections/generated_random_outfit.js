@@ -111,7 +111,7 @@ export default function GeneratedSectionRandomOutift() {
             }
 
             Swal.showLoading()
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/generate/outfit", JSON.stringify(body), {
+            const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/generate", JSON.stringify(body), {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`,
