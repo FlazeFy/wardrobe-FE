@@ -5,10 +5,11 @@ import Swal from 'sweetalert2'
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getCookie } from '../../../../../modules/storages/cookie'
 
 export default function HardDeleteClothesUsedById(props) {
     //Initial variable
-    // const token = getLocal("token_key")
+    const tokenKey = getCookie("token_key")
 
     // Services
     const handleSubmit = async (id) => {
@@ -26,7 +27,7 @@ export default function HardDeleteClothesUsedById(props) {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`,
+                            'Authorization': `Bearer ${tokenKey}`,
                         }
                     })
                     

@@ -1,6 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic';
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter';
+import { getCleanTitleFromCtx } from '../../modules/helpers/converter';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function MoleculesLineChart(props) {

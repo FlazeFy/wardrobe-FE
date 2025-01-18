@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { getCookie } from "../../modules/storages/cookie";
 
 export default function LandingSectionLastOutfit() {
     //Initial variable
@@ -12,6 +13,7 @@ export default function LandingSectionLastOutfit() {
     const [isLoaded, setIsLoaded] = useState(false)
     const [todayName, setTodayName] = useState("")
     const [items, setItems] = useState(null)
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -26,7 +28,7 @@ export default function LandingSectionLastOutfit() {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/last`, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                "Authorization": `Bearer ${tokenKey}`, 
             },
         })
         .then((res) => res.json())

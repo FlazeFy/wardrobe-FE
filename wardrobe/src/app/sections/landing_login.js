@@ -1,5 +1,5 @@
 "use client"
-import { storeCookie } from '@/modules/storages/cookie'
+import { storeCookie } from '../../modules/storages/cookie'
 import { faSignIn } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Axios from 'axios'

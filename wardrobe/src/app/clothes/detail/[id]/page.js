@@ -15,12 +15,14 @@ import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_hist
 import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete";
 import ClothesDetailSchedule from "./sections/clothes_detail_schedule";
 import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule";
+import { getCookie } from "../../../../modules/storages/cookie";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         fetchClothes()
@@ -31,7 +33,7 @@ export default function ClothesDetailPage({params}) {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/detail/${params.id}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())

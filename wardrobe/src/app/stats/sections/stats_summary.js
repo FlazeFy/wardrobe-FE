@@ -3,19 +3,21 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
-import { formatCurrency } from '@/modules/helpers/converter'
+import { formatCurrency } from '../../../modules/helpers/converter'
+import { getCookie } from '../../../modules/storages/cookie'
 
 export default function StatsSectionSummary({ctx}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/summary`, {
             headers: {
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())

@@ -1,7 +1,6 @@
 import { faGithub, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
 
 export default function AboutSectionCreator() {
     return (

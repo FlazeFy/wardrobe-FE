@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFloppyDisk, faHandsBubbles, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 // Modules
-import { getLocal } from '@/modules/storages/local'
+import { getLocal } from '../../../../../../modules/storages/local'
 import axios from 'axios'
+import { getCookie } from '../../../../../../modules/storages/cookie'
 
 export default function PostWash({ctx, clothesName, clothesId}) {
     //Initial variable
@@ -15,7 +16,7 @@ export default function PostWash({ctx, clothesName, clothesId}) {
     const [checkpoints, setCheckpoints] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
+    const tokenKey = getCookie("token_key")
     const [resMsgAll, setResMsgAll] = useState(null)
 
     const [washType, setWashType] = useState(null)
@@ -25,7 +26,7 @@ export default function PostWash({ctx, clothesName, clothesId}) {
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/v1/dct/wash_type`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())
@@ -69,7 +70,7 @@ export default function PostWash({ctx, clothesName, clothesId}) {
 
     const handleCheckboxChange = (index) => {
         setCheckpoints(prev => prev.map((checkpoint, i) => i === index ? { ...checkpoint, is_finished: !checkpoint.is_finished } : checkpoint));
-    };
+    }
 
     // Services
     const handleSubmit = async (e) => {
@@ -79,14 +80,12 @@ export default function PostWash({ctx, clothesName, clothesId}) {
             data.append('clothes_id', clothesId)
             data.append('wash_note', washNote)
             data.append('wash_type', washType)
-            data.append('wash_checkpoint', JSON.stringify(washCheckpoint));
-
-            const token = keyToken // for now
+            data.append('wash_checkpoint', JSON.stringify(washCheckpoint))
             
             const response = await axios.post("http://127.0.0.1:8000/api/v1/clothes/wash", data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${tokenKey}`
                 }
             })
 

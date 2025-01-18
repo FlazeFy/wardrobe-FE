@@ -1,28 +1,21 @@
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
 import React from 'react'
 import { useState, useEffect } from "react"
-
-//Font awesome classicon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { getLocal, storeLocal } from '@/modules/storages/local'
-
-// Modules
-
+import { getLocal } from '../../../../../../modules/storages/local'
+import { getCookie } from '../../../../../../modules/storages/cookie'
 
 export default function GetClotchesBySimiliar({ctx,val,exc}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const [maxPage, setMaxPage] = useState(0)
-    const [currPage, setCurrPage] = useState(0)
-    const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/similiar/${ctx}/${val}/${exc}`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())

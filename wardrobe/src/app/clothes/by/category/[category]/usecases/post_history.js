@@ -1,21 +1,19 @@
 import React from 'react'
 import { useState, useEffect } from "react"
-
-//Font awesome classicon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFloppyDisk, faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 // Modules
-import { getLocal } from '@/modules/storages/local'
+import { getLocal } from '../../../../../../modules/storages/local'
 import axios from 'axios'
+import { getCookie } from '../../../../../../modules/storages/cookie'
 
 export default function PostHistory({ctx, clothesName, clothesId}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
-
+    const tokenKey = getCookie("token_key")
     const [clothesNote, setClothesNote] = useState("")
     const [usedContext, setUsedContext] = useState("")
     const [resMsgAll, setResMsgAll] = useState(null)
@@ -23,7 +21,7 @@ export default function PostHistory({ctx, clothesName, clothesId}) {
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/v1/dct/used_context`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())
@@ -52,13 +50,11 @@ export default function PostHistory({ctx, clothesName, clothesId}) {
             data.append('clothes_id', clothesId);
             data.append('clothes_note', clothesNote);
             data.append('used_context', usedContext);
-
-            const token = keyToken // for now
             
             const response = await axios.post("http://127.0.0.1:8000/api/v1/clothes/history", data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${tokenKey}`
                 }
             })
 

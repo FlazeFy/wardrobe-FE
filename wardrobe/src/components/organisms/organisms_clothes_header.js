@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
+import { getCleanTitleFromCtx } from '../../modules/helpers/converter'
 import { faMars, faVenus, faVenusMars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

@@ -7,8 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForward } from '@fortawesome/free-solid-svg-icons'
 
 // Modules
-import { getLocal } from '@/modules/storages/local'
+import { getLocal } from '../../../../../../modules/storages/local'
 import axios from 'axios'
+import { getCookie } from '../../../../../../modules/storages/cookie'
 
 export default function PutWashFinished({ctx, clothesId}) {
     //Initial variable
@@ -16,7 +17,7 @@ export default function PutWashFinished({ctx, clothesId}) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItem] = useState([])
     const [totalFinish, setTotalFinish] = useState(0)
-    const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
+    const tokenKey = getCookie("token_key")
 
     const [washCheckpoint, setWashCheckpoint] = useState("")
     const [resMsgAll, setResMsgAll] = useState(null)
@@ -24,7 +25,7 @@ export default function PutWashFinished({ctx, clothesId}) {
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/wash_checkpoint/${clothesId}`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())
@@ -53,12 +54,10 @@ export default function PutWashFinished({ctx, clothesId}) {
                 wash_checkpoint: washCheckpoint,
             };
 
-            const token = keyToken // for now
-            
             const response = await axios.put(`http://127.0.0.1:8000/api/v1/clothes/update_checkpoint/${clothesId}`, data, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${tokenKey}`
                 }
             })
 

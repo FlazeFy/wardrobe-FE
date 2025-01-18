@@ -1,6 +1,6 @@
 "use client"
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
-import { faArrowRight, faDice, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";

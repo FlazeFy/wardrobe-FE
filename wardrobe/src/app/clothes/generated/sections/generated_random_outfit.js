@@ -10,6 +10,7 @@ import GeneratedSectionConfigurateTemplate from "./generated_configurate_templat
 import GeneratedSectionSaveOutfit from "./generated_save_outfit";
 import Axios from 'axios'
 import { getLocal, storeLocal } from "../../../..//modules/storages/local";
+import { getCookie } from "../../../../modules/storages/cookie";
 
 export default function GeneratedSectionRandomOutift() {
     //Initial variable
@@ -18,6 +19,7 @@ export default function GeneratedSectionRandomOutift() {
     const [items, setItems] = useState(null)
     const [isGenerated, setIsGenerated] =  useState(false)
     const saveOutfitRef = useRef(null)
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         fetchClothesCategoryType()
@@ -34,7 +36,7 @@ export default function GeneratedSectionRandomOutift() {
         fetch(`http://127.0.0.1:8000/api/v1/dct/clothes/category_type`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())
@@ -114,7 +116,7 @@ export default function GeneratedSectionRandomOutift() {
             const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/generate", JSON.stringify(body), {
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`,
+                    'Authorization': `Bearer ${tokenKey}`,
                     'Content-Type' : 'application/json'
                 }
             })

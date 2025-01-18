@@ -1,4 +1,5 @@
 "use client"
+import { getCookie } from '../../../../../modules/storages/cookie'
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Axios from 'axios'
@@ -12,7 +13,7 @@ export default function ClothesDetailAddUsedHistory(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [msgAll, setResMsgAll] = useState(null)
-
+    const tokenKey = getCookie("token_key")
     const [usedContext, setUsedContext] = useState("")
     const [clothesNotes, setClothesNote] = useState("")
 
@@ -23,7 +24,7 @@ export default function ClothesDetailAddUsedHistory(props) {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/dct/used_context`, {
             headers: {
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`,
             },
         })
         .then(res => res.json())
@@ -65,7 +66,7 @@ export default function ClothesDetailAddUsedHistory(props) {
             const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/history", JSON.stringify(body), {
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`,
+                    'Authorization': `Bearer ${tokenKey}`,
                     'Content-Type' : 'application/json'
                 }
             })

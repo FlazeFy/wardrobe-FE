@@ -1,16 +1,9 @@
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
 import React from 'react'
 import { useState, useEffect } from "react"
-
-//Font awesome classicon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { getLocal, storeLocal } from '@/modules/storages/local'
+import { getLocal } from '../../../../../../modules/storages/local'
 import PostWash from './post_wash'
 import PutWashFinished from './put_wash_finished'
-
-// Modules
-
+import { getCookie } from '../../../../../../modules/storages/cookie'
 
 export default function GetClothesWashedStatus({ctx,id,clothesName}) {
     //Initial variable
@@ -18,12 +11,12 @@ export default function GetClothesWashedStatus({ctx,id,clothesName}) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [status, setStatus] = useState(null)
     const [message, setMessage] = useState(null)
-    const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/check_wash/${id}`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())

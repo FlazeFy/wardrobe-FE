@@ -1,5 +1,6 @@
 "use client"
-import MoleculesLineChart from '@/components/molecules/molecules_line_chart'
+import MoleculesLineChart from '../../../components/molecules/molecules_line_chart'
+import { getCookie } from '../../../modules/storages/cookie'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
@@ -10,13 +11,14 @@ export default function StatsMonthlyClothes({ctx}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/created_buyed/2025`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())

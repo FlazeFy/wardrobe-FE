@@ -1,6 +1,5 @@
 "use client"
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
-import { getLocal } from '@/modules/storages/local'
+import { getCleanTitleFromCtx } from '../../../../../modules/helpers/converter'
 import { useEffect, useState } from 'react'
 
 //Font awesome classicon
@@ -9,6 +8,7 @@ import { faArrowCircleLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
 import PostHistory from './usecases/post_history'
 import GetClotchesBySimiliar from './usecases/get_clothes_by_similiar'
 import GetClothesWashedStatus from './usecases/get_clothes_washed_status'
+import { getCookie } from '../../../../../modules/storages/cookie'
 
 export default function CategoryPage({ params }) {
     //Initial variable
@@ -24,7 +24,7 @@ export default function CategoryPage({ params }) {
     const [errorHistory, setErrorHistory] = useState(null)
     const [isLoadedHistory, setIsLoadedHistory] = useState(false)
     const [itemsHistory, setItemsHistory] = useState([])
-    const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         //Default config
@@ -36,7 +36,7 @@ export default function CategoryPage({ params }) {
         
         fetch(`http://127.0.0.1:8000/api/v1/clothes/detail/${params.category}/${keyOrder}`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())
@@ -123,7 +123,7 @@ export default function CategoryPage({ params }) {
     function get_history(id){
         fetch(`http://127.0.0.1:8000/api/v1/clothes/history/${id}/desc`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())

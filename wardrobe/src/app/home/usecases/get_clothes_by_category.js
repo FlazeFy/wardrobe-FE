@@ -1,22 +1,19 @@
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
+import { getCleanTitleFromCtx } from '../../../modules/helpers/converter'
 import React from 'react'
 import { useState, useEffect } from "react"
-
-//Font awesome classicon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 // Modules
 import { getLocal, storeLocal } from '../../../modules/storages/local'
+import { getCookie } from '../../../modules/storages/cookie'
 
 export default function GetClotchesByCategory({ctx}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const [maxPage, setMaxPage] = useState(0)
-    const [currPage, setCurrPage] = useState(0)
-    const keyToken = '76|HkWAJH66qssjePsFpldCJEg4pXTGE7tifRTClkkK92bcec9f'
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         //Default config
@@ -28,15 +25,13 @@ export default function GetClotchesByCategory({ctx}) {
         
         fetch(`http://127.0.0.1:8000/api/v1/clothes/header/${ctx}/${keyOrder}`, {
             headers: {
-                Authorization: `Bearer ${keyToken}`
+                Authorization: `Bearer ${tokenKey}`
             }
         })
         .then(res => res.json())
             .then(
             (result) => {
                 setIsLoaded(true)
-                // setMaxPage(result.data.last_page)
-                // setCurrPage(result.data.current_page)
                 setItems(result.data)        
             },
             (error) => {

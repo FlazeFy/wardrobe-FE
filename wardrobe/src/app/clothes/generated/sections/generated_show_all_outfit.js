@@ -6,6 +6,7 @@ import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_
 import OrganismsOutfit from "../../../../components/organisms/organisms_outfit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { getCookie } from "../../../../modules/storages/cookie";
 
 export default function GeneratedSectionShowAllOutfit(props) {
     // Initial variables
@@ -14,6 +15,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
     const [items, setItems] = useState([])
     const [maxPage, setMaxPage] = useState(0)
     const [page, setPage] = useState(1)
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         fetchAllOutfit(1)
@@ -24,7 +26,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit?page=${currentPage}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                "Authorization": `Bearer ${tokenKey}`, 
             },
         })
         .then((res) => res.json())

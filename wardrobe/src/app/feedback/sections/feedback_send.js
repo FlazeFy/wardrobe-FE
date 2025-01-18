@@ -1,14 +1,16 @@
 "use client"
+import { getCookie } from '../../../modules/storages/cookie'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Axios from 'axios'
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Swal from 'sweetalert2'
 import MoleculesField from '../../../components/molecules/molecules_field'
 
 export default function FeedbackSectionSend() {
     const [feedbackRate, setFeedbackRate] = useState(0)
     const [feedbackBody, setFeedbackBody] = useState("")
+    const tokenKey = getCookie("token_key")
 
     // Services
     const handleSubmit = async (e) => {
@@ -22,7 +24,7 @@ export default function FeedbackSectionSend() {
             const response = await Axios.post("http://127.0.0.1:8000/api/v1/feedback", JSON.stringify(body), {
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`,
+                    'Authorization': `Bearer ${tokenKey}`,
                     'Content-Type' : 'application/json'
                 }
             })

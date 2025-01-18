@@ -1,4 +1,5 @@
 "use client"
+import { getCookie } from '../../../../modules/storages/cookie'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Axios from 'axios'
@@ -13,6 +14,7 @@ export default function ClothesAddForm(props) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
     const [msgAll, setResMsgAll] = useState(null)
+    const tokenKey = getCookie("token_key")
 
     const [clothesName, setClothesName] = useState("")
     const [clothesDesc, setClothesDesc] = useState("")
@@ -44,7 +46,7 @@ export default function ClothesAddForm(props) {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/dct/clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type`, {
             headers: {
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())
@@ -119,7 +121,7 @@ export default function ClothesAddForm(props) {
             const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes", formData, {
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`,
+                    'Authorization': `Bearer ${tokenKey}`,
                 }
             })
             Swal.close()

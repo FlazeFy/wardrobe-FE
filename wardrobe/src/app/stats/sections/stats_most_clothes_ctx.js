@@ -4,6 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
+import { getCookie } from '../../../modules/storages/cookie'
 
 export default function StatsSectionMostClothesCtx({ctx}) {
     //Initial variable
@@ -14,6 +15,7 @@ export default function StatsSectionMostClothesCtx({ctx}) {
     const [itemsClothesSize, setItemsClothesSize] = useState([])
     const [itemsClothesMade, setItemsClothesMade] = useState([])
     const [itemsClothesCategory, setItemsClothesCategory] = useState([])
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         Swal.showLoading()
@@ -21,7 +23,7 @@ export default function StatsSectionMostClothesCtx({ctx}) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())

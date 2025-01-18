@@ -5,8 +5,11 @@ import React from "react"
 import Swal from "sweetalert2";
 import Axios from 'axios'
 import { getLocal } from "../../../../modules/storages/local";
+import { getCookie } from "../../../../modules/storages/cookie";
 
 export default function GeneratedSectionSaveLocalGenerated(props) {
+    const tokenKey = getCookie("token_key")
+
     const saveAllLocalGenerated = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -28,7 +31,7 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`,
+                            'Authorization': `Bearer ${tokenKey}`,
                         }
                     })
                     

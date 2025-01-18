@@ -1,5 +1,4 @@
 "use client"
-
 import GetClotchesByCategory from "./usecases/get_clothes_by_category"
 
 export default function HomePage() {

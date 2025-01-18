@@ -1,4 +1,5 @@
 "use client"
+import { getCookie } from '../../../../../modules/storages/cookie'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
@@ -12,6 +13,7 @@ export default function ClothesDetailEditForm(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
+    const tokenKey = getCookie("token_key")
 
     const [clothesName, setClothesName] = useState(props.item.clothes_name)
     const [clothesDesc, setClothesDesc] = useState(props.item.clothes_desc)
@@ -42,7 +44,7 @@ export default function ClothesDetailEditForm(props) {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/dct/clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type`, {
             headers: {
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())

@@ -1,10 +1,11 @@
 "use client"
 import OrganismsClothesHeader from "../../../components/organisms/organisms_clothes_header";
-import { getCurrentMonthYear } from "../../../modules/helpers/generator";
 import { faPenToSquare, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
+import { getCookie } from "../../../modules/storages/cookie";
 
 export default function CalendarSectionSchedule(props) {
     //Initial variable
@@ -14,6 +15,7 @@ export default function CalendarSectionSchedule(props) {
     const { month_year } = props
     const [month, year] = month_year.split('-').map(Number)
     const [today, setToday] = useState() 
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         fetchCalendar()
@@ -23,7 +25,7 @@ export default function CalendarSectionSchedule(props) {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/${month}/${year}`, {
             headers: {
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())
@@ -71,7 +73,7 @@ export default function CalendarSectionSchedule(props) {
     const dates = getDatesForMonth(month, year);
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>

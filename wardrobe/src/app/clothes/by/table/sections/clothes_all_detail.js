@@ -1,5 +1,6 @@
 "use client"
-import { getCleanTitleFromCtx, numberToPrice } from '@/modules/helpers/converter'
+import { getCleanTitleFromCtx, numberToPrice } from '../../../../../modules/helpers/converter'
+import { getCookie } from '../../../../../modules/storages/cookie'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
@@ -12,12 +13,13 @@ export default function ClothesSectionAllDetail(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
+    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/clothes/detail/all/desc`, {
             headers: {
-                'Authorization': `Bearer 288|63yTrvRp2Mb5V28ibnREpmTlQHgxKZCQlADQrBIg57da1e50`, 
+                'Authorization': `Bearer ${tokenKey}`, 
             },
         })
         .then(res => res.json())
