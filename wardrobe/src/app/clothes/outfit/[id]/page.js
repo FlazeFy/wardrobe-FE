@@ -11,6 +11,7 @@ import { getCookie } from "../../../../modules/storages/cookie";
 import Swal from "sweetalert2";
 import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
 import MoleculesClothesStatus from "../../../../components/molecules/molecules_clothes_status";
+import OutfitSectionUsedById from "./sections/outfit_used_by_id";
 
 export default function ClothesOutfitPage({params}) {
     //Initial variable
@@ -79,7 +80,7 @@ export default function ClothesOutfitPage({params}) {
                                 <h2 className="mb-0">Total Used</h2>
                                 <h4 className="mb-0 text-secondary">{items.total_used}</h4>
                             </div>
-                            <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
+                            <div className="me-4 pe-3">
                                 <h2 className="mb-0">Last Used</h2>
                                 <h4 className="mb-0 text-secondary">{convertDatetimeBasedLocal(items.last_used)}</h4>
                             </div>
@@ -108,6 +109,15 @@ export default function ClothesOutfitPage({params}) {
                             }
                         </div>
                         <AtomsBreakLine length={2}/>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <OutfitSectionUsedById/>
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                        
                     </div>
                 </div>
 
