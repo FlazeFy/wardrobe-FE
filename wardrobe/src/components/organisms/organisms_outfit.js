@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function OrganismsOutfit(props) {
     const handleBoxClick = (id) => {
-        window.location.href = `/clothes/generated/${id}`
+        window.location.href = `/clothes/outfit/${id}`
     };
     
     return (

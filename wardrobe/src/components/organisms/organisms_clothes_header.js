@@ -3,6 +3,7 @@ import React from 'react'
 import { getCleanTitleFromCtx } from '../../modules/helpers/converter'
 import { faMars, faVenus, faVenusMars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MoleculesClothesStatus from '../molecules/molecules_clothes_status'
 
 export default function OrganismsClothesHeader(props) {
     const handleBoxClick = (id) => {
@@ -30,36 +31,7 @@ export default function OrganismsClothesHeader(props) {
                 <h6 className={`text-secondary ${props.type == 'schedule' ? 'm-0':''}`} style={{textTransform:"capitalize", fontSize: props.type == 'schedule' ? "var(--textXSM)":""}}>{getCleanTitleFromCtx(props.items.clothes_category)} | {props.items.clothes_type}</h6>
                 {
                     props.type == 'clothes' ?
-                        <div className='mt-2'>
-                            {
-                                props.items.is_favorite == 1 && (
-                                    <div className='box-icon' title="Favorited">
-                                        <img src={"/images/favorite.png"}/>
-                                    </div>
-                                )
-                            }
-                            {
-                                props.items.is_scheduled == 1 && (
-                                    <div className='box-icon' title="Scheduled">
-                                        <img src={"/images/scheduled.png"}/>
-                                    </div>
-                                )
-                            }
-                            {
-                                props.items.has_washed == 1 && (
-                                    <div className='box-icon' title="Has Washed">
-                                        <img src={"/images/dry.png"}/>
-                                    </div>
-                                )
-                            }
-                            {
-                                props.items.has_ironed == 1 && (
-                                    <div className='box-icon' title="Has Ironed">
-                                        <img src={"/images/ironed.png"}/>
-                                    </div>
-                                )
-                            }
-                        </div>
+                        <MoleculesClothesStatus item={props.items}/>
                     :
                         <></>
                 }
