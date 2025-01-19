@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react"
 import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../../../modules/storages/cookie";
+import HardDeleteOutfitHistory from "./outfit_hard_delete_outfit_history";
 
 export default function OutfitSectionUsedById(props) {
     // Initial variables
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState()
     const [maxPage, setMaxPage] = useState(0)
     const tokenKey = getCookie("token_key")
 
@@ -18,32 +19,39 @@ export default function OutfitSectionUsedById(props) {
     }, [])
 
     const fetchAllHistory = () => {
-        Swal.showLoading();
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/history`, {
+        Swal.showLoading()
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/${props.id}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${tokenKey}`, 
             },
         })
-        .then((res) => res.json())
-        .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data)
-                setMaxPage(result.data.last_page)
-            },
-            (error) => {
-                Swal.close()
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(res.status)
+            }
+            return res.json()
+        })
+        .then((result) => {
+            Swal.close()
+            setIsLoaded(true)
+            setItems(result.data.data)
+            setMaxPage(result.data.last_page)
+        })
+        .catch((error) => {
+            Swal.close()
+            if (error.message != 404) {
+                setError(error)
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
                 });
-                setError(error)
+            } else {
+                setIsLoaded(true)
             }
-        )
-    }
+        });
+    };    
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type="danger" context={props.ctx} />
@@ -60,22 +68,24 @@ export default function OutfitSectionUsedById(props) {
                 <table className="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Clothes</th>
                             <th scope="col">Used At</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            items.map((dt) => {
+                            items ? items.map((dt) => {
                                 return (
                                     <tr>
-                                        <td>{dt.clothes_names}</td>
                                         <td>{convertDatetimeBasedLocal(dt.created_at)}</td>
-                                        <td className='text-center'>-</td>
+                                        <td className='text-center'><HardDeleteOutfitHistory fetchOutfit={props.fetchOutfit} id={dt.id}/></td>
                                     </tr>
                                 )
                             })
+                            :
+                            <tr>
+                                <td colSpan={2}><div className="my-2"><p className='text-secondary'>- No Used History Found -</p></div></td>
+                            </tr>
                         }
                     </tbody>
                 </table>
