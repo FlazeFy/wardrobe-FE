@@ -2,27 +2,30 @@
 import React from 'react'
 import Axios from 'axios'
 import Swal from 'sweetalert2'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../../modules/storages/cookie'
 
-export default function OutfitSectionHardDeleteOutfitHistory(props) {
+export default function OutfitSectionPostOutfitHistory(props) {
     //Initial variable
     const tokenKey = getCookie("token_key")
 
     // Services
     const handleSubmit = async (id) => {
         Swal.fire({
-            title: "Are you sure?",
-            text: "Want to permanentally delete this outfit?",
-            icon: "warning",
+            title: "Do you want to use this Outfit?",
+            text: "We well also add per clothes attached",
+            icon: "info",
             showCancelButton: true,
-            confirmButtonText: "Yes, Delete it!",
+            confirmButtonText: "Yes, Used it!",
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/by/${id}`, {
+                    const data = {
+                        outfit_id : id
+                    }
+                    let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/save`, JSON.stringify(data), {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',
@@ -30,7 +33,7 @@ export default function OutfitSectionHardDeleteOutfitHistory(props) {
                         }
                     })
                     
-                    if(response.status === 200){
+                    if(response.status === 201){
                         Swal.fire({
                             title: "Success!",
                             text: response.data.message,
@@ -59,5 +62,15 @@ export default function OutfitSectionHardDeleteOutfitHistory(props) {
         })
     }
 
-    return <button className='btn btn-danger' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/></button>
+    return (
+        <button className='btn btn-success w-100' style={{height:"80px"}} onClick={(e)=>handleSubmit(props.id)}>
+            <div className='d-flex justify-content-start text-white text-start'>
+                <FontAwesomeIcon icon={faFloppyDisk} style={{fontSize:"var(--textXJumbo)"}}/>
+                <div className='ms-3'>
+                    <h4 className="mb-0">Use this Outfit</h4>
+                    <p className="mb-0">This will also add clothes used history</p>
+                </div>
+            </div>
+        </button>
+    )
 }

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../../../modules/storages/cookie";
-import HardDeleteOutfitHistory from "./outfit_hard_delete_outfit_history";
+import OutfitSectionHardDeleteOutfitHistory from "./outfit_hard_delete_outfit_history";
 
 export default function OutfitSectionUsedById(props) {
     // Initial variables
@@ -15,7 +15,7 @@ export default function OutfitSectionUsedById(props) {
     const tokenKey = getCookie("token_key")
 
     useEffect(() => {
-        fetchAllHistory(1)
+        fetchAllHistory()
     }, [])
 
     const fetchAllHistory = () => {
@@ -78,7 +78,7 @@ export default function OutfitSectionUsedById(props) {
                                 return (
                                     <tr>
                                         <td>{convertDatetimeBasedLocal(dt.created_at)}</td>
-                                        <td className='text-center'><HardDeleteOutfitHistory fetchOutfit={props.fetchOutfit} id={dt.id}/></td>
+                                        <td className='text-center'><OutfitSectionHardDeleteOutfitHistory fetchOutfit={props.fetchOutfit} fetchAllHistory={fetchAllHistory} id={dt.id}/></td>
                                     </tr>
                                 )
                             })

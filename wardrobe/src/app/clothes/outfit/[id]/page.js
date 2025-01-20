@@ -12,8 +12,9 @@ import Swal from "sweetalert2";
 import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
 import MoleculesClothesStatus from "../../../../components/molecules/molecules_clothes_status";
 import OutfitSectionUsedById from "./sections/outfit_used_by_id";
+import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_history";
 
-export default function ClothesOutfitPage({params}) {
+export default function ClothesOutfitPage({params, ...props}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -53,7 +54,7 @@ export default function ClothesOutfitPage({params}) {
     }
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>
@@ -82,13 +83,22 @@ export default function ClothesOutfitPage({params}) {
                             </div>
                             <div className="me-4 pe-3">
                                 <h2 className="mb-0">Last Used</h2>
-                                <h4 className="mb-0 text-secondary">{convertDatetimeBasedLocal(items.last_used)}</h4>
+                                <h4 className="mb-0 text-secondary">{items.last_used ? convertDatetimeBasedLocal(items.last_used) : <span>-</span>}</h4>
                             </div>
                         </div>
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.outfit_name}</h1>
                         
                         <p className="text-secondary">{items.outfit_note ?? <span className="text-secondary">- No Description Provided -</span>}</p>
+                        <AtomsBreakLine length={2}/>
+                        <div className="row">
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <OutfitSectionPostOutfitHistory fetchOutfit={fetchOutfit} id={params.id}/>
+                            </div>
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                                
+                            </div>
+                        </div>
                         <AtomsBreakLine length={2}/>
                     </div>
                     <div className="col-lg-5 col-md-6 col-sm-12 col-12">
