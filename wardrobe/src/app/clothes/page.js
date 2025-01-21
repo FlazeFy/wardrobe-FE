@@ -2,7 +2,7 @@ import styles from "../page.module.css";
 import OrganismsNavbar from "../../components/organisms/organisms_navbar";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import MoleculesFooter from "../../components/molecules/molecules_footer";
-import { faArrowRight, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesSectionAllHeader from "./sections/clothes_all_header";
 import ClothesSectionTotalByType from "./sections/total_clothes_by_type";
@@ -30,7 +30,10 @@ export default function ClothesPage() {
             <div className="d-flex justify-content-between">
                 <div>
                     <h2 className="mb-0 fw-bold">All Clothes</h2>
-                    <h5 className="text-secondary">For more detail you can see the <a className="btn btn-link" href={"/clothes/by/table"}><FontAwesomeIcon icon={faArrowRight}/> Table View</a></h5>
+                    <h5 className="text-secondary">For more detail you can see the 
+                        <a className="btn btn-link mx-2" href={"/clothes/by/table"}><FontAwesomeIcon icon={faArrowRight}/> Table View</a>
+                        <a className="btn btn-link bg-danger text-white" href={"/clothes/trash"}><FontAwesomeIcon icon={faTrash}/> Deleted Clothes</a>
+                    </h5>
                 </div>
                 <div>
                     <a className="btn btn-success" href={"/clothes/add"}><FontAwesomeIcon icon={faPlus}/> Add New Clothes</a>
