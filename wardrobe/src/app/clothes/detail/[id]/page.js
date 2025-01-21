@@ -17,6 +17,8 @@ import ClothesDetailSchedule from "./sections/clothes_detail_schedule";
 import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule";
 import { getCookie } from "../../../../modules/storages/cookie";
 import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit";
+import ClothesDetailCheckDeleted from "./sections/clothes_detail_check_deleted";
+import ClothesDetailCheckSchedule from "./sections/clothes_detail_check_schedule";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
@@ -91,14 +93,8 @@ export default function ClothesDetailPage({params}) {
                         </div>
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.detail.clothes_name}</h1>
-                        {
-                            items.detail.deleted_at && (
-                                <div className='alert alert-danger' role='alert'>
-                                    <h4><FontAwesomeIcon icon={faTriangleExclamation}/> Warning</h4>
-                                    <p className="mb-0">This item has been deleted</p>
-                                </div>
-                            )
-                        }
+                        <ClothesDetailCheckDeleted items={items.detail.deleted_at}/>
+                        <ClothesDetailCheckSchedule items={items.schedule}/>
                         <p className="text-secondary">{items.detail.clothes_desc}</p>
                         <AtomsBreakLine length={2}/>
                     </div>
