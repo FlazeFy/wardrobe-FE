@@ -123,10 +123,10 @@ export default function ClothesOutfitPage({params, ...props}) {
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-3 col-md-4 col-sm-12 col-12">
                         <OutfitSectionUsedById fetchOutfit={fetchOutfit} id={params.id}/>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-9 col-md-8 col-sm-12 col-12">
                         
                     </div>
                 </div>

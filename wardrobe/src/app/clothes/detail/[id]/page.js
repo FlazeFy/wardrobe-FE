@@ -16,6 +16,7 @@ import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete";
 import ClothesDetailSchedule from "./sections/clothes_detail_schedule";
 import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule";
 import { getCookie } from "../../../../modules/storages/cookie";
+import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
@@ -141,7 +142,9 @@ export default function ClothesDetailPage({params}) {
 
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-
+                        <h2 className="mb-0 fw-bold">Outfit</h2>
+                        <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn't have found in any clothes</span>}</h5>
+                        <ClothesDetailSectionFoundedOutfit items={items.outfit}/>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <ClothesDetailDeleteClothesById id={params.id} type_delete={items.detail.deleted_at ? 'hard' : 'soft'} deleted_at={items.detail.deleted_at} clothes_name={items.detail.clothes_name} fetchClothes={fetchClothes}/>

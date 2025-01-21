@@ -73,28 +73,29 @@ a {
   margin-inline: auto;
 }
 
-.box, .box-clothes {
+.box, .box-clothes, .box-outfit-simple {
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-
-.box {
+.box, .box-outfit-simple {
+  padding: var(--spaceLG);
   border: calc(var(--spaceMini) / 1.5) solid var(--darkColor);
-  padding: var(--spaceMD);
   border-radius: var(--roundedLG);
+  cursor: pointer;
+  margin-bottom: var(--spaceMD);
+}
+.box {
   max-width: 19vh;
   margin-inline: auto;
   display: block;
-  cursor: pointer;
   height: 19vh;
   position: relative;
-  margin-bottom: var(--spaceMD);
 }
 .box img {
   width: 100%;
 }
-.box:hover {
+.box:hover, .box-outfit-simple:hover {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transform: scale(1.075);
 }

@@ -23,7 +23,8 @@ export default function OutfitSectionPostOutfitHistory(props) {
             if (result.isConfirmed) {
                 try {
                     const data = {
-                        outfit_id : id
+                        outfit_id : id,
+                        used_context: 'Work'
                     }
                     let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/save`, JSON.stringify(data), {
                         headers: {
