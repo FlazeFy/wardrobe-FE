@@ -42,7 +42,7 @@ export default function ClothesSectionAllDetail(props) {
     },[])
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>
@@ -66,8 +66,8 @@ export default function ClothesSectionAllDetail(props) {
                 </thead>
                 <tbody>
                     {
-                        items.map((el)=>{
-                            return <tr>
+                        items.map((el, idx)=>{
+                            return <tr key={idx}>
                                 <td className='text-center'>{el.clothes_qty}x</td>
                                 <td>
                                     <img src={el.clothes_image ?? "/images/footwear.png"} className="img-clothes img-fluid my-2"/>

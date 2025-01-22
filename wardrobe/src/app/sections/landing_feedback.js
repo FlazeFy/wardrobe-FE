@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 
-export default function LandingFeedback() {
+export default function LandingFeedback(props) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -39,7 +39,7 @@ export default function LandingFeedback() {
     },[])
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>

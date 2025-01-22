@@ -12,7 +12,7 @@ import Axios from 'axios'
 import { getLocal, storeLocal } from "../../../..//modules/storages/local";
 import { getCookie } from "../../../../modules/storages/cookie";
 
-export default function GeneratedSectionRandomOutift() {
+export default function GeneratedSectionRandomOutift(props) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -108,8 +108,19 @@ export default function GeneratedSectionRandomOutift() {
     // Service
     const handleSubmit = async (e) => {
         try {
+            let clothes_type = ''
+            items.forEach((dt, idx) => {
+                if(dt.selected){
+                    if(idx < items.length - 1){
+                        clothes_type += `${dt.clothes_type},`
+                    } else {
+                        clothes_type += dt.clothes_type
+                    }
+                }
+            })
+
             const body = {
-                "clothes_type" : "hat,shirt",
+                "clothes_type" : clothes_type,
             }
 
             Swal.showLoading()
@@ -182,7 +193,7 @@ export default function GeneratedSectionRandomOutift() {
     }
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>

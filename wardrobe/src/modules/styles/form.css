@@ -1,0 +1,27 @@
+/* Field */
+.field {
+    margin-bottom: var(--spaceMD);
+}
+.field label {
+    font-size: var(--textXLG);
+    font-weight: 500;
+    color: var(--darkColor);
+    margin-bottom: var(--spaceXSM);
+}
+.field .form-control,  .field .form-select{
+    border-radius: var(--roundedLG);
+    font-size: var(--textXLG);
+    padding: var(--spaceMD);
+    border: 1.5px solid var(--shadowColor);
+}
+
+/* Button */
+.btn {
+    border-radius: var(--roundedLG) !important;
+    padding: var(--spaceMD) var(--spaceLG) !important;
+    cursor: pointer;
+}
+.btn-link {
+    border: 1.75px solid var(--blackColor) !important;
+    color: var(--blackColor) !important;
+}

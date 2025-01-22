@@ -12,9 +12,9 @@ export default function OrganismsOutfit(props) {
         <div className={`box-clothes`} onClick={(e)=> handleBoxClick(props.items.id)}>
             <div className='row'>
                 {
-                    props.items.clothes.map((cl)=>{
+                    props.items.clothes.map((cl,idx)=>{
                         return (
-                            <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto p-2'>
+                            <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto p-2' key={idx}>
                                 <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes"/>
                                 <h6 className='mt-2 mb-0'>{cl.clothes_type} | {cl.clothes_name}</h6>
                                 <p className='mb-0 text-secondary'>{cl.clothes_merk}</p>

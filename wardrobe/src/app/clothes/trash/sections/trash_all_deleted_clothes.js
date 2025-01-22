@@ -42,7 +42,7 @@ export default function ClothesSectionAllDeletedClothes(props) {
     },[])
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>
@@ -65,8 +65,8 @@ export default function ClothesSectionAllDeletedClothes(props) {
                 </thead>
                 <tbody>
                     {
-                        items.map((el)=>{
-                            return <tr>
+                        items.map((el, idx)=>{
+                            return <tr key={idx}>
                                 <td className='text-center'>{el.clothes_qty}</td>
                                 <td>{el.clothes_name}</td>
                                 <td>{el.clothes_desc ?? <span className="fst-italic text-secondary">- No Description Provided -</span>}</td>

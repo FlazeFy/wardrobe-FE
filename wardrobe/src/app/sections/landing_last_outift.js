@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getCookie } from "../../modules/storages/cookie";
 
-export default function LandingSectionLastOutfit() {
+export default function LandingSectionLastOutfit(props) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -51,7 +51,7 @@ export default function LandingSectionLastOutfit() {
     }
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>

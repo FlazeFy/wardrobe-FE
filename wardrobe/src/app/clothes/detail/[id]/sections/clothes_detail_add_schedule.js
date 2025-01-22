@@ -96,7 +96,7 @@ export default function ClothesDetailAddSchedule(props) {
     }
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>
@@ -112,7 +112,7 @@ export default function ClothesDetailAddSchedule(props) {
                     :
                         <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" data-bs-toggle="modal" data-bs-target="#addScheduleModal"><FontAwesomeIcon icon={faPlus}/> Schedule</button>
                 }
-                <div className="modal fade" id="addScheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id="addScheduleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">

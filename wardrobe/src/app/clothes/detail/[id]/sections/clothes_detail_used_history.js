@@ -18,7 +18,7 @@ export default function ClothesDetailUsedHistory(props) {
                     {
                         props.items.map((dt,idx) => {
                             return (
-                                <tr>
+                                <tr key={`detail-used-${idx}`}>
                                     <td className='text-center'>{dt.used_context}</td>
                                     <td>{dt.clothes_note ?? <span className='text-secondary fst-italic'>- No Notes Provided -</span>}</td>
                                     <td>{dt.created_at}</td>

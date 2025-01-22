@@ -10,9 +10,9 @@ export default function ClothesDetailSectionFoundedOutfit(props) {
         return (
             <div className='row'>
                 {
-                    props.items.map((dt)=>{
+                    props.items.map((dt, idx)=>{
                         return (
-                            <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-12' key={`detail-founded-${idx}`}>
                                 <div className='box-outfit-simple' onClick={(e) => handleBoxClick(dt.id)}>
                                     <h5 className='mb-0'>{dt.outfit_name}</h5>
                                     <p>{dt.outfit_note ?? <span className='text-secondary'>- No Notes Provided -</span>}</p>

@@ -1,0 +1,26 @@
+a {
+    text-decoration: none !important;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}  
+a:hover {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+} 
+h1, h2, h3, h4, h5, h6 {
+    text-transform: capitalize;
+}  
+h1 {
+    letter-spacing: var(--spaceMini);
+}
+h2 {
+    letter-spacing: 2.25px;
+}
+h3, h4 {
+    letter-spacing: 2px;
+}
+h5, h6 {
+    letter-spacing: 1.75px;
+}

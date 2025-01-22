@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
 
-export default function ClothesSectionTotalByType({ctx}) {
+export default function ClothesSectionTotalByType(props) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -42,7 +42,7 @@ export default function ClothesSectionTotalByType({ctx}) {
     },[])
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>
@@ -57,7 +57,7 @@ export default function ClothesSectionTotalByType({ctx}) {
                 </div>
                 <div className='text-end'>
                     {
-                        items.map((dt, idx) => <h4 className="mb-0"><b>{dt.total}</b> <span className='text-secondary'>{dt.context}</span></h4>)
+                        items.map((dt, idx) => <h4 className="mb-0" key={idx}><b>{dt.total}</b> <span className='text-secondary'>{dt.context}</span></h4>)
                     }
                 </div>
             </div>

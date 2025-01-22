@@ -1,0 +1,136 @@
+.box, .box-clothes, .box-outfit-simple, .box-schedule-mini {
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.box, .box-outfit-simple {
+    padding: var(--spaceLG);
+    border: calc(var(--spaceMini) / 1.5) solid var(--darkColor);
+    border-radius: var(--roundedLG);
+    cursor: pointer;
+    margin-bottom: var(--spaceMD);
+}
+.box {
+    max-width: 19vh;
+    margin-inline: auto;
+    display: block;
+    height: 19vh;
+    position: relative;
+}
+.box img {
+    width: 100%;
+}
+.box:hover, .box-outfit-simple:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: scale(1.075);
+}
+.box-header, .box-footer {
+    position: absolute;
+    white-space: nowrap; 
+    overflow-x: auto;
+}
+.box-header {
+    top: -15px;
+    left: -20px;
+}
+.box-footer {
+    bottom: -15px;
+    border-radius: var(--roundedMD);
+    padding: var(--spaceMini) var(--spaceSM);
+    font-size: var(--textMD) !important;
+    font-weight: 500;
+    background: var(--whiteColor);
+    border: calc(var(--spaceMini) / 2.5) solid var(--darkColor) !important;
+}
+.box-icon {
+    margin-right: var(--spaceMini);
+    display: inline-block !important;
+}
+.box-icon img {
+    height: 26px;
+    width: 28px;
+}
+.box-icon {
+    background: var(--whiteColor);
+    border: calc(var(--spaceMini) / 2.5) solid var(--darkColor) !important;
+    border-radius: 100%;
+    padding: 2px var(--spaceXXSM) var(--spaceXXSM) var(--spaceXXSM);
+}
+.box-schedule-mini {
+    display: flex;
+    justify-content: start;
+    padding: var(--spaceMD);
+    background: var(--greyColor);
+}
+.box-schedule-mini img {
+    height: 54px;
+    width: 54px;
+    border-radius: 100%;
+    margin-right: var(--spaceMD);
+}
+.container-bordered {
+    border: 1.5px solid var(--darkColor);
+    padding: var(--spaceMD);
+    border-radius: var(--roundedLG);
+    margin-bottom: var(--spaceMD);
+}
+
+.card {
+    background: var(--whiteColor);
+    border: 1.5px solid var(--greyColor) !important;
+    padding: var(--spaceLG);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: var(--roundedLG) !important;
+}
+
+.container-generator {
+    width: 100%;
+    height: 40vh;
+    border-radius: var(--roundedLG);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/generate_outfit.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+    background-color: var(--greyColor);
+    color: var(--whiteColor);
+    padding: var(--spaceXLG);
+    display: flex;
+    flex-direction: column; 
+    text-align: start;
+    align-items: flex-start; 
+    justify-content: flex-end;
+}  
+.box-clothes, .img-clothes, .label-clothes, .box-schedule-mini {
+    border-radius: var(--roundedLG);
+}
+.box-clothes, .box-schedule-mini {
+    padding: var(--spaceLG);
+    background: var(--hoverBG);
+    position: relative;
+    cursor: pointer;
+}
+.box-clothes {
+    margin-bottom: var(--spaceLG);
+}
+.box-clothes:hover, .box-schedule-mini:hover {
+    transform: scale(1.05);
+}
+.box-clothes .img-clothes {
+    width: 100%;
+    background: var(--greyColor);
+}
+.box-clothes .body-clothes {
+    margin-top: var(--spaceMD);
+}
+.box-clothes .label-holder {
+    position: absolute;
+    top: var(--spaceMD);
+    left: var(--spaceMD);
+}
+.box-clothes .label-holder .label-clothes {
+    padding: var(--spaceXXSM) var(--spaceMD);
+    font-size: var(--spaceLG);
+    color: var(--whiteColor);
+    margin-right: var(--spaceXSM);
+}

@@ -6,7 +6,7 @@ import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box
 import { formatCurrency } from '../../../modules/helpers/converter'
 import { getCookie } from '../../../modules/storages/cookie'
 
-export default function StatsSectionSummary({ctx}) {
+export default function StatsSectionSummary(props) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -40,7 +40,7 @@ export default function StatsSectionSummary({ctx}) {
     },[])
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>

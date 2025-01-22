@@ -8,7 +8,7 @@ export default function GeneratedSectionConfigurateTemplate(props) {
     return (
         <>
             <a className="btn btn-primary" data-bs-target="#configureTemplateModal" data-bs-toggle="modal"><FontAwesomeIcon icon={faGear}/> Configurate</a>
-            <div className="modal fade" id="configureTemplateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="configureTemplateModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                     <div className="modal-header">

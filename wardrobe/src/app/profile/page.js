@@ -11,7 +11,7 @@ import { convertDatetimeBasedLocal } from "../../modules/helpers/converter";
 import { getCookie } from "../../modules/storages/cookie";
 import ProfileSectionAllHistory from "./sections/profile_all_history";
 
-export default function ProfilePage() {
+export default function ProfilePage(props) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -50,7 +50,7 @@ export default function ProfilePage() {
     }
 
     if (error) {
-        return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
         return (
             <div>
