@@ -55,12 +55,11 @@ export default function ClothesSectionAllDetail(props) {
                 <thead>
                     <tr>
                         <th>Qty</th>
-                        <th style={{width:'200px'}}>Clothes Name</th>
-                        <th style={{width:'200px'}}>Description</th>
+                        <th style={{width:'320px'}}>Name & Description</th>
                         <th style={{minWidth:'200px'}}>Detail</th>
-                        <th style={{minWidth:'200px'}}>Category & Type</th>
-                        <th style={{width:'120px'}}>Price</th>
-                        <th style={{width:'200px'}}>Status</th>
+                        <th style={{minWidth:'140px'}}>Category & Type</th>
+                        <th style={{width:'180px'}}>Price</th>
+                        <th style={{width:'180px'}}>Status</th>
                         <th>Properties</th>
                         <th>Action</th>
                     </tr>
@@ -70,8 +69,11 @@ export default function ClothesSectionAllDetail(props) {
                         items.map((el)=>{
                             return <tr>
                                 <td className='text-center'>{el.clothes_qty}x</td>
-                                <td>{el.clothes_name}</td>
-                                <td>{el.clothes_desc ?? <span className="fst-italic text-secondary">- No Description Provided -</span>}</td>
+                                <td>
+                                    <img src={el.clothes_image ?? "/images/footwear.png"} className="img-clothes img-fluid my-2"/>
+                                    <h6>{el.clothes_name}</h6>
+                                    <p className='mb-0 text-secondary'>{el.clothes_desc ?? <span className="fst-italic text-secondary">- No Description Provided -</span>}</p>
+                                </td>
                                 <td>
                                     <h6 className='m-0'>Merk</h6>
                                     <p className='m-0 mb-2'>{el.clothes_merk ?? '-'}</p>

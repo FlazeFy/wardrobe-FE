@@ -87,6 +87,14 @@ export default function ClothesDetailAddSchedule(props) {
         }
     }
 
+    const preventDeleted = () => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You can't add schedule from deleted clothes. Recover it to make it useable",
+        })
+    }
+
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
     } else if (!isLoaded) {
@@ -98,7 +106,12 @@ export default function ClothesDetailAddSchedule(props) {
     } else {
         return (
             <>
-                <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" data-bs-toggle="modal" data-bs-target="#addScheduleModal"><FontAwesomeIcon icon={faPlus}/> Schedule</button>
+                {
+                    props.deleted_at ?
+                        <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" onClick={preventDeleted}><FontAwesomeIcon icon={faPlus}/> Schedule</button>
+                    :
+                        <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" data-bs-toggle="modal" data-bs-target="#addScheduleModal"><FontAwesomeIcon icon={faPlus}/> Schedule</button>
+                }
                 <div className="modal fade" id="addScheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">

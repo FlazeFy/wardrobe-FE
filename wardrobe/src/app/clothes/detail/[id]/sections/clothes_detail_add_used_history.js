@@ -53,6 +53,14 @@ export default function ClothesDetailAddUsedHistory(props) {
         )
     },[])
 
+    const preventDeleted = () => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You can't add used history from deleted clothes. Recover it to make it useable",
+        })
+    }
+
     // Services
     const handleSubmit = async (e) => {
         try {
@@ -113,7 +121,12 @@ export default function ClothesDetailAddUsedHistory(props) {
     } else {
         return (
             <>
-                <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" data-bs-toggle="modal" data-bs-target="#addHistoryModal"><FontAwesomeIcon icon={faPlus}/> History</button>
+                {
+                    props.deleted_at ?
+                        <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" onClick={preventDeleted}><FontAwesomeIcon icon={faPlus}/> History</button>
+                    :
+                        <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" data-bs-toggle="modal" data-bs-target="#addHistoryModal"><FontAwesomeIcon icon={faPlus}/> History</button>
+                }
                 <div className="modal fade" id="addHistoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">

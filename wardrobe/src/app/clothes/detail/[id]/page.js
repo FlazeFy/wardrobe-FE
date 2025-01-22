@@ -120,7 +120,7 @@ export default function ClothesDetailPage({params}) {
                         <div style={{maxWidth:"50vw"}}>
                             <h2 className="mb-0 fw-bold">Used History</h2>
                             <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
-                                <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history"/></h5>
+                                <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at}/></h5>
                         </div>
                         <AtomsBreakLine length={1}/>
                         <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>
@@ -130,7 +130,7 @@ export default function ClothesDetailPage({params}) {
                         <AtomsBreakLine length={2}/>
                         <h2 className="mb-0 fw-bold">Schedule</h2>
                         <h5 className="text-secondary">You can set weekly schedule for a clothes, so we can remind you night before the day of use. 
-                                <ClothesDetailAddSchedule fetchClothes={fetchClothes} id={params.id} ctx="add_schedule"/></h5>
+                                <ClothesDetailAddSchedule fetchClothes={fetchClothes} id={params.id} ctx="add_schedule" deleted_at={items.detail.deleted_at}/></h5>
                         <ClothesDetailSchedule items={items.schedule} fetchClothes={fetchClothes}/>
                         <AtomsBreakLine length={2}/>
                     </div>

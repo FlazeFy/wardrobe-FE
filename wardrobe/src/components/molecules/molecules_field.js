@@ -10,11 +10,11 @@ export default function MoleculesField(props){
             }
             {
                 props.type == 'text' || props.type == 'number' || props.type == 'date' ?
-                    <input className='form-control' defaultValue={props.defaultValue} type={props.type} onChange={props.handleChange}></input>
+                    <input className='form-control' defaultValue={props.defaultValue} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false}></input>
                 : props.type == 'textarea' ?
-                    <textarea className='form-control' style={{minHeight:"200px"}} defaultValue={props.defaultValue} type={props.type} onChange={props.handleChange}></textarea>
+                    <textarea className='form-control' style={{minHeight:"200px"}} defaultValue={props.defaultValue} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
                 : props.type == 'select' ? 
-                    <select className="form-select" onChange={props.handleChange} value={props.defaultValue}>
+                    <select className="form-select" onChange={props.handleChange} disabled={props.isDisabled ?? false} value={props.defaultValue}>
                         {
                             props.items.map((el, idx)=>{
                                 return <option value={el} key={idx}>{getCleanTitleFromCtx(el)}</option>
@@ -22,7 +22,7 @@ export default function MoleculesField(props){
                         }
                     </select>
                 : props.type == 'toggle' ?
-                    <Switch onChange={props.handleChange} checked={props.defaultValue} checkedIcon={false} uncheckedIcon={false}/>
+                    <Switch onChange={props.handleChange} checked={props.defaultValue} disabled={props.isDisabled ?? false} checkedIcon={false} uncheckedIcon={false}/>
                 : props.type == 'file' ?
                     <div className="me-2">
                         <label htmlFor="formFile" className="form-label">{props.title}</label>

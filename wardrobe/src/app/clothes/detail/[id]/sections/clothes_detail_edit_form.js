@@ -86,6 +86,18 @@ export default function ClothesDetailEditForm(props) {
         )
     },[])
 
+    const handleSave = (deleted_at) => {
+        if(deleted_at){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You can't edit deleted clothes. Recover it to make it useable",
+            })
+        } else {
+
+        }
+    }
+
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={ctx}/>
     } else if (!isLoaded) {
@@ -98,67 +110,67 @@ export default function ClothesDetailEditForm(props) {
         return (
             <div className='row'>
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
-                    <MoleculesField title="Clothes Name" type={'text'} defaultValue={clothesName} handleChange={(e) => {
+                    <MoleculesField title="Clothes Name" type={'text'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesName} handleChange={(e) => {
                         setClothesName(e.target.value)
                     }}/>
-                    <MoleculesField title="Description" type={'textarea'} defaultValue={clothesDesc} handleChange={(e) => {
+                    <MoleculesField title="Description" type={'textarea'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesDesc} handleChange={(e) => {
                         setClothesDesc(e.target.value)
                     }}/>
-                    <MoleculesField title="Merk" type={'text'} defaultValue={clothesMerk} handleChange={(e) => {
+                    <MoleculesField title="Merk" type={'text'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesMerk} handleChange={(e) => {
                         setClothesMerk(e.target.value)
                     }}/>
-                    <button className='btn btn-success mt-3'><FontAwesomeIcon icon={faFloppyDisk}/> Save Changes</button>
+                    <button className='btn btn-success mt-3' onClick={(e) => handleSave(props.item.deleted_at)}><FontAwesomeIcon icon={faFloppyDisk}/> Save Changes</button>
                 </div> 
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
                     <div className='row'>
                         <div className='col-lg-8 col-md-7 col-sm-6 col-12'>
-                            <MoleculesField title="Price" type={'number'} defaultValue={clothesPrice} handleChange={(e) => {
+                            <MoleculesField title="Price" type={'number'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesPrice} handleChange={(e) => {
                                 setClothesPrice(e.target.value)
                             }}/>
                         </div>
                         <div className='col-lg-4 col-md-5 col-sm-6 col-12'>
-                            <MoleculesField title="Qty" type={'number'} defaultValue={clothesQty} handleChange={(e) => {
+                            <MoleculesField title="Qty" type={'number'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesQty} handleChange={(e) => {
                                 setClothesQty(e.target.value)
                             }}/>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-lg-4 col-md-2 col-sm-6 col-12'>
-                            <MoleculesField title="Gender" type={'select'} defaultValue={clothesGender} items={clothesGenderDictionary} handleChange={(e) => {
+                            <MoleculesField title="Gender" type={'select'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesGender} items={clothesGenderDictionary} handleChange={(e) => {
                                 setClothesGender(e.target.value)
                             }}/>
                         </div>
                         <div className='col-lg-3 col-md-4 col-sm-6 col-12'>
-                            <MoleculesField title="Size" type="select" defaultValue={clothesSize} items={clothesSizeDictionary} handleChange={(e) => setClothesSize(e.target.value)}/>
+                            <MoleculesField title="Size" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesSize} items={clothesSizeDictionary} handleChange={(e) => setClothesSize(e.target.value)}/>
                         </div>
                         <div className='col-lg-5 col-md-6 col-sm-6 col-12'>
-                            <MoleculesField title="Type" type="select" defaultValue={clothesType} items={clothesTypeDictionary} handleChange={(e) => setClothesType(e.target.value)}/>
+                            <MoleculesField title="Type" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesType} items={clothesTypeDictionary} handleChange={(e) => setClothesType(e.target.value)}/>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
-                            <MoleculesField title="Made From" type="select" defaultValue={clothesMadeFrom} items={clothesMadeFromDictionary} handleChange={(e) => setClothesMadeFrom(e.target.value)}/>
+                            <MoleculesField title="Made From" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesMadeFrom} items={clothesMadeFromDictionary} handleChange={(e) => setClothesMadeFrom(e.target.value)}/>
                         </div>
                         <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
-                            <MoleculesField title="Category" type="select" defaultValue={clothesCategory} items={clothesCategoryDictionary} handleChange={(e) => setClothesCategory(e.target.value)}/>
+                            <MoleculesField title="Category" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesCategory} items={clothesCategoryDictionary} handleChange={(e) => setClothesCategory(e.target.value)}/>
                         </div>
                     </div>
                     <hr></hr>
                     <div className='d-flex justify-content-start'>
                         <div className='me-2'>
-                            <MoleculesField title="Is Faded" type="toggle" defaultValue={isFaded == 1 ? true : false} handleChange={(e)=>setIsFaded(e == true ? 1 : 0)}/>
+                            <MoleculesField title="Is Faded" type="toggle" isDisabled={props.item.deleted_at ? true : false} defaultValue={isFaded == 1 ? true : false} handleChange={(e)=>setIsFaded(e == true ? 1 : 0)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Has Washed" type="toggle" defaultValue={hasWashed == 1 ? true : false} handleChange={(e)=>setHasWashed(e == true ? 1 : 0)}/>
+                            <MoleculesField title="Has Washed" type="toggle" isDisabled={props.item.deleted_at ? true : false} defaultValue={hasWashed == 1 ? true : false} handleChange={(e)=>setHasWashed(e == true ? 1 : 0)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Has Ironed" type="toggle" defaultValue={hasIroned == 1 ? true : false} handleChange={(e)=>setHasIroned(e == true ? 1 : 0)}/>
+                            <MoleculesField title="Has Ironed" type="toggle" isDisabled={props.item.deleted_at ? true : false} defaultValue={hasIroned == 1 ? true : false} handleChange={(e)=>setHasIroned(e == true ? 1 : 0)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Is Favorite" type="toggle" defaultValue={isFavorite == 1 ? true : false} handleChange={(e)=>setIsFavorite(e == true ? 1 : 0)}/>
+                            <MoleculesField title="Is Favorite" type="toggle" isDisabled={props.item.deleted_at ? true : false} defaultValue={isFavorite == 1 ? true : false} handleChange={(e)=>setIsFavorite(e == true ? 1 : 0)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Is Scheduled" type="toggle" defaultValue={isScheduled == 1 ? true : false} handleChange={(e)=>setIsScheduled(e == true ? 1 : 0)}/>
+                            <MoleculesField title="Is Scheduled" type="toggle" isDisabled={props.item.deleted_at ? true : false} defaultValue={isScheduled == 1 ? true : false} handleChange={(e)=>setIsScheduled(e == true ? 1 : 0)}/>
                         </div>
                     </div>
                 </div> 
