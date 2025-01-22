@@ -6,6 +6,7 @@ import { faArrowRight, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesSectionAllHeader from "./sections/clothes_all_header";
 import ClothesSectionTotalByType from "./sections/total_clothes_by_type";
+import ClothesCheckSchedule from "./sections/clothes_check_schedule";
 
 export default function ClothesPage() {
     return (
@@ -39,6 +40,8 @@ export default function ClothesPage() {
                     <a className="btn btn-success" href={"/clothes/add"}><FontAwesomeIcon icon={faPlus}/> Add New Clothes</a>
                 </div>
             </div>
+            <AtomsBreakLine length={1}/>
+            <ClothesCheckSchedule ctx="check_schedule"/>
             <AtomsBreakLine length={1}/>
             <ClothesSectionAllHeader ctx="all_header"/>
             <AtomsBreakLine length={1}/>
