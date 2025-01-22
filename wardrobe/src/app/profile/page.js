@@ -9,6 +9,7 @@ import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
 import ProfileSectionEditForm from "./sections/profile_edit_form";
 import { convertDatetimeBasedLocal } from "../../modules/helpers/converter";
 import { getCookie } from "../../modules/storages/cookie";
+import ProfileSectionAllHistory from "./sections/profile_all_history";
 
 export default function ProfilePage() {
     //Initial variable
@@ -97,6 +98,11 @@ export default function ProfilePage() {
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={1}/>
                         <ProfileSectionEditForm item={items}/>
+                        <AtomsBreakLine length={2}/>
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <AtomsBreakLine length={1}/>
+                        <ProfileSectionAllHistory ctx="all_history"/>
                         <AtomsBreakLine length={2}/>
                     </div>
                 </div>

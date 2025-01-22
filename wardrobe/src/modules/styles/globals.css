@@ -143,6 +143,12 @@ a {
   border-radius: 100%;
   margin-right: var(--spaceMD);
 }
+.container-bordered {
+  border: 1.5px solid var(--darkColor);
+  padding: var(--spaceMD);
+  border-radius: var(--roundedLG);
+  margin-bottom: var(--spaceMD);
+}
 
 a {
   text-decoration: none !important;
