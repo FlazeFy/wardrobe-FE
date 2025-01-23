@@ -14,6 +14,7 @@ import MoleculesClothesStatus from "../../../../components/molecules/molecules_c
 import OutfitSectionUsedById from "./sections/outfit_used_by_id";
 import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_history";
 import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes";
+import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used";
 
 export default function ClothesOutfitPage({params, ...props}) {
     //Initial variable
@@ -130,7 +131,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                         <OutfitSectionUsedById fetchOutfit={fetchOutfit} id={params.id}/>
                     </div>
                     <div className="col-lg-9 col-md-8 col-sm-12 col-12">
-                        
+                        <OutfitSectionMonthlyTotalUsed id={params.id}/>
                     </div>
                 </div>
 
