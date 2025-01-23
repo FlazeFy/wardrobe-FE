@@ -3,6 +3,7 @@ a {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+    color: inherit;
 }  
 a:hover {
     text-decoration: underline !important;

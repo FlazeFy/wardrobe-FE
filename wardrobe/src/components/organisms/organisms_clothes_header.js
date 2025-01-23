@@ -11,7 +11,7 @@ export default function OrganismsClothesHeader(props) {
     };
     
     return (
-        <div className={`box-clothes ${props.type == 'schedule' ? 'p-2':''}`} onClick={(e)=> handleBoxClick(props.items.id)}>
+        <div className={`box-clothes ${props.type == 'schedule' ? 'p-2':''}`} onClick={(e) => (props.handleClick ? props.handleClick() : handleBoxClick(props.items.id))}>
             {
                 props.type == 'clothes' &&
                     <div className='label-holder'>

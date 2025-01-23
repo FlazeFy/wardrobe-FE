@@ -13,6 +13,7 @@ import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter
 import MoleculesClothesStatus from "../../../../components/molecules/molecules_clothes_status";
 import OutfitSectionUsedById from "./sections/outfit_used_by_id";
 import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_history";
+import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes";
 
 export default function ClothesOutfitPage({params, ...props}) {
     //Initial variable
@@ -96,7 +97,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                                 <OutfitSectionPostOutfitHistory fetchOutfit={fetchOutfit} id={params.id}/>
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                                
+                                <OutfitDetailPostOutfitClothes fetchOutfit={fetchOutfit} id={params.id} selectedClothes={items.clothes}/>
                             </div>
                         </div>
                         <AtomsBreakLine length={2}/>
@@ -107,7 +108,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                             {
                                 items.clothes.map((cl)=>{
                                     return (
-                                        <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto p-2 text-center'>
+                                        <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto px-3 py-2 text-center box-clothes'>
                                             <h6 className='mt-2 mb-1'>{cl.clothes_type} | {cl.clothes_name}</h6>
                                             <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes img-fluid"/>
                                             <MoleculesClothesStatus item={cl}/>

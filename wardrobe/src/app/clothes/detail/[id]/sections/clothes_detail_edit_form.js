@@ -135,15 +135,15 @@ export default function ClothesDetailEditForm(props) {
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-lg-4 col-md-2 col-sm-6 col-12'>
+                        <div className='col-lg-4 col-md-4 col-sm-6 col-12'>
                             <MoleculesField title="Gender" type={'select'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesGender} items={clothesGenderDictionary} handleChange={(e) => {
                                 setClothesGender(e.target.value)
                             }}/>
                         </div>
-                        <div className='col-lg-3 col-md-4 col-sm-6 col-12'>
+                        <div className='col-lg-3 col-md-3 col-sm-6 col-12'>
                             <MoleculesField title="Size" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesSize} items={clothesSizeDictionary} handleChange={(e) => setClothesSize(e.target.value)}/>
                         </div>
-                        <div className='col-lg-5 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-5 col-md-5 col-sm-6 col-12'>
                             <MoleculesField title="Type" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesType} items={clothesTypeDictionary} handleChange={(e) => setClothesType(e.target.value)}/>
                         </div>
                     </div>
