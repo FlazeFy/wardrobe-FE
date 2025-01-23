@@ -15,6 +15,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
     const [selectedItem, setSelectedItems] = useState([])
+    const [attachedItem, setAttachedItems] = useState([])
     const [msgAll, setResMsgAll] = useState(null)
     const tokenKey = getCookie("token_key")
 
@@ -37,7 +38,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                 setItems(result.data.data)
 
                 if(props.selectedClothes){
-                    setSelectedItems(props.selectedClothes)
+                    setAttachedItems(props.selectedClothes)
                 }
             },
             (error) => {
@@ -57,7 +58,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
         try {
             const body = {
                 "outfit_id" : props.id,
-                "clothes" : clothes,
+                "clothes" : JSON.stringify(selectedItem),
             }
 
             Swal.showLoading()
@@ -90,13 +91,21 @@ export default function OutfitDetailPostOutfitClothes(props) {
                 setResMsgAll(response.data.message)
             }
         } catch (error) {
-            Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-            })
-            setResMsgAll(error)
+            if (error.response && error.response.status === 422) {
+                Swal.fire({
+                    title: "Oops...",
+                    text: error.response.data.message,
+                    icon: "error",
+                })
+            } else {
+                Swal.close()
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                })
+                setResMsgAll(error)
+            }
         }
     }
 
@@ -109,7 +118,8 @@ export default function OutfitDetailPostOutfitClothes(props) {
         }
 
         let found = false 
-        selectedItem.forEach((el)=> {
+        const combineItem = [...attachedItem, ...selectedItem]
+        combineItem.forEach((el)=> {
             if(el.clothes_type == dt.clothes_type){
                 found = true
             }
@@ -126,15 +136,76 @@ export default function OutfitDetailPostOutfitClothes(props) {
         }
     }
 
-    const handleRemove = (dt) => {
-        let newClothes = []
-        selectedItem.forEach((el)=> {
-            console.log(dt)
-            if(el.clothes_id != dt.clothes_id){
-                newClothes.push(el)
-            }
+    const handleDelete = async (dt) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Want to remove clothes from this outfit?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Remove it!",
+            cancelButtonText: "No, Cancel!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/outfit/remove/${dt.clothes_id}/${props.id}`, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${tokenKey}`,
+                        }
+                    })
+                    
+                    if(response.status === 200){
+                        Swal.fire({
+                            title: "Success!",
+                            text: response.data.message,
+                            icon: "success",
+                            allowOutsideClick: false,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                               props.fetchOutfit()
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: response.data.message,
+                        })
+                        setResMsgAll(response.data.message)
+                    }
+                } catch (error) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    })
+                }
+            } 
         })
-        setSelectedItems(newClothes)
+    }
+
+    const handleRemove = (dt, type) => {
+        let newClothes = []
+
+        if(type == 'selected'){
+            selectedItem.forEach((el)=> {
+                if(el.clothes_id != dt.clothes_id){
+                    newClothes.push(el)
+                }
+            })
+            setSelectedItems(newClothes)
+        } else if(type == 'attached'){
+            if(attachedItem.length > 1){
+                handleDelete(dt)
+            } else {
+                Swal.fire({
+                    icon: "warning",
+                    title: "You can't Delete this",
+                    text: "Outfit can be exist with at least 1 clothes attached",
+                })
+            }
+        }
     }
 
     if (error) {
@@ -179,12 +250,29 @@ export default function OutfitDetailPostOutfitClothes(props) {
                                         </div>
                                     </div>
                                     <div className='col-lg-3 col-md-4 col-sm-12 col-12'>
+                                        <h2 className="fw-bold">Attached</h2>
+                                        {
+                                            attachedItem.length > 0 ?
+                                                attachedItem.map((dt,idx) => {
+                                                    return (
+                                                        <div className='d-flex justify-content-start mb-2 box-clothes p-2' onClick={(e) => handleRemove(dt, 'attached')}>
+                                                            <img className='img-profile' src={dt.clothes_image ?? "/images/footwear.png"}></img>
+                                                            <div className='ms-2 mt-1'>
+                                                                <h6 className='mb-0'>{dt.clothes_name}</h6>
+                                                                <p className='mb-0 text-secondary'>{getCleanTitleFromCtx(dt.clothes_type)}</p>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            :
+                                                <p className='text-secondary'>- No Clothes Attached -</p>
+                                        }
                                         <h2 className="fw-bold">Selected</h2>
                                         {
-                                            selectedItem ?
+                                            selectedItem.length > 0 ?
                                                 selectedItem.map((dt,idx) => {
                                                     return (
-                                                        <div className='d-flex justify-content-start mb-2 box-clothes p-2' onClick={(e) => handleRemove(dt)}>
+                                                        <div className='d-flex justify-content-start mb-2 box-clothes p-2' onClick={(e) => handleRemove(dt,'selected')}>
                                                             <img className='img-profile' src={dt.clothes_image ?? "/images/footwear.png"}></img>
                                                             <div className='ms-2 mt-1'>
                                                                 <h6 className='mb-0'>{dt.clothes_name}</h6>
