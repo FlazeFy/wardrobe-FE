@@ -66,7 +66,7 @@ export default function ClothesOutfitPage({params, ...props}) {
     } else {
         return (
             <main className={styles.main}>
-                <OrganismsNavbar/>
+                <OrganismsNavbar current="clothes"/>
                 <AtomsBreakLine length={2}/>
                 <div className="row">
                     <div className="col-lg-7 col-md-6 col-sm-12 col-12">

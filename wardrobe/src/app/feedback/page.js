@@ -7,7 +7,7 @@ import FeedbackSectionSend from "./sections/feedback_send";
 export default function FeedbackPage() {
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="feedback"/>
             <AtomsBreakLine length={1}/>
             <div style={{width:"760px"}} className="text-center mx-auto">
                 <FeedbackSectionSend/>

@@ -16,7 +16,7 @@ export default function CalendarPage() {
 
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="calendar"/>
             <AtomsBreakLine length={2}/>
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">

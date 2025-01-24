@@ -10,7 +10,7 @@ import StatsMonthlyClothes from "./sections/stats_monthly_clothes";
 export default function StatsPage() {
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="stats"/>
             <AtomsBreakLine length={3}/>
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">

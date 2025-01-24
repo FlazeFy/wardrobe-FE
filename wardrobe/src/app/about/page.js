@@ -8,7 +8,7 @@ import AboutSectionApps from "./sections/about_apps";
 export default function AboutPage() {
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="about"/>
             <AtomsBreakLine length={1}/>
             <div style={{width:"760px"}} className="text-center mx-auto">
                 <AboutSectionApps/>

@@ -10,6 +10,7 @@ import ProfileSectionEditForm from "./sections/profile_edit_form";
 import { convertDatetimeBasedLocal } from "../../modules/helpers/converter";
 import { getCookie } from "../../modules/storages/cookie";
 import ProfileSectionAllHistory from "./sections/profile_all_history";
+import ProfileSectionExportData from "./sections/profile_export_data";
 
 export default function ProfilePage(props) {
     //Initial variable
@@ -60,7 +61,7 @@ export default function ProfilePage(props) {
     } else {
         return (
             <main className={styles.main}>
-                <OrganismsNavbar/>
+                <OrganismsNavbar current="profile"/>
                 <AtomsBreakLine length={3}/>
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -99,6 +100,7 @@ export default function ProfilePage(props) {
                         <AtomsBreakLine length={1}/>
                         <ProfileSectionEditForm item={items}/>
                         <AtomsBreakLine length={2}/>
+                        <ProfileSectionExportData/>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={1}/>

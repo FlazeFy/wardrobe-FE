@@ -9,7 +9,7 @@ import GeneratedSectionOutfitMonthlyTotalUsed from "./sections/generated_outfit_
 export default function GeneratedPage() {
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={3}/>
             <GeneratedSectionRandomOutift/>
             <AtomsBreakLine length={3}/>

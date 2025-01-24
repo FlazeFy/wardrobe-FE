@@ -22,6 +22,12 @@
     font-size: var(--textXLG) !important;
     border-radius: var(--roundedLG);
 }
+.navbar .nav-item a {
+    text-decoration: none !important;
+}
+.navbar .nav-item .active {
+    border-bottom: var(--spaceMini) solid var(--blackColor);
+}
 .navbar .nav-item:hover {
     background: var(--greyColor);
 }

@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import ClothesSectionAllDeletedClothes from "./sections/trash_all_deleted_clothes";
 
-export default function ClothesTrash(props) {
+export default function ClothesTrash() {
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={2}/>
             <div className="d-flex justify-content-start">
                 <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>

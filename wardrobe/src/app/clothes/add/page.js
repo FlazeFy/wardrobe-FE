@@ -7,10 +7,10 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesAddForm from "./sections/clothes_add_form";
 
-export default function ClothesAddPage({params}) {
+export default function ClothesAddPage() {
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={2}/>
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">

@@ -6,10 +6,10 @@ import ClothesSectionAllDetail from "./sections/clothes_all_detail";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export default function ClothesByTable(props) {
+export default function ClothesByTable() {
     return (
         <main className={styles.main}>
-            <OrganismsNavbar/>
+            <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={2}/>
             <div className="d-flex justify-content-between">
                 <div className="d-flex justify-content-start">
