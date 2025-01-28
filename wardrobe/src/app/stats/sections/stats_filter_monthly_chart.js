@@ -27,8 +27,6 @@ export default function StatsSectionFilterMonthlyChart(props) {
             setIsLoaded(true)
             const year = data.map(el => el.year.toString())
             setYearDictionary(year)
-            storeLocal('available_year_filter', JSON.stringify(data))
-            storeLocal('last_hit-available_year_filter', JSON.stringify(now))
         }
     
         if (timeDiffInSec < 360 && oldTimeHit) {
@@ -42,7 +40,11 @@ export default function StatsSectionFilterMonthlyChart(props) {
                 },
             })
             .then(res => res.json())
-            .then(result => fetchData(result.data))
+            .then(result => {
+                fetchData(result.data)
+                storeLocal('available_year_filter', JSON.stringify(result.data))
+                storeLocal('last_hit-available_year_filter', JSON.stringify(now))
+            })
             .catch(error => {
                 Swal.close()
                 Swal.fire({

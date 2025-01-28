@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
+import { getLocal, storeLocal } from "../../modules/storages/local";
 
 export default function LandingFeedback(props) {
     //Initial variable
@@ -13,29 +14,49 @@ export default function LandingFeedback(props) {
     const [items, setItems] = useState(null)
     const [average, setAverage] = useState(0)
     const [total, setTotal] = useState(0)
+    const now = new Date()
+
+    const fetchFeedback = () => {
+        const oldTimeHit = getLocal('last_hit-feedback_stats')
+        const oldTime = new Date(JSON.parse(oldTimeHit))
+        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+
+        const fetchData = (data) => {
+            Swal.close()
+            setIsLoaded(true)
+            setItems(data.data) 
+            setAverage(data.average)
+            setTotal(data.total)
+        }
+        
+        if(timeDiffInSec < 360 && oldTimeHit){
+            const oldData = JSON.parse(getLocal('feedback_stats_temp'))
+            fetchData(oldData)
+        } else {
+            fetch(`http://127.0.0.1:8000/api/v1/stats/feedback/top`)
+            .then(res => res.json())
+                .then(
+                (result) => {
+                    fetchData(result)
+                    storeLocal('feedback_stats_temp', JSON.stringify(result))
+                    storeLocal('last_hit-feedback_stats', JSON.stringify(now))
+                },
+                (error) => {
+                    Swal.close()
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    })
+                    setError(error)
+                }
+            )
+        }
+    }
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/feedback/top`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data) 
-                setAverage(result.average)
-                setTotal(result.total)
-            },
-            (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                })
-                setError(error)
-            }
-        )
+        fetchFeedback()
     },[])
 
     if (error) {
