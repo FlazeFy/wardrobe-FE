@@ -1,3 +1,4 @@
+"use client"
 import styles from "../page.module.css";
 import OrganismsNavbar from "../../components/organisms/organisms_navbar";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
@@ -6,8 +7,13 @@ import StatsSectionMostClothesCtx from "./sections/stats_most_clothes_ctx";
 import StatsSectionSummary from "./sections/stats_summary";
 import StatsYearlyActivity from "./sections/stats_yearly_activity";
 import StatsMonthlyClothes from "./sections/stats_monthly_clothes";
+import StatsSectionFilterMonthlyChart from "./sections/stats_filter_monthly_chart";
+import { useState } from "react";
 
 export default function StatsPage() {
+    const currentYear = new Date().getFullYear()
+    const [year, setYear] = useState(currentYear)
+
     return (
         <main className={styles.main}>
             <OrganismsNavbar current="stats"/>
@@ -35,9 +41,18 @@ export default function StatsPage() {
             <div className="row">
                 <StatsSectionMostClothesCtx ctx={"most_used_clothes_ctx"}/>
             </div>
-            <AtomsBreakLine length={1}/>
+            <AtomsBreakLine length={3}/>
 
-            <AtomsBreakLine length={2}/>
+            <div className="card" style={{maxWidth:"50vw"}}>
+                <h2 className="mb-0 fw-bold">Filter Chart</h2>
+                <div className="d-flex justify-content-start">
+                    <div>
+                        <StatsSectionFilterMonthlyChart handleChange={(e) => setYear(e.target.value)} selectedYear={year}/>
+                    </div>
+                </div>
+            </div>
+
+            <AtomsBreakLine length={1}/>
             <div style={{maxWidth:"50vw"}}>
                 <h2 className="mb-0 fw-bold">Yearly Activity</h2>
                 <h5 className="text-secondary">We analyze the total activity for the last 365 days since today. You can the total for each date in this Heatmap</h5>
@@ -53,7 +68,7 @@ export default function StatsPage() {
                 <h5 className="text-secondary">We analyze the total clothes you buy and total clothes you have added to our system based on selected year</h5>
             </div>
             <div className="row">
-                <StatsMonthlyClothes ctx="monthly_clothes_activity"/>
+                <StatsMonthlyClothes ctx="monthly_clothes_activity" year={year}/>
             </div>
             <AtomsBreakLine length={1}/>
 

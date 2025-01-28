@@ -13,9 +13,8 @@ export default function StatsMonthlyClothes(props) {
     const [items, setItems] = useState([])
     const tokenKey = getCookie("token_key")
 
-    useEffect(() => {
-        Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/created_buyed/2025`, {
+    const fetchMonthlyClothes = (year) => {
+        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/created_buyed/${year}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${tokenKey}`, 
@@ -38,7 +37,14 @@ export default function StatsMonthlyClothes(props) {
                 setError(error)
             }
         )
-    },[])
+    }
+
+    useEffect(() => {
+        Swal.showLoading()
+        if (props.year) {
+            fetchMonthlyClothes(props.year)
+        }
+    },[props.year])
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
