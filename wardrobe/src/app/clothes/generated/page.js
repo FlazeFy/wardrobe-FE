@@ -5,6 +5,7 @@ import MoleculesFooter from "../../../components/molecules/molecules_footer";
 import GeneratedSectionRandomOutift from "./sections/generated_random_outfit";
 import GeneratedSectionShowAllOutfit from "./sections/generated_show_all_outfit";
 import GeneratedSectionOutfitMonthlyTotalUsed from "./sections/generated_outfit_monthly_total_used";
+import GeneratedSectionOutfitMostUsed from "./sections/generated_outfit_most_used";
 
 export default function GeneratedPage() {
     return (
@@ -12,6 +13,8 @@ export default function GeneratedPage() {
             <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={3}/>
             <GeneratedSectionRandomOutift/>
+            <AtomsBreakLine length={3}/>
+            <GeneratedSectionOutfitMostUsed/>
             <AtomsBreakLine length={3}/>
             <GeneratedSectionOutfitMonthlyTotalUsed/>
             <AtomsBreakLine length={5}/>
