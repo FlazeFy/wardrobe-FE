@@ -7,6 +7,7 @@ import CalendarSectionSchedule from "./sections/calendar_schedule";
 import CalendarSectionMonthYear from "./sections/calendar_month_year";
 import { useState } from "react";
 import { getCurrentMonthYear } from "../../modules/helpers/generator";
+import CalendarSectionExportData from "./sections/calendar_export_data";
 
 export default function CalendarPage() {
     const [monthYear, setMonthYear] = useState(getCurrentMonthYear()) 
@@ -26,6 +27,7 @@ export default function CalendarPage() {
                     <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Calendar Page</h1>
                     <div className="d-flex justify-content-start">
                         <CalendarSectionMonthYear defaultValue={monthYear} onChange={handleMonthYearChange}/>
+                        <CalendarSectionExportData/>
                     </div>
                     <AtomsBreakLine length={2}/>
                 </div>
