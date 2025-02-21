@@ -7,6 +7,8 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
+import RecoverClothesUsedById from '../../detail/[id]/sections/recover_clothes_used_by_id'
+import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 
 export default function ClothesSectionAllDeletedClothes(props) {
     //Initial variable
@@ -15,30 +17,41 @@ export default function ClothesSectionAllDeletedClothes(props) {
     const [items, setItems] = useState(null)
     const tokenKey = getCookie("token_key")
 
-    useEffect(() => {
+    const fetchClothes = () => {
         Swal.showLoading()
         fetch(`http://127.0.0.1:8000/api/v1/clothes/trash`, {
             headers: {
                 'Authorization': `Bearer ${tokenKey}`, 
             },
         })
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
+        .then(res => {
+            if (res.status === 404) {
                 setIsLoaded(true)
-                setItems(result.data.data) 
-            },
-            (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                })
-                setError(error)
+                setItems(null)
+                return null
             }
-        )
+            Swal.close()
+            return res.json()
+        })
+        .then(result => {
+            if (result) {
+                setIsLoaded(true)
+                setItems(result.data.data)
+            }
+            Swal.close()
+        })
+        .catch(error => {
+            Swal.close()
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            })
+            setError(error)
+        })
+    }
+    useEffect(() => {
+        fetchClothes()
     },[])
 
     if (error) {
@@ -65,35 +78,42 @@ export default function ClothesSectionAllDeletedClothes(props) {
                 </thead>
                 <tbody>
                     {
-                        items.map((el, idx)=>{
-                            return <tr key={idx}>
-                                <td className='text-center'>{el.clothes_qty}</td>
-                                <td>{el.clothes_name}</td>
-                                <td>{el.clothes_desc ?? <span className="fst-italic text-secondary">- No Description Provided -</span>}</td>
-                                <td>
-                                    <h6 className='m-0'>Size</h6>
-                                    <p className='m-0 mb-2'>{el.clothes_size}</p>
-                                    <h6 className='m-0'>Gender</h6>
-                                    <p className='m-0 mb-2'>{el.clothes_gender}</p>
-                                    <h6 className='m-0'>Color</h6>
-                                    <p className='m-0'>{el.clothes_color}</p>
-                                </td>
-                                <td>
-                                    <h6 className='m-0'>Category</h6>
-                                    <p className='m-0 mb-2'>{getCleanTitleFromCtx(el.clothes_category)}</p>
-                                    <h6 className='m-0'>Type</h6>
-                                    <p className='m-0'>{el.clothes_type}</p>
-                                </td>
-                                <td>
-                                    <h6 className='m-0'>Deleted At</h6>
-                                    <p className='m-0 mb-2'>{el.deleted_at}</p>
-                                </td>
-                                <td>
-                                    <a className='btn btn-danger me-2'><FontAwesomeIcon icon={faFire}/></a>
-                                    <a className='btn btn-success'><FontAwesomeIcon icon={faRotateLeft}/></a>
+                        items ? 
+                            items.map((el, idx)=>{
+                                return <tr key={idx}>
+                                    <td className='text-center'>{el.clothes_qty}</td>
+                                    <td>{el.clothes_name}</td>
+                                    <td>{el.clothes_desc ?? <span className="fst-italic text-secondary">- No Description Provided -</span>}</td>
+                                    <td>
+                                        <h6 className='m-0'>Size</h6>
+                                        <p className='m-0 mb-2'>{el.clothes_size}</p>
+                                        <h6 className='m-0'>Gender</h6>
+                                        <p className='m-0 mb-2'>{el.clothes_gender}</p>
+                                        <h6 className='m-0'>Color</h6>
+                                        <p className='m-0'>{el.clothes_color}</p>
+                                    </td>
+                                    <td>
+                                        <h6 className='m-0'>Category</h6>
+                                        <p className='m-0 mb-2'>{getCleanTitleFromCtx(el.clothes_category)}</p>
+                                        <h6 className='m-0'>Type</h6>
+                                        <p className='m-0'>{el.clothes_type}</p>
+                                    </td>
+                                    <td>
+                                        <h6 className='m-0'>Deleted At</h6>
+                                        <p className='m-0 mb-2'>{el.deleted_at}</p>
+                                    </td>
+                                    <td>
+                                        <a className='btn btn-danger me-2'><FontAwesomeIcon icon={faFire}/></a>
+                                        <RecoverClothesUsedById id={el.id} button_with_title={false} fetchClothes={fetchClothes}/>
+                                    </td>
+                                </tr>
+                            })
+                        :
+                            <tr>
+                                <td colSpan={7}>
+                                    <MoleculesNoData title="No Clothes Deleted"/>
                                 </td>
                             </tr>
-                        })
                     }
                 </tbody>
             </table>

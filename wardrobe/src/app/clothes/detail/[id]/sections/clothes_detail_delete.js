@@ -88,7 +88,7 @@ export default function ClothesDetailDeleteClothesById(props) {
                     <div className='d-flex justify-content-start'>
                         <button className='btn btn-danger' disabled={!isValidated} onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/> Delete</button>
                         {
-                            props.type_delete == 'hard' && <RecoverClothesUsedById id={props.id} fetchClothes={props.fetchClothes}/>
+                            props.type_delete == 'hard' && <RecoverClothesUsedById id={props.id} button_with_title={true} fetchClothes={props.fetchClothes}/>
                         }
                     </div>
                 </div>

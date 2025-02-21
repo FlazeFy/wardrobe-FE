@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { getLocal } from '../../../../../../modules/storages/local'
 import { getCookie } from '../../../../../../modules/storages/cookie'
+import MoleculesNoData from '../../../../../../components/molecules/molecules_no_data'
 
 export default function GetClotchesBySimiliar({ctx,val,exc}) {
     //Initial variable
@@ -83,10 +84,7 @@ export default function GetClotchesBySimiliar({ctx,val,exc}) {
                             <div key={'no_data_'+ctx} className={`carousel-item py-4 active`}>
                                 <div className='row'>
                                     <div className='col'>
-                                        <div className='box border-0'>
-                                            <img src={"/images/empty.png"}/>
-                                            <p className='mb-0' style={{fontSize:"var(--textXMD)"}}>No Clothes Found</p>
-                                        </div>
+                                        <MoleculesNoData title="No Clothes Found"/>
                                     </div>
                                 </div>
                             </div>

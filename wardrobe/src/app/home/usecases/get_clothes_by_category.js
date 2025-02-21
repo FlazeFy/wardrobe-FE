@@ -7,6 +7,7 @@ import { faArrowLeft, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-
 // Modules
 import { getLocal, storeLocal } from '../../../modules/storages/local'
 import { getCookie } from '../../../modules/storages/cookie'
+import MoleculesNoData from '../../../components/molecules/molecules_no_data'
 
 export default function GetClotchesByCategory({ctx}) {
     //Initial variable
@@ -133,10 +134,7 @@ export default function GetClotchesByCategory({ctx}) {
                             <div key={'no_data_'+ctx} className={`carousel-item py-4 active`}>
                                 <div className='row'>
                                     <div className='col'>
-                                        <div className='box border-0'>
-                                            <img src={"/images/empty.png"}/>
-                                            <p className='mb-0' style={{fontSize:"var(--textXMD)"}}>No Clothes Found</p>
-                                        </div>
+                                        <MoleculesNoData title="No Clothes Found"/>
                                     </div>
                                 </div>
                             </div>

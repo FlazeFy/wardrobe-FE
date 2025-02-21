@@ -9,6 +9,7 @@ import PostHistory from './usecases/post_history'
 import GetClotchesBySimiliar from './usecases/get_clothes_by_similiar'
 import GetClothesWashedStatus from './usecases/get_clothes_washed_status'
 import { getCookie } from '../../../../../modules/storages/cookie'
+import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
 
 export default function CategoryPage({ params }) {
     //Initial variable
@@ -205,7 +206,7 @@ export default function CategoryPage({ params }) {
                                     )
                                 })
                             :
-                                <p className='text-secondary'>No history found!</p>
+                                <MoleculesNoData title="No History Found"/>
                         }
                         {
                             selectedClothesMerk && selectedClothesMade && selectedClothesType && (

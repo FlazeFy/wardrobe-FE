@@ -11,7 +11,7 @@ export default function RecoverClothesUsedById(props) {
     const tokenKey = getCookie("token_key")
 
     // Services
-    const handleSubmit = async (id) => {
+    const handleRecover = async (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "Want to recover deleted clothes?",
@@ -58,5 +58,5 @@ export default function RecoverClothesUsedById(props) {
         })
     }
 
-    return <button className='btn btn-success ms-2' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faRotateLeft}/> Recover</button>
+    return <button className='btn btn-success ms-2' onClick={(e)=>handleRecover(props.id)}><FontAwesomeIcon icon={faRotateLeft}/>{ props.button_with_title && <> Recover</>}</button>
 }
