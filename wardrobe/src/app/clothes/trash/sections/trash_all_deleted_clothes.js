@@ -1,7 +1,7 @@
 "use client"
-import { getCleanTitleFromCtx, numberToPrice } from '../../../../modules/helpers/converter'
+import { getCleanTitleFromCtx } from '../../../../modules/helpers/converter'
 import { getCookie } from '../../../../modules/storages/cookie'
-import { faFire, faPenToSquare, faRotateLeft } from '@fortawesome/free-solid-svg-icons'
+import { faFire } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { useState, useEffect } from "react"
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import RecoverClothesUsedById from '../../detail/[id]/sections/recover_clothes_used_by_id'
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
+import HardDeleteClothesById from './hard_delete_clothes_by_id'
 
 export default function ClothesSectionAllDeletedClothes(props) {
     //Initial variable
@@ -103,7 +104,7 @@ export default function ClothesSectionAllDeletedClothes(props) {
                                         <p className='m-0 mb-2'>{el.deleted_at}</p>
                                     </td>
                                     <td>
-                                        <a className='btn btn-danger me-2'><FontAwesomeIcon icon={faFire}/></a>
+                                        <HardDeleteClothesById id={el.id} fetchClothes={fetchClothes}/>
                                         <RecoverClothesUsedById id={el.id} button_with_title={false} fetchClothes={fetchClothes}/>
                                     </td>
                                 </tr>
