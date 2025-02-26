@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import { getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
 import ClothesDetailEditForm from "./sections/clothes_detail_edit_form";
-import { faArrowLeft, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
 import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history";
@@ -19,6 +19,7 @@ import { getCookie } from "../../../../modules/storages/cookie";
 import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit";
 import ClothesDetailCheckDeleted from "./sections/clothes_detail_check_deleted";
 import ClothesDetailCheckSchedule from "./sections/clothes_detail_check_schedule";
+import ClothesDetailSectionExportData from "./sections/clothes_detail_export_data";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
@@ -91,6 +92,8 @@ export default function ClothesDetailPage({params}) {
                                 <h4 className="mb-0 text-secondary">{items.detail.clothes_size}</h4>
                             </div>
                         </div>
+                        <hr></hr>
+                        <ClothesDetailSectionExportData id={params.id}/>
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.detail.clothes_name}</h1>
                         <ClothesDetailCheckDeleted items={items.detail.deleted_at}/>
