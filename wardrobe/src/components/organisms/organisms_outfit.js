@@ -1,6 +1,4 @@
 "use client"
-import { faBookBookmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 
 export default function OrganismsOutfit(props) {
@@ -12,15 +10,18 @@ export default function OrganismsOutfit(props) {
         <div className={`box-clothes`} onClick={(e)=> handleBoxClick(props.items.id)}>
             <div className='row'>
                 {
-                    props.items.clothes.map((cl,idx)=>{
-                        return (
-                            <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto p-2' key={idx}>
-                                <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes"/>
-                                <h6 className='mt-2 mb-0'>{cl.clothes_type} | {cl.clothes_name}</h6>
-                                <p className='mb-0 text-secondary'>{cl.clothes_merk}</p>
-                            </div>
-                        )
-                    })
+                    props.items.clothes && props.items.clothes.length > 0 ?
+                        props.items.clothes.map((cl,idx)=>{
+                            return (
+                                <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto p-2' key={idx}>
+                                    <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes"/>
+                                    <h6 className='mt-2 mb-0'>{cl.clothes_type} | {cl.clothes_name}</h6>
+                                    <p className='mb-0 text-secondary'>{cl.clothes_merk}</p>
+                                </div>
+                            )
+                        })
+                    : 
+                        <span className="fst-italic text-secondary">- No Clothes Attached -</span>
                 }
             </div>
             <h4 className='mb-0 mt-2'>{props.items.outfit_name}</h4>

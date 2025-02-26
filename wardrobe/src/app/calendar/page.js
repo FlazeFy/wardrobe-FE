@@ -27,7 +27,7 @@ export default function CalendarPage() {
                     <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Calendar Page</h1>
                     <div className="d-flex justify-content-start">
                         <CalendarSectionMonthYear defaultValue={monthYear} onChange={handleMonthYearChange}/>
-                        <CalendarSectionExportData/>
+                        <CalendarSectionExportData year={monthYear.split('-')[1]}/>
                     </div>
                     <AtomsBreakLine length={2}/>
                 </div>
@@ -40,5 +40,5 @@ export default function CalendarPage() {
             <CalendarSectionSchedule ctx="calendar_schedule" month_year={monthYear}/>
             <MoleculesFooter/>
         </main>
-      );
+    );
 }

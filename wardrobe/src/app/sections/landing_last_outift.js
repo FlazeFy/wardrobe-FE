@@ -115,7 +115,7 @@ export default function LandingSectionLastOutfit(props) {
                             </div>
                             <h3 className="mb-2">Do you want to hangout?</h3>
                             <p>We can generate your today's outfit based on outfit in wardrobe, cleaning status, routine, schedule, time, and today's weather. You can also set exception for some clothes, or just randomize between few clothes based on your need.</p>
-                            <a className="btn btn-success fw-bold"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
+                            <a className="btn btn-success fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
                         </div>
                         <AtomsBreakLine length={4}/>
                     </div>

@@ -107,19 +107,22 @@ export default function ClothesOutfitPage({params, ...props}) {
                         <AtomsBreakLine length={2}/>
                         <div className='row'>
                             {
-                                items.clothes.map((cl)=>{
-                                    return (
-                                        <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto'>
-                                            <div className="px-3 py-2 text-center box-clothes">
-                                                <h6 className='mt-2 mb-1'>{cl.clothes_type} | {cl.clothes_name}</h6>
-                                                <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes img-fluid"/>
-                                                <MoleculesClothesStatus item={cl}/>
-                                                <p className='mb-0'>{cl.clothes_merk}</p>
-                                                <p className='mb-0 text-secondary'>{cl.clothes_desc}</p>
+                                items.clothes && items.clothes.length > 0 ?
+                                    items.clothes.map((cl)=>{
+                                        return (
+                                            <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto'>
+                                                <div className="px-3 py-2 text-center box-clothes">
+                                                    <h6 className='mt-2 mb-1'>{cl.clothes_type} | {cl.clothes_name}</h6>
+                                                    <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes img-fluid"/>
+                                                    <MoleculesClothesStatus item={cl}/>
+                                                    <p className='mb-0'>{cl.clothes_merk}</p>
+                                                    <p className='mb-0 text-secondary'>{cl.clothes_desc}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    )
-                                })
+                                        )
+                                    })
+                                : 
+                                    <span className="fst-italic text-secondary">- No Clothes Attached -</span>
                             }
                         </div>
                         <AtomsBreakLine length={2}/>

@@ -5,6 +5,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
+import MoleculesNoData from '@/components/molecules/molecules_no_data'
 
 export default function OutfitSectionMonthlyTotalUsed(props) {
     //Initial variable
@@ -53,7 +54,7 @@ export default function OutfitSectionMonthlyTotalUsed(props) {
             <>
                 <h2 className="mb-0 fw-bold">Monthly Used</h2>
                 <h5 className="text-secondary">We analyze the total used of this outfit based on selected year</h5> 
-                <MoleculesLineChart data={items}/>
+                { items.length > 0 ? <MoleculesLineChart data={items}/> : <MoleculesNoData title="No Enough Data To Visualize"/>}
             </>
         )
     }
