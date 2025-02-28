@@ -12,6 +12,7 @@ import LandingSectionWelcoming from "./sections/landing_welcoming";
 import LandingSectionLogin from "./sections/landing_login";
 import LandingSectionPlatform from "./sections/landing_platform";
 import LandingSectionFeatures from "./sections/landing_features";
+import LandingSectionFAQ from "./sections/landing_faq";
 
 export default function Home() {
   const [tokenKey, setTokenKey] = useState(null);
@@ -28,11 +29,13 @@ export default function Home() {
         tokenKey ? <LandingSectionLastOutfit/> : <LandingSectionLogin ctx="login"/>
       }
       <MoleculesSectionDivider/>
-      <LandingFeedback/>
+      <LandingSectionFeatures/>
       <MoleculesSectionDivider/>
       <LandingSectionPlatform/>
       <MoleculesSectionDivider/>
-      <LandingSectionFeatures/>
+      <LandingFeedback/>
+      <MoleculesSectionDivider/>
+      <LandingSectionFAQ/>
       <AtomsBreakLine length={4}/>
       <MoleculesFooter/>
     </main>

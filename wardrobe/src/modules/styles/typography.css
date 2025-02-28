@@ -25,3 +25,10 @@ h3, h4 {
 h5, h6 {
     letter-spacing: 1.75px;
 }
+.text-date {
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--textXMD);
+    margin-bottom: 0 !important;
+    color: var(--shadowColor);
+}

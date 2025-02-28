@@ -1,5 +1,5 @@
 import MoleculesFeaturesBox from "../../components/molecules/molecules_features_box";
-import { faCalendar, faCircleInfo,faCircleQuestion,faDice,faPersonDress,faPieChart,faShirt, faTable } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faCalendar, faCircleQuestion,faDice,faPersonDress,faPieChart,faShirt, faTable } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 
@@ -45,7 +45,7 @@ export default function LandingSectionFeatures() {
                     <hr></hr>   
                     <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Our Capabilities</h1>
                     <h2 className="mb-2">Want to Know How Our Apps Works?</h2>
-                    <a className="btn btn-success fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faCircleInfo}/> See More!</a>
+                    <a className="btn btn-success fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
                     <a className="btn btn-primary fw-bold" href="/feedback"><FontAwesomeIcon icon={faCircleQuestion}/> Get The Manual</a>
                 </div>
             </div>
