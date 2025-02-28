@@ -1,4 +1,4 @@
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 
@@ -12,7 +12,8 @@ export default function LandingSectionPlatform() {
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>We're MultiPlatform</h1>
                         <h2 className="mb-2">Give your experience when using us too</h2>
-                        <a className="btn btn-success fw-bold" href="/feedback"><FontAwesomeIcon icon={faDownload}/> Get It Now!</a>
+                        <a className="btn btn-success me-2 fw-bold" href=""><FontAwesomeIcon icon={faDownload}/> Get Mobile Version Now!</a>
+                        <a className="btn btn-primary fw-bold" href=""><FontAwesomeIcon icon={faPaperPlane}/> Chat Our Telegram Bot</a>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>

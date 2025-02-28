@@ -11,6 +11,7 @@ import LandingSectionLastOutfit from "./sections/landing_last_outift";
 import LandingSectionWelcoming from "./sections/landing_welcoming";
 import LandingSectionLogin from "./sections/landing_login";
 import LandingSectionPlatform from "./sections/landing_platform";
+import LandingSectionFeatures from "./sections/landing_features";
 
 export default function Home() {
   const [tokenKey, setTokenKey] = useState(null);
@@ -30,6 +31,8 @@ export default function Home() {
       <LandingFeedback/>
       <MoleculesSectionDivider/>
       <LandingSectionPlatform/>
+      <MoleculesSectionDivider/>
+      <LandingSectionFeatures/>
       <AtomsBreakLine length={4}/>
       <MoleculesFooter/>
     </main>

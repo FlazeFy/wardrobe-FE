@@ -100,3 +100,18 @@ hr {
 .table thead th {
   text-align: center;
 }
+
+.circle-icon {
+  border-radius: 100%;
+  background: var(--warningBG);
+  height: 50px;
+  width: 50px;
+  opacity: 1;
+  color: var(--whiteColor);
+  padding: var(--spaceMD) var(--spaceXMD);
+}
+.feature-box {
+  border: 2px solid var(--shadowColor);
+  padding: var(--spaceMD);
+  border-radius: var(--roundedLG);
+}
