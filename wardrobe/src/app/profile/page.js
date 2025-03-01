@@ -11,6 +11,7 @@ import { convertDatetimeBasedLocal } from "../../modules/helpers/converter";
 import { getCookie } from "../../modules/storages/cookie";
 import ProfileSectionAllHistory from "./sections/profile_all_history";
 import ProfileSectionExportData from "./sections/profile_export_data";
+import ProfileSectionSendQuestion from "./sections/profile_post_question";
 
 export default function ProfilePage(props) {
     //Initial variable
@@ -106,6 +107,7 @@ export default function ProfilePage(props) {
                         <AtomsBreakLine length={1}/>
                         <ProfileSectionAllHistory ctx="all_history"/>
                         <AtomsBreakLine length={2}/>
+                        <ProfileSectionSendQuestion/>
                     </div>
                 </div>
                 

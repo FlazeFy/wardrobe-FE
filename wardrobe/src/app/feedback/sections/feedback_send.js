@@ -11,6 +11,7 @@ export default function FeedbackSectionSend() {
     const [feedbackRate, setFeedbackRate] = useState(0)
     const [feedbackBody, setFeedbackBody] = useState("")
     const tokenKey = getCookie("token_key")
+    const [msgAll, setResMsgAll] = useState(null)
 
     // Services
     const handleSubmit = async (e) => {
