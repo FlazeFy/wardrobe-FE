@@ -6,11 +6,11 @@ export default function MoleculesField(props){
     return (
         <div className={`field ${props.type == 'rating' ? 'text-start' :''}`}>
             {
-                props.type != 'file' && <label className="me-2">{props.title}</label>
+                props.type != 'file' && props.type != 'checkbox' && <label className="me-2">{props.title}</label>
             }
             {
-                props.type == 'text' || props.type == 'number' || props.type == 'date' ?
-                    <input className='form-control' defaultValue={props.defaultValue} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false}></input>
+                props.type == 'text' || props.type == 'number' || props.type == 'date' || props.type == 'password' ?
+                    <input className='form-control' defaultValue={props.defaultValue} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false} ></input>
                 : props.type == 'textarea' ?
                     <textarea className='form-control' style={{minHeight:"200px"}} defaultValue={props.defaultValue} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
                 : props.type == 'select' ? 
@@ -23,6 +23,11 @@ export default function MoleculesField(props){
                     </select>
                 : props.type == 'toggle' ?
                     <Switch onChange={props.handleChange} checked={props.defaultValue} disabled={props.isDisabled ?? false} checkedIcon={false} uncheckedIcon={false}/>
+                : props.type == 'checkbox' ?
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                        <label className="me-2">{props.title}</label>
+                    </div>
                 : props.type == 'file' ?
                     <div className="me-2">
                         <label htmlFor="formFile" className="form-label">{props.title}</label>

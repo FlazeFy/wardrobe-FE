@@ -1,6 +1,6 @@
 "use client"
 import { storeCookie } from '../../modules/storages/cookie'
-import { faSignIn } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faSignIn } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Axios from 'axios'
 import React, { useState } from "react"
@@ -87,7 +87,8 @@ export default function LandingSectionLogin(props) {
                     <MoleculesField title="Password" type={'text'} handleChange={(e) => {
                         setPassword(e.target.value)
                     }}/>
-                    <button type="button" className="btn btn-success" onClick={handleSubmit}><FontAwesomeIcon icon={faSignIn}/> Sign In</button>
+                    <button type="button" className="btn btn-success me-2" onClick={handleSubmit}><FontAwesomeIcon icon={faSignIn}/> Sign In</button>
+                    <a type="button" className="btn btn-primary" href="/register"><FontAwesomeIcon icon={faArrowRight}/> New User? Join Now</a>
                 </div>
             </div>
         </div>
