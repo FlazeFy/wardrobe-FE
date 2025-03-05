@@ -116,3 +116,12 @@ hr {
   border-radius: var(--roundedLG);
   text-align: start;
 }
+
+.btn-type {
+  cursor: pointer;
+  background: var(--primaryColor);
+  padding: var(--spaceMini) var(--spaceMD);
+  color: var(--whiteColor);
+  text-transform: capitalize;
+  border-radius: var(--roundedLG);
+}

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesSectionAllHeader from "./sections/clothes_all_header";
 import ClothesSectionTotalByType from "./sections/total_clothes_by_type";
 import ClothesCheckSchedule from "./sections/clothes_check_schedule";
+import ClothesSectionUnfinishedWash from "./sections/check_unfinished_wash";
 
 export default function ClothesPage() {
     return (
@@ -27,6 +28,7 @@ export default function ClothesPage() {
                     <AtomsBreakLine length={2}/>
                 </div>
             </div>
+            <ClothesSectionUnfinishedWash/>
             <AtomsBreakLine length={2}/>
             <div className="d-flex justify-content-between">
                 <div>

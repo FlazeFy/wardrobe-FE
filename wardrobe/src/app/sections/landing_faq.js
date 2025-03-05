@@ -5,12 +5,14 @@ import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import MoleculesFAQBox from "../../components/molecules/molecules_faq_box";
+import { getCookie } from "../../modules/storages/cookie";
 
 export default function LandingSectionFAQ() {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
+    const [tokenKey, setTokenKey] = useState(null)
     const now = new Date()
 
     const fetchFAQ = () => {
@@ -53,6 +55,7 @@ export default function LandingSectionFAQ() {
 
     useEffect(() => {
         Swal.showLoading()
+        setTokenKey(getCookie('token_key'))
         fetchFAQ()
     },[])
 
@@ -73,7 +76,7 @@ export default function LandingSectionFAQ() {
                 <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>FAQ's</h1>
                 <h2 className="mb-2">Here's The Latest Question The People Given To Us</h2>
                 <a className="btn btn-success fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
-                <a className="btn btn-primary fw-bold" href="/feedback"><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</a>
+                <a className="btn btn-primary fw-bold" href={!tokenKey ? '/feedback':'/profile'}><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</a>
                 <div className="row mt-4">
                     {
                         items.map((dt, idx)=>{
