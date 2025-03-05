@@ -202,10 +202,10 @@ export default function GeneratedSectionRandomOutift(props) {
         )
     } else {
         return (
-            <div className="mx-4 text-center mx-auto" style={{maxWidth:"1080px"}}>
+            <div className="container custom-container mx-4 text-center mx-auto" style={{maxWidth:"1080px"}}>
                 <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}>Generate Outfit?</h1>
-                <h5 className="mb-4 text-secondary">Are You Confused With Your Messy Closet? Confused About What To Wear Today? Or You Just Forgot What Clothes That Have Been Ironed Or Are Still In The Laundry?</h5>
-                <h5 className="mb-4 text-secondary">Stay Calm, We Can Set What You Will Wear Today, Tommorow, or Whatever Day You Want. We Will Analyze Through Your Inventory, Based On Your History, And Behavior</h5>
+                <h5 className="mb-4">Are You Confused With Your Messy Closet? Confused About What To Wear Today? Or You Just Forgot What Clothes That Have Been Ironed Or Are Still In The Laundry?</h5>
+                <h5 className="mb-4">Stay Calm, We Can Set What You Will Wear Today, Tommorow, or Whatever Day You Want. We Will Analyze Through Your Inventory, Based On Your History, And Behavior</h5>
                 <div className="d-inline my-2">
                     <a className="btn btn-success me-2" onClick={handleGenerate}><FontAwesomeIcon icon={faDice}/> Generate Now</a>
                     <GeneratedSectionConfigurateTemplate items={items} handleSave={handleSave} handleChange={handleTemplateChange}/>
@@ -228,7 +228,7 @@ export default function GeneratedSectionRandomOutift(props) {
                                 return null;
                             })
                         ) : (
-                            <div className="my-2"><p className='text-secondary'>- No Active Template -</p></div>
+                            <div className="my-2"><p>- No Active Template -</p></div>
                         )
                     }
                 </div>

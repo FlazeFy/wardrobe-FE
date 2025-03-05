@@ -102,7 +102,7 @@ export default function LandingFeedback(props) {
                         <AtomsBreakLine length={4}/>
                         <h2 className="mb-0">{average} Average Rate<span className="text-secondary" style={{fontSize:"var(--textXLG)"}}>, from total <b>{total}</b> feedback</span></h2>
                         <hr></hr>
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>What they say?</h1>
+                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>What <span className="text-main">they say</span>?</h1>
                         <h2 className="mb-2">Give your experience when using us too</h2>
                         <a className="btn btn-success fw-bold" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> Feedback</a>
                     </div>

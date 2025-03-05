@@ -32,3 +32,11 @@ h5, h6 {
     margin-bottom: 0 !important;
     color: var(--shadowColor);
 }
+.text-main {
+    color: var(--infoBG) !important;
+    -webkit-text-stroke: 1.25px var(--whiteColor);
+}
+
+.custom-container label {
+    color: var(--whiteColor) !important;
+}

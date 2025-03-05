@@ -17,7 +17,7 @@ export default function OrganismsNavbar(props) {
     return  (
         <nav className="navbar navbar-expand-lg w-100">
             <div className="container-fluid">
-                <a className="navbar-brand fw-bold" href="/">Wardrobe</a>
+                <h2 className="fw-bold text-main me-3" href="/">Wardrobe</h2>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

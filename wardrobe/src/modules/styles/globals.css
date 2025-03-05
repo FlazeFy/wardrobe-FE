@@ -32,20 +32,21 @@
   --spaceMini : 4px;
 
   /* Color Pallete */
-  --primaryLightBG : #00C5CB;
-  --successBG : #15DDAB;
-  --successDarkBG : #00b35a;
-  --warningBG : #E14D5B;
-  --warningDarkBG : #D5534C;
-  --infoBG : #00A8D8;
+  --primaryLightBG : #ace5e8;
+  --successBG : #bcf891;
+  --successDarkBG : #4cc086;
+  --dangerBG : #e7899c;
+  --warningBG : #f9f871;
+  --warningDarkBG : #eded1e;
+  --infoBG : #00a6e1;
   --infoLightBG : #E7F4FE;
-  --hoverBG : #F2F2F2;
+  --hoverBG : #e8fdff;
 
-  --primaryColor : #0088CC;
+  --primaryColor : #99cde1;
   --blackColor : #212121;
   --darkColor : #5B5B5B;
   --whiteColor : #FFFFFF;
-  --greyColor : #ededed;
+  --greyColor : #F3F3F3;
   --shadowColor : #808080;
 }
 
@@ -103,25 +104,52 @@ hr {
 
 .circle-icon {
   border-radius: 100%;
-  background: var(--warningBG);
+  background: var(--infoBG);
   height: 50px;
   width: 50px;
   opacity: 1;
   color: var(--whiteColor);
   padding: var(--spaceMD) var(--spaceXMD);
 }
-.feature-box, .faq-box {
-  border: 2px solid var(--shadowColor);
+.feature-box, .faq-box, .unfinished-wash-box {
+  border: 2px solid transparent;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   padding: var(--spaceMD);
   border-radius: var(--roundedLG);
   text-align: start;
+  background: var(--greyColor);
+  cursor: pointer;
+}
+.feature-box:hover, .faq-box:hover, .unfinished-wash-box:hover {
+  transform: scale(1.05);
+  border: 2px solid var(--infoBG);
 }
 
 .btn-type {
   cursor: pointer;
-  background: var(--primaryColor);
+  background: var(--infoBG);
   padding: var(--spaceMini) var(--spaceMD);
   color: var(--whiteColor);
   text-transform: capitalize;
   border-radius: var(--roundedLG);
+}
+
+.btn-success {
+  background: var(--successDarkBG) !important;
+}
+.btn-danger {
+  background: var(--dangerBG) !important;
+}
+.btn-info {
+  background: var(--infoBG) !important;
+}
+.btn-warning {
+  background: var(--warningBG) !important;
+}
+
+table thead tr th {
+  background: var(--infoBG) !important;
+}
+table tbody tr td {
+  background: var(--greyColor) !important;
 }

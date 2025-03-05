@@ -64,7 +64,7 @@ export default function FeedbackSectionSend() {
 
     return (
         <div className="mx-4">
-            <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}>Give Us Feedback</h1>
+            <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}>Give Us <span className="text-main">Feedback</span></h1>
             <h5 className="mb-4 text-secondary">Wardrobe is still at development, so your feedback will be very helpfull for us to improve.</h5>
             <MoleculesField title="What do you think about our apps?" type={'textarea'} defaultValue={feedbackBody} handleChange={(e) => {
                 setFeedbackBody(e.target.value)

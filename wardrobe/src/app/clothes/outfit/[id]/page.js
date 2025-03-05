@@ -89,19 +89,20 @@ export default function ClothesOutfitPage({params, ...props}) {
                             </div>
                         </div>
                         <hr></hr>
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.outfit_name}</h1>
-                        
-                        <p className="text-secondary">{items.outfit_note ?? <span className="text-secondary">- No Description Provided -</span>}</p>
-                        <AtomsBreakLine length={2}/>
-                        <div className="row">
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                                <OutfitSectionPostOutfitHistory fetchOutfit={fetchOutfit} id={params.id}/>
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                                <OutfitDetailPostOutfitClothes fetchOutfit={fetchOutfit} id={params.id} selectedClothes={items.clothes}/>
+                        <div className="container-fluid custom-container">
+                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.outfit_name}</h1>
+                            
+                            <p>{items.outfit_note ?? <span className="fst-italic">- No Description Provided -</span>}</p>
+                            <AtomsBreakLine length={2}/>
+                            <div className="row">
+                                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <OutfitSectionPostOutfitHistory fetchOutfit={fetchOutfit} id={params.id}/>
+                                </div>
+                                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <OutfitDetailPostOutfitClothes fetchOutfit={fetchOutfit} id={params.id} selectedClothes={items.clothes}/>
+                                </div>
                             </div>
                         </div>
-                        <AtomsBreakLine length={2}/>
                     </div>
                     <div className="col-lg-5 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>

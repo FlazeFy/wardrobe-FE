@@ -56,12 +56,12 @@ export default function StatsSectionSummary(props) {
                         <h4 className="mb-0"><b>{items.sum_clothes_qty}</b> <span className='text-secondary'>Quantity</span></h4>
                     </div>
                     <div>
-                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Total Clothes</h1>
+                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Total <span className="text-main">Clothes</span></h1>
                     </div>
                 </div>
                 <div className='d-flex justify-content-end'>
                     <div className='me-2'>
-                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>The Price</h1>
+                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>The <span className="text-main">Price</span></h1>
                     </div>
                     <div className='text-start'>
                         <h4 className="mb-0"><b>{formatCurrency(items.max_price)}</b> <span className='text-secondary'>Most Expensive</span></h4>

@@ -9,10 +9,11 @@ export default function AboutPage() {
     return (
         <main className={styles.main}>
             <OrganismsNavbar current="about"/>
-            <AtomsBreakLine length={1}/>
-            <div style={{width:"760px"}} className="text-center mx-auto">
+            <AtomsBreakLine length={2}/>
+            <div style={{width:"760px"}} className="container custom-container text-center mx-auto">
                 <AboutSectionApps/>
-                <AtomsBreakLine length={3}/>
+            </div>
+            <div style={{width:"760px"}} className="container custom-container text-center mx-auto">
                 <AboutSectionCreator/>
             </div>
             <MoleculesFooter/>

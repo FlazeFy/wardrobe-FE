@@ -3,15 +3,16 @@
     color: var(--blackColor) !important;
 }
 .navbar, .footer {
-    border-top: 1.5px solid var(--blackColor);
-    border-bottom: 1.5px solid var(--blackColor);
+    border: 2px solid var(--blackColor);
 }
-.navbar {
+.navbar, .footer {
     position: sticky !important;
     top: var(--spaceLG) !important;
-    padding: var(--spaceLG) 0 !important;
-    background: var(--whiteColor);
+    padding: var(--spaceLG) !important;
+    background: var(--greyColor);
     z-index: 999;
+    border-radius: var(--roundedJumbo);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .navbar .nav-item {
     padding: var(--spaceSM) var(--spaceMD);

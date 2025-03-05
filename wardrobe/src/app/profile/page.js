@@ -66,33 +66,37 @@ export default function ProfilePage(props) {
                 <AtomsBreakLine length={3}/>
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <AtomsBreakLine length={2}/>
-                        <h2 className="mb-0">Here you can see and modify your account, sync to Telegram account, and sign out from your account</h2>
-                        <hr></hr>
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Profile Page</h1>
-                        <AtomsBreakLine length={2}/>
+                        <div className="container-fluid custom-container">
+                            <AtomsBreakLine length={1}/>
+                            <h2 className="mb-0">Here you can see and modify your account, sync to Telegram account, and sign out from your account</h2>
+                            <hr></hr>
+                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Profile Page</h1>
+                            <AtomsBreakLine length={1}/>
+                        </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <AtomsBreakLine length={2}/>
-                        <div className='d-block mx-auto' style={{width:"700px"}}> 
-                            <div className='d-flex justify-content-end'>
-                                <div className='me-2 text-end'>
-                                    <h4 className="mb-0 text-secondary">{convertDatetimeBasedLocal(items.created_at)}</h4>
+                        <div className="container-fluid custom-container">
+                            <AtomsBreakLine length={1}/>
+                            <div className='d-block mx-auto' style={{width:"700px"}}> 
+                                <div className='d-flex justify-content-end'>
+                                    <div className='me-2 text-end'>
+                                        <h4 className="mb-0 text-secondary">{convertDatetimeBasedLocal(items.created_at)}</h4>
+                                    </div>
+                                    <div>
+                                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Joined Since</h1>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Joined Since</h1>
+                                <div className='d-flex justify-content-end'>
+                                    <div className='me-2'>
+                                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Last Updated</h1>
+                                    </div>
+                                    <div className='text-start'>
+                                        <h4 className="mb-0 text-secondary">{items.updated_at ?? '-'}</h4>
+                                    </div>
                                 </div>
                             </div>
-                            <div className='d-flex justify-content-end'>
-                                <div className='me-2'>
-                                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Last Updated</h1>
-                                </div>
-                                <div className='text-start'>
-                                    <h4 className="mb-0 text-secondary">{items.updated_at ?? '-'}</h4>
-                                </div>
-                            </div>
+                            <AtomsBreakLine length={1}/>
                         </div>
-                        <AtomsBreakLine length={2}/>
                     </div>
                 </div>
                 

@@ -93,13 +93,15 @@ export default function ClothesDetailPage({params}) {
                             </div>
                         </div>
                         <hr></hr>
-                        <ClothesDetailSectionExportData id={params.id}/>
-                        <hr></hr>
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.detail.clothes_name}</h1>
-                        <ClothesDetailCheckDeleted items={items.detail.deleted_at}/>
-                        <ClothesDetailCheckSchedule items={items.schedule}/>
-                        <p className="text-secondary">{items.detail.clothes_desc}</p>
-                        <AtomsBreakLine length={2}/>
+                        <div className="container-fluid custom-container">
+                            <ClothesDetailSectionExportData id={params.id}/>
+                            <hr></hr>
+                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.detail.clothes_name}</h1>
+                            <ClothesDetailCheckDeleted items={items.detail.deleted_at}/>
+                            <ClothesDetailCheckSchedule items={items.schedule}/>
+                            <p>{items.detail.clothes_desc}</p>
+                            <AtomsBreakLine length={2}/>
+                        </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>

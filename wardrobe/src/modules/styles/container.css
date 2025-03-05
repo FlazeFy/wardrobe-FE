@@ -1,4 +1,4 @@
-.box, .box-clothes, .box-outfit-simple, .box-schedule-mini {
+.box, .box-clothes, .box-outfit-simple, .box-schedule-mini, .feature-box, .faq-box, .unfinished-wash-box {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
@@ -83,6 +83,17 @@
     border-radius: var(--roundedLG) !important;
 }
 
+.custom-container {
+    background-image: linear-gradient(to bottom right, var(--infoBG), var(--primaryLightBG));
+    padding: var(--spaceJumbo) !important;
+    border-radius: var(--roundedJumbo);
+    margin-bottom: var(--spaceLG);
+}
+.alert {
+    padding: var(--spaceJumbo) !important;
+    border-radius: var(--roundedJumbo) !important;
+    margin-bottom: var(--spaceLG) !important;
+}
 .container-generator {
     width: 100%;
     height: 40vh;
@@ -109,12 +120,14 @@
     background: var(--hoverBG);
     position: relative;
     cursor: pointer;
+    border: 2px solid transparent;
 }
 .box-clothes {
     margin-bottom: var(--spaceLG);
 }
 .box-clothes:hover, .box-schedule-mini:hover {
     transform: scale(1.05);
+    border: 2px solid var(--infoBG);
 }
 .box-clothes .img-clothes {
     width: 100%;

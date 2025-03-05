@@ -20,16 +20,20 @@ export default function StatsPage() {
             <AtomsBreakLine length={3}/>
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <AtomsBreakLine length={2}/>
-                    <h2 className="mb-0">Here you can see statistic, trends, and summary that are gather from your clothes's found in this apps</h2>
-                    <hr></hr>
-                    <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Stats Page</h1>
-                    <AtomsBreakLine length={2}/>
+                    <div className="container-fluid custom-container">
+                        <AtomsBreakLine length={1}/>
+                        <h2 className="mb-0">Here you can see statistic, trends, and summary that are gather from your clothes's found in this apps</h2>
+                        <hr></hr>
+                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Stats Page</h1>
+                        <AtomsBreakLine length={1}/>
+                    </div>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <AtomsBreakLine length={2}/>
-                    <AtomsBreakLine length={2}/>
-                    <StatsSectionSummary ctx="clothes_summary"/>
+                    <div className="container-fluid custom-container">
+                        <AtomsBreakLine length={1}/>
+                        <StatsSectionSummary ctx="clothes_summary"/>
+                        <AtomsBreakLine length={1}/>
+                    </div>
                 </div>
             </div>
             
@@ -43,7 +47,7 @@ export default function StatsPage() {
             </div>
             <AtomsBreakLine length={3}/>
 
-            <div className="card" style={{maxWidth:"50vw"}}>
+            <div className="container-fluid custom-container" style={{maxWidth:"50vw"}}>
                 <h2 className="mb-0 fw-bold">Filter Chart</h2>
                 <div className="d-flex justify-content-start">
                     <div>

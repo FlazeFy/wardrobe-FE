@@ -66,7 +66,7 @@ export default function ClothesSectionUnfinishedWash(props) {
             return (
                 <div className='alert alert-warning'> 
                     <h2 className="mb-0 fw-bold"><FontAwesomeIcon icon={faWarning}/> Unfinished Wash</h2>
-                    <div className='row'>
+                    <div className='row mb-3'>
                         {
                             items.map((el)=>{
                                 return (

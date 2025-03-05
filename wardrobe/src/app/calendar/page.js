@@ -21,15 +21,17 @@ export default function CalendarPage() {
             <AtomsBreakLine length={2}/>
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <AtomsBreakLine length={2}/>
-                    <h2 className="mb-0">In this page, here we present your clothes used history, weekly schedule, wash schedule, and buyed history for every day in a month</h2>
-                    <hr></hr>
-                    <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Calendar Page</h1>
-                    <div className="d-flex justify-content-start">
-                        <CalendarSectionMonthYear defaultValue={monthYear} onChange={handleMonthYearChange}/>
-                        <CalendarSectionExportData year={monthYear.split('-')[1]}/>
+                    <div className="container-fluid custom-container">
+                        <AtomsBreakLine length={1}/>
+                        <h2 className="mb-0">In this page, here we present your clothes used history, weekly schedule, wash schedule, and buyed history for every day in a month</h2>
+                        <hr></hr>
+                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Calendar Page</h1>
+                        <div className="d-flex justify-content-start">
+                            <CalendarSectionMonthYear defaultValue={monthYear} onChange={handleMonthYearChange}/>
+                            <CalendarSectionExportData year={monthYear.split('-')[1]}/>
+                        </div>
+                        <AtomsBreakLine length={1}/>
                     </div>
-                    <AtomsBreakLine length={2}/>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <AtomsBreakLine length={3}/>

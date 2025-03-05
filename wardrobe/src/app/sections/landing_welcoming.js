@@ -68,14 +68,17 @@ export default function LandingSectionWelcoming(props) {
         )
     } else {
         return (
-            <div className="mx-4" style={{marginTop:"14vh"}}>
+            <div className="mx-4" style={{marginTop:"8vh"}}>
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <AtomsBreakLine length={4}/>
-                        <h2 className="mb-0">Wardrobe is your ultimate clothing assistant, helping you organize outfits, track history, manage schedules, and plan weekly looks</h2>
-                        <hr></hr>
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Effortless style decision and Organize</h1>
-                        <h2 className="mb-0">{usernameKey ? <>Welcome, {usernameKey}</> : <>Join us Now. Its <span className="text-success fw-bold">Free!</span></>}</h2>
+                        <div className="container-fluid custom-container">
+                            <AtomsBreakLine length={2}/>
+                            <h2 className="mb-0">Wardrobe is your ultimate clothing assistant, helping you organize outfits, track history, manage schedules, and plan weekly looks</h2>
+                            <hr></hr>
+                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Effortless style <span className="text-main">decision and Organize</span></h1>
+                            <h2 className="mb-0">{usernameKey ? <>Welcome, {usernameKey}</> : <>Join us Now. Its <span className="text-success fw-bold">Free!</span></>}</h2>
+                            <AtomsBreakLine length={2}/>
+                        </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12 text-end">
                         <div className="d-flex justify-content-end align-items-center">

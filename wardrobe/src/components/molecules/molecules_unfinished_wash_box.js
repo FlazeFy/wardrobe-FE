@@ -4,7 +4,7 @@ export default function MoleculesUnfinishedWashBox(props) {
     }
 
     return (
-        <div className="container-bordered mt-2 me-2">
+        <div className="unfinished-wash-box mt-2 me-2">
             <div className="d-flex justify-content-between">
                 <h4>{props.item.clothes_name}</h4>
                 <span className="btn-type">{props.item.clothes_type}</span>

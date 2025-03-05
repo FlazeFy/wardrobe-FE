@@ -96,7 +96,7 @@ export default function LandingSectionLastOutfit(props) {
                                 <h5 className="text-secondary mb-0">Set at {items.last_used}</h5>
                             </>
                         }
-                        <h2 className="mb-0">{ items ? <>Last Outfit</> : <span className="text-secondary">- No Outfit History Found -</span>}</h2>
+                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{ items ? <>Last <span className="text-main">Outfit</span></> : <span className="text-secondary">- No Outfit History Found -</span>}</h1>
                         <hr></hr>
                         {
                             items ? 
@@ -113,7 +113,7 @@ export default function LandingSectionLastOutfit(props) {
                                 <h5>32°C | Rainy | 75% Humidity</h5>
                                 <h4>Today is {todayName}</h4>
                             </div>
-                            <h3 className="mb-2">Do you want to hangout?</h3>
+                            <h2 className="mb-2" style={{fontWeight:"800"}}>Do you <span className="text-main">want to hangout</span>?</h2>
                             <p>We can generate your today's outfit based on outfit in wardrobe, cleaning status, routine, schedule, time, and today's weather. You can also set exception for some clothes, or just randomize between few clothes based on your need.</p>
                             <a className="btn btn-success fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
                         </div>

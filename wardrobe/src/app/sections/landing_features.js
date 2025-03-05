@@ -43,7 +43,7 @@ export default function LandingSectionFeatures() {
                     <AtomsBreakLine length={8}/>
                     <h2 className="mb-0">From Store Your Clothes Information Until Deciding What You Should Wear Tommorow!</h2>
                     <hr></hr>   
-                    <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Our Capabilities</h1>
+                    <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Our <span className="text-main">Capabilities</span></h1>
                     <h2 className="mb-2">Want to Know How Our Apps Works?</h2>
                     <a className="btn btn-success fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
                     <a className="btn btn-primary fw-bold" href="/feedback"><FontAwesomeIcon icon={faCircleQuestion}/> Get The Manual</a>

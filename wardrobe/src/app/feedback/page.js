@@ -18,10 +18,10 @@ export default function FeedbackPage() {
     return (
         <main className={styles.main}>
             <OrganismsNavbar current="feedback"/>
-            <AtomsBreakLine length={1}/>
-            <div style={{width:"760px"}} className="text-center mx-auto">
+            <AtomsBreakLine length={2}/>
+            <div style={{width:"760px"}} className="container custom-container text-center mx-auto">
                 <FeedbackSectionSend/>
-                <AtomsBreakLine length={5}/>
+                <AtomsBreakLine length={!tokenKey ? 5 : 0}/>
                 {
                     !tokenKey && <ProfileSectionSendQuestion/>
                 }
