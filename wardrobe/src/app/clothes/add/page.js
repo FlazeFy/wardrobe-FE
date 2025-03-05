@@ -21,9 +21,10 @@ export default function ClothesAddPage() {
                         </div>
                     </div>
                     <hr></hr>
-                    <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Add Clothes</h1>
-                    <p className="text-secondary">Here you can add your clothes to your Wardrobe inventory. Start monitoring and make this outfit part of your daily outfit</p>
-                    <AtomsBreakLine length={2}/>
+                    <div className="container-fluid custom-container">
+                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">Add</span> Clothes</h1>
+                        <p>Here you can add your clothes to your Wardrobe inventory. Start monitoring and make this outfit part of your daily outfit</p>
+                    </div>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <AtomsBreakLine length={2}/>
@@ -32,7 +33,10 @@ export default function ClothesAddPage() {
             </div>
 
             <AtomsBreakLine length={2}/>
-            <ClothesAddForm/>
+            <div className="form-container">
+                <h2 className="fw-bold">Add Form</h2>
+                <ClothesAddForm/>
+            </div>
 
             <MoleculesFooter/>
         </main>

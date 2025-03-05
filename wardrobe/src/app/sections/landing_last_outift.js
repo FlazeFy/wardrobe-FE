@@ -100,9 +100,9 @@ export default function LandingSectionLastOutfit(props) {
                         <hr></hr>
                         {
                             items ? 
-                                <h2 className="mb-0">See more outfit history? <a className="btn btn-success fw-bold"><FontAwesomeIcon icon={faArrowRight}/> History</a></h2>
+                                <h2 className="mb-0">See more outfit history? <a className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faArrowRight}/> History</a></h2>
                             :
-                                <h2 className="mb-0">Use your outfit right now, or create a new one? <a className="btn btn-success fw-bold"><FontAwesomeIcon icon={faArrowRight}/> Add New Outfit</a></h2>
+                                <h2 className="mb-0">Use your outfit right now, or create a new one? <a className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faArrowRight}/> Add New Outfit</a></h2>
                         }
                         <AtomsBreakLine length={4}/>
                     </div>
@@ -115,7 +115,7 @@ export default function LandingSectionLastOutfit(props) {
                             </div>
                             <h2 className="mb-2" style={{fontWeight:"800"}}>Do you <span className="text-main">want to hangout</span>?</h2>
                             <p>We can generate your today's outfit based on outfit in wardrobe, cleaning status, routine, schedule, time, and today's weather. You can also set exception for some clothes, or just randomize between few clothes based on your need.</p>
-                            <a className="btn btn-success fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
+                            <a className="btn btn-primary fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
                         </div>
                         <AtomsBreakLine length={4}/>
                     </div>

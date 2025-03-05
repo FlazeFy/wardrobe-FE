@@ -1,15 +1,16 @@
-.navbar-brand {
-    font-size: var(--textJumbo) !important;
-    color: var(--blackColor) !important;
-}
 .navbar, .footer {
     border: 2px solid var(--blackColor);
+}
+.footer {
+    background: var(--primaryColor);
+}
+.navbar {
+    background: var(--greyColor);
 }
 .navbar, .footer {
     position: sticky !important;
     top: var(--spaceLG) !important;
     padding: var(--spaceLG) !important;
-    background: var(--greyColor);
     z-index: 999;
     border-radius: var(--roundedJumbo);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -22,13 +23,14 @@
     font-weight: 500;
     font-size: var(--textXLG) !important;
     border-radius: var(--roundedLG);
+    border: 1.75px solid transparent;
 }
 .navbar .nav-item a {
     text-decoration: none !important;
 }
 .navbar .nav-item .active {
-    border-bottom: var(--spaceMini) solid var(--blackColor);
+    border-bottom: var(--spaceMini) solid var(--infoBG);
 }
 .navbar .nav-item:hover {
-    background: var(--greyColor);
+    border: 1.75px solid var(--infoBG);
 }

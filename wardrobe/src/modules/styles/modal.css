@@ -2,6 +2,8 @@
     border-radius: var(--roundedJumbo) !important;
     border: none !important;
     padding: var(--spaceMD);
+    border: 4px solid var(--infoBG) !important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .swal2-loading {
     width: 100vw;

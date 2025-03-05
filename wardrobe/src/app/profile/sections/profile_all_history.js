@@ -51,6 +51,7 @@ export default function ProfileSectionAllHistory(props) {
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
+                confirmButtonText: "Okay!"
             })
             setError(error)
         })
@@ -71,7 +72,7 @@ export default function ProfileSectionAllHistory(props) {
                 {
                     items ? 
                         items.map((dt, idx) => (
-                            <div key={idx} className="container-bordered">
+                            <div key={idx} className="history-box">
                                 <div className='d-flex justify-content-between'>
                                     <div>
                                         <h6 className='mb-0'>{dt.history_type} {dt.history_context}</h6>

@@ -80,6 +80,7 @@ export default function ClothesDetailEditForm(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -92,6 +93,7 @@ export default function ClothesDetailEditForm(props) {
                 icon: "error",
                 title: "Oops...",
                 text: "You can't edit deleted clothes. Recover it to make it useable",
+                confirmButtonText: "Okay!"
             })
         } else {
 

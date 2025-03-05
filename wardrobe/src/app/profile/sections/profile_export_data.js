@@ -40,12 +40,14 @@ export default function ProfileSectionExportData() {
                     title: "Success!",
                     text: `${getCleanTitleFromCtx(ctx)} data downloaded`,
                     icon: "success",
+                    confirmButtonText: "Okay!"
                 });
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: `${getCleanTitleFromCtx(ctx)} data failed to download`,
+                    confirmButtonText: "Okay!"
                 })
             }
         } catch (error) {
@@ -54,6 +56,7 @@ export default function ProfileSectionExportData() {
                 icon: "error",
                 title: "Oops...",
                 text: error,
+                confirmButtonText: "Okay!"
             })
         }
     }

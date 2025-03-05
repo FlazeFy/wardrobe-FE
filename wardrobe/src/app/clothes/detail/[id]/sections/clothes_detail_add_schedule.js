@@ -54,6 +54,7 @@ export default function ClothesDetailAddSchedule(props) {
                     text: response.data.message,
                     icon: "success",
                     allowOutsideClick: false,
+                    confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                        props.fetchClothes()
@@ -74,6 +75,7 @@ export default function ClothesDetailAddSchedule(props) {
                     icon: "error",
                     title: "Oops...",
                     text: error.response.data.message,
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(error)
             } else {
@@ -81,6 +83,7 @@ export default function ClothesDetailAddSchedule(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(error)
             }
@@ -92,6 +95,7 @@ export default function ClothesDetailAddSchedule(props) {
             icon: "error",
             title: "Oops...",
             text: "You can't add schedule from deleted clothes. Recover it to make it useable",
+            confirmButtonText: "Okay!"
         })
     }
 

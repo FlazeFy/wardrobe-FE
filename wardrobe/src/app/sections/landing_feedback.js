@@ -47,6 +47,7 @@ export default function LandingFeedback(props) {
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
+                        confirmButtonText: "Okay!"
                     })
                     setError(error)
                 }

@@ -34,6 +34,7 @@ export default function GeneratedSectionOutfitMonthlyTotalUsed(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -50,7 +51,7 @@ export default function GeneratedSectionOutfitMonthlyTotalUsed(props) {
         )
     } else {
         return (
-            <div className="mx-4 text-center mx-auto" style={{ width: "1280px" }}>
+            <div className="mx-4 text-center mx-auto form-container" style={{ width: "1280px" }}>
                 <h1 className="mb-3" style={{ fontSize: "74px", fontWeight: "800" }}>Monthly Used</h1>
                 <h5 className="text-secondary">We analyze the total used of all outfit based on selected year</h5> 
                 <MoleculesLineChart data={items}/>

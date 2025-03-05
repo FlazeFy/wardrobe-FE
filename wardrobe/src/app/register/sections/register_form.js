@@ -36,6 +36,7 @@ export default function RegisterSectionForm(props) {
                     text: response.data.message,
                     icon: "success",
                     allowOutsideClick: false,
+                    confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                        //
@@ -46,6 +47,7 @@ export default function RegisterSectionForm(props) {
                     icon: "error",
                     title: "Oops...",
                     text: response.data.message,
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(response.data.message)
             }
@@ -55,6 +57,7 @@ export default function RegisterSectionForm(props) {
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
+                confirmButtonText: "Okay!"
             })
             setResMsgAll(error)
         }

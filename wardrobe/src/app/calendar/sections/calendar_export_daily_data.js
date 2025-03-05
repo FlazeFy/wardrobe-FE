@@ -41,12 +41,14 @@ export default function CalendarSectionExportDailyData(props) {
                     title: "Success!",
                     text: `Calendar daily report downloaded`,
                     icon: "success",
+                    confirmButtonText: "Okay!"
                 });
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: `Calendar daily report failed to download`,
+                    confirmButtonText: "Okay!"
                 })
             }
         } catch (error) {

@@ -46,7 +46,8 @@ export default function OutfitDetailPostOutfitClothes(props) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Something went wrong!"+er,
+                    text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -77,6 +78,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                     text: response.data.message,
                     icon: "success",
                     allowOutsideClick: false,
+                    confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                        props.fetchOutfit()
@@ -87,6 +89,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                     icon: "error",
                     title: "Oops...",
                     text: response.data.message,
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(response.data.message)
             }
@@ -96,6 +99,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                     title: "Oops...",
                     text: error.response.data.message,
                     icon: "error",
+                    confirmButtonText: "Okay!"
                 })
             } else {
                 Swal.close()
@@ -103,6 +107,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(error)
             }
@@ -132,6 +137,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                 icon: "warning",
                 title: `${getCleanTitleFromCtx(dt.clothes_type)} has been used`,
                 text: `Try another clothes type or remove the selected clothes`,
+                confirmButtonText: "Okay!"
             })
         }
     }
@@ -161,6 +167,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                             text: response.data.message,
                             icon: "success",
                             allowOutsideClick: false,
+                            confirmButtonText: "Okay!"
                         }).then((result) => {
                             if (result.isConfirmed) {
                                props.fetchOutfit()
@@ -171,6 +178,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                             icon: "error",
                             title: "Oops...",
                             text: response.data.message,
+                            confirmButtonText: "Okay!"
                         })
                         setResMsgAll(response.data.message)
                     }
@@ -179,6 +187,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
+                        confirmButtonText: "Okay!"
                     })
                 }
             } 
@@ -203,6 +212,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                     icon: "warning",
                     title: "You can't Delete this",
                     text: "Outfit can be exist with at least 1 clothes attached",
+                    confirmButtonText: "Okay!"
                 })
             }
         }

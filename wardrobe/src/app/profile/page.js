@@ -45,6 +45,7 @@ export default function ProfilePage(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -80,7 +81,7 @@ export default function ProfilePage(props) {
                             <div className='d-block mx-auto' style={{width:"700px"}}> 
                                 <div className='d-flex justify-content-end'>
                                     <div className='me-2 text-end'>
-                                        <h4 className="mb-0 text-secondary">{convertDatetimeBasedLocal(items.created_at)}</h4>
+                                        <h4 className="mb-0">{convertDatetimeBasedLocal(items.created_at)}</h4>
                                     </div>
                                     <div>
                                         <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Joined Since</h1>
@@ -91,7 +92,7 @@ export default function ProfilePage(props) {
                                         <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Last Updated</h1>
                                     </div>
                                     <div className='text-start'>
-                                        <h4 className="mb-0 text-secondary">{items.updated_at ?? '-'}</h4>
+                                        <h4 className="mb-0">{items.updated_at ?? '-'}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -103,15 +104,23 @@ export default function ProfilePage(props) {
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={1}/>
-                        <ProfileSectionEditForm item={items}/>
+                        <div className="form-container">
+                            <ProfileSectionEditForm item={items}/>
+                        </div>
                         <AtomsBreakLine length={2}/>
-                        <ProfileSectionExportData/>
+                        <div className="form-container">
+                            <ProfileSectionExportData/>
+                        </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={1}/>
-                        <ProfileSectionAllHistory ctx="all_history"/>
+                        <div className="form-container">
+                            <ProfileSectionAllHistory ctx="all_history"/>
+                        </div>
                         <AtomsBreakLine length={2}/>
-                        <ProfileSectionSendQuestion/>
+                        <div className="form-container">
+                            <ProfileSectionSendQuestion/>
+                        </div>
                     </div>
                 </div>
                 

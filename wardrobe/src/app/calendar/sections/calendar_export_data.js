@@ -38,12 +38,14 @@ export default function CalendarSectionExportData(props) {
                     title: "Success!",
                     text: `Calendar data downloaded`,
                     icon: "success",
+                    confirmButtonText: "Okay!"
                 });
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: `Calendar data failed to download`,
+                    confirmButtonText: "Okay!"
                 })
             }
         } catch (error) {
@@ -52,6 +54,7 @@ export default function CalendarSectionExportData(props) {
                 icon: "error",
                 title: "Oops...",
                 text: error,
+                confirmButtonText: "Okay!"
             })
         }
     }

@@ -40,7 +40,8 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
                         Swal.fire({
                             title: "Success!",
                             text: response.data.message,
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: "Okay!"
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 localStorage.removeItem('generated_outfit_history')
@@ -51,6 +52,7 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
                             icon: "error",
                             title: "Oops...",
                             text: "Something went wrong!",
+                            confirmButtonText: "Okay!"
                         })
                     }
                 } catch (error) {
@@ -59,6 +61,7 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
+                        confirmButtonText: "Okay!"
                     })
                 }
             } 

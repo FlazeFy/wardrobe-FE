@@ -44,6 +44,7 @@ export default function ClothesSectionUnfinishedWash(props) {
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
+                confirmButtonText: "Okay!"
             })
             setError(error)
         })
@@ -65,7 +66,7 @@ export default function ClothesSectionUnfinishedWash(props) {
         if(items){
             return (
                 <div className='alert alert-warning'> 
-                    <h2 className="mb-0 fw-bold"><FontAwesomeIcon icon={faWarning}/> Unfinished Wash</h2>
+                    <h4 className="mb-0 fw-bold"><FontAwesomeIcon icon={faWarning}/> Unfinished Wash</h4>
                     <div className='row mb-3'>
                         {
                             items.map((el)=>{
@@ -77,8 +78,8 @@ export default function ClothesSectionUnfinishedWash(props) {
                             })
                         }
                     </div>
-                    <h5 className="text-secondary">For more wash history you can <a className="btn btn-link mx-2" href={"/clothes/wash"}><FontAwesomeIcon icon={faArrowRight}/> See More</a>
-                    . Or maybe <a className="btn btn-link bg-success text-white"><FontAwesomeIcon icon={faCheck}/> Finish All Wash</a>
+                    <h5 className="text-secondary">For more wash history you can <a className="btn btn-primary mx-2" href={"/clothes/wash"}><FontAwesomeIcon icon={faArrowRight}/> See More</a>
+                    . Or maybe <a className="btn btn-success text-white"><FontAwesomeIcon icon={faCheck}/> Finish All Wash</a>
                     </h5>
                 </div>
             )

@@ -18,7 +18,7 @@ export default function HardDeleteSchedule(props) {
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Yes, Delete it!",
-            cancelButtonText: "No, Cancel!"
+            cancelButtonText: "No, Cancel!",
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
@@ -34,7 +34,8 @@ export default function HardDeleteSchedule(props) {
                         Swal.fire({
                             title: "Success!",
                             text: response.data.message,
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: "Okay!"
                         }).then((result) => {
                             if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
                                 props.fetchClothes()
@@ -45,6 +46,7 @@ export default function HardDeleteSchedule(props) {
                             icon: "error",
                             title: "Oops...",
                             text: "Something went wrong!",
+                            confirmButtonText: "Okay!"
                         })
                     }
                 } catch (error) {
@@ -52,6 +54,7 @@ export default function HardDeleteSchedule(props) {
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
+                        confirmButtonText: "Okay!"
                     })
                 }
             } 

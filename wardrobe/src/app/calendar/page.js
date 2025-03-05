@@ -25,7 +25,7 @@ export default function CalendarPage() {
                         <AtomsBreakLine length={1}/>
                         <h2 className="mb-0">In this page, here we present your clothes used history, weekly schedule, wash schedule, and buyed history for every day in a month</h2>
                         <hr></hr>
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Calendar Page</h1>
+                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">Calendar</span> Page</h1>
                         <div className="d-flex justify-content-start">
                             <CalendarSectionMonthYear defaultValue={monthYear} onChange={handleMonthYearChange}/>
                             <CalendarSectionExportData year={monthYear.split('-')[1]}/>

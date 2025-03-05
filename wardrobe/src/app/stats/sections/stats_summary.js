@@ -33,6 +33,7 @@ export default function StatsSectionSummary(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -52,8 +53,8 @@ export default function StatsSectionSummary(props) {
             <div className='d-block mx-auto' style={{width:"700px"}}> 
                 <div className='d-flex justify-content-end'>
                     <div className='me-2 text-end'>
-                        <h4 className="mb-0"><b>{items.total_clothes}</b> <span className='text-secondary'>Variety</span></h4>
-                        <h4 className="mb-0"><b>{items.sum_clothes_qty}</b> <span className='text-secondary'>Quantity</span></h4>
+                        <h4 className="mb-0"><b>{items.total_clothes}</b> <span className='text-white'>Variety</span></h4>
+                        <h4 className="mb-0"><b>{items.sum_clothes_qty}</b> <span className='text-white'>Quantity</span></h4>
                     </div>
                     <div>
                         <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Total <span className="text-main">Clothes</span></h1>
@@ -64,8 +65,8 @@ export default function StatsSectionSummary(props) {
                         <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>The <span className="text-main">Price</span></h1>
                     </div>
                     <div className='text-start'>
-                        <h4 className="mb-0"><b>{formatCurrency(items.max_price)}</b> <span className='text-secondary'>Most Expensive</span></h4>
-                        <h4 className="mb-0"><b>{formatCurrency(items.avg_price)}</b> <span className='text-secondary'>Average</span></h4>
+                        <h4 className="mb-0"><b>{formatCurrency(items.max_price)}</b> <span className='text-white'>Most Expensive</span></h4>
+                        <h4 className="mb-0"><b>{formatCurrency(items.avg_price)}</b> <span className='text-white'>Average</span></h4>
                     </div>
                 </div>
             </div>

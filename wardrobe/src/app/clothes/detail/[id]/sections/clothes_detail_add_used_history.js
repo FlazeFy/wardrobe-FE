@@ -46,7 +46,8 @@ export default function ClothesDetailAddUsedHistory(props) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Something went wrong!"+er,
+                    text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -58,6 +59,7 @@ export default function ClothesDetailAddUsedHistory(props) {
             icon: "error",
             title: "Oops...",
             text: "You can't add used history from deleted clothes. Recover it to make it useable",
+            confirmButtonText: "Okay!"
         })
     }
 
@@ -86,6 +88,7 @@ export default function ClothesDetailAddUsedHistory(props) {
                     text: response.data.message,
                     icon: "success",
                     allowOutsideClick: false,
+                    confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                        props.fetchClothes()
@@ -96,6 +99,7 @@ export default function ClothesDetailAddUsedHistory(props) {
                     icon: "error",
                     title: "Oops...",
                     text: response.data.message,
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(response.data.message)
             }
@@ -105,6 +109,7 @@ export default function ClothesDetailAddUsedHistory(props) {
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
+                confirmButtonText: "Okay!"
             })
             setResMsgAll(error)
         }

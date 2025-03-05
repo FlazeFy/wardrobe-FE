@@ -6,7 +6,7 @@ export default function AboutSectionCreator() {
     return (
         <div className="mx-4">
             <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}>About <span className="text-main">Creator</span></h1>
-            <h5 className="text-secondary">My Name is <b>Leo</b>, a Bachelor's degree graduate in Software Engineering from Telkom University
+            <h5>My Name is <b>Leo</b>, a Bachelor's degree graduate in Software Engineering from Telkom University
             (2023). Focused on Web Development and Mobile Development. Enjoys exploring new knowledge and seeking challenges.
             If you want to do collaboration or do you want to send me feedback? you can find me on :
             <div style={{fontSize:"calc(var(--textLG)*1.5)"}} className="mt-3">

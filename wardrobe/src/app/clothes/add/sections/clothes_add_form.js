@@ -87,7 +87,8 @@ export default function ClothesAddForm(props) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Something went wrong!"+er,
+                    text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -132,6 +133,7 @@ export default function ClothesAddForm(props) {
                     text: response.data.message,
                     icon: "success",
                     allowOutsideClick: false,
+                    confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = `/clothes/detail/${response.data.data.id}`
@@ -142,6 +144,7 @@ export default function ClothesAddForm(props) {
                     icon: "error",
                     title: "Oops...",
                     text: response.data.message,
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(response.data.message)
             }
@@ -151,6 +154,7 @@ export default function ClothesAddForm(props) {
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
+                confirmButtonText: "Okay!"
             })
             setResMsgAll(error)
         }
@@ -234,10 +238,11 @@ export default function ClothesAddForm(props) {
                     <button className='btn btn-success mt-3' onClick={handleSubmit}><FontAwesomeIcon icon={faFloppyDisk}/> Save Changes</button>
                 </div> 
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
+                    <MoleculesAlertBox message="For clothes image you can upload photo of your clothes with file type PNG, JPG, JPEG, or GIF. And have maximum size at the 10 Mb" type='primary' context={"tips_clothes_image"}/>
                     <img src={clothesImage || "/images/shoes_sample.jpg"} style={{maxWidth:"50%", minWidth:"100px"}} className="img img-fluid img-rounded d-block mx-auto"/>
                     <MoleculesField title="Clothes Image" type="file" handleChange={handleImageChange} accept="image/*"/>
-                    <MoleculesAlertBox message="For clothes image you can upload photo of your clothes with file type PNG, JPG, JPEG, or GIF. And have maximum size at the 10 Mb" type='primary' context={"tips_clothes_image"}/>
                     <hr></hr>
+                    <h2 className="fw-bold">Clothes Status</h2>
                     <div className='d-flex justify-content-start'>
                         <div className='me-2'>
                             <MoleculesField title="Is Faded" type="toggle" defaultValue={isFaded} handleChange={(e)=>setIsFaded(e)}/>

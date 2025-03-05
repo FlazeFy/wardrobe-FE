@@ -54,6 +54,7 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
             icon: "success",
             title: "Success",
             text: "Generated outfit has been reset!",
+            confirmButtonText: "Okay!"
         })
     }
 
@@ -140,7 +141,8 @@ export default function GeneratedSectionRandomOutift() {
             Swal.close();
             Swal.fire({
                 title: "Generated!",
-                icon: "success"
+                icon: "success",
+                confirmButtonText: "Okay!"
             }).then(() => {
                 saveOutfitRef.current.fetchLocalHistory()
             })

@@ -49,6 +49,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -132,10 +133,14 @@ export default function ClothesOutfitPage({params, ...props}) {
 
                 <div className="row">
                     <div className="col-lg-3 col-md-4 col-sm-12 col-12">
-                        <OutfitSectionUsedById fetchOutfit={fetchOutfit} id={params.id}/>
+                        <div className="form-container">
+                            <OutfitSectionUsedById fetchOutfit={fetchOutfit} id={params.id}/>
+                        </div>
                     </div>
                     <div className="col-lg-9 col-md-8 col-sm-12 col-12">
-                        <OutfitSectionMonthlyTotalUsed id={params.id}/>
+                        <div className="form-container">
+                            <OutfitSectionMonthlyTotalUsed id={params.id}/>
+                        </div>
                     </div>
                 </div>
 

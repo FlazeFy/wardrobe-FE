@@ -46,6 +46,7 @@ export default function OutfitSectionUsedById(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 });
             } else {
                 setIsLoaded(true)

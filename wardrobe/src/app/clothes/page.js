@@ -18,15 +18,15 @@ export default function ClothesPage() {
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div className="container-fluid custom-container">
                         <AtomsBreakLine length={1}/>
-                        <h2 className="mb-0">In this page, you will see all of your inventory in catalog view. Do you want to see the <a className="btn btn-link"><FontAwesomeIcon icon={faArrowRight}/> Category View</a> or <a className="btn btn-link" href="/clothes/generated"><FontAwesomeIcon icon={faArrowRight}/> Generated Outfit</a></h2>
+                        <h2 className="mb-0">In this page, you will see all of your inventory in catalog view. Do you want to see the <a className="btn btn-primary"><FontAwesomeIcon icon={faArrowRight}/> Category View</a> or <a className="btn btn-primary" href="/clothes/generated"><FontAwesomeIcon icon={faArrowRight}/> Generated Outfit</a></h2>
                         <hr></hr>
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Clothes Page</h1>
+                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">Clothes</span> Page</h1>
                         <AtomsBreakLine length={1}/>
                     </div>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div className="container custom-container">
-                        <AtomsBreakLine length={2}/>
+                        <AtomsBreakLine length={1}/>
                         <ClothesSectionTotalByType ctx="total_clothes_by_type"/>
                         <AtomsBreakLine length={1}/>
                     </div>
@@ -38,8 +38,8 @@ export default function ClothesPage() {
                 <div>
                     <h2 className="mb-0 fw-bold">All Clothes</h2>
                     <h5 className="text-secondary">For more detail you can see the 
-                        <a className="btn btn-link mx-2" href={"/clothes/by/table"}><FontAwesomeIcon icon={faArrowRight}/> Table View</a>
-                        <a className="btn btn-link bg-danger text-white" href={"/clothes/trash"}><FontAwesomeIcon icon={faTrash}/> Deleted Clothes</a>
+                        <a className="btn btn-primary mx-2" href={"/clothes/by/table"}><FontAwesomeIcon icon={faArrowRight}/> Table View</a>
+                        <a className="btn btn-danger" href={"/clothes/trash"}><FontAwesomeIcon icon={faTrash}/> Deleted Clothes</a>
                     </h5>
                 </div>
                 <div>

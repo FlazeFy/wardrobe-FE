@@ -39,6 +39,7 @@ export default function LandingSectionLogin(props) {
                     text: `Welcome, ${username}`,
                     icon: "success",
                     allowOutsideClick: false,
+                    confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                        window.location.href = '/'
@@ -49,6 +50,7 @@ export default function LandingSectionLogin(props) {
                     icon: "error",
                     title: "Oops...",
                     text: response.data.result,
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(response.data.result)
             }
@@ -59,6 +61,7 @@ export default function LandingSectionLogin(props) {
                     icon: "error",
                     title: "Oops...",
                     text: error.response.data.result,
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(error)
             } else {
@@ -66,6 +69,7 @@ export default function LandingSectionLogin(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setResMsgAll(error)
             }
@@ -79,7 +83,7 @@ export default function LandingSectionLogin(props) {
                     <img src={"/logo_full.png"} className="img img-fluid img-rounded"/>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
-                    <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}>Hello There!!!</h1>
+                    <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}><span className='text-main'>Hello</span> There!!!</h1>
                     <h5 className="mb-4 text-secondary">Do you have an account? type your username and password to proceed sign in, so you can using this apps</h5>
                     <MoleculesField title="Username" type={'text'} handleChange={(e) => {
                         setUsername(e.target.value)

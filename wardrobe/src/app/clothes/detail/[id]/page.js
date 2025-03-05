@@ -53,6 +53,7 @@ export default function ClothesDetailPage({params}) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 })
                 setError(error)
             }
@@ -111,41 +112,45 @@ export default function ClothesDetailPage({params}) {
                 </div>
 
                 <AtomsBreakLine length={2}/>
-                <div style={{maxWidth:"50vw"}}>
-                    <h2 className="mb-0 fw-bold">Edit Clothes</h2>
-                    <h5 className="text-secondary">This clothes has been added to your wardrobe since {items.detail.created_at}{items.detail.updated_at && <span>and the last update was detected on {items.detail.updated_at}</span>}</h5>
+                <div className="form-container">
+                    <div style={{maxWidth:"50vw"}}>
+                        <h2 className="mb-0 fw-bold">Edit Clothes</h2>
+                        <h5 className="text-secondary">This clothes has been added to your wardrobe since {items.detail.created_at}{items.detail.updated_at && <span>and the last update was detected on {items.detail.updated_at}</span>}</h5>
+                    </div>
+                    <AtomsBreakLine length={1}/>
+                    <ClothesDetailEditForm ctx="clothes_detail" item={items.detail}/>
                 </div>
                 <AtomsBreakLine length={1}/>
-                <ClothesDetailEditForm ctx="clothes_detail" item={items.detail}/>
-                <AtomsBreakLine length={2}/>
 
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <AtomsBreakLine length={2}/>
-                        <div style={{maxWidth:"50vw"}}>
-                            <h2 className="mb-0 fw-bold">Used History</h2>
-                            <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
-                                <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at}/></h5>
+                        <div className="form-container">
+                            <div style={{maxWidth:"50vw"}}>
+                                <h2 className="mb-0 fw-bold">Used History</h2>
+                                <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
+                                    <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at}/></h5>
+                            </div>
+                            <AtomsBreakLine length={1}/>
+                            <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>
                         </div>
-                        <AtomsBreakLine length={1}/>
-                        <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>
-                        <AtomsBreakLine length={2}/>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <AtomsBreakLine length={2}/>
-                        <h2 className="mb-0 fw-bold">Schedule</h2>
-                        <h5 className="text-secondary">You can set weekly schedule for a clothes, so we can remind you night before the day of use. 
-                                <ClothesDetailAddSchedule fetchClothes={fetchClothes} id={params.id} ctx="add_schedule" deleted_at={items.detail.deleted_at}/></h5>
-                        <ClothesDetailSchedule items={items.schedule} fetchClothes={fetchClothes}/>
-                        <AtomsBreakLine length={2}/>
+                        <div className="form-container">
+                            <h2 className="mb-0 fw-bold">Schedule</h2>
+                            <h5 className="text-secondary">You can set weekly schedule for a clothes, so we can remind you night before the day of use. 
+                                    <ClothesDetailAddSchedule fetchClothes={fetchClothes} id={params.id} ctx="add_schedule" deleted_at={items.detail.deleted_at}/></h5>
+                            <ClothesDetailSchedule items={items.schedule} fetchClothes={fetchClothes}/>
+                        </div>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <h2 className="mb-0 fw-bold">Outfit</h2>
-                        <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn't have found in any clothes</span>}</h5>
-                        <ClothesDetailSectionFoundedOutfit items={items.outfit}/>
+                        <div className="form-container">
+                            <h2 className="mb-0 fw-bold">Outfit</h2>
+                            <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn't have found in any clothes</span>}</h5>
+                            <ClothesDetailSectionFoundedOutfit items={items.outfit}/>
+                        </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <ClothesDetailDeleteClothesById id={params.id} type_delete={items.detail.deleted_at ? 'hard' : 'soft'} deleted_at={items.detail.deleted_at} clothes_name={items.detail.clothes_name} fetchClothes={fetchClothes}/>

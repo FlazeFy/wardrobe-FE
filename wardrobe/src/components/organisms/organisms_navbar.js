@@ -17,7 +17,7 @@ export default function OrganismsNavbar(props) {
     return  (
         <nav className="navbar navbar-expand-lg w-100">
             <div className="container-fluid">
-                <h2 className="fw-bold text-main me-3" href="/">Wardrobe</h2>
+                <h2 className="text-main me-3" style={{fontWeight:800}} href="/">Wardrobe</h2>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -44,7 +44,7 @@ export default function OrganismsNavbar(props) {
                         <AtomsNavItem title="About Us" url="about" active={props.current}/>
                     </ul>
                     <form className="d-flex">
-                        <a className="btn btn-outline-success" href={tokenKey ? '/profile' : '/'}>{tokenKey ? <><FontAwesomeIcon icon={faUser}/> {usernameKey}</> : <>Sign In</>}</a>
+                        <a className="btn btn-primary" href={tokenKey ? '/profile' : '/'}>{tokenKey ? <><FontAwesomeIcon icon={faUser}/> {usernameKey}</> : <>Sign In</>}</a>
                     </form>
                 </div>
             </div>

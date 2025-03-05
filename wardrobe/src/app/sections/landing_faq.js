@@ -75,7 +75,7 @@ export default function LandingSectionFAQ() {
                 <hr></hr>   
                 <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">FAQ</span>'s</h1>
                 <h2 className="mb-2">Here's The Latest Question The People Given To Us</h2>
-                <a className="btn btn-success fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
+                <a className="btn btn-primary fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
                 <a className="btn btn-primary fw-bold" href={!tokenKey ? '/feedback':'/profile'}><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</a>
                 <div className="row mt-4">
                     {

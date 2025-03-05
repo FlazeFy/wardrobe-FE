@@ -12,6 +12,7 @@ export default function ProfileSectionEditForm(props) {
 
     return (
         <div>
+            <h2 className="fw-bold">Edit Profile</h2>
             <MoleculesField title="Username" type={'text'} defaultValue={username} handleChange={(e) => {
                 setUsername(e.target.value)
             }}/>

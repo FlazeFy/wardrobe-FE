@@ -1,4 +1,4 @@
-.box, .box-clothes, .box-outfit-simple, .box-schedule-mini, .feature-box, .faq-box, .unfinished-wash-box {
+.box, .box-clothes, .box-outfit-simple, .box-schedule-mini, .feature-box, .faq-box, .unfinished-wash-box, .history-box, .navbar .nav-item {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
@@ -85,11 +85,11 @@
 
 .custom-container {
     background-image: linear-gradient(to bottom right, var(--infoBG), var(--primaryLightBG));
-    padding: var(--spaceJumbo) !important;
-    border-radius: var(--roundedJumbo);
-    margin-bottom: var(--spaceLG);
 }
-.alert {
+.form-container {
+    background: var(--greyColor);
+}
+.alert, .custom-container, .form-container {
     padding: var(--spaceJumbo) !important;
     border-radius: var(--roundedJumbo) !important;
     margin-bottom: var(--spaceLG) !important;

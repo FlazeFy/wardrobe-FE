@@ -9,6 +9,7 @@ export default function CalendarSectionMonthYear(props) {
             icon: "success",
             title: 'Filtered',
             text: `Showing calendar for ${formattedValue}`,
+            confirmButtonText: "Okay!"
         })
     };
 

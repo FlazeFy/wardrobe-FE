@@ -22,7 +22,7 @@ export default function ClothesByTable() {
                     </div>
                 </div>
                 <div>
-                    <a className="btn btn-link bg-danger text-white" href={"/clothes/trash"}><FontAwesomeIcon icon={faTrash}/> Deleted Clothes</a>
+                    <a className="btn btn-danger text-white" href={"/clothes/trash"}><FontAwesomeIcon icon={faTrash}/> Deleted Clothes</a>
                 </div>
             </div>
             <AtomsBreakLine length={1}/>

@@ -34,6 +34,7 @@ export default function ProfileSectionHardDeleteHistory(props) {
                         Swal.fire({
                             title: "Success!",
                             text: response.data.message,
+                            confirmButtonText: "Okay!",
                             icon: "success"
                         }).then((result) => {
                             if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
@@ -45,6 +46,7 @@ export default function ProfileSectionHardDeleteHistory(props) {
                             icon: "error",
                             title: "Oops...",
                             text: "Something went wrong!",
+                            confirmButtonText: "Okay!"
                         })
                     }
                 } catch (error) {
@@ -52,6 +54,7 @@ export default function ProfileSectionHardDeleteHistory(props) {
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
+                        confirmButtonText: "Okay!"
                     })
                 }
             } 

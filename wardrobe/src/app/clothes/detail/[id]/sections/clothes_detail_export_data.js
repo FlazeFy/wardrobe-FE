@@ -38,12 +38,14 @@ export default function ClothesDetailSectionExportData(props) {
                     title: "Success!",
                     text: `Clothes detail downloaded`,
                     icon: "success",
+                    confirmButtonText: "Okay!"
                 });
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: `Clothes detail failed to download`,
+                    confirmButtonText: "Okay!"
                 })
             }
         } catch (error) {
@@ -52,6 +54,7 @@ export default function ClothesDetailSectionExportData(props) {
                 icon: "error",
                 title: "Oops...",
                 text: error,
+                confirmButtonText: "Okay!"
             })
         }
     }

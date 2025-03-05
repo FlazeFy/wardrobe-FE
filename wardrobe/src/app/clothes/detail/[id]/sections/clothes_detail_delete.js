@@ -40,7 +40,8 @@ export default function ClothesDetailDeleteClothesById(props) {
                         Swal.fire({
                             title: "Success!",
                             text: response.data.message,
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: "Okay!"
                         }).then((result) => {
                             if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
                                 if(props.type_delete == 'hard'){
@@ -55,6 +56,7 @@ export default function ClothesDetailDeleteClothesById(props) {
                             icon: "error",
                             title: "Oops...",
                             text: "Something went wrong!",
+                            confirmButtonText: "Okay!"
                         })
                     }
                 } catch (error) {
@@ -62,6 +64,7 @@ export default function ClothesDetailDeleteClothesById(props) {
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
+                        confirmButtonText: "Okay!"
                     })
                 }
             } 
@@ -73,9 +76,8 @@ export default function ClothesDetailDeleteClothesById(props) {
     return (
         <div>
             <div>
-                <h2 className="mb-0 fw-bold">{props.type_delete == 'hard' && <>Permanentally</>} Delete Clothes</h2>
                 <div className='alert alert-danger' role='alert'>
-                    <h4><FontAwesomeIcon icon={faTriangleExclamation}/> Warning</h4>
+                    <h2 className="mb-0 fw-bold"><FontAwesomeIcon icon={faTriangleExclamation}/> {props.type_delete == 'hard' && <>Permanentally</>} Delete Clothes</h2>
                     {
                         props.type_delete == 'hard' ?
                             <p>This item has been deleted. You can <b>Recover</b> or <b>Permanentally Delete</b> it. This clothes is <b>{dayRemain != 30 ? 30 - dayRemain : 30} days</b> away from permanentally delete</p>

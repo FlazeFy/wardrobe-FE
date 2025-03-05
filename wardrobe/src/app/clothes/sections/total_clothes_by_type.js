@@ -49,6 +49,7 @@ export default function ClothesSectionTotalByType(props) {
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
+                        confirmButtonText: "Okay!"
                     })
                     setError(error)
                 }
@@ -73,11 +74,11 @@ export default function ClothesSectionTotalByType(props) {
         return (
             <div className='d-block mx-auto' style={{width:"700px"}}> 
                 <div className='d-flex justify-content-end'>
-                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>All Types</h1>
+                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>All <span className="text-main">Types</span></h1>
                 </div>
                 <div className='text-end'>
                     {
-                        items.map((dt, idx) => <h4 className="mb-0" key={idx}><b>{dt.total}</b> <span className='text-secondary'>{dt.context}</span></h4>)
+                        items.map((dt, idx) => <h4 className="mb-0" key={idx}><b>{dt.total}</b> {dt.context}</h4>)
                     }
                 </div>
             </div>

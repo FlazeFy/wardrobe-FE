@@ -44,6 +44,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
                 });
                 setError(error)
             }
