@@ -9,6 +9,7 @@ import StatsYearlyActivity from "./sections/stats_yearly_activity";
 import StatsMonthlyClothes from "./sections/stats_monthly_clothes";
 import StatsSectionFilterMonthlyChart from "./sections/stats_filter_monthly_chart";
 import { useState } from "react";
+import StatsSectionMostUsedClothesDaily from "./sections/stats_most_used_clothes_daily";
 
 export default function StatsPage() {
     const currentYear = new Date().getFullYear()
@@ -36,16 +37,33 @@ export default function StatsPage() {
                     </div>
                 </div>
             </div>
-            
-            <AtomsBreakLine length={2}/>
-            <div className="form-container">
-                <div style={{maxWidth:"50vw"}}>
-                    <h2 className="mb-0 fw-bold">Most Used Clothes</h2>
-                    <h5 className="text-secondary">We analyze the most used clothes by its type, merk, size, colors, category, and type. The data is presented using Pie Chart and are limited to the 7 most used in each context</h5>
+
+            <div className="row">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <AtomsBreakLine length={1}/>
+                    <div className="form-container">
+                        <div style={{maxWidth:"50vw"}}>
+                            <h2 className="mb-0 fw-bold">Most Used Clothes</h2>
+                            <h5 className="text-secondary">We analyze the most used clothes by its type, merk, size, colors, category, and type. The data is presented using Pie Chart and are limited to the 7 most used in each context</h5>
+                        </div>
+                        <AtomsBreakLine length={2}/>
+                        <div className="row">
+                            <StatsSectionMostClothesCtx ctx={"most_used_clothes_ctx"}/>
+                        </div>
+                    </div>
                 </div>
-                <AtomsBreakLine length={2}/>
-                <div className="row">
-                    <StatsSectionMostClothesCtx ctx={"most_used_clothes_ctx"}/>
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                    <AtomsBreakLine length={2}/>
+                    <div className="form-container">
+                        <div style={{maxWidth:"50vw"}}>
+                            <h2 className="mb-0 fw-bold">Most Used Clothes Daily per Clothes Type</h2>
+                            <h5 className="text-secondary">We analyze the most used clothes by day and per its clothes type. The list is clickable and you can directly navigate to the clothes detail</h5>
+                        </div>
+                        <AtomsBreakLine length={1}/>
+                        <div className="row">
+                            <StatsSectionMostUsedClothesDaily/>
+                        </div>
+                    </div>
                 </div>
             </div>
 

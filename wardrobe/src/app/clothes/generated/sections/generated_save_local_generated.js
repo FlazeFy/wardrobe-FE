@@ -68,9 +68,5 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
         })
     }
 
-    return (
-        <>
-            <a className="btn btn-success" onClick={saveAllLocalGenerated}><FontAwesomeIcon icon={faFloppyDisk}/> Save All</a>
-        </>
-    );
+    return <a className="btn btn-success" onClick={saveAllLocalGenerated}><FontAwesomeIcon icon={faFloppyDisk}/> Save All</a>
 }

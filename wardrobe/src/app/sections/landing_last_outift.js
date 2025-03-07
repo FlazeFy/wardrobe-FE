@@ -108,7 +108,7 @@ export default function LandingSectionLastOutfit(props) {
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>
-                        <div className="container-generator">
+                        <div className="container-generator" style={{height:"40vh",textAlign:"start"}}>
                             <div className="position-absolute text-end" style={{top:"var(--spaceXLG)",right:"var(--spaceXLG)"}}>
                                 <h5>32°C | Rainy | 75% Humidity</h5>
                                 <h4>Today is {todayName}</h4>

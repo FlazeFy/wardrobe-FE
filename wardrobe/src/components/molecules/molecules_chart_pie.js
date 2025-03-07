@@ -28,7 +28,10 @@ export default function MoleculesChartPie(props) {
     chart = {
         series: getSeries(data),
         options: {
-            labels: getCategory(data)
+            labels: getCategory(data),
+            legend: {
+                position: "bottom"
+            },
         }
     };
 

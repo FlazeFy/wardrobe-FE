@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { getCleanTitleFromCtx } from '../../modules/helpers/converter'
+import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from '../../modules/helpers/converter'
 import { faArrowRight, faMars, faPlus, faVenus, faVenusMars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoleculesClothesStatus from '../molecules/molecules_clothes_status'
@@ -32,6 +32,16 @@ export default function OrganismsClothesHeader(props) {
                     <h4 className='mb-0' style={{fontSize: props.type == 'schedule' ? "var(--textSM)":""}}>{props.items.clothes_name}</h4>
                     <h6 className={`text-secondary ${props.type == 'schedule' ? 'm-0':''}`} style={{textTransform:"capitalize", fontSize: props.type == 'schedule' ? "var(--textXSM)":""}}>{getCleanTitleFromCtx(props.items.clothes_category)} | {props.items.clothes_type}</h6>
                     {   props.type == 'clothes' && <MoleculesClothesStatus item={props.items}/> }
+                    {
+                        (props.items.total && props.items.last_used) && (
+                            <>
+                                <hr className='my-2'></hr>
+                                <h6 className='text-secondary m-0' style={{fontSize:"var(--textSM)"}}><b>Total Used</b> : {props.items.total}</h6>
+                                <h6 className='text-secondary m-0' style={{fontSize:"var(--textSM)"}}><b>Last Used</b></h6>
+                                <h6 className='text-secondary m-0' style={{fontSize:"var(--textSM)"}}>{convertDatetimeBasedLocal(props.items.last_used)}</h6>
+                            </>
+                        )
+                    }
                 </div>
                 {
                     props.type == 'clothes' && (
