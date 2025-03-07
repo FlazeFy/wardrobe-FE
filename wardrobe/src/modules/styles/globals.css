@@ -37,8 +37,8 @@
   --successDarkBG : #4cc086;
   --dangerBG : #e7899c;
   --dangerDarkBG : #ee385d;
-  --warningBG : #f9f871;
-  --warningDarkBG : #eded1e;
+  --warningBG : #f7cc11;
+  --warningDarkBG : #ec9819;
   --infoBG : #00a6e1;
   --darkInfoBG : #005b9b;
   --infoLightBG : #E7F4FE;
@@ -79,6 +79,15 @@ hr {
 }
 .bg-highlight {
   background: var(--hoverBG) !important;
+}
+.bg-success {
+  background-image: linear-gradient(to bottom right, var(--successDarkBG), var(--successBG));
+}
+.bg-danger {
+  background-image: linear-gradient(to bottom right, var(--dangerDarkBG), var(--dangerBG));
+}
+.bg-warning {
+  background-image: linear-gradient(to bottom right, var(--warningDarkBG), var(--warningBG));
 }
 
 .img-rounded, .img-profile {

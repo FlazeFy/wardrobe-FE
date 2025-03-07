@@ -253,7 +253,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                                             {
                                                 items.map((dt, idx) => (
                                                     <div key={idx} className='col-lg-4 col-md-6 col-sm-6 col-12'>
-                                                        <OrganismsClothesHeader items={dt} type="clothes" handleClick={(e) => handleAdd(dt)}/>
+                                                        <OrganismsClothesHeader items={dt} type="clothes_manage" handleClick={(e) => handleAdd(dt)}/>
                                                     </div>
                                                 ))
                                             }

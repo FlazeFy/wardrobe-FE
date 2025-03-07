@@ -43,10 +43,13 @@ input[type="file"]::file-selector-button {
 .btn-danger, .swal2-deny, .swal2-cancel {
     background-image: linear-gradient(to bottom right, var(--dangerDarkBG), var(--dangerBG));
 }
+.btn-warning {
+    background-image: linear-gradient(to bottom right, var(--warningDarkBG), var(--warningBG));
+}
 .btn-info {
     background: var(--infoBG) !important;
 }
-.btn-primary, .btn-danger, .btn-info, .btn-success,input[type="file"]::file-selector-button {
+.btn-primary, .btn-danger, .btn-info, .btn-warning, .btn-success,input[type="file"]::file-selector-button {
     border: 1.5px solid var(--whiteColor) !important;
 }
 .btn-warning {
