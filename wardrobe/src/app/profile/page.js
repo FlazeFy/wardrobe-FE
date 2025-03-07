@@ -71,11 +71,11 @@ export default function ProfilePage(props) {
                             <AtomsBreakLine length={1}/>
                             <h2 className="mb-0">Here you can see and modify your account, sync to Telegram account, and sign out from your account</h2>
                             <hr></hr>
-                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Profile Page</h1>
+                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">Profile</span> Page</h1>
                             <AtomsBreakLine length={1}/>
                         </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
                         <div className="container-fluid custom-container">
                             <AtomsBreakLine length={1}/>
                             <div className='d-block mx-auto' style={{width:"700px"}}> 

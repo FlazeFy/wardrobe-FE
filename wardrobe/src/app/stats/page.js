@@ -28,7 +28,7 @@ export default function StatsPage() {
                         <AtomsBreakLine length={1}/>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
                     <div className="container-fluid custom-container">
                         <AtomsBreakLine length={1}/>
                         <StatsSectionSummary ctx="clothes_summary"/>
