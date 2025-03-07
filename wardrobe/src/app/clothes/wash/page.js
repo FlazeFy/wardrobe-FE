@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import WashSectionAllHistory from "./sections/wash_all_history";
 import ClothesSectionUnfinishedWash from "../sections/check_unfinished_wash";
+import WashSectionSummary from "./sections/wash_summary";
 
 export default function ClothesWash() {
     return (
@@ -26,6 +27,11 @@ export default function ClothesWash() {
                         <p>You can track all wash progress, see history wash clothes, and plan for the next wash schedule</p>
                     </div>
                     <ClothesSectionUnfinishedWash source="wash_page"/>
+                    <AtomsBreakLine length={1}/>
+                    <div className="form-container">
+                        <h2 className="fw-bold">Wash Summary</h2>
+                        <WashSectionSummary/>
+                    </div>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h2 className="fw-bold">History Of Wash</h2>
