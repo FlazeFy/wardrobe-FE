@@ -128,7 +128,7 @@ export default function ClothesDetailPage({params}) {
                             <div style={{maxWidth:"50vw"}}>
                                 <h2 className="mb-0 fw-bold">Used History</h2>
                                 <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
-                                    <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at}/></h5>
+                                    <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at} with_button={true}/></h5>
                             </div>
                             <AtomsBreakLine length={1}/>
                             <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>

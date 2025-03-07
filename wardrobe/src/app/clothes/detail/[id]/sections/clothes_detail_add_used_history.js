@@ -90,7 +90,7 @@ export default function ClothesDetailAddUsedHistory(props) {
                     allowOutsideClick: false,
                     confirmButtonText: "Okay!"
                 }).then((result) => {
-                    if (result.isConfirmed) {
+                    if (result.isConfirmed && props.fetchClothes) {
                        props.fetchClothes()
                     }
                 });
@@ -127,12 +127,15 @@ export default function ClothesDetailAddUsedHistory(props) {
         return (
             <>
                 {
-                    props.deleted_at ?
-                        <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" onClick={preventDeleted}><FontAwesomeIcon icon={faPlus}/> History</button>
-                    :
-                        <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" data-bs-toggle="modal" data-bs-target="#addHistoryModal"><FontAwesomeIcon icon={faPlus}/> History</button>
+                    props.with_button &&
+                        (
+                            props.deleted_at ?
+                                <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" onClick={preventDeleted}><FontAwesomeIcon icon={faPlus}/> History</button>
+                            :
+                                <button type="button" style={{width:"120px"}} className="btn btn-success m-0 py-2" data-bs-toggle="modal" data-bs-target={"#addHistoryModal_"+props.id}><FontAwesomeIcon icon={faPlus}/> History</button>
+                        )
                 }
-                <div className="modal fade" id="addHistoryModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id={"addHistoryModal_"+props.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -140,6 +143,9 @@ export default function ClothesDetailAddUsedHistory(props) {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
+                                {
+                                    props.clothes_name && <MoleculesField title="Clothes Name" type="text" defaultValue={props.clothes_name} isDisabled={true}/>
+                                }
                                 <MoleculesField title="Notes" type={'textarea'} defaultValue={clothesNotes} handleChange={(e) => {
                                     setClothesNote(e.target.value)
                                 }}/>
