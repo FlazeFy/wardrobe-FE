@@ -57,6 +57,7 @@ export default function CalendarSectionExportDailyData(props) {
                 icon: "error",
                 title: "Oops...",
                 text: error,
+                confirmButtonText: "Okay!"
             })
         }
     }

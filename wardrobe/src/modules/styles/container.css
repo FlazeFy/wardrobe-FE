@@ -1,8 +1,22 @@
-.box, .box-clothes, .box-outfit-simple, .box-schedule-mini, .feature-box, .faq-box, .unfinished-wash-box, .history-box, .navbar .nav-item {
+.box, .box-clothes, .box-outfit-simple, .box-schedule-mini, .feature-box, .faq-box, .unfinished-wash-box, .history-box, .navbar .nav-item, .wash-box {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
+.feature-box, .faq-box, .unfinished-wash-box, .history-box, .wash-box {
+    border: 2px solid transparent;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: var(--spaceMD);
+    border-radius: var(--roundedLG);
+    text-align: start;
+    background: var(--greyColor);
+    cursor: pointer;
+}
+.feature-box:hover, .faq-box:hover, .unfinished-wash-box:hover, .history-box:hover, .wash-box:hover {
+    transform: scale(1.05);
+    border: 2px solid var(--infoBG);
+}
+
 .box, .box-outfit-simple {
     padding: var(--spaceLG);
     border: calc(var(--spaceMini) / 1.5) solid var(--darkColor);

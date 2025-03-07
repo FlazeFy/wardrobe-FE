@@ -113,19 +113,7 @@ hr {
   color: var(--whiteColor);
   padding: var(--spaceMD) var(--spaceXMD);
 }
-.feature-box, .faq-box, .unfinished-wash-box, .history-box {
-  border: 2px solid transparent;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  padding: var(--spaceMD);
-  border-radius: var(--roundedLG);
-  text-align: start;
-  background: var(--greyColor);
-  cursor: pointer;
-}
-.feature-box:hover, .faq-box:hover, .unfinished-wash-box:hover, .history-box:hover {
-  transform: scale(1.05);
-  border: 2px solid var(--infoBG);
-}
+
 
 /* Table */
 table {
@@ -150,52 +138,4 @@ table thead tr th {
 }
 table tbody tr td {
   background: var(--greyColor) !important;
-}
-
-/* Button */
-.btn, .swal2-actions button {
-  border-radius: var(--roundedJumbo) !important;
-}
-input[type="file"]::file-selector-button {
-  border-radius: var(--roundedLG) !important;
-  margin-left: 0;
-  margin-top: var(--spaceMini);
-  margin-bottom: var(--spaceMini);
-  color: var(--whiteColor) !important;
-}
-.btn, .swal2-actions button, input[type="file"]::file-selector-button {
-  padding: var(--spaceMD) var(--spaceLG) !important;
-  cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
-.btn-link {
-  border: 1.75px solid var(--blackColor) !important;
-  color: var(--blackColor) !important;
-}
-.btn-type {
-  cursor: pointer;
-  background: var(--infoBG);
-  padding: var(--spaceMini) var(--spaceMD);
-  color: var(--whiteColor);
-  text-transform: capitalize;
-  border-radius: var(--roundedLG);
-}
-.btn-primary, input[type="file"]::file-selector-button {
-  background-image: linear-gradient(to bottom right, var(--darkInfoBG), var(--infoBG));
-}
-.btn-success, .swal2-confirm {
-  background-image: linear-gradient(to bottom right, var(--successDarkBG), var(--successBG));
-}
-.btn-danger, .swal2-deny, .swal2-cancel {
-  background-image: linear-gradient(to bottom right, var(--dangerDarkBG), var(--dangerBG));
-}
-.btn-info {
-  background: var(--infoBG) !important;
-}
-.btn-primary, .btn-danger, .btn-info, .btn-success,input[type="file"]::file-selector-button {
-  border: 1.5px solid var(--whiteColor) !important;
-}
-
-.btn-warning {
-  background: var(--warningBG) !important;
 }

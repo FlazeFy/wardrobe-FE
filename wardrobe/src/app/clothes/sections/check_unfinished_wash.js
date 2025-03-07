@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
+import AtomsBreakLine from '@/components/atoms/atoms_breakline'
 
 export default function ClothesSectionUnfinishedWash(props) {
     //Initial variable
@@ -65,23 +66,31 @@ export default function ClothesSectionUnfinishedWash(props) {
     } else {
         if(items){
             return (
-                <div className='alert alert-warning'> 
-                    <h4 className="mb-0 fw-bold"><FontAwesomeIcon icon={faWarning}/> Unfinished Wash</h4>
-                    <div className='row mb-3'>
+                <>
+                    <AtomsBreakLine length={1}/>
+                    <div className='alert alert-warning'> 
+                        <h4 className="mb-0 fw-bold"><FontAwesomeIcon icon={faWarning}/> Unfinished Wash</h4>
+                        <div className='row mb-3'>
+                            {
+                                items.map((el)=>{
+                                    return (
+                                        <div className={props.source == "clothes_page" ? 'col-lg-4 col-md-6 col-sm-12 col-12' :'col-lg-12 col-md-12 col-sm-12 col-12' }> 
+                                            <MoleculesUnfinishedWashBox item={el}/>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                         {
-                            items.map((el)=>{
-                                return (
-                                    <div className='col-lg-4 col-md-6 col-sm-12 col-12'> 
-                                        <MoleculesUnfinishedWashBox item={el}/>
-                                    </div>
-                                )
-                            })
+                            props.source == "clothes_page" && (
+                                <h5 className="text-secondary">For more wash history you can <a className="btn btn-primary mx-2" href={"/clothes/wash"}><FontAwesomeIcon icon={faArrowRight}/> See More</a>
+                                . Or maybe <a className="btn btn-success text-white"><FontAwesomeIcon icon={faCheck}/> Finish All Wash</a>
+                                </h5>
+                            )
                         }
+                        
                     </div>
-                    <h5 className="text-secondary">For more wash history you can <a className="btn btn-primary mx-2" href={"/clothes/wash"}><FontAwesomeIcon icon={faArrowRight}/> See More</a>
-                    . Or maybe <a className="btn btn-success text-white"><FontAwesomeIcon icon={faCheck}/> Finish All Wash</a>
-                    </h5>
-                </div>
+                </>
             )
         } else {
             return <></>

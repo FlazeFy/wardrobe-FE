@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google'
 import { Inter } from "next/font/google";
 import '../modules/styles/globals.css'
 import '../modules/styles/form.css'
+import '../modules/styles/button.css'
 import '../modules/styles/container.css'
 import '../modules/styles/typography.css'
 import '../modules/styles/navbar.css'

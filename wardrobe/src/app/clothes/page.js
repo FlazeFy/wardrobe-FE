@@ -32,7 +32,7 @@ export default function ClothesPage() {
                     </div>
                 </div>
             </div>
-            <ClothesSectionUnfinishedWash/>
+            <ClothesSectionUnfinishedWash source="clothes_page"/>
             <AtomsBreakLine length={2}/>
             <div className="d-flex justify-content-between">
                 <div>
