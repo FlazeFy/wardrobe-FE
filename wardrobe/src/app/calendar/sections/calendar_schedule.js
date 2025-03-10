@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../modules/storages/cookie";
 import CalendarSectionExportDailyData from "./calendar_export_daily_data";
+import CalendarSectionManage from "./calendar_manage";
 
 export default function CalendarSectionSchedule(props) {
     //Initial variable
@@ -119,7 +120,7 @@ export default function CalendarSectionSchedule(props) {
                                     ))
                                 }
                                 <td className={today == item.date ? 'bg-highlight':''}>
-                                    <button className="btn btn-warning w-100 mb-2"><FontAwesomeIcon icon={faPenToSquare}/></button>
+                                    <CalendarSectionManage date={item.date}/>
                                     <CalendarSectionExportDailyData date={item.date}/>
                                 </td>
                             </tr>
