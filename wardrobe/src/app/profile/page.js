@@ -12,6 +12,7 @@ import { getCookie } from "../../modules/storages/cookie";
 import ProfileSectionAllHistory from "./sections/profile_all_history";
 import ProfileSectionExportData from "./sections/profile_export_data";
 import ProfileSectionSendQuestion from "./sections/profile_post_question";
+import ProfileSectionSignOut from "./sections/profile_sign_out";
 
 export default function ProfilePage(props) {
     //Initial variable
@@ -76,8 +77,13 @@ export default function ProfilePage(props) {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                        <div className="row">
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <ProfileSectionSignOut/>
+                            </div>
+                        </div>
+                        <AtomsBreakLine length={1}/>
                         <div className="container-fluid custom-container">
-                            <AtomsBreakLine length={1}/>
                             <div className='d-block mx-auto' style={{width:"700px"}}> 
                                 <div className='d-flex justify-content-end'>
                                     <div className='me-2 text-end'>
