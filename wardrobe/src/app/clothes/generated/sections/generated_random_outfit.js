@@ -1,7 +1,7 @@
 "use client"
-import AtomsBreakLine from "../../../..//components/atoms/atoms_breakline";
+import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
 import { getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
-import { faDice, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import { faDice } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react"
 import Swal from "sweetalert2";
@@ -20,53 +20,67 @@ export default function GeneratedSectionRandomOutift(props) {
     const [isGenerated, setIsGenerated] =  useState(false)
     const saveOutfitRef = useRef(null)
     const tokenKey = getCookie("token_key")
+    const now = new Date()
 
     useEffect(() => {
+        Swal.showLoading()
         fetchClothesCategoryType()
     },[])
 
     const fetchClothesCategoryType = () => {
-        Swal.showLoading()
-
         const localHistory = getLocal('generated_outfit_history')
         if (localHistory) {
             setIsGenerated(true)
         } 
-        
-        fetch(`http://127.0.0.1:8000/api/v1/dct/clothes/category_type`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                const data = result.data
-                let final_data = []
-                data.forEach(el => {
-                    final_data.push({
-                        clothes_image: null,
-                        clothes_category: getCleanTitleFromCtx(el.clothes_category),
-                        clothes_type: el.clothes_type,
-                        selected: false,
-                    })
-                });
-                setItems(final_data)  
-            },
-            (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
+
+        const oldTimeHit = getLocal('last_hit-dct_category_type')
+        const oldTime = new Date(JSON.parse(oldTimeHit))
+        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+    
+        const fetchData = (data) => {
+            Swal.close()
+            setIsLoaded(true)
+            let final_data = []
+            data.forEach(el => {
+                final_data.push({
+                    clothes_image: null,
+                    clothes_category: getCleanTitleFromCtx(el.clothes_category),
+                    clothes_type: el.clothes_type,
+                    selected: false,
                 })
-                setError(error)
-            }
-        )
+            });
+            setItems(final_data)  
+        }
+    
+        if (timeDiffInSec < 540 && oldTimeHit) {
+            const oldData = JSON.parse(getLocal('dct_category_type'))
+            fetchData(oldData)
+        } else {
+            fetch(`http://127.0.0.1:8000/api/v1/dct/clothes/category_type`, {
+                headers: {
+                    'Authorization': `Bearer ${tokenKey}`,
+                },
+            })
+            .then(res => res.json())
+                .then(
+                (result) => {
+                    Swal.close()
+                    setIsLoaded(true)
+                    fetchData(result.data)
+                    storeLocal('dct_category_type', JSON.stringify(result.data))
+                    storeLocal('last_hit-dct_category_type', JSON.stringify(now)) 
+                },
+                (error) => {
+                    Swal.close()
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    })
+                    setError(error)
+                }
+            )
+        }
     }
 
     const handleTemplateChange = (clothesType, isSelected) => {

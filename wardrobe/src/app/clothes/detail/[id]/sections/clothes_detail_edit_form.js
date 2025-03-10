@@ -7,14 +7,13 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
+import { getLocal, storeLocal } from '../../../../../modules/storages/local'
 
 export default function ClothesDetailEditForm(props) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const [items, setItems] = useState(null)
     const tokenKey = getCookie("token_key")
-
     const [clothesName, setClothesName] = useState(props.item.clothes_name)
     const [clothesDesc, setClothesDesc] = useState(props.item.clothes_desc)
     const [clothesMerk, setClothesMerk] = useState(props.item.clothes_merk)
@@ -32,6 +31,7 @@ export default function ClothesDetailEditForm(props) {
     const [hasIroned, setHasIroned] = useState(Boolean(props.item.has_ironed))
     const [isFavorite, setIsFavorite] = useState(Boolean(props.item.is_favorite))
     const [isScheduled, setIsScheduled] = useState(Boolean(props.item.is_scheduled))
+    const now = new Date()
 
     // Dictionaries for select options
     const [clothesSizeDictionary, setClothesSizeDictionary] = useState([])
@@ -40,51 +40,75 @@ export default function ClothesDetailEditForm(props) {
     const [clothesCategoryDictionary, setClothesCategoryDictionary] = useState([])
     const [clothesTypeDictionary, setClothesTypeDictionary] = useState([])
 
+    const fetchDct = () => {
+        const oldTimeHit = getLocal('last_hit-dct_all_dct')
+        const oldTime = new Date(JSON.parse(oldTimeHit))
+        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+    
+        const fetchData = (data) => {
+            Swal.close()
+            setIsLoaded(true)
+            const size = []
+            const gender = []
+            const madeFrom = []
+            const category = []
+            const type = []
+
+            data.forEach((el) => {
+                if (el.dictionary_type === "clothes_size") size.push(el.dictionary_name)
+                else if (el.dictionary_type === "clothes_gender") gender.push(el.dictionary_name)
+                else if (el.dictionary_type === "clothes_made_from") madeFrom.push(el.dictionary_name)
+                else if (el.dictionary_type === "clothes_category") category.push(el.dictionary_name)
+                else if (el.dictionary_type === "clothes_type") type.push(el.dictionary_name)
+            })
+
+            setClothesSizeDictionary(size)
+            setClothesGenderDictionary(gender)
+            setClothesMadeFromDictionary(madeFrom)
+            setClothesCategoryDictionary(category)
+            setClothesTypeDictionary(type)
+
+            setClothesSize(size[0])
+            setClothesGender(gender[0])
+            setClothesMadeFrom(madeFrom[0])
+            setClothesCategory(category[0])
+            setClothesType(type[0])
+        }
+    
+        if (timeDiffInSec < 540 && oldTimeHit) {
+            const oldData = JSON.parse(getLocal('dct_all_dct'))
+            fetchData(oldData)
+        } else {
+            fetch(`http://127.0.0.1:8000/api/v1/dct/clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type`, {
+                headers: {
+                    'Authorization': `Bearer ${tokenKey}`,
+                },
+            })
+            .then(res => res.json())
+                .then(
+                (result) => {
+                    Swal.close()
+                    setIsLoaded(true)
+                    fetchData(result.data)
+                    storeLocal('dct_all_dct', JSON.stringify(result.data))
+                    storeLocal('last_hit-dct_all_dct', JSON.stringify(now)) 
+                },
+                (error) => {
+                    Swal.close()
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    })
+                    setError(error)
+                }
+            )
+        }
+    }
+
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/dct/clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data) 
-                
-                const size = []
-                const gender = []
-                const madeFrom = []
-                const category = []
-                const type = []
-
-                result.data.forEach((el) => {
-                    if (el.dictionary_type === "clothes_size") size.push(el.dictionary_name)
-                    else if (el.dictionary_type === "clothes_gender") gender.push(el.dictionary_name)
-                    else if (el.dictionary_type === "clothes_made_from") madeFrom.push(el.dictionary_name)
-                    else if (el.dictionary_type === "clothes_category") category.push(el.dictionary_name)
-                    else if (el.dictionary_type === "clothes_type") type.push(el.dictionary_name)
-                })
-
-                setClothesSizeDictionary(size)
-                setClothesGenderDictionary(gender)
-                setClothesMadeFromDictionary(madeFrom)
-                setClothesCategoryDictionary(category)
-                setClothesTypeDictionary(type)
-            },
-            (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
-                setError(error)
-            }
-        )
+        fetchDct()
     },[])
 
     const handleSave = (deleted_at) => {

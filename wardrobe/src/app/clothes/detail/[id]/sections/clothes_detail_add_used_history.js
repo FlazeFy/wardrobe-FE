@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
+import { getLocal, storeLocal } from '../../../../../modules/storages/local'
 
 export default function ClothesDetailAddUsedHistory(props) {
     //Initial variable
@@ -16,42 +17,61 @@ export default function ClothesDetailAddUsedHistory(props) {
     const tokenKey = getCookie("token_key")
     const [usedContext, setUsedContext] = useState("")
     const [clothesNotes, setClothesNote] = useState("")
+    const now = new Date()
 
     // Dictionaries for select options
     const [usedContextDictionary, setUsedContextDictionary] = useState([])
 
+    const fetchDct = () => {
+        const oldTimeHit = getLocal('last_hit-dct_used_context')
+        const oldTime = new Date(JSON.parse(oldTimeHit))
+        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+    
+        const fetchData = (data) => {
+            Swal.close()
+            setIsLoaded(true)
+            const usedContext = []
+            data.forEach((el) => {
+                usedContext.push(el.dictionary_name)
+            })
+            setUsedContextDictionary(usedContext)
+            setUsedContext(usedContext[0])
+        }
+    
+        if (timeDiffInSec < 540 && oldTimeHit) {
+            const oldData = JSON.parse(getLocal('dct_used_context'))
+            fetchData(oldData)
+        } else {
+            fetch(`http://127.0.0.1:8000/api/v1/dct/used_context`, {
+                headers: {
+                    'Authorization': `Bearer ${tokenKey}`,
+                },
+            })
+            .then(res => res.json())
+                .then(
+                (result) => {
+                    Swal.close()
+                    setIsLoaded(true)
+                    fetchData(result.data)
+                    storeLocal('dct_used_context', JSON.stringify(result.data))
+                    storeLocal('last_hit-dct_used_context', JSON.stringify(now)) 
+                },
+                (error) => {
+                    Swal.close()
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    })
+                    setError(error)
+                }
+            )
+        }
+    }
+
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/dct/used_context`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
-        })
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                
-                const usedContext = []
-                result.data.forEach((el) => {
-                    usedContext.push(el.dictionary_name)
-                })
-                setUsedContextDictionary(usedContext)
-
-                setUsedContext(usedContext[0])
-            },
-            (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
-                setError(error)
-            }
-        )
+        fetchDct()
     },[])
 
     const preventDeleted = () => {
