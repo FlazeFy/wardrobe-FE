@@ -1,7 +1,7 @@
-.box, .box-clothes, .box-outfit-simple, .box-schedule-mini, .feature-box, .faq-box, .unfinished-wash-box, .history-box, .navbar .nav-item, .wash-box {
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
+.box, .box-clothes, .box-outfit-simple, .box-schedule-mini, .feature-box, .faq-box, .unfinished-wash-box, .history-box, .navbar .nav-item, .wash-box, .btn-navigate-menu-custom {
+    -webkit-transition: all 0.3s !important;
+    -o-transition: all 0.3s !important;
+    transition: all 0.3s !important;
 }
 .feature-box, .faq-box, .unfinished-wash-box, .history-box, .wash-box {
     border: 2px solid transparent;
@@ -36,7 +36,7 @@
 }
 .box:hover, .box-outfit-simple:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    transform: scale(1.075);
+    transform: scale(1.05);
 }
 .box-header, .box-footer {
     position: absolute;
@@ -108,6 +108,7 @@
     border-radius: var(--roundedJumbo) !important;
     margin-bottom: var(--spaceLG) !important;
 }
+
 .container-generator {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/generate_outfit.jpg');
 }  
@@ -131,6 +132,9 @@
     flex-direction: column; 
     align-items: flex-start; 
     justify-content: flex-end;
+}
+.btn-navigate-menu-custom:hover {
+    transform: scale(1.05);
 }
 
 .box-clothes, .img-clothes, .label-clothes, .box-schedule-mini {

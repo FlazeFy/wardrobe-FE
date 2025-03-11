@@ -55,6 +55,7 @@ export default function WashSectionSummary(props) {
             setError(error)
         })
     }
+    
     useEffect(() => {
         fetchfetchWashSummary()
     },[])
@@ -73,33 +74,33 @@ export default function WashSectionSummary(props) {
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column pb-3'>
                     <h5 className='mb-1'>Avg. Wash / Week</h5>
                     <span className='d-flex align-items-end'>
-                        <h1 className='fw-bold text-main'>{item.avg_wash_per_week}</h1> 
+                        <h1 className='fw-bold text-main'>{item ? item.avg_wash_per_week : 0}</h1> 
                         <h4 className='text-secondary ms-1'>Clothes</h4>
                     </span>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column pb-3'>
                     <h5 className='mb-1'>Avg. Wash Duration / Clothes</h5>
                     <span className='d-flex align-items-end'>
-                        <h1 className='fw-bold text-main'>{dayWashDur} Days</h1> 
-                        <h4 className='text-secondary ms-1'>{hrWashDur} hr</h4>
+                        <h1 className='fw-bold text-main'>{hrWashDur != 0 ? <>{dayWashDur} Days</> : <>-</>}</h1> 
+                        <h4 className='text-secondary ms-1'>{hrWashDur != 0 && <>{hrWashDur} hr</>}</h4>
                     </span>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 col-12 d-flex flex-column pb-3'>
                     <h5 className='mb-1'>Total Wash</h5>
                     <span className='d-flex align-items-end'>
-                        <h1 className='fw-bold text-main'>{item.total_wash}</h1> 
+                        <h1 className='fw-bold text-main'>{item ? item.total_wash : 0}</h1> 
                         <h4 className='text-secondary ms-1'>Clothes</h4>
                     </span>
                 </div>
                 <div className='col-lg-8 col-md-12 col-sm-12 col-12 pb-3'>
                     <h5>Most Wash</h5>
-                    <h3 className='fw-bold text-main'>{item.most_wash}</h3>
+                    <h3 className='fw-bold text-main'>{item ? item.most_wash : <>-</>}</h3>
                 </div>
                 <div className='col-lg-12 col-md-12 col-sm-12 col-12 d-flex flex-column pb-3'>
                     <h5>Last Wash</h5>
                     <span className='d-flex align-items-end'>
-                        <h3 className='fw-bold text-main'>{item.last_wash_clothes}</h3> 
-                        <h5 className='text-secondary ms-1'>on {convertDatetimeBasedLocal(item.last_wash_date)}</h5>
+                        <h3 className='fw-bold text-main'>{item ? item.last_wash_clothes : <>-</>}</h3> 
+                        <h5 className='text-secondary ms-1'>{item && <>on {convertDatetimeBasedLocal(item.last_wash_date)}</>}</h5>
                     </span>
                 </div>
             </div>
