@@ -36,10 +36,16 @@ export default function ClothesPage() {
                     </div>
                     <div className="row h-100">
                         <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-stretch">
-                            <a className="btn btn-success w-100 d-flex align-items-center justify-content-center" href={"/clothes/add"}><h3><FontAwesomeIcon icon={faArrowRight} /> Add New Clothes</h3></a>
+                            <a className="btn btn-navigate-menu-custom text-start" id="add_clothes_btn" href={"/clothes/add"}>
+                                <h2 style={{fontWeight:"800"}}>Add <span className="text-main">Clothes</span></h2>
+                                <p>You have a new clothes? and want to monitoring or set schedule on it? Add to Wardrobe Now!</p>
+                            </a>
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-stretch">
-                            <a className="btn btn-primary w-100 d-flex align-items-center justify-content-center" href={"/clothes/wash"}><h3><FontAwesomeIcon icon={faArrowRight} /> Wash History</h3></a>
+                            <a className="btn btn-navigate-menu-custom text-start" id="wash_clothes_btn" href={"/clothes/wash"}>
+                                <h2 style={{fontWeight:"800"}}><span className="text-main">Wash</span> History</h2>
+                                <p>See past wash history, on-going wash, or plan for the next days</p>
+                            </a>
                         </div>
                     </div>
                 </div>

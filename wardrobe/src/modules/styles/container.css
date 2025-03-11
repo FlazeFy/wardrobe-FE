@@ -109,21 +109,30 @@
     margin-bottom: var(--spaceLG) !important;
 }
 .container-generator {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/generate_outfit.jpg');
+}  
+.btn-navigate-menu-custom#add_clothes_btn {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/add_clothes_menu.jpg');
+}
+.btn-navigate-menu-custom#wash_clothes_btn {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/wash_menu.jpg');
+}
+.btn-navigate-menu-custom, .container-generator {
     width: 100%;
     border-radius: var(--roundedLG);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/generate_outfit.jpg');
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
     background-size: cover;
     background-color: var(--greyColor);
-    color: var(--whiteColor);
+    color: var(--whiteColor) !important;
     padding: var(--spaceXLG);
     display: flex;
     flex-direction: column; 
     align-items: flex-start; 
     justify-content: flex-end;
-}  
+}
+
 .box-clothes, .img-clothes, .label-clothes, .box-schedule-mini {
     border-radius: var(--roundedLG);
 }

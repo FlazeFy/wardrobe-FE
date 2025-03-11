@@ -1,4 +1,5 @@
 "use client"
+import WashSectionHardDeleteWash from '@/app/clothes/wash/sections/wash_hard_delete'
 import { faPenToSquare, faRotateLeft, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
@@ -21,7 +22,7 @@ export default function OrganismsClothesWashBox(props) {
                 <a className='btn btn-primary'><FontAwesomeIcon icon={faRotateLeft}/> Wash Again</a>
                 <div>
                     <a className='btn btn-warning me-2'><FontAwesomeIcon icon={faPenToSquare}/></a>
-                    <a className='btn btn-danger'><FontAwesomeIcon icon={faTrash}/></a>
+                    <WashSectionHardDeleteWash id={props.item.id} fetchWashClothes={props.fetchWashClothes}/>
                 </div>
             </div>
         </div>
