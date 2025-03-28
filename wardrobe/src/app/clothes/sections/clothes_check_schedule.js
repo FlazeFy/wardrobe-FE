@@ -55,7 +55,7 @@ export default function ClothesCheckSchedule(props) {
     } else {
         if(items){
             return (
-                <div className='alert alert-primary' role='alert'>
+                <div className='alert alert-primary' role='alert' id="schedule_reminder-section">
                     <div className='row'>
                         <div className='col-lg-3 col-md-4 col-sm-6 col-6'>
                             <h4><FontAwesomeIcon icon={faCircleInfo}/> Information</h4>

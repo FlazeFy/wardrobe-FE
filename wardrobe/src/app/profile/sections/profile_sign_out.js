@@ -61,5 +61,5 @@ export default function ProfileSectionSignOut(props) {
         })
     }
 
-    return <button className='btn btn-danger w-100 py-4' style={{fontWeight:"600",fontSize:"var(--textXLG)"}} onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faSignOut}/> Sign Out</button>
+    return <button className='btn btn-danger w-100 py-4' id="sign_out-button" style={{fontWeight:"600",fontSize:"var(--textXLG)"}} onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faSignOut}/> Sign Out</button>
 }

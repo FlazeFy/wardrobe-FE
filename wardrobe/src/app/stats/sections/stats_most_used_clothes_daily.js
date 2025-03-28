@@ -54,15 +54,15 @@ export default function StatsSectionMostUsedClothesDaily(props) {
         )
     } else {
         return (
-            <div className='py-1'> 
+            <> 
                 {
-                    items.map((dt)=>{
+                    items.map((dt, idx)=>{
                         return <div className='mb-2'>
                             <h4 data-bs-toggle="collapse" href={"#collapseMostUsedDaily_"+dt.day}><span className='btn btn-primary rounded-pill px-3 w-100 text-start'>
                                 {dt.day == today && <a className='btn btn-danger py-1 px-3'>Today</a>} {dt.day}</span>
                             </h4>
                             <div className={dt.day == today ? 'collapse show' :'collapse'} id={"collapseMostUsedDaily_"+dt.day}>
-                                <div className='row' id="collapseExample">
+                                <div className='row' id={`clothes_holder_${idx+1}`}>
                                     {
                                         dt.clothes && dt.clothes.length > 0 ?
                                             dt.clothes.map(cl => {
@@ -78,7 +78,7 @@ export default function StatsSectionMostUsedClothesDaily(props) {
                         </div>
                     })
                 }
-            </div>
+            </>
         )
     }
 }

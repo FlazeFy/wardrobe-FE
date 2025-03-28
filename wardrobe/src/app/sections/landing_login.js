@@ -6,7 +6,8 @@ import Axios from 'axios'
 import React, { useState } from "react"
 import Swal from 'sweetalert2'
 import MoleculesField from '../../components/molecules/molecules_field'
-import AtomsBreakLine from '@/components/atoms/atoms_breakline'
+import AtomsBreakLine from '../../components/atoms/atoms_breakline'
+import { getErrorValidation } from '../../modules/helpers/converter'
 
 export default function LandingSectionLogin(props) {
     const [username, setUsername] = useState("")
@@ -43,7 +44,7 @@ export default function LandingSectionLogin(props) {
                     confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                       window.location.href = '/'
+                       window.location.href = '/clothes'
                     }
                 });
             } else {
@@ -62,6 +63,14 @@ export default function LandingSectionLogin(props) {
                     icon: "error",
                     title: "Oops...",
                     text: error.response.data.result,
+                    confirmButtonText: "Okay!"
+                })
+                setResMsgAll(error)
+            } else if(error.response.status === 422){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: getErrorValidation(error.response.data.result),
                     confirmButtonText: "Okay!"
                 })
                 setResMsgAll(error)
@@ -87,14 +96,14 @@ export default function LandingSectionLogin(props) {
                     <div className='container-fluid custom-container'>
                         <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}><span className='text-main'>Hello</span> There!!!</h1>
                         <h5 className="mb-4">Do you have an account? type your username and password to proceed sign in, so you can using this apps</h5>
-                        <MoleculesField title="Username" type={'text'} handleChange={(e) => {
+                        <MoleculesField title="Username" type={'text'} id="username-input" handleChange={(e) => {
                             setUsername(e.target.value)
                         }}/>
-                        <MoleculesField title="Password" type={'text'} handleChange={(e) => {
+                        <MoleculesField title="Password" type={'text'} id="password-input" handleChange={(e) => {
                             setPassword(e.target.value)
                         }}/>
                         <AtomsBreakLine length={1}/>
-                        <button type="button" className="btn btn-success me-2" onClick={handleSubmit}><FontAwesomeIcon icon={faSignIn}/> Sign In</button>
+                        <button type="button" className="btn btn-success me-2" id="submit-login-button" onClick={handleSubmit}><FontAwesomeIcon icon={faSignIn}/> Sign In</button>
                         <a type="button" className="btn btn-primary" href="/register"><FontAwesomeIcon icon={faArrowRight}/> New User? Join Now</a>
                     </div>
                 </div>

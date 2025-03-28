@@ -41,7 +41,7 @@ export default function StatsPage() {
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <AtomsBreakLine length={1}/>
-                    <div className="form-container">
+                    <div className="form-container" id="most_used_clothes_stats-section">
                         <div style={{maxWidth:"50vw"}}>
                             <h2 className="mb-0 fw-bold">Most Used Clothes</h2>
                             <h5 className="text-secondary">We analyze the most used clothes by its type, merk, size, colors, category, and type. The data is presented using Pie Chart and are limited to the 7 most used in each context</h5>
@@ -52,7 +52,7 @@ export default function StatsPage() {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center" id="most_used_clothes_daily_per_clothes_type_list-section">
                     <AtomsBreakLine length={2}/>
                     <div className="form-container">
                         <div style={{maxWidth:"50vw"}}>
@@ -60,7 +60,7 @@ export default function StatsPage() {
                             <h5 className="text-secondary">We analyze the most used clothes by day and per its clothes type. The list is clickable and you can directly navigate to the clothes detail</h5>
                         </div>
                         <AtomsBreakLine length={1}/>
-                        <div className="row">
+                        <div className="row py-1">
                             <StatsSectionMostUsedClothesDaily/>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ export default function StatsPage() {
             </div>
 
             <AtomsBreakLine length={2}/>
-            <div className="form-container">
+            <div className="form-container" id="clothes_yearly_activity_stats-section">
                 <div style={{maxWidth:"50vw"}}>
                     <h2 className="mb-0 fw-bold">Yearly Activity</h2>
                     <h5 className="text-secondary">We analyze the total activity for the last 365 days since today. You can the total for each date in this Heatmap</h5>
@@ -89,7 +89,7 @@ export default function StatsPage() {
             </div>
 
             <AtomsBreakLine length={2}/>
-            <div className="form-container">
+            <div className="form-container" id="clothes_monthly_activity_stats-section">
                 <div style={{maxWidth:"50vw"}}>
                     <h2 className="mb-0 fw-bold">Clothes Monthly Activity</h2>
                     <h5 className="text-secondary">We analyze the total clothes you buy and total clothes you have added to our system based on selected year</h5>

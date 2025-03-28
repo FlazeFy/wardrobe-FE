@@ -73,7 +73,7 @@ export default function StatsSectionSummary(props) {
         )
     } else {
         return (
-            <div className='d-block mx-auto' style={{width:"700px"}}> 
+            <div className='d-block mx-auto' style={{width:"700px"}} id="summary_stats-section"> 
                 <div className='d-flex justify-content-end'>
                     <div className='me-2 text-end'>
                         <h4 className="mb-0"><b>{items.total_clothes}</b> <span className='text-white'>Variety</span></h4>

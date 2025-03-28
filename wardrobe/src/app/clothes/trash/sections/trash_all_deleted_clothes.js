@@ -66,7 +66,7 @@ export default function ClothesSectionAllDeletedClothes(props) {
         )
     } else {
         return (
-            <table className='table table-bordered'>
+            <table className='table table-bordered' id="deleted_clothes-table">
                 <thead>
                     <tr>
                         <th>Qty</th>

@@ -72,7 +72,7 @@ export default function LandingSectionWelcoming(props) {
             <div className="mx-4" style={{marginTop:"8vh"}}>
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div className="container-fluid custom-container">
+                        <div className="container-fluid custom-container" id="welcome-section">
                             <AtomsBreakLine length={2}/>
                             <h2 className="mb-0">Wardrobe is your ultimate clothing assistant, helping you organize outfits, track history, manage schedules, and plan weekly looks</h2>
                             <hr></hr>
@@ -82,7 +82,7 @@ export default function LandingSectionWelcoming(props) {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12 text-end">
-                        <div className="d-flex justify-content-end align-items-center">
+                        <div className="d-flex justify-content-end align-items-center" id="summary_apps-section">
                             <div className="p-2">
                                 <img src={"/images/people.jpg"} style={{maxWidth:"50%", minWidth:"200px"}} className="img img-fluid mb-2 img-rounded"/>
                                 <h3 className="fw-bold mb-0">{items.total_user} {items.total_user > 0 && '+'}</h3>

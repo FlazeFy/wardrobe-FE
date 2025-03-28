@@ -68,3 +68,24 @@ export const formatCurrency = (val) => {
         return `Rp. ${val}`
     }
 }
+
+export const getErrorValidation = (val) => {
+    let messages = []
+
+    if(typeof val !== 'string'){
+        Object.keys(val).forEach(key => {
+            const error = val[key]
+            if (Array.isArray(error)) {
+                messages.push(...error)
+            } else if (typeof error === 'string') {
+                messages.push(error)
+            }
+        })
+
+        messages = messages.join(', ').replaceAll('.','')
+    } else {
+        messages = val
+    }
+
+    return messages
+}
