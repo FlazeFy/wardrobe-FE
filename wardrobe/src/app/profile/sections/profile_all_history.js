@@ -67,7 +67,7 @@ export default function ProfileSectionAllHistory(props) {
         )
     } else {
         return (
-            <div> 
+            <div id="history-section"> 
                 <h2 className="fw-bold">My History</h2>
                 {
                     items ? 

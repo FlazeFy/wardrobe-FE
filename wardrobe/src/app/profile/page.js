@@ -7,12 +7,12 @@ import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
 import ProfileSectionEditForm from "./sections/profile_edit_form";
-import { convertDatetimeBasedLocal } from "../../modules/helpers/converter";
 import { getCookie } from "../../modules/storages/cookie";
 import ProfileSectionAllHistory from "./sections/profile_all_history";
 import ProfileSectionExportData from "./sections/profile_export_data";
 import ProfileSectionSendQuestion from "./sections/profile_post_question";
 import ProfileSectionSignOut from "./sections/profile_sign_out";
+import ProfileSectionPropsProfile from "./sections/profile_props_profile";
 
 export default function ProfilePage(props) {
     //Initial variable
@@ -84,24 +84,7 @@ export default function ProfilePage(props) {
                         </div>
                         <AtomsBreakLine length={1}/>
                         <div className="container-fluid custom-container">
-                            <div className='d-block mx-auto' style={{width:"700px"}}> 
-                                <div className='d-flex justify-content-end'>
-                                    <div className='me-2 text-end'>
-                                        <h4 className="mb-0">{convertDatetimeBasedLocal(items.created_at)}</h4>
-                                    </div>
-                                    <div>
-                                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Joined Since</h1>
-                                    </div>
-                                </div>
-                                <div className='d-flex justify-content-end'>
-                                    <div className='me-2'>
-                                        <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Last Updated</h1>
-                                    </div>
-                                    <div className='text-start'>
-                                        <h4 className="mb-0">{items.updated_at ?? '-'}</h4>
-                                    </div>
-                                </div>
-                            </div>
+                            <ProfileSectionPropsProfile created_at={items.created_at} updated_at={items.updated_at}/>
                             <AtomsBreakLine length={1}/>
                         </div>
                     </div>

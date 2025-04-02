@@ -76,7 +76,7 @@ export default function ClothesSectionTotalByType(props) {
                 <div className='d-flex justify-content-end'>
                     <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>All <span className="text-main">Types</span></h1>
                 </div>
-                <div className='text-end'>
+                <div className='text-end' id="clothes_type_summary-holder">
                     {
                         items.map((dt, idx) => <h4 className="mb-0" key={idx}><b>{dt.total}</b> {dt.context}</h4>)
                     }

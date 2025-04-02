@@ -63,7 +63,7 @@ export default function ClothesSectionAllHeader(props) {
         )
     } else {
         return (
-            <div className='row'> 
+            <div className='row' id="clothes_holder"> 
                 {
                     items ? 
                         items.map((dt, idx) => (

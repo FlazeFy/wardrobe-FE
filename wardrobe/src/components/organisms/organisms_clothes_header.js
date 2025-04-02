@@ -19,12 +19,12 @@ export default function OrganismsClothesHeader(props) {
                 {
                     props.type == 'clothes' &&
                         <div className='label-holder'>
-                            { props.items.clothes_size != "-" && <span className='label-clothes bg-primary'>{ props.items.clothes_size }</span> }
-                            { props.items.clothes_gender == "male" ? <span className='label-clothes bg-primary'><FontAwesomeIcon icon={faMars}/></span> :
-                                props.items.clothes_gender == "female" ? <span className='label-clothes bg-danger'><FontAwesomeIcon icon={faVenus}/></span> :
-                                <span className='label-clothes bg-primary'><FontAwesomeIcon icon={faVenusMars}/></span>
+                            { props.items.clothes_size != "-" && <span className='label-clothes clothes_size-label bg-primary'>{ props.items.clothes_size }</span> }
+                            { props.items.clothes_gender == "male" ? <span className='label-clothes clothes_gender-label bg-primary'><FontAwesomeIcon icon={faMars}/></span> :
+                                props.items.clothes_gender == "female" ? <span className='label-clothes clothes_gender-label bg-danger'><FontAwesomeIcon icon={faVenus}/></span> :
+                                <span className='label-clothes clothes_gender-label bg-primary'><FontAwesomeIcon icon={faVenusMars}/></span>
                             }
-                            { props.items.clothes_qty > 1 && <span className='label-clothes bg-primary'>{props.items.clothes_qty}x</span>}
+                            { props.items.clothes_qty > 1 && <span className='label-clothes clothes_qty-label bg-primary'>{props.items.clothes_qty}x</span>}
                         </div>
                 }
                 <img src={ props.items.clothes_image ? props.items.clothes_image : props.items.clothes_image == null && props.type != "random" ? "/images/footwear.png" : "/images/question_box.png" } className="img-clothes"/>

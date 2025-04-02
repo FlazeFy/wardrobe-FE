@@ -85,7 +85,7 @@ export default function CalendarSectionSchedule(props) {
         )
     } else {
         return (
-            <table className='table table-bordered'>
+            <table className='table table-bordered' id="calendar-table">
                 <thead>
                     <tr>
                         <th style={{ width: '120px' }}>Date</th>
