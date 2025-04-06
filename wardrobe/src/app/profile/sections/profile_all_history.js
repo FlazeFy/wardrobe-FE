@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
 import ProfileSectionHardDeleteHistory from './profile_hard_delete_history'
+import { convertDatetimeBasedLocal } from '@/modules/helpers/converter'
+import OrganismsHistoryBox from '@/components/organisms/organisms_history_box'
 
 export default function ProfileSectionAllHistory(props) {
     //Initial variable
@@ -72,15 +74,7 @@ export default function ProfileSectionAllHistory(props) {
                 {
                     items ? 
                         items.map((dt, idx) => (
-                            <div key={idx} className="history-box">
-                                <div className='d-flex justify-content-between'>
-                                    <div>
-                                        <h6 className='mb-0'>{dt.history_type} {dt.history_context}</h6>
-                                        <p className='mb-0 text-secondary'>At {dt.created_at}</p>
-                                    </div>
-                                    <ProfileSectionHardDeleteHistory id={dt.id} fetchHistory={fetchHistory}/>
-                                </div>
-                            </div>
+                            <OrganismsHistoryBox items={dt} fetchHistory={fetchHistory}/>
                         ))
                     : <MoleculesNoData title="No History Found"/>
                 }

@@ -20,7 +20,7 @@ export default function StatsPage() {
             <OrganismsNavbar current="stats"/>
             <AtomsBreakLine length={3}/>
             <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <div className="container-fluid custom-container">
                         <AtomsBreakLine length={1}/>
                         <h2 className="mb-0">Here you can see statistic, trends, and summary that are gather from your clothes's found in this apps</h2>
@@ -29,7 +29,7 @@ export default function StatsPage() {
                         <AtomsBreakLine length={1}/>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center">
                     <div className="container-fluid custom-container">
                         <AtomsBreakLine length={1}/>
                         <StatsSectionSummary ctx="clothes_summary"/>
@@ -39,7 +39,7 @@ export default function StatsPage() {
             </div>
 
             <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <AtomsBreakLine length={1}/>
                     <div className="form-container" id="most_used_clothes_stats-section">
                         <div style={{maxWidth:"50vw"}}>

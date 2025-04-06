@@ -222,7 +222,7 @@ export default function GeneratedSectionRandomOutift(props) {
         )
     } else {
         return (
-            <div className="container-generator mx-auto text-center d-block" style={{maxWidth:"1080px", textAlign:"center"}}>
+            <div className="container-generator mx-auto text-center d-block" style={{maxWidth:"1280px", textAlign:"center"}}>
                 <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}>Generate <span className="text-main">Outfit</span>?</h1>
                 <h5 className="mb-4">Are You Confused With Your Messy Closet? Confused About What To Wear Today? Or You Just Forgot What Clothes That Have Been Ironed Or Are Still In The Laundry?</h5>
                 <h5 className="mb-4">Stay Calm, We Can Set What You Will Wear Today, Tommorow, or Whatever Day You Want. We Will Analyze Through Your Inventory, Based On Your History, And Behavior</h5>

@@ -212,43 +212,43 @@ export default function ClothesAddForm(props) {
                         setClothesMerk(e.target.value)
                     }}/>
                     <div className='row'>
-                        <div className='col-lg-8 col-md-7 col-sm-6 col-12'>
+                        <div className='col-lg-8 col-md-7 col-sm-6 col-8'>
                             <MoleculesField title="Price" type={'number'} defaultValue={clothesPrice} handleChange={(e) => {
                                 setClothesPrice(e.target.value)
                             }}/>
                         </div>
-                        <div className='col-lg-4 col-md-5 col-sm-6 col-12'>
+                        <div className='col-lg-4 col-md-5 col-sm-6 col-4'>
                             <MoleculesField title="Qty" type={'number'} defaultValue={clothesQty} handleChange={(e) => {
                                 setClothesQty(e.target.value)
                             }}/>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-lg-4 col-md-2 col-sm-6 col-12'>
+                        <div className='col-lg-4 col-md-6 col-sm-6 col-8'>
                             <MoleculesField title="Gender" type={'select'} defaultValue={clothesGender} items={clothesGenderDictionary} handleChange={(e) => {
                                 setClothesGender(e.target.value)
                             }}/>
                         </div>
-                        <div className='col-lg-3 col-md-4 col-sm-6 col-12'>
+                        <div className='col-lg-3 col-md-6 col-sm-6 col-4'>
                             <MoleculesField title="Size" type="select" defaultValue={clothesSize} items={clothesSizeDictionary} handleChange={(e) => setClothesSize(e.target.value)}/>
                         </div>
-                        <div className='col-lg-5 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-5 col-md-12 col-sm-12 col-12'>
                             <MoleculesField title="Type" type="select" defaultValue={clothesType} items={clothesTypeDictionary} handleChange={(e) => setClothesType(e.target.value)}/>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-7 col-md-12 col-sm-6 col-12'>
                             <MoleculesField title="Made From" type="select" defaultValue={clothesMadeFrom} items={clothesMadeFromDictionary} handleChange={(e) => setClothesMadeFrom(e.target.value)}/>
                         </div>
-                        <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-5 col-md-12 col-sm-6 col-12'>
                             <MoleculesField title="Category" type="select" defaultValue={clothesCategory} items={clothesCategoryDictionary} handleChange={(e) => setClothesCategory(e.target.value)}/>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-6 col-md-12 col-sm-12 col-12'>
                             <MoleculesField title="Buy At" type="date" defaultValue={clothesBuyAt} handleChange={(e) => setClothesBuyAt(e.target.value)}/>
                         </div>
-                        <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-6 col-md-12 col-sm-12     col-12'>
                         </div>
                     </div>
                     {/* {

@@ -16,7 +16,7 @@ export default function ClothesTrash() {
                     <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
                 </div>
                 <div>
-                    <h2 className="mb-0 fw-bold">Trash Page</h2>
+                    <h2 className="mb-0 fw-bold">Deleted Clothes</h2>
                     <h5 className="text-secondary">All deleted clothes still can be recovered until 30 days after it got deleted. After that it will permanentally deleted</h5>
                 </div>
             </div>

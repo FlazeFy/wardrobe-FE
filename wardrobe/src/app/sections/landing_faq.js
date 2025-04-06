@@ -81,7 +81,7 @@ export default function LandingSectionFAQ() {
                     {
                         items.map((dt, idx)=>{
                             return (
-                                <div className="col-lg-6 col-md-6 col-sm-12 col-12 mx-auto">
+                                <div className="col-lg-6 col-md-6 col-sm-6 col-12 mx-auto">
                                     <MoleculesFAQBox id={idx} question={dt.question} answer={dt.answer} created_at={dt.created_at}/>
                                 </div>
                             )

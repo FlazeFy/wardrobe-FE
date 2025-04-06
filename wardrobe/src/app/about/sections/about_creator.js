@@ -11,7 +11,7 @@ export default function AboutSectionCreator() {
             If you want to do collaboration or do you want to send me feedback? you can find me on :
             <div style={{fontSize:"calc(var(--textLG)*1.5)"}} className="mt-3">
                 <a href="https://www.instagram.com/leonardhorante_08/" className="me-3"><FontAwesomeIcon icon={faInstagram}/></a>
-                <a href="https://www.linkedin.com/in/leonardho-rante-sitanggang-a5a752202/" className="me-3"><FontAwesomeIcon icon={faLinkedin}/></a>
+                <a href="https://www.linkedin.com/in/leonardho-rante-sitanggang" className="me-3"><FontAwesomeIcon icon={faLinkedin}/></a>
                 <a href="https://github.com/FlazeFy" className="me-3"><FontAwesomeIcon icon={faGithub}/></a>
                 <a href="mailto:flazen.edu@gmail.com"><FontAwesomeIcon icon={faEnvelope}/></a>
             </div>

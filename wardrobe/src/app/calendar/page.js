@@ -21,7 +21,7 @@ export default function CalendarPage() {
             <OrganismsNavbar current="calendar"/>
             <AtomsBreakLine length={2}/>
             <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center">
                     <div className="container-fluid custom-container">
                         <AtomsBreakLine length={1}/>
                         <h2 className="mb-0">In this page, here we present your clothes used history, weekly schedule, wash schedule, and buyed history for every day in a month</h2>
@@ -34,8 +34,8 @@ export default function CalendarPage() {
                         <AtomsBreakLine length={1}/>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column">
-                    <div className="container custom-container flex-grow-1">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12 d-flex flex-column">
+                    <div className="container-full custom-container flex-grow-1">
                         <CalendarSectionTomorrowSchedule/>
                     </div>
                 </div>

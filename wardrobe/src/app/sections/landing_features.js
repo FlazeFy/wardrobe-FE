@@ -7,7 +7,7 @@ export default function LandingSectionFeatures() {
     return (
         <div className="mx-4">
             <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <MoleculesFeaturesBox 
                         title="Store Clothes Information" 
                         description="Keep track of your wardrobe by listing each item with its name, type, category, size, price, brand, and color. Add tags to make outfit selection easier and smarter!" 
@@ -39,14 +39,15 @@ export default function LandingSectionFeatures() {
                         icon={<FontAwesomeIcon icon={faTable}/>}
                     />
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12 start">
-                    <AtomsBreakLine length={8}/>
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center">
                     <h2 className="mb-0">From Store Your Clothes Information Until Deciding What You Should Wear Tommorow!</h2>
                     <hr></hr>   
                     <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>Our <span className="text-main">Capabilities</span></h1>
                     <h2 className="mb-2">Want to Know How Our Apps Works?</h2>
-                    <a className="btn btn-success fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
-                    <a className="btn btn-primary fw-bold" href="/feedback"><FontAwesomeIcon icon={faCircleQuestion}/> Get The Manual</a>
+                    <div className="d-flex">
+                        <a className="btn btn-success fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
+                        <a className="btn btn-primary fw-bold" href="/feedback"><FontAwesomeIcon icon={faCircleQuestion}/> Get The Manual</a>
+                    </div>
                 </div>
             </div>
         </div>

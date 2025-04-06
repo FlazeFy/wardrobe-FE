@@ -74,7 +74,7 @@ export default function ClothesDetailPage({params}) {
                 <OrganismsNavbar current="clothes"/>
                 <AtomsBreakLine length={2}/>
                 <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>
                         <div className="d-flex justify-content-start">
                             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
@@ -104,7 +104,7 @@ export default function ClothesDetailPage({params}) {
                             <AtomsBreakLine length={2}/>
                         </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>
                         <img src={items.detail.clothes_image ?? "/images/shoes_sample.jpg"} style={{maxWidth:"50%", minWidth:"100px"}} className="img img-fluid img-rounded d-block mx-auto"/>
                         <AtomsBreakLine length={2}/>
@@ -123,7 +123,7 @@ export default function ClothesDetailPage({params}) {
                 <AtomsBreakLine length={1}/>
 
                 <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="form-container">
                             <div style={{maxWidth:"50vw"}}>
                                 <h2 className="mb-0 fw-bold">Used History</h2>
@@ -134,7 +134,7 @@ export default function ClothesDetailPage({params}) {
                             <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>
                         </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="form-container">
                             <h2 className="mb-0 fw-bold">Schedule</h2>
                             <h5 className="text-secondary">You can set weekly schedule for a clothes, so we can remind you night before the day of use. 

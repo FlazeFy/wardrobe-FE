@@ -10,12 +10,12 @@ export default function ProfileSectionPropsProfile(props) {
                     <h4 className="mb-0">{convertDatetimeBasedLocal(props.created_at)}</h4>
                 </div>
                 <div>
-                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Joined Since</h1>
+                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}><span className="text-main">Joined</span> Since</h1>
                 </div>
             </div>
             <div className='d-flex justify-content-end align-items-start'>
                 <div className='me-2'>
-                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Last Updated</h1>
+                    <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Last <span className="text-main">Updated</span></h1>
                 </div>
                 <div className='text-start'>
                     <h4 className="mb-0">{props.updated_at ? convertDatetimeBasedLocal(props.updated_at) : '-'}</h4>

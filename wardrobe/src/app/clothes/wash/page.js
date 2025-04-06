@@ -14,7 +14,7 @@ export default function ClothesWash() {
             <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={2}/>
             <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <AtomsBreakLine length={4}/>
                     <div className="d-flex justify-content-start">
                         <div className="me-4 pe-3">
@@ -33,7 +33,7 @@ export default function ClothesWash() {
                         <WashSectionSummary/>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <h2 className="fw-bold">History Of Wash</h2>
                     <WashSectionAllHistory/>
                 </div>

@@ -149,35 +149,35 @@ export default function ClothesDetailEditForm(props) {
                 </div> 
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
                     <div className='row'>
-                        <div className='col-lg-8 col-md-7 col-sm-6 col-12'>
+                        <div className='col-lg-8 col-md-7 col-sm-6 col-8'>
                             <MoleculesField title="Price" type={'number'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesPrice} handleChange={(e) => {
                                 setClothesPrice(e.target.value)
                             }}/>
                         </div>
-                        <div className='col-lg-4 col-md-5 col-sm-6 col-12'>
+                        <div className='col-lg-4 col-md-5 col-sm-6 col-4'>
                             <MoleculesField title="Qty" type={'number'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesQty} handleChange={(e) => {
                                 setClothesQty(e.target.value)
                             }}/>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-lg-4 col-md-4 col-sm-6 col-12'>
+                        <div className='col-lg-4 col-md-7 col-sm-6 col-8'>
                             <MoleculesField title="Gender" type={'select'} isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesGender} items={clothesGenderDictionary} handleChange={(e) => {
                                 setClothesGender(e.target.value)
                             }}/>
                         </div>
-                        <div className='col-lg-3 col-md-3 col-sm-6 col-12'>
+                        <div className='col-lg-3 col-md-5 col-sm-6 col-4'>
                             <MoleculesField title="Size" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesSize} items={clothesSizeDictionary} handleChange={(e) => setClothesSize(e.target.value)}/>
                         </div>
-                        <div className='col-lg-5 col-md-5 col-sm-6 col-12'>
+                        <div className='col-lg-5 col-md-12 col-sm-12 col-12'>
                             <MoleculesField title="Type" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesType} items={clothesTypeDictionary} handleChange={(e) => setClothesType(e.target.value)}/>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-6 col-md-12 col-sm-6 col-12'>
                             <MoleculesField title="Made From" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesMadeFrom} items={clothesMadeFromDictionary} handleChange={(e) => setClothesMadeFrom(e.target.value)}/>
                         </div>
-                        <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                        <div className='col-lg-6 col-md-12 col-sm-6 col-12'>
                             <MoleculesField title="Category" type="select" isDisabled={props.item.deleted_at ? true : false} defaultValue={clothesCategory} items={clothesCategoryDictionary} handleChange={(e) => setClothesCategory(e.target.value)}/>
                         </div>
                     </div>

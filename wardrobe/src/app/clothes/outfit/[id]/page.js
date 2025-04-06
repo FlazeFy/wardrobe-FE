@@ -70,7 +70,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                 <OrganismsNavbar current="clothes"/>
                 <AtomsBreakLine length={2}/>
                 <div className="row">
-                    <div className="col-lg-7 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-7 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>
                         <div className="d-flex justify-content-start">
                             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
@@ -105,14 +105,14 @@ export default function ClothesOutfitPage({params, ...props}) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-5 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-5 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>
                         <div className='row'>
                             {
                                 items.clothes && items.clothes.length > 0 ?
                                     items.clothes.map((cl)=>{
                                         return (
-                                            <div className='col-lg-4 col-md-4 col-sm-12 col-12 mx-auto'>
+                                            <div className='col-xxl-3 col-xl-4 col-lg-6 col-md-3 col-sm-4 col-6'>
                                                 <div className="px-3 py-2 text-center box-clothes">
                                                     <h6 className='mt-2 mb-1'>{cl.clothes_type} | {cl.clothes_name}</h6>
                                                     <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes img-fluid"/>
@@ -132,12 +132,12 @@ export default function ClothesOutfitPage({params, ...props}) {
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-3 col-md-4 col-sm-12 col-12">
+                    <div className="col-lg-3 col-md-12 col-sm-12 col-12">
                         <div className="form-container">
                             <OutfitSectionUsedById fetchOutfit={fetchOutfit} id={params.id}/>
                         </div>
                     </div>
-                    <div className="col-lg-9 col-md-8 col-sm-12 col-12">
+                    <div className="col-lg-9 col-md-12 col-sm-12 col-12">
                         <div className="form-container">
                             <OutfitSectionMonthlyTotalUsed id={params.id}/>
                         </div>

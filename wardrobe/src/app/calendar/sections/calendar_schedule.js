@@ -109,7 +109,7 @@ export default function CalendarSectionSchedule(props) {
                                                 {
                                                     item[key] ? (
                                                     item[key].map((dt, idx) => (
-                                                        <div key={idx} className="col-lg-6 col-sm-12 col-12">
+                                                        <div key={idx} className="col-xxl-6 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                             <OrganismsClothesHeader items={dt} type="schedule" />
                                                         </div>
                                                     )

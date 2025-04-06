@@ -62,7 +62,7 @@ export default function LandingSectionLastOutfit(props) {
         return (
             <div className="mx-4">
                 <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>
                         {
                             items &&
@@ -106,7 +106,7 @@ export default function LandingSectionLastOutfit(props) {
                         }
                         <AtomsBreakLine length={4}/>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>
                         <div className="container-generator" style={{height:"40vh",textAlign:"start"}}>
                             <div className="position-absolute text-end" style={{top:"var(--spaceXLG)",right:"var(--spaceXLG)"}}>

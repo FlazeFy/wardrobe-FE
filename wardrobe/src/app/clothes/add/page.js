@@ -14,7 +14,7 @@ export default function ClothesAddPage() {
             <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={2}/>
             <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <div className="d-flex justify-content-start">
                         <div className="me-4 pe-3">
                             <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
@@ -26,7 +26,7 @@ export default function ClothesAddPage() {
                         <p>Here you can add your clothes to your Wardrobe inventory. Start monitoring and make this outfit part of your daily outfit</p>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center">
                     <div className="container-fluid custom-container">
                         <ClothesAddSectionLastHistory/>
                     </div>

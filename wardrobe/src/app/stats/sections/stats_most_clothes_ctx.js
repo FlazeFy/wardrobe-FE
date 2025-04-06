@@ -60,38 +60,38 @@ export default function StatsSectionMostClothesCtx(props) {
         )
     } else {
         return (
-            <> 
-                <div className="col-lg-6 col-md-12 col-sm-12 col-12 py-3">
+            <div className='row'> 
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 py-3">
                     <div className="card">
                         <h3>By Its Merk</h3>
                         <MoleculesChartPie items={itemsClothesMerk}/>  
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-12 col-sm-12 col-12 py-3">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 py-3">
                     <div className="card">
                         <h3>By Its Size</h3>
                         <MoleculesChartPie items={itemsClothesSize}/>  
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-12 col-sm-12 col-12 py-3">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 py-3">
                     <div className="card">
                         <h3>By Its Made From</h3>
                         <MoleculesChartPie items={itemsClothesMade}/>  
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-12 col-sm-12 col-12 py-3">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 py-3">
                     <div className="card">
                         <h3>By Its Type</h3>
                         <MoleculesChartPie items={itemsClothesType}/>  
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-12 col-sm-12 col-12 py-3">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12 py-3">
                     <div className="card">
                         <h3>By Its Category</h3>
                         <MoleculesChartPie items={itemsClothesCategory}/>  
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }

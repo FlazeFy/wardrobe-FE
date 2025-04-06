@@ -15,7 +15,7 @@ export default function GeneratedPage() {
         <main className={styles.main}>
             <OrganismsNavbar current="clothes"/>
             <AtomsBreakLine length={3}/>
-            <div className="mx-auto mb-3 w-100 d-flex justify-content-start" style={{maxWidth:"1080px"}}>
+            <div className="mx-auto mb-3 w-100 d-flex justify-content-start" style={{maxWidth:"1280px"}}>
                 <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
                     <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></a>
                 </div>

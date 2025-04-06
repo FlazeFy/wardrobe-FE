@@ -66,7 +66,7 @@ export default function WashSectionAllHistory(props) {
                 {
                     items && items.length > 0 ? 
                         items.map((dt) => {
-                            return <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
+                            return <div className='col-xl-6 col-lg-12 col-md-6 col-sm-12 col-12'>
                                 <OrganismsClothesWashBox item={dt} fetchWashClothes={fetchWashClothes}/>
                             </div>
                         })

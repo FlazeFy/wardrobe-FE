@@ -62,7 +62,7 @@ export default function CalendarSectionTomorrowSchedule(props) {
                     {
                         items.tomorrow && items.tomorrow.length > 0 ?
                             items.tomorrow.map((dt,idx) => {
-                                return <div key={idx} className="col-lg-3 col-md-4 col-sm-6 col-6">
+                                return <div key={idx} className="col-xxl-2 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4">
                                     <OrganismsClothesHeader items={dt} type="schedule"/>
                                 </div>
                             })
@@ -76,7 +76,7 @@ export default function CalendarSectionTomorrowSchedule(props) {
                     {
                         items.two_days_later && items.two_days_later.length > 0 ?
                             items.two_days_later.map((dt,idx) => {
-                                return <div key={idx} className="col-lg-3 col-md-4 col-sm-6 col-6">
+                                return <div key={idx} className="col-xxl-2 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4">
                                     <OrganismsClothesHeader items={dt} type="schedule"/>
                                 </div>
                             })

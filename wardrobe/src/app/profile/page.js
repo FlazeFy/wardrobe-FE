@@ -67,7 +67,7 @@ export default function ProfilePage(props) {
                 <OrganismsNavbar current="profile"/>
                 <AtomsBreakLine length={3}/>
                 <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <div className="container-fluid custom-container">
                             <AtomsBreakLine length={1}/>
                             <h2 className="mb-0">Here you can see and modify your account, sync to Telegram account, and sign out from your account</h2>
@@ -76,9 +76,9 @@ export default function ProfilePage(props) {
                             <AtomsBreakLine length={1}/>
                         </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center">
                         <div className="row">
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                                 <ProfileSectionSignOut/>
                             </div>
                         </div>
@@ -91,7 +91,7 @@ export default function ProfilePage(props) {
                 </div>
                 
                 <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={1}/>
                         <div className="form-container">
                             <ProfileSectionEditForm item={items}/>
@@ -101,7 +101,7 @@ export default function ProfilePage(props) {
                             <ProfileSectionExportData/>
                         </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={1}/>
                         <div className="form-container">
                             <ProfileSectionAllHistory ctx="all_history"/>

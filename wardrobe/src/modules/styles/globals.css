@@ -122,29 +122,3 @@ hr {
   color: var(--whiteColor);
   padding: var(--spaceMD) var(--spaceXMD);
 }
-
-
-/* Table */
-table {
-  border-collapse: separate; 
-  border-spacing: 0;
-  border-radius: var(--roundedLG); 
-  overflow: hidden;
-}
-table, th, td {
-  border: 1.5px solid var(--infoBG) !important;
-}
-table {
-  outline: 1.5px solid var(--infoBG)
-}
-table thead tr th {
-  color: var(--whiteColor) !important;
-  font-size: var(--textXLG);
-  font-weight: 600 !important;
-}
-table thead tr th {
-  background: var(--infoBG) !important;
-}
-table tbody tr td {
-  background: var(--greyColor) !important;
-}
