@@ -17,7 +17,7 @@
     border: 2px solid var(--infoBG);
 }
 
-.box, .box-outfit-simple {
+.box {
     padding: var(--spaceLG);
     border: calc(var(--spaceMini) / 1.5) solid var(--darkColor);
     border-radius: var(--roundedLG);
@@ -34,7 +34,7 @@
 .box img {
     width: 100%;
 }
-.box:hover, .box-outfit-simple:hover {
+.box:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transform: scale(1.05);
 }
@@ -137,20 +137,20 @@
     transform: scale(1.05);
 }
 
-.box-clothes, .img-clothes, .label-clothes, .box-schedule-mini {
+.box-clothes, .img-clothes, .label-clothes, .box-schedule-mini, .box-outfit-simple {
     border-radius: var(--roundedLG);
 }
-.box-clothes, .box-schedule-mini {
+.box-clothes, .box-schedule-mini, .box-outfit-simple {
     padding: var(--spaceLG);
     background: var(--hoverBG);
     position: relative;
     cursor: pointer;
     border: 2px solid transparent;
 }
-.box-clothes {
+.box-clothes, .box-outfit-simple {
     margin-bottom: var(--spaceLG);
 }
-.box-clothes:hover, .box-schedule-mini:hover {
+.box-clothes:hover, .box-schedule-mini:hover, .box-outfit-simple:hover {
     transform: scale(1.05);
     border: 2px solid var(--infoBG);
 }

@@ -1,5 +1,5 @@
 "use client"
-import { getCleanTitleFromCtx, numberToPrice } from '../../../../../modules/helpers/converter'
+import { convertDatetimeBasedLocal, getCleanTitleFromCtx, numberToPrice } from '../../../../../modules/helpers/converter'
 import { getCookie } from '../../../../../modules/storages/cookie'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -138,9 +138,9 @@ export default function ClothesSectionAllDetail(props) {
                                         <h6 className='m-0'>Buy At</h6>
                                         <p className='m-0 mb-2'>{el.clothes_buyed_at ?? '-'}</p>
                                         <h6 className='m-0'>Created At</h6>
-                                        <p className='m-0 mb-2'>{el.created_at}</p>
+                                        <p className='m-0 mb-2'>{convertDatetimeBasedLocal(el.created_at)}</p>
                                         <h6 className='m-0'>Updated At</h6>
-                                        <p className='m-0'>{el.updated_at}</p>
+                                        <p className='m-0'>{el.updated_at ? convertDatetimeBasedLocal(el.updated_at) :'-'}</p>
                                     </td>
                                     <td>
                                         <a className='btn btn-warning' href={`/clothes/detail/${el.id}`}><FontAwesomeIcon icon={faPenToSquare}/></a>

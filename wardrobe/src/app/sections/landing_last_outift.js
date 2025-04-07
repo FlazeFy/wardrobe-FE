@@ -6,6 +6,7 @@ import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getCookie } from "../../modules/storages/cookie";
+import { convertDatetimeBasedLocal } from "@/modules/helpers/converter";
 
 export default function LandingSectionLastOutfit(props) {
     //Initial variable
@@ -89,11 +90,11 @@ export default function LandingSectionLastOutfit(props) {
                                             maxWidth = "15%"
                                         }
 
-                                        return <img src={dt.clothes_image ?? "/images/hat_sample.jpg"} style={{ maxWidth, minWidth: "100px" }} className={`img img-fluid img-rounded ${idx === items.clothes.length - 2 ? "me-3" : ""}`} key={idx}/>
+                                        return <img src={dt.clothes_image ?? "/images/hat_sample.jpg"} style={{ maxWidth, minWidth: "100px" }} className={`img img-fluid img-rounded mb-2 ${idx === items.clothes.length - 2 ? "me-3" : ""}`} key={idx}/>
                                     })
                                 }
                                 </div>
-                                <h5 className="text-secondary mb-0">Set at {items.last_used}</h5>
+                                <h5 className="text-secondary mb-0">Set at {convertDatetimeBasedLocal(items.last_used)}</h5>
                             </>
                         }
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{ items ? <>Last <span className="text-main">Outfit</span></> : <span className="text-secondary">- No Outfit History Found -</span>}</h1>
@@ -106,7 +107,7 @@ export default function LandingSectionLastOutfit(props) {
                         }
                         <AtomsBreakLine length={4}/>
                     </div>
-                    <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center">
                         <AtomsBreakLine length={4}/>
                         <div className="container-generator" style={{height:"40vh",textAlign:"start"}}>
                             <div className="position-absolute text-end" style={{top:"var(--spaceXLG)",right:"var(--spaceXLG)"}}>

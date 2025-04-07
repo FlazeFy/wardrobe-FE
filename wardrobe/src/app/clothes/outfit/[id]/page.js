@@ -10,11 +10,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCookie } from "../../../../modules/storages/cookie";
 import Swal from "sweetalert2";
 import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
-import MoleculesClothesStatus from "../../../../components/molecules/molecules_clothes_status";
 import OutfitSectionUsedById from "./sections/outfit_used_by_id";
 import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_history";
 import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes";
 import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used";
+import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes";
 
 export default function ClothesOutfitPage({params, ...props}) {
     //Initial variable
@@ -91,8 +91,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                         </div>
                         <hr></hr>
                         <div className="container-fluid custom-container">
-                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.outfit_name}</h1>
-                            
+                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.outfit_name}</h1>   
                             <p>{items.outfit_note ?? <span className="fst-italic">- No Description Provided -</span>}</p>
                             <AtomsBreakLine length={2}/>
                             <div className="row">
@@ -107,26 +106,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                     </div>
                     <div className="col-lg-5 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>
-                        <div className='row'>
-                            {
-                                items.clothes && items.clothes.length > 0 ?
-                                    items.clothes.map((cl)=>{
-                                        return (
-                                            <div className='col-xxl-3 col-xl-4 col-lg-6 col-md-3 col-sm-4 col-6'>
-                                                <div className="px-3 py-2 text-center box-clothes">
-                                                    <h6 className='mt-2 mb-1'>{cl.clothes_type} | {cl.clothes_name}</h6>
-                                                    <img src={cl.clothes_image ?? "/images/footwear.png"} className="img-clothes img-fluid"/>
-                                                    <MoleculesClothesStatus item={cl}/>
-                                                    <p className='mb-0'>{cl.clothes_merk}</p>
-                                                    <p className='mb-0 text-secondary'>{cl.clothes_desc}</p>
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                : 
-                                    <span className="fst-italic text-secondary">- No Clothes Attached -</span>
-                            }
-                        </div>
+                        <OutfitSectionAttachedClothes items={items.clothes}/>
                         <AtomsBreakLine length={2}/>
                     </div>
                 </div>

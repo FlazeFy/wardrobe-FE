@@ -5,7 +5,7 @@ import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
 import MoleculesFooter from "../../../../components/molecules/molecules_footer";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
+import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
 import ClothesDetailEditForm from "./sections/clothes_detail_edit_form";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -115,7 +115,7 @@ export default function ClothesDetailPage({params}) {
                 <div className="form-container">
                     <div style={{maxWidth:"50vw"}}>
                         <h2 className="mb-0 fw-bold">Edit Clothes</h2>
-                        <h5 className="text-secondary">This clothes has been added to your wardrobe since {items.detail.created_at}{items.detail.updated_at && <span>and the last update was detected on {items.detail.updated_at}</span>}</h5>
+                        <h5 className="text-secondary">This clothes has been added to your wardrobe since {convertDatetimeBasedLocal(items.detail.created_at)}{items.detail.updated_at && <span>and the last update was detected on {convertDatetimeBasedLocal(items.detail.updated_at)}</span>}</h5>
                     </div>
                     <AtomsBreakLine length={1}/>
                     <ClothesDetailEditForm ctx="clothes_detail" item={items.detail}/>
@@ -127,7 +127,7 @@ export default function ClothesDetailPage({params}) {
                         <div className="form-container">
                             <div style={{maxWidth:"50vw"}}>
                                 <h2 className="mb-0 fw-bold">Used History</h2>
-                                <h5 className="text-secondary">Start from <b>{items.last_used_history}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
+                                <h5 className="text-secondary">Start from <b>{convertDatetimeBasedLocal(items.last_used_history)}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
                                     <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at} with_button={true}/></h5>
                             </div>
                             <AtomsBreakLine length={1}/>

@@ -1,4 +1,5 @@
 "use client"
+import { convertDatetimeBasedLocal } from '@/modules/helpers/converter';
 import React from 'react'
 
 export default function ClothesDetailSectionFoundedOutfit(props) {
@@ -14,7 +15,7 @@ export default function ClothesDetailSectionFoundedOutfit(props) {
                         return (
                             <div className='col-xl-6 col-lg-12 col-md-12 col-sm-6 col-12' key={`detail-founded-${idx}`}>
                                 <div className='box-outfit-simple' onClick={(e) => handleBoxClick(dt.id)}>
-                                    <h5 className='mb-0'>{dt.outfit_name}</h5>
+                                    <h5>{dt.outfit_name}</h5>
                                     <p>{dt.outfit_note ?? <span className='text-secondary'>- No Notes Provided -</span>}</p>
                                     <div className='d-flex justify-content-between'>
                                         <div>
@@ -23,7 +24,7 @@ export default function ClothesDetailSectionFoundedOutfit(props) {
                                         </div>
                                         <div>
                                             <h6 className='mb-0'>Last Used</h6>
-                                            <p className='text-secondary mb-0'>{dt.last_used ?? '-'}</p>
+                                            <p className='text-secondary mb-0'>{dt.last_used ? convertDatetimeBasedLocal(dt.last_used) : '-'}</p>
                                         </div>
                                     </div>
                                 </div>

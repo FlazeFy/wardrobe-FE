@@ -15,9 +15,9 @@ export default function OrganismsClothesHeader(props) {
     
     return (
         <>
-            <div className={`box-clothes ${props.type == 'schedule' ? 'p-2':''}`} onClick={(e) => (props.handleClick ? props.handleClick() : handleBoxClick(props.items.id, props.type))}>
+            <div className={`box-clothes ${props.type == 'schedule' ? 'p-2': props.type == 'clothes-outfit' ? 'px-3 py-2 text-center':''}`} onClick={(e) => (props.handleClick ? props.handleClick() : handleBoxClick(props.items.id, props.type))}>
                 {
-                    props.type == 'clothes' &&
+                    props.type == 'clothes' ?
                         <div className='label-holder'>
                             { props.items.clothes_size != "-" && <span className='label-clothes clothes_size-label bg-primary'>{ props.items.clothes_size }</span> }
                             { props.items.clothes_gender == "male" ? <span className='label-clothes clothes_gender-label bg-primary'><FontAwesomeIcon icon={faMars}/></span> :
@@ -26,12 +26,20 @@ export default function OrganismsClothesHeader(props) {
                             }
                             { props.items.clothes_qty > 1 && <span className='label-clothes clothes_qty-label bg-primary'>{props.items.clothes_qty}x</span>}
                         </div>
+                    : props.type == 'clothes-outfit' ?
+                        <h6 className='mt-2 mb-1'>{props.items.clothes_type} | {props.items.clothes_name}</h6>
+                    :
+                        <></>
                 }
                 <img src={ props.items.clothes_image ? props.items.clothes_image : props.items.clothes_image == null && props.type != "random" ? "/images/footwear.png" : "/images/question_box.png" } className="img-clothes"/>
                 <div className='body-clothes'>
-                    <h4 className='mb-0' style={{fontSize: props.type == 'schedule' ? "var(--textSM)":""}}>{props.items.clothes_name}</h4>
-                    <h6 className={`text-secondary ${props.type == 'schedule' ? 'm-0':''}`} style={{textTransform:"capitalize", fontSize: props.type == 'schedule' ? "var(--textXSM)":""}}>{getCleanTitleFromCtx(props.items.clothes_category)} | {props.items.clothes_type}</h6>
-                    {   props.type == 'clothes' && <MoleculesClothesStatus item={props.items}/> }
+                    {
+                        props.type != 'clothes-outfit' && <>
+                            <h4 className='mb-0' style={{fontSize: props.type == 'schedule' ? "var(--textSM)":""}}>{props.items.clothes_name}</h4>
+                            <h6 className={`text-secondary ${props.type == 'schedule' ? 'm-0':''}`} style={{textTransform:"capitalize", fontSize: props.type == 'schedule' ? "var(--textXSM)":""}}>{getCleanTitleFromCtx(props.items.clothes_category)} | {props.items.clothes_type}</h6>    
+                        </>
+                    }
+                    {   props.type == 'clothes' || props.type == 'clothes-outfit' && <MoleculesClothesStatus item={props.items}/> }
                     {
                         (props.items.total && props.items.last_used) && (
                             <>
@@ -41,6 +49,9 @@ export default function OrganismsClothesHeader(props) {
                                 <h6 className='text-secondary m-0' style={{fontSize:"var(--textSM)"}}>{convertDatetimeBasedLocal(props.items.last_used)}</h6>
                             </>
                         )
+                    }
+                    {
+                        props.type == 'clothes-outfit' && <p className='mb-0' style={{fontWeight:"500"}}>{props.items.clothes_merk}</p>
                     }
                 </div>
                 {
@@ -56,7 +67,9 @@ export default function OrganismsClothesHeader(props) {
                     )
                 }
             </div>
-            <ClothesDetailAddUsedHistory id={props.items.id} clothes_name={props.items.clothes_name} ctx="add_used_history" deleted_at={props.items.deleted_at} with_button={false}/>
+            {
+                props.type != 'clothes-outfit' && <ClothesDetailAddUsedHistory id={props.items.id} clothes_name={props.items.clothes_name} ctx="add_used_history" deleted_at={props.items.deleted_at} with_button={false}/>
+            }
         </>
     )
 }

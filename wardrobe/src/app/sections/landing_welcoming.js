@@ -81,7 +81,7 @@ export default function LandingSectionWelcoming(props) {
                             <AtomsBreakLine length={2}/>
                         </div>
                     </div>
-                    <div className="col-xxl-6 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-end">
+                    <div className="col-xxl-6 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-end d-flex flex-column justify-content-center">
                         <div className="d-flex justify-content-end align-items-center" id="summary_apps-section">
                             <div className="p-2">
                                 <img src={"/images/people.jpg"} style={{maxWidth:"50%", minWidth:"200px"}} className="img img-fluid mb-2 img-rounded"/>

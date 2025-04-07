@@ -98,13 +98,14 @@ export default function LandingFeedback(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-xxl-6 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-end">
-                    <AtomsBreakLine length={4}/>
+                <div className="col-xxl-6 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-end d-flex flex-column justify-content-center">
                     <h2 className="mb-0">{average} Average Rate<span className="text-secondary" style={{fontSize:"var(--textXLG)"}}>, from total <b>{total}</b> feedback</span></h2>
                     <hr></hr>
                     <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>What <span className="text-main">they say</span>?</h1>
                     <h2 className="mb-2">Give your experience when using us too</h2>
-                    <a className="btn btn-success fw-bold" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> Feedback</a>
+                    <div className="d-flex justify-content-end">
+                        <a className="btn btn-success fw-bold" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> Feedback</a>
+                    </div>
                 </div>
             </div>
         );

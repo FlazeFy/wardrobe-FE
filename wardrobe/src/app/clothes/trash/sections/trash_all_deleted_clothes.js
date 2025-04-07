@@ -1,5 +1,5 @@
 "use client"
-import { getCleanTitleFromCtx } from '../../../../modules/helpers/converter'
+import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from '../../../../modules/helpers/converter'
 import { getCookie } from '../../../../modules/storages/cookie'
 import { faFire } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -102,7 +102,7 @@ export default function ClothesSectionAllDeletedClothes(props) {
                                     </td>
                                     <td>
                                         <h6 className='m-0'>Deleted At</h6>
-                                        <p className='m-0 mb-2'>{el.deleted_at}</p>
+                                        <p className='m-0 mb-2'>{convertDatetimeBasedLocal(el.deleted_at)}</p>
                                     </td>
                                     <td>
                                         <HardDeleteClothesById id={el.id} fetchClothes={fetchClothes}/>

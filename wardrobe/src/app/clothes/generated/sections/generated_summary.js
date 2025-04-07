@@ -4,6 +4,7 @@ import { getLocal, storeLocal } from "../../../../modules/storages/local"
 import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import { getCookie } from "@/modules/storages/cookie"
+import { convertDatetimeBasedLocal } from "@/modules/helpers/converter"
 
 export default function GeneratedSectionSummary(){
     //Initial variable
@@ -85,7 +86,7 @@ export default function GeneratedSectionSummary(){
                 </div>
                 <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
                     <h2 className="mb-0">Last Used</h2>
-                    <h4 className="mb-0 text-secondary">{item ? <>{item.last_used}</>:<>-</>}</h4>
+                    <h4 className="mb-0 text-secondary">{item ? <>{convertDatetimeBasedLocal(item.last_used)}</>:<>-</>}</h4>
                 </div>
                 <div>
                     <h4 className="mb-2"><span className="bg-success text-white py-1 px-3 rounded-pill">Next Suggestion</span></h4>

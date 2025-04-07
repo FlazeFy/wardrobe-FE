@@ -9,10 +9,10 @@ input[type="file"]::file-selector-button {
     margin-bottom: var(--spaceMini);
     color: var(--whiteColor) !important;
 }
-.btn, .swal2-actions button, input[type="file"]::file-selector-button {
+.btn, .swal2-actions button, input[type="file"]::file-selector-button, .navbar-toggler {
     padding: var(--spaceMD) var(--spaceLG) !important;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
 }
 .btn-link {
     border: 1.75px solid var(--blackColor) !important;
@@ -34,7 +34,7 @@ input[type="file"]::file-selector-button {
     text-transform: capitalize !important;
     border-radius: var(--roundedLG);
 }
-.btn-primary, input[type="file"]::file-selector-button {
+.btn-primary, input[type="file"]::file-selector-button, .navbar-toggler {
     background-image: linear-gradient(to bottom right, var(--darkInfoBG), var(--infoBG));
 }
 .btn-success, .swal2-confirm {

@@ -1,4 +1,5 @@
 "use client"
+import { convertDatetimeBasedLocal } from "@/modules/helpers/converter";
 import { faCheck, faFire, faFloppyDisk, faMagnifyingGlass, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useRef } from "react"
@@ -79,7 +80,7 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
                                         <div key={index} style={{ borderBottom: "1.5px solid #ccc" }} className="mb-2">
                                             <div className="text-start">
                                                 <h5 className="mb-0 text-start">{dt.outfit_name}</h5>
-                                                <p className="text-secondary">Generated at {dt.created_at}</p>
+                                                <p className="text-secondary">Generated at {convertDatetimeBasedLocal(dt.created_at)}</p>
                                             </div>
                                             <table className="table table-bordered">
                                                 <thead>
@@ -102,7 +103,7 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
                                                                 <td>{clothes.clothes_merk}</td>
                                                                 <td>{clothes.clothes_made_from}</td>
                                                                 <td>{clothes.clothes_color}</td>
-                                                                <td>{clothes.last_used ?? '-'}</td>
+                                                                <td>{clothes.last_used ? convertDatetimeBasedLocal(clothes.last_used) :'-'}</td>
                                                                 <td>
                                                                     <a className="btn btn-danger"><FontAwesomeIcon icon={faTrash}/></a>
                                                                 </td>
