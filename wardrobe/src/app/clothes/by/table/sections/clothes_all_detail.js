@@ -87,21 +87,21 @@ export default function ClothesSectionAllDetail(props) {
                                     </td>
                                     <td>
                                         <h6 className='m-0'>Merk</h6>
-                                        <p className='m-0 mb-2'>{el.clothes_merk ?? '-'}</p>
+                                        <p className='m-0 mb-2' style={{textTransform:"capitalize"}}>{el.clothes_merk ?? '-'}</p>
                                         <h6 className='m-0'>Size</h6>
                                         <p className='m-0 mb-2'>{el.clothes_size}</p>
                                         <h6 className='m-0'>Gender</h6>
-                                        <p className='m-0 mb-2'>{el.clothes_gender}</p>
+                                        <p className='m-0 mb-2' style={{textTransform:"capitalize"}}>{el.clothes_gender}</p>
                                         <h6 className='m-0'>Made From</h6>
-                                        <p className='m-0 mb-2'>{el.clothes_made_from}</p>
+                                        <p className='m-0 mb-2' style={{textTransform:"capitalize"}}>{el.clothes_made_from}</p>
                                         <h6 className='m-0'>Color</h6>
-                                        <p className='m-0'>{el.clothes_color}</p>
+                                        <p className='m-0' style={{textTransform:"capitalize"}}>{el.clothes_color}</p>
                                     </td>
                                     <td>
                                         <h6 className='m-0'>Category</h6>
                                         <p className='m-0 mb-2'>{getCleanTitleFromCtx(el.clothes_category)}</p>
                                         <h6 className='m-0'>Type</h6>
-                                        <p className='m-0'>{el.clothes_type}</p>
+                                        <p className='m-0' style={{textTransform:"capitalize"}}>{el.clothes_type}</p>
                                     </td>
                                     <td>{el.clothes_price ? <>Rp. {numberToPrice(el.clothes_price)}</> : '-'}</td>
                                     <td className='text-center'>

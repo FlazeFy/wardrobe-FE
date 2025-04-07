@@ -57,19 +57,22 @@ export default function LandingSectionLastOutfit(props) {
             })
             Swal.close()
         }
+
+        const defineLastHitWeather = (date) => {
+            const pad = (n) => n.toString().padStart(2, '0')
+            const formatted = `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}`
+            setLastHitWeather(formatted)
+        }
     
-        if (timeDiffInSec < 6000 && oldTimeHit) {
+        if (timeDiffInSec < 600 && oldTimeHit) {
             const oldData = JSON.parse(getLocal('weather'))
             setWeather(oldData)
+            const date = new Date(oldTime)
+            defineLastHitWeather(date)
         } else {
             fetchData()
+            defineLastHitWeather(now)
         }
-
-        const date = new Date(oldTime)
-        const pad = (n) => n.toString().padStart(2, '0')
-        const formatted = `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}`
-
-        setLastHitWeather(formatted)
     }
 
     const fetchLastOutfit = () => {

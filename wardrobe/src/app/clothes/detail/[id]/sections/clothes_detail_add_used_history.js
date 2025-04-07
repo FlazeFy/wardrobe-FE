@@ -78,7 +78,7 @@ export default function ClothesDetailAddUsedHistory(props) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "You can't add used history from deleted clothes. Recover it to make it useable",
+            text: "You can't add used history from deleted clothes. Recover it to make it editable",
             confirmButtonText: "Okay!"
         })
     }

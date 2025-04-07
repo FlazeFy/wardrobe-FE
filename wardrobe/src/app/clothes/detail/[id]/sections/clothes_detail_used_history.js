@@ -23,7 +23,7 @@ export default function ClothesDetailUsedHistory(props) {
                                     <td className='text-center'>{dt.used_context}</td>
                                     <td>{dt.clothes_note ?? <span className='text-secondary fst-italic'>- No Notes Provided -</span>}</td>
                                     <td>{convertDatetimeBasedLocal(dt.created_at)}</td>
-                                    <td className='text-center'><HardDeleteClothesUsedById id={dt.id} fetchClothes={props.fetchClothes}/></td>
+                                    <td className='text-center'><HardDeleteClothesUsedById id={dt.id} fetchClothes={props.fetchClothes} is_deleted={props.is_deleted}/></td>
                                 </tr>
                             )
                         })

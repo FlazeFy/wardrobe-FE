@@ -240,7 +240,7 @@ export default function GeneratedSectionRandomOutift(props) {
                             items.map((dt) => {
                                 if (dt.selected) {
                                     return (
-                                        <div className='col-lg-3 col-md-3 col-sm-6 col-6 mx-auto' key={dt.clothes_type}>
+                                        <div className='col-lg-2 col-md-3 col-sm-4 col-6 mx-auto' key={dt.clothes_type}>
                                             <OrganismsClothesHeader items={dt} type="random"/>
                                         </div>
                                     );

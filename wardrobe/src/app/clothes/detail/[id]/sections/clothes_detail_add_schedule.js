@@ -94,7 +94,7 @@ export default function ClothesDetailAddSchedule(props) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "You can't add schedule from deleted clothes. Recover it to make it useable",
+            text: "You can't add schedule from deleted clothes. Recover it to make it editable",
             confirmButtonText: "Okay!"
         })
     }

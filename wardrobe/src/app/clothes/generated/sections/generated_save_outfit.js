@@ -1,10 +1,11 @@
 "use client"
-import { convertDatetimeBasedLocal } from "@/modules/helpers/converter";
-import { faCheck, faFire, faFloppyDisk, faMagnifyingGlass, faTrash } from "@fortawesome/free-solid-svg-icons";
+import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
+import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
+import { faCheck, faFire, faFloppyDisk, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useRef } from "react"
 import Swal from "sweetalert2";
-import { getLocal } from "../../../../modules/storages/local";
+import { getLocal, storeLocal } from "../../../../modules/storages/local";
 import GeneratedSectionSaveLocalGenerated from "./generated_save_local_generated";
 
 const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
@@ -54,15 +55,39 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
         Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Generated outfit has been reset!",
+            text: "Generated outfit has been reset",
+            confirmButtonText: "Okay!"
+        })
+    }
+
+    const removeClothes = (idx, id) => {
+        Swal.showLoading()
+        let localHistory = JSON.parse(getLocal('generated_outfit_history'))
+        let msg = ''
+    
+        if (localHistory[idx].data.length === 1) {
+            localHistory.splice(idx, 1)
+            msg = "Generated outfit has been reset"
+        } else {
+            localHistory[idx].data = localHistory[idx].data.filter(dt => dt.id !== id)
+            msg = "Clothes has been removed"
+        }
+    
+        localHistory.length > 0 ? storeLocal('generated_outfit_history', JSON.stringify(localHistory)) : localStorage.removeItem('generated_outfit_history')
+        fetchLocalHistory()
+    
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: msg,
             confirmButtonText: "Okay!"
         })
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>
     } else {
         return (
             <>
@@ -99,13 +124,13 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
                                                         dt.data.map((clothes, i) => (
                                                             <tr key={i}>
                                                                 <td>{clothes.clothes_name}</td>
-                                                                <td>{clothes.clothes_type}</td>
-                                                                <td>{clothes.clothes_merk}</td>
-                                                                <td>{clothes.clothes_made_from}</td>
-                                                                <td>{clothes.clothes_color}</td>
+                                                                <td style={{textTransform:"capitalize"}}>{clothes.clothes_type}</td>
+                                                                <td style={{textTransform:"capitalize"}}>{clothes.clothes_merk}</td>
+                                                                <td style={{textTransform:"capitalize"}}>{clothes.clothes_made_from}</td>
+                                                                <td style={{textTransform:"capitalize"}}>{clothes.clothes_color}</td>
                                                                 <td>{clothes.last_used ? convertDatetimeBasedLocal(clothes.last_used) :'-'}</td>
                                                                 <td>
-                                                                    <a className="btn btn-danger"><FontAwesomeIcon icon={faTrash}/></a>
+                                                                    <a className="btn btn-danger" onClick={(e) => removeClothes(index, clothes.id)}><FontAwesomeIcon icon={faTrash}/></a>
                                                                 </td>
                                                             </tr>
                                                         ))

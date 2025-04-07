@@ -116,7 +116,7 @@ export default function ClothesDetailEditForm(props) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "You can't edit deleted clothes. Recover it to make it useable",
+                text: "You can't edit deleted clothes. Recover it to make it editable",
                 confirmButtonText: "Okay!"
             })
         } else {

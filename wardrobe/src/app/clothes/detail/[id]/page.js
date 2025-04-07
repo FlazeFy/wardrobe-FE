@@ -131,7 +131,7 @@ export default function ClothesDetailPage({params}) {
                                     <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at} with_button={true}/></h5>
                             </div>
                             <AtomsBreakLine length={1}/>
-                            <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes}/>
+                            <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes} is_deleted={items.detail.deleted_at ? true : false}/>
                         </div>
                     </div>
                     <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">

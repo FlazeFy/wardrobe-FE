@@ -90,15 +90,15 @@ export default function ClothesSectionAllDeletedClothes(props) {
                                         <h6 className='m-0'>Size</h6>
                                         <p className='m-0 mb-2'>{el.clothes_size}</p>
                                         <h6 className='m-0'>Gender</h6>
-                                        <p className='m-0 mb-2'>{el.clothes_gender}</p>
+                                        <p className='m-0 mb-2' style={{textTransform:"capitalize"}}>{el.clothes_gender}</p>
                                         <h6 className='m-0'>Color</h6>
-                                        <p className='m-0'>{el.clothes_color}</p>
+                                        <p className='m-0' style={{textTransform:"capitalize"}}>{el.clothes_color}</p>
                                     </td>
                                     <td>
                                         <h6 className='m-0'>Category</h6>
                                         <p className='m-0 mb-2'>{getCleanTitleFromCtx(el.clothes_category)}</p>
                                         <h6 className='m-0'>Type</h6>
-                                        <p className='m-0'>{el.clothes_type}</p>
+                                        <p className='m-0' style={{textTransform:"capitalize"}}>{el.clothes_type}</p>
                                     </td>
                                     <td>
                                         <h6 className='m-0'>Deleted At</h6>
