@@ -115,6 +115,9 @@
 .btn-navigate-menu-custom#add_clothes_btn {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/add_clothes_menu.jpg');
 }
+.btn-navigate-menu-custom#used_clothes_btn {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/generate_outfit.jpg');
+}
 .btn-navigate-menu-custom#wash_clothes_btn {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.55)), url('/images/wash_menu.jpg');
 }

@@ -29,12 +29,20 @@ export default function ClothesPage() {
                     </div>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column">
-                    <div className="container custom-container flex-grow-1">
-                        <AtomsBreakLine length={1} />
-                        <ClothesSectionTotalByType ctx="total_clothes_by_type" />
-                        <AtomsBreakLine length={1} />
-                    </div>
                     <div className="row h-100">
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-stretch">
+                            <div className="container custom-container flex-grow-1">
+                                <ClothesSectionTotalByType ctx="total_clothes_by_type" />
+                            </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center">
+                            <a className="btn btn-navigate-menu-custom text-start" id="used_clothes_btn" href={"/clothes/used"}>
+                                <h2 style={{fontWeight:"800"}}><span className="text-main">Used</span> History</h2>
+                                <p>Wanna see the used history of all your clothes? so you can decide the next clothes to use</p>
+                                <AtomsBreakLine length={1} />
+                            </a>
+                            <AtomsBreakLine length={1} />
+                        </div>
                         <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-stretch">
                             <a className="btn btn-navigate-menu-custom text-start" id="add_clothes_btn" href={"/clothes/add"}>
                                 <h2 style={{fontWeight:"800"}}>Add <span className="text-main">Clothes</span></h2>

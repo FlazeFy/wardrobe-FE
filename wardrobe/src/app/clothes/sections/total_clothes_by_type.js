@@ -72,7 +72,7 @@ export default function ClothesSectionTotalByType(props) {
         )
     } else {
         return (
-            <div className='d-block mx-auto' style={{width:"700px"}}> 
+            <div className='d-block mx-auto'> 
                 <div className='d-flex justify-content-end'>
                     <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>All <span className="text-main">Types</span></h1>
                 </div>
