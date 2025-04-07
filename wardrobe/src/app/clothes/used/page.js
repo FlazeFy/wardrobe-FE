@@ -5,6 +5,7 @@ import MoleculesFooter from "../../../components/molecules/molecules_footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import UsedAllHistory from "./sections/used_all_history";
+import UsedMonthlyClothesUsed from "./sections/used_monthly_clothes_used";
 
 export default function ClothesUsed() {
     return (
@@ -26,7 +27,8 @@ export default function ClothesUsed() {
                     </div>
                     <AtomsBreakLine length={1}/>
                     <div className="form-container">
-                        <h2 className="fw-bold">Used Summary</h2>
+                        <h2 className="fw-bold">Total Used Clothes per Month</h2>
+                        <UsedMonthlyClothesUsed year={2025}/>
                     </div>
                 </div>
                 <div className="col-lg-6 col-md-12 col-sm-12 col-12">

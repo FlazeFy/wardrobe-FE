@@ -3,7 +3,7 @@ import { convertDatetimeBasedLocal } from '@/modules/helpers/converter'
 import { getCookie } from '@/modules/storages/cookie'
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
-import HardDeleteUsedHistory from './hard_delete_used_history'
+import UsedHardDeleteUsedHistory from './used_hard_delete_used_history'
 
 export default function UsedAllHistory(props) {
     //Initial variable
@@ -78,7 +78,7 @@ export default function UsedAllHistory(props) {
                                             {dt.clothes_note ?? <span className='text-secondary fst-italic'>- No Notes Provided -</span>}
                                         </td>
                                         <td>{convertDatetimeBasedLocal(dt.created_at)}</td>
-                                        <td className='text-center'><HardDeleteUsedHistory id={dt.id} fetchClothes={fetchUsedHistory}/></td>
+                                        <td className='text-center'><UsedHardDeleteUsedHistory id={dt.id} fetchClothes={fetchUsedHistory}/></td>
                                     </tr>
                                 )
                             })

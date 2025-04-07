@@ -6,7 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../modules/storages/cookie'
 
-export default function HardDeleteUsedHistory(props) {
+export default function UsedHardDeleteUsedHistory(props) {
     //Initial variable
     const tokenKey = getCookie("token_key")
 
