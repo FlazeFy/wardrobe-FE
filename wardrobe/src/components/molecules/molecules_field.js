@@ -10,9 +10,9 @@ export default function MoleculesField(props){
             }
             {
                 props.type == 'text' || props.type == 'number' || props.type == 'date' || props.type == 'password' ?
-                    <input className='form-control' defaultValue={props.defaultValue} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id}></input>
+                    <input className='form-control' value={props.defaultValue} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id}></input>
                 : props.type == 'textarea' ?
-                    <textarea className='form-control' style={{minHeight:"200px"}} defaultValue={props.defaultValue} id={props.id} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
+                    <textarea className='form-control' style={{minHeight:"200px"}} value={props.defaultValue} id={props.id} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
                 : props.type == 'select' ? 
                     <select className="form-select" onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id} value={props.defaultValue}>
                         {
@@ -24,8 +24,8 @@ export default function MoleculesField(props){
                 : props.type == 'toggle' ?
                     <Switch onChange={props.handleChange} checked={props.defaultValue} disabled={props.isDisabled ?? false} checkedIcon={false} uncheckedIcon={false}/>
                 : props.type == 'checkbox' ?
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id={props.id}></input>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" onChange={props.handleChange} id={props.id} checked={props.defaultValue} disabled={props.isDisabled}></input>
                         <label className="me-2">{props.title}</label>
                     </div>
                 : props.type == 'file' ?

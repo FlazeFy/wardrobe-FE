@@ -8,9 +8,11 @@ import Swal from 'sweetalert2'
 import MoleculesField from '../../components/molecules/molecules_field'
 import AtomsBreakLine from '../../components/atoms/atoms_breakline'
 import { getErrorValidation } from '../../modules/helpers/converter'
+import { getLocal } from '../../modules/storages/local'
 
 export default function LandingSectionLogin(props) {
-    const [username, setUsername] = useState("")
+    const usernameLocal = getLocal('username_key')
+    const [username, setUsername] = useState(usernameLocal ?? "")
     const [password, setPassword] = useState("")
     const [msgAll, setResMsgAll] = useState(null)
 
@@ -96,7 +98,7 @@ export default function LandingSectionLogin(props) {
                     <div className='container-fluid custom-container'>
                         <h1 className="mb-3" style={{fontSize:"74px", fontWeight:"800"}}><span className='text-main'>Hello</span> There!!!</h1>
                         <h5 className="mb-4">Do you have an account? type your username and password to proceed sign in, so you can using this apps</h5>
-                        <MoleculesField title="Username" type={'text'} id="username-input" handleChange={(e) => {
+                        <MoleculesField title="Username" type={'text'} id="username-input" defaultValue={username} handleChange={(e) => {
                             setUsername(e.target.value)
                         }}/>
                         <MoleculesField title="Password" type={'text'} id="password-input" handleChange={(e) => {

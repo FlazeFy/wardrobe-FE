@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '@/modules/storages/local'
+import { getErrorValidation } from '@/modules/helpers/converter'
 
 export default function ClothesAddForm(props) {
     //Initial variable
@@ -162,7 +163,7 @@ export default function ClothesAddForm(props) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: response.data.message,
+                    text: getErrorValidation(response.data.message),
                     confirmButtonText: "Okay!"
                 })
                 setResMsgAll(response.data.message)

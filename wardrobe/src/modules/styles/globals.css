@@ -122,3 +122,10 @@ hr {
   color: var(--whiteColor);
   padding: var(--spaceMD) var(--spaceXMD);
 }
+
+.pincode-input-text {
+  color: var(--blackColor);
+  font-weight: 600;
+  border-radius: var(--roundedLG);
+  margin-right: var(--spaceSM) !important;
+}
