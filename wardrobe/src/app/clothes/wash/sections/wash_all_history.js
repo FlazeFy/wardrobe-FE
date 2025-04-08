@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import OrganismsClothesWashBox from '../../../../components/organisms/organisms_clothes_wash_box'
-import MoleculesNoData from '@/components/molecules/molecules_no_data'
+import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 
 export default function WashSectionAllHistory(props) {
     //Initial variable

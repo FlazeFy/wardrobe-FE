@@ -1,5 +1,5 @@
 "use client"
-import { convertDatetimeBasedLocal } from '@/modules/helpers/converter';
+import { convertDatetimeBasedLocal } from '../../../../../modules/helpers/converter';
 import React from 'react'
 
 export default function ClothesDetailSectionFoundedOutfit(props) {

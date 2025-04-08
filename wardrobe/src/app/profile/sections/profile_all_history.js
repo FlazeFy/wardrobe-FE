@@ -5,9 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
-import ProfileSectionHardDeleteHistory from './profile_hard_delete_history'
-import { convertDatetimeBasedLocal } from '@/modules/helpers/converter'
-import OrganismsHistoryBox from '@/components/organisms/organisms_history_box'
+import OrganismsHistoryBox from '../../../components/organisms/organisms_history_box'
 
 export default function ProfileSectionAllHistory(props) {
     //Initial variable

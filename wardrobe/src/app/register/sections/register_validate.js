@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import PinInput from 'react-pin-input'
 import Swal from 'sweetalert2'
 import Axios from 'axios'
-import { getLocal, storeLocal } from '@/modules/storages/local'
-import { getErrorValidation } from '@/modules/helpers/converter'
+import { getLocal, storeLocal } from '../../../modules/storages/local'
+import { getErrorValidation } from '../../../modules/helpers/converter'
 
 export default function RegisterSectionValidate(props) {
     const [token, setToken] = useState("")

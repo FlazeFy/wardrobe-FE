@@ -5,7 +5,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
-import MoleculesNoData from '@/components/molecules/molecules_no_data'
+import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
 
 export default function OutfitSectionMonthlyTotalUsed(props) {
     //Initial variable

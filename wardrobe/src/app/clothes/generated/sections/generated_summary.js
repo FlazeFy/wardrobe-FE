@@ -3,8 +3,8 @@ import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_
 import { getLocal, storeLocal } from "../../../../modules/storages/local"
 import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
-import { getCookie } from "@/modules/storages/cookie"
-import { convertDatetimeBasedLocal } from "@/modules/helpers/converter"
+import { getCookie } from "../../../../modules/storages/cookie"
+import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter"
 
 export default function GeneratedSectionSummary(){
     //Initial variable

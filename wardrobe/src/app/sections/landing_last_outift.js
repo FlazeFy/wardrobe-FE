@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faDice, faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import { getCookie } from '@/modules/storages/cookie'
-import AtomsBreakLine from '@/components/atoms/atoms_breakline'
-import { convertDatetimeBasedLocal } from '@/modules/helpers/converter'
-import { getLocal, storeLocal } from '@/modules/storages/local'
-import MoleculesAlertBox from '@/components/molecules/molecules_alert_box'
+import { getCookie } from '../../modules/storages/cookie'
+import AtomsBreakLine from '../../components/atoms/atoms_breakline'
+import { convertDatetimeBasedLocal } from '../../modules/helpers/converter'
+import { getLocal, storeLocal } from '../../modules/storages/local'
+import MoleculesAlertBox from '../../components/molecules/molecules_alert_box'
 
 export default function LandingSectionLastOutfit(props) {
     const [error, setError] = useState(null)

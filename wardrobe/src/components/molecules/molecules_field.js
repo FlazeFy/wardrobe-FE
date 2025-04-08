@@ -1,4 +1,4 @@
-import { getCleanTitleFromCtx } from "@/modules/helpers/converter"
+import { getCleanTitleFromCtx } from "../../modules/helpers/converter"
 import ReactStars from "react-stars"
 import Switch from "react-switch"
 

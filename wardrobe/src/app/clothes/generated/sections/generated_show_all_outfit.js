@@ -7,6 +7,7 @@ import OrganismsOutfit from "../../../../components/organisms/organisms_outfit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { getCookie } from "../../../../modules/storages/cookie";
+import MoleculesNoData from "../../../../components/molecules/molecules_no_data";
 
 export default function GeneratedSectionShowAllOutfit(props) {
     // Initial variables
@@ -35,8 +36,8 @@ export default function GeneratedSectionShowAllOutfit(props) {
                 Swal.close()
                 setIsLoaded(true)
 
-                setItems((prevItems) => [...prevItems, ...result.data.data])
-                setMaxPage(result.data.last_page)
+                result.data ? setItems((prevItems) => [...prevItems, ...result.data.data]) : setItems(null)
+                setMaxPage(result.data ? result.data.last_page : 1)
             },
             (error) => {
                 Swal.close()
@@ -75,17 +76,13 @@ export default function GeneratedSectionShowAllOutfit(props) {
                 <AtomsBreakLine length={1} />
                 <div className="row">
                     {
-                        items.length > 0 ? (
+                        items && items.length > 0 ? (
                             items.map((dt, index) => (
                                 <div key={index} className="col-lg-6 col-md-6 col-sm-12 col-12 mx-auto">
                                     <OrganismsOutfit items={dt} />
                                 </div>
                             ))
-                        ) : (
-                            <div className="my-2">
-                                <p className="text-secondary">- No Outfit Found -</p>
-                            </div>
-                        )
+                        ) : <MoleculesNoData title="No Outfit Found"/>
                     }
                 </div>
                 { page < maxPage && <a className="btn btn-link mt-3" onClick={seeMore}><FontAwesomeIcon icon={faMagnifyingGlass}/> Show More</a> }

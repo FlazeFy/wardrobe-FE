@@ -5,8 +5,8 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import MoleculesField from '../../../components/molecules/molecules_field'
 import Axios from 'axios'
-import { getErrorValidation } from '@/modules/helpers/converter'
-import { storeLocal } from '@/modules/storages/local'
+import { getErrorValidation } from '../../../modules/helpers/converter'
+import { storeLocal } from '../../../modules/storages/local'
 
 export default function RegisterSectionForm(props) {
     // Services

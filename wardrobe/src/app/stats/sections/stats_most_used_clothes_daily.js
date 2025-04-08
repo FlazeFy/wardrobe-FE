@@ -57,7 +57,7 @@ export default function StatsSectionMostUsedClothesDaily(props) {
             <> 
                 {
                     items.map((dt, idx)=>{
-                        return <div className='mb-2'>
+                        return <div className='mb-2' key={"used-clothes-"+idx}>
                             <h4 data-bs-toggle="collapse" href={"#collapseMostUsedDaily_"+dt.day}><span className='btn btn-primary rounded-pill px-3 w-100 text-start'>
                                 {dt.day == today && <a className='btn btn-danger py-1 px-3'>Today</a>} {dt.day}</span>
                             </h4>
@@ -65,8 +65,8 @@ export default function StatsSectionMostUsedClothesDaily(props) {
                                 <div className='row' id={`clothes_holder_${idx+1}`}>
                                     {
                                         dt.clothes && dt.clothes.length > 0 ?
-                                            dt.clothes.map(cl => {
-                                                return <div className='col-lg-3 col-md-4 col-sm-6 col-6'>
+                                            dt.clothes.map((cl,cl_idx) => {
+                                                return <div className='col-lg-3 col-md-4 col-sm-6 col-6' key={"found-clothes-"+cl_idx}>
                                                     <OrganismsClothesHeader items={cl} type="schedule"/>
                                                 </div>
                                             })

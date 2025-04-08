@@ -19,7 +19,7 @@ export default function ProfileSectionEditForm(props) {
             <MoleculesField title="Email" type={'text'} defaultValue={email} id="email-input" handleChange={(e) => {
                 setEmail(e.target.value)
             }}/>
-            <MoleculesField title="Telegram User ID" type={'text'} defaultValue={telegramUserId} id="telegram_user_id-input" handleChange={(e) => {
+            <MoleculesField title="Telegram User ID" type={'text'} defaultValue={telegramUserId ?? ""} id="telegram_user_id-input" handleChange={(e) => {
                 setTelegramUserId(e.target.value)
             }}/>
             <button className='btn btn-success mt-3'><FontAwesomeIcon icon={faFloppyDisk}/> Save Changes</button>

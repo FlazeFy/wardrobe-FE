@@ -4,7 +4,7 @@ import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from '../../modules/h
 import { faArrowRight, faMars, faPlus, faVenus, faVenusMars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoleculesClothesStatus from '../molecules/molecules_clothes_status'
-import ClothesDetailAddUsedHistory from '@/app/clothes/detail/[id]/sections/clothes_detail_add_used_history'
+import ClothesDetailAddUsedHistory from '../../app/clothes/detail/[id]/sections/clothes_detail_add_used_history'
 
 export default function OrganismsClothesHeader(props) {
     const handleBoxClick = (id, type) => {

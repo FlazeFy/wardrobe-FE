@@ -1,4 +1,5 @@
 "use client"
+import MoleculesNoData from '../../../components/molecules/molecules_no_data'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
@@ -78,7 +79,10 @@ export default function ClothesSectionTotalByType(props) {
                 </div>
                 <div className='text-end' id="clothes_type_summary-holder">
                     {
-                        items.map((dt, idx) => <h4 className="mb-0" key={idx}><b>{dt.total}</b> {dt.context}</h4>)
+                        items && items.length > 0 ? 
+                            items.map((dt, idx) => <h4 className="mb-0" key={idx}><b>{dt.total}</b> {dt.context}</h4>)
+                        :
+                            <MoleculesNoData title="No Clothes Found" width={"100px"}/>
                     }
                 </div>
             </div>

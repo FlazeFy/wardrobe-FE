@@ -4,7 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import { convertDatetimeBasedLocal } from '@/modules/helpers/converter'
+import { convertDatetimeBasedLocal } from '../../../../modules/helpers/converter'
 
 export default function WashSectionSummary(props) {
     //Initial variable

@@ -1,4 +1,4 @@
-import { getLocal } from "@/modules/storages/local"
+import { getLocal } from "../../storages/local"
 import Axios from 'axios'
 import Swal from "sweetalert2"
 

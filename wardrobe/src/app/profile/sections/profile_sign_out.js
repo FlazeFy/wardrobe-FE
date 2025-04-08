@@ -5,8 +5,8 @@ import Swal from 'sweetalert2'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../modules/storages/cookie'
-import { getLocal } from '@/modules/storages/local'
-import { postSaveOutfit } from '@/modules/api/outfit/service'
+import { getLocal } from '../../../modules/storages/local'
+import { postSaveOutfit } from '../../../modules/api/outfit/service'
 
 export default function ProfileSectionSignOut(props) {
     //Initial variable
@@ -37,9 +37,11 @@ export default function ProfileSectionSignOut(props) {
                                 title: "Success!",
                                 text: response.data.message,
                                 icon: "success",
+                                allowOutsideClick: false,
                                 confirmButtonText: "Okay!"
                             }).then((result) => {
                                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
+                                    localStorage.clear()
                                     document.cookie = "cookieName=; path=/"
                                     window.location.href = '/'
                                 }

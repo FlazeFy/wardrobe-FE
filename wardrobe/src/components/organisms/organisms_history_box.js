@@ -1,5 +1,5 @@
 "use client"
-import ProfileSectionHardDeleteHistory from '@/app/profile/sections/profile_hard_delete_history'
+import ProfileSectionHardDeleteHistory from '../../app/profile/sections/profile_hard_delete_history'
 import React from 'react'
 import { convertDatetimeBasedLocal } from '../../modules/helpers/converter'
 

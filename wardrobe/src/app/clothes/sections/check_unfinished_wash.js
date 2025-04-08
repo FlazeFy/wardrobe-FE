@@ -7,7 +7,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
-import AtomsBreakLine from '@/components/atoms/atoms_breakline'
+import AtomsBreakLine from '../../../components/atoms/atoms_breakline'
 
 export default function ClothesSectionUnfinishedWash(props) {
     //Initial variable

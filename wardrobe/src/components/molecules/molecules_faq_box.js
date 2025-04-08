@@ -1,4 +1,4 @@
-import { convertDatetimeBasedLocal } from "@/modules/helpers/converter";
+import { convertDatetimeBasedLocal } from "../../modules/helpers/converter";
 
 export default function MoleculesFAQBox(props) {
     return (

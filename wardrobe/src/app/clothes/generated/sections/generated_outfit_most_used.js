@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import MoleculesChartBar from '../../../../components/molecules/molecules_chart_bar'
+import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 
 export default function GeneratedSectionOutfitMostUsed(props) {
     //Initial variable
@@ -54,7 +55,7 @@ export default function GeneratedSectionOutfitMostUsed(props) {
             <div className="mx-4 text-center mx-auto form-container" style={{ width: "1280px" }}>
                 <h1 className="mb-3" style={{ fontSize: "74px", fontWeight: "800" }}>Most Used</h1>
                 <h5 className="text-secondary">We have count the most used outfit and its total</h5> 
-                <MoleculesChartBar items={items}/>
+                { items ? <MoleculesChartBar items={items}/> : <MoleculesNoData title="No Clothes Found"/> } 
             </div>
         )
     }

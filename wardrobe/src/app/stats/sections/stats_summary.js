@@ -88,8 +88,8 @@ export default function StatsSectionSummary(props) {
                         <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>The <span className="text-main">Price</span></h1>
                     </div>
                     <div className='text-start'>
-                        <h4 className="mb-0"><b>{formatCurrency(items.max_price)}</b> <span className='text-white'>Most Expensive</span></h4>
-                        <h4 className="mb-0"><b>{formatCurrency(items.avg_price)}</b> <span className='text-white'>Average</span></h4>
+                        <h4 className="mb-0"><b>{items.max_price ? formatCurrency(items.max_price) : "-"}</b> <span className='text-white'>Most Expensive</span></h4>
+                        <h4 className="mb-0"><b>{items.avg_price ? formatCurrency(items.avg_price) : "-"}</b> <span className='text-white'>Average</span></h4>
                     </div>
                 </div>
             </div>

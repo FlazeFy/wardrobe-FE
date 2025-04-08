@@ -1,5 +1,5 @@
 "use client"
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
+import { getCleanTitleFromCtx } from '../../modules/helpers/converter'
 import { faArrowRight, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'

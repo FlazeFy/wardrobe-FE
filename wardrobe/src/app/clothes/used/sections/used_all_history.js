@@ -1,6 +1,7 @@
 "use client"
-import { convertDatetimeBasedLocal } from '@/modules/helpers/converter'
-import { getCookie } from '@/modules/storages/cookie'
+import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
+import { convertDatetimeBasedLocal } from '../../../../modules/helpers/converter'
+import { getCookie } from '../../../../modules/storages/cookie'
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import UsedHardDeleteUsedHistory from './used_hard_delete_used_history'
@@ -29,7 +30,7 @@ export default function UsedAllHistory(props) {
             (result) => {
                 Swal.close()
                 setIsLoaded(true)
-                setItems(result.data.data)  
+                setItems(result.data ? result.data.data :null)  
             },
             (error) => {
                 Swal.close()
@@ -87,7 +88,7 @@ export default function UsedAllHistory(props) {
                 </table>
             )
         } else {
-            return <div className="my-2"><p className='text-secondary'>- No Used History Found -</p></div>
+            return <MoleculesNoData title="No Clothes Found"/>
         }
     }
 }
