@@ -26,7 +26,7 @@ export default function ClothesUsed() {
                         <p>You can see past used history of the clothes, summary and also statistic of it!</p>
                     </div>
                     <AtomsBreakLine length={1}/>
-                    <div className="form-container">
+                    <div className="form-container" id="total_used_clothes_per_month_stats-section">
                         <h2 className="fw-bold">Total Used Clothes per Month</h2>
                         <UsedMonthlyClothesUsed year={2025}/>
                     </div>

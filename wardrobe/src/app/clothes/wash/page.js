@@ -28,12 +28,12 @@ export default function ClothesWash() {
                     </div>
                     <ClothesSectionUnfinishedWash source="wash_page"/>
                     <AtomsBreakLine length={1}/>
-                    <div className="form-container">
+                    <div className="form-container" id="wash_summary-section">
                         <h2 className="fw-bold">Wash Summary</h2>
                         <WashSectionSummary/>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-12 col-sm-12 col-12" id="history_of_wash_list-section">
                     <h2 className="fw-bold">History Of Wash</h2>
                     <WashSectionAllHistory/>
                 </div>

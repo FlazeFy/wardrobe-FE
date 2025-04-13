@@ -5,11 +5,9 @@ import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
 import MoleculesFooter from "../../../../components/molecules/molecules_footer";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
+import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
 import ClothesDetailEditForm from "./sections/clothes_detail_edit_form";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
 import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history";
 import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete";
@@ -17,9 +15,7 @@ import ClothesDetailSchedule from "./sections/clothes_detail_schedule";
 import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule";
 import { getCookie } from "../../../../modules/storages/cookie";
 import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit";
-import ClothesDetailCheckDeleted from "./sections/clothes_detail_check_deleted";
-import ClothesDetailCheckSchedule from "./sections/clothes_detail_check_schedule";
-import ClothesDetailSectionExportData from "./sections/clothes_detail_export_data";
+import DetailSectionClothesHeader from "./sections/detail_clothes_header";
 
 export default function ClothesDetailPage({params}) {
     //Initial variable
@@ -76,33 +72,7 @@ export default function ClothesDetailPage({params}) {
                 <div className="row">
                     <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>
-                        <div className="d-flex justify-content-start">
-                            <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
-                                <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
-                            </div>
-                            <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
-                                <h2 className="mb-0">Category</h2>
-                                <h4 className="mb-0 text-secondary">{getCleanTitleFromCtx(items.detail.clothes_category)}</h4>
-                            </div>
-                            <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
-                                <h2 className="mb-0">Type</h2>
-                                <h4 className="mb-0 text-secondary">{items.detail.clothes_type}</h4>
-                            </div>
-                            <div>
-                                <h2 className="mb-0">Size</h2>
-                                <h4 className="mb-0 text-secondary">{items.detail.clothes_size}</h4>
-                            </div>
-                        </div>
-                        <hr></hr>
-                        <div className="container-fluid custom-container">
-                            <ClothesDetailSectionExportData id={params.id}/>
-                            <hr></hr>
-                            <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.detail.clothes_name}</h1>
-                            <ClothesDetailCheckDeleted items={items.detail.deleted_at}/>
-                            <ClothesDetailCheckSchedule items={items.schedule}/>
-                            <p>{items.detail.clothes_desc}</p>
-                            <AtomsBreakLine length={2}/>
-                        </div>
+                        <DetailSectionClothesHeader items={items.detail} id={params.id} schedule={items.schedule}/>
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>

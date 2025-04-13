@@ -16,7 +16,6 @@ export default function ClothesDetailSectionExportData(props) {
             Swal.showLoading()
             const response = await Axios.get(`http://127.0.0.1:8000/api/v1/export/clothes/detail/pdf/${id}`, {
                 headers: {
-                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                     'Authorization': `Bearer ${tokenKey}`,
                 },
                 responseType: 'blob'

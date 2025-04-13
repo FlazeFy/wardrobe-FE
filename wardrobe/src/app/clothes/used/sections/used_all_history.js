@@ -56,7 +56,7 @@ export default function UsedAllHistory(props) {
     } else {
         if(items){
             return (
-                <table className="table table-bordered">
+                <table className="table table-bordered" id="used_history-table">
                     <thead>
                         <tr>
                             <th scope="col">Clothes</th>
