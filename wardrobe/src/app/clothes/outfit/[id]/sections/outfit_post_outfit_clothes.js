@@ -32,7 +32,6 @@ export default function OutfitDetailPostOutfitClothes(props) {
         .then(res => res.json())
             .then(
             (result) => {
-                console.log(props.selectedClothes)
                 Swal.close()
                 setIsLoaded(true)
                 setItems(result.data.data)
@@ -94,6 +93,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                 setResMsgAll(response.data.message)
             }
         } catch (error) {
+            Swal.close()
             if (error.response && error.response.status === 422) {
                 Swal.fire({
                     title: "Oops...",
@@ -102,7 +102,6 @@ export default function OutfitDetailPostOutfitClothes(props) {
                     confirmButtonText: "Okay!"
                 })
             } else {
-                Swal.close()
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -265,7 +264,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                                             attachedItem.length > 0 ?
                                                 attachedItem.map((dt,idx) => {
                                                     return (
-                                                        <div className='d-flex justify-content-start mb-2 box-clothes p-2' onClick={(e) => handleRemove(dt, 'attached')}>
+                                                        <div key={idx} className='d-flex justify-content-start mb-2 box-clothes p-2' onClick={(e) => handleRemove(dt, 'attached')}>
                                                             <img className='img-profile' src={dt.clothes_image ?? "/images/footwear.png"}></img>
                                                             <div className='ms-2 mt-1'>
                                                                 <h6 className='mb-0'>{dt.clothes_name}</h6>
@@ -282,7 +281,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                                             selectedItem.length > 0 ?
                                                 selectedItem.map((dt,idx) => {
                                                     return (
-                                                        <div className='d-flex justify-content-start mb-2 box-clothes p-2' onClick={(e) => handleRemove(dt,'selected')}>
+                                                        <div key={idx} className='d-flex justify-content-start mb-2 box-clothes p-2' onClick={(e) => handleRemove(dt,'selected')}>
                                                             <img className='img-profile' src={dt.clothes_image ?? "/images/footwear.png"}></img>
                                                             <div className='ms-2 mt-1'>
                                                                 <h6 className='mb-0'>{dt.clothes_name}</h6>

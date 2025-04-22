@@ -72,7 +72,7 @@ export default function ProfileSectionAllHistory(props) {
                 {
                     items ? 
                         items.map((dt, idx) => (
-                            <OrganismsHistoryBox items={dt} fetchHistory={fetchHistory}/>
+                            <OrganismsHistoryBox key={idx} items={dt} fetchHistory={fetchHistory}/>
                         ))
                     : <MoleculesNoData title="No History Found"/>
                 }

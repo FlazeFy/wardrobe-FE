@@ -9,7 +9,7 @@ import ClothesDetailCheckSchedule from './clothes_detail_check_schedule'
 import ClothesDetailSectionExportData from './clothes_detail_export_data'
 
 export default function DetailSectionClothesHeader(props) {
-    return <>
+    return <div id="clothes_detail_header-section">
         <div className="d-flex justify-content-start">
             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
                 <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
@@ -37,6 +37,6 @@ export default function DetailSectionClothesHeader(props) {
             <p>{props.items.clothes_desc}</p>
             <AtomsBreakLine length={2}/>
         </div>
-    </>
+    </div>
 }
   

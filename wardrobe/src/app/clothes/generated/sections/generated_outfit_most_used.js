@@ -52,7 +52,7 @@ export default function GeneratedSectionOutfitMostUsed(props) {
         )
     } else {
         return (
-            <div className="mx-4 text-center mx-auto form-container" style={{ width: "1280px" }}>
+            <div className="mx-4 text-center mx-auto form-container" style={{ width: "1280px" }} id="most_used_outfit_stats-section">
                 <h1 className="mb-3" style={{ fontSize: "74px", fontWeight: "800" }}>Most Used</h1>
                 <h5 className="text-secondary">We have count the most used outfit and its total</h5> 
                 { items ? <MoleculesChartBar items={items}/> : <MoleculesNoData title="No Clothes Found"/> } 

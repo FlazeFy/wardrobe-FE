@@ -21,10 +21,13 @@ export default function ClothesOutfitPage({params, ...props}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
+    const [usedHistoryItems, setUsedHistoryItems] = useState(null)
+    const [usedHistoryMaxPage, setUsedHistoryMaxPage] = useState(0)
     const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         fetchOutfit()
+        fetchAllHistory()
     },[])
 
     const fetchOutfit = () => {
@@ -54,6 +57,42 @@ export default function ClothesOutfitPage({params, ...props}) {
                 setError(error)
             }
         )
+    }
+
+    const fetchAllHistory = () => {
+        Swal.showLoading()
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/${params.id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${tokenKey}`, 
+            },
+        })
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(res.status)
+            }
+            return res.json()
+        })
+        .then((result) => {
+            Swal.close()
+            setIsLoaded(true)
+            setUsedHistoryItems(result.data.data)
+            setUsedHistoryMaxPage(result.data.last_page)
+        })
+        .catch((error) => {
+            Swal.close()
+            if (error.message != 404) {
+                setError(error)
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
+                });
+            } else {
+                setIsLoaded(true)
+            }
+        });
     }
 
     if (error) {
@@ -92,11 +131,11 @@ export default function ClothesOutfitPage({params, ...props}) {
                         <hr></hr>
                         <div className="container-fluid custom-container">
                             <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>{items.outfit_name}</h1>   
-                            <p>{items.outfit_note ?? <span className="fst-italic">- No Description Provided -</span>}</p>
+                            <p className="outfit-note">{items.outfit_note ?? <span className="fst-italic">- No Description Provided -</span>}</p>
                             <AtomsBreakLine length={2}/>
                             <div className="row">
                                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <OutfitSectionPostOutfitHistory fetchOutfit={fetchOutfit} id={params.id}/>
+                                    <OutfitSectionPostOutfitHistory fetchOutfit={fetchOutfit} fetchAllHistory={fetchAllHistory} id={params.id}/>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                                     <OutfitDetailPostOutfitClothes fetchOutfit={fetchOutfit} id={params.id} selectedClothes={items.clothes}/>
@@ -104,7 +143,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <div className="col-lg-5 col-md-12 col-sm-12 col-12" id="attached_clothes-section">
                         <AtomsBreakLine length={2}/>
                         <OutfitSectionAttachedClothes items={items.clothes}/>
                         <AtomsBreakLine length={2}/>
@@ -113,12 +152,12 @@ export default function ClothesOutfitPage({params, ...props}) {
 
                 <div className="row">
                     <div className="col-lg-3 col-md-12 col-sm-12 col-12">
-                        <div className="form-container">
-                            <OutfitSectionUsedById fetchOutfit={fetchOutfit} id={params.id}/>
+                        <div className="form-container" id="used_history-section">
+                            <OutfitSectionUsedById fetchOutfit={fetchOutfit} fetchAllHistory={fetchAllHistory} id={params.id} items={usedHistoryItems}/>
                         </div>
                     </div>
                     <div className="col-lg-9 col-md-12 col-sm-12 col-12">
-                        <div className="form-container">
+                        <div className="form-container" id="total_used_outfit_per_month_stats-section">
                             <OutfitSectionMonthlyTotalUsed id={params.id}/>
                         </div>
                     </div>

@@ -23,7 +23,7 @@ export default function HardDeleteClothesUsedById(props) {
         } else {
             Swal.fire({
                 title: "Are you sure?",
-                text: "Want to permanentally delete this clothes used?",
+                text: "Want to permanentally delete this clothes used history?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "Yes, Delete it!",
@@ -71,5 +71,5 @@ export default function HardDeleteClothesUsedById(props) {
         }
     }
 
-    return <button className='btn btn-danger' onClick={(e)=>handleSubmit(props.id, props.is_deleted)}><FontAwesomeIcon icon={faTrash}/></button>
+    return <button className='btn btn-danger btn-delete' onClick={(e)=>handleSubmit(props.id, props.is_deleted)}><FontAwesomeIcon icon={faTrash}/></button>
 }

@@ -61,5 +61,5 @@ export default function ProfileSectionHardDeleteHistory(props) {
         })
     }
 
-    return <button className='btn btn-danger' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/></button>
+    return <button className='btn btn-danger btn-delete-history' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/></button>
 }

@@ -94,7 +94,7 @@ export default function ClothesDetailPage({params}) {
 
                 <div className="row">
                     <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="form-container">
+                        <div className="form-container" id="used_history-section">
                             <div style={{maxWidth:"50vw"}}>
                                 <h2 className="mb-0 fw-bold">Used History</h2>
                                 <h5 className="text-secondary">Start from <b>{convertDatetimeBasedLocal(items.last_used_history)}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
@@ -105,7 +105,7 @@ export default function ClothesDetailPage({params}) {
                         </div>
                     </div>
                     <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="form-container">
+                        <div className="form-container" id="schedule-section">
                             <h2 className="mb-0 fw-bold">Schedule</h2>
                             <h5 className="text-secondary">You can set weekly schedule for a clothes, so we can remind you night before the day of use. 
                                     <ClothesDetailAddSchedule fetchClothes={fetchClothes} id={params.id} ctx="add_schedule" deleted_at={items.detail.deleted_at}/></h5>

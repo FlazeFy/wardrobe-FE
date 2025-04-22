@@ -62,7 +62,7 @@ export default function OrganismsExportBox(props) {
     }
 
     return (
-        <div className='container-bordered'>
+        <div className='container-bordered' id={props.id}>
             <h5 className='mb-0'>{props.title}</h5>
             <p className='text-secondary'>{props.desc}</p>
             <a className='btn btn-success' style={{textTransform:"capitalize"}} onClick={(e) => handleDownload(props.ctx,props.type)}><FontAwesomeIcon icon={faDownload}/> Download {props.type}</a>

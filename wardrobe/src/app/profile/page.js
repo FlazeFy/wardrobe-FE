@@ -97,7 +97,7 @@ export default function ProfilePage(props) {
                             <ProfileSectionEditForm item={items}/>
                         </div>
                         <AtomsBreakLine length={2}/>
-                        <div className="form-container">
+                        <div className="form-container" id="export_data-section">
                             <ProfileSectionExportData/>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ export default function ProfilePage(props) {
                             <ProfileSectionAllHistory ctx="all_history"/>
                         </div>
                         <AtomsBreakLine length={2}/>
-                        <div className="form-container">
+                        <div className="form-container" id="send_question-section">
                             <ProfileSectionSendQuestion/>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ import HardDeleteSchedule from './hard_delete_schedule'
 export default function ClothesDetailSchedule(props) {
     if(props.items){
         return (
-            <table className="table table-bordered">
+            <table className="table table-bordered" id="schedule-table">
                 <thead>
                     <tr>
                         <th scope="col">Day</th>

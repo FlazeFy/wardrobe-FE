@@ -62,6 +62,6 @@ export default function CalendarSectionExportDailyData(props) {
         }
     }
 
-    return <button className="btn btn-primary w-100" onClick={(e) => handleDownload(props.date)}><FontAwesomeIcon icon={faPrint}/></button>
+    return <button className="btn btn-primary btn-print w-100" onClick={(e) => handleDownload(props.date)}><FontAwesomeIcon icon={faPrint}/></button>
 }
   

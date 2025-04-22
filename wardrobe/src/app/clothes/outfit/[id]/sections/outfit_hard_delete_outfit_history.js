@@ -14,7 +14,7 @@ export default function OutfitSectionHardDeleteOutfitHistory(props) {
     const handleSubmit = async (id) => {
         Swal.fire({
             title: "Are you sure?",
-            text: "Want to permanentally delete this outfit?",
+            text: "Want to permanentally delete this outfit history?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Yes, Delete it!",
@@ -62,5 +62,5 @@ export default function OutfitSectionHardDeleteOutfitHistory(props) {
         })
     }
 
-    return <button className='btn btn-danger' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/></button>
+    return <button className='btn btn-danger btn-delete' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/></button>
 }

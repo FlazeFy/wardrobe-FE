@@ -128,7 +128,6 @@ export default function CalendarSectionSchedule(props) {
                     }
                 </tbody>
             </table>
-            
         );
     }
 }

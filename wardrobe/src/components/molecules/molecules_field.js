@@ -34,7 +34,9 @@ export default function MoleculesField(props){
                         <input className="form-control" type="file" accept={props.accept} onChange={props.handleChange} id={props.id}></input>
                     </div>
                 : props.type == 'rating' ?
-                    <ReactStars count={5} onChange={props.handleChange} size={24} half={false} color2={'#ffd700'}/>
+                    <div id={props.id}>
+                        <ReactStars count={5} onChange={props.handleChange} size={24} half={false} color2={'#ffd700'}/>
+                    </div>
                 :
                     <></>
             }

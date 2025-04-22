@@ -74,7 +74,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
                     Here's your outfit that are generated automatically or manually. Each of these outfits contains some clothes that you can wear.
                 </h5>
                 <AtomsBreakLine length={1} />
-                <div className="row">
+                <div className="row" id="outfit-holder">
                     {
                         items && items.length > 0 ? (
                             items.map((dt, index) => (

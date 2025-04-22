@@ -6,7 +6,7 @@ import HardDeleteClothesUsedById from './hard_delete_clothes_used_by_id'
 export default function ClothesDetailUsedHistory(props) {
     if(props.items){
         return (
-            <table className="table table-bordered">
+            <table className="table table-bordered" id="used_history-table">
                 <thead>
                     <tr>
                         <th scope="col">Context</th>
