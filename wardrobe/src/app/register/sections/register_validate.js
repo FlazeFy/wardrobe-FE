@@ -5,10 +5,12 @@ import Swal from 'sweetalert2'
 import Axios from 'axios'
 import { getLocal, storeLocal } from '../../../modules/storages/local'
 import { getErrorValidation } from '../../../modules/helpers/converter'
+import { useRouter } from 'next/navigation'
 
 export default function RegisterSectionValidate(props) {
     const [token, setToken] = useState("")
     const [countdown, setCountdown] = useState(20 * 60)
+    const router = useRouter()
 
     useEffect(() => {
         if (!props.startValidationTimer) return
@@ -60,7 +62,7 @@ export default function RegisterSectionValidate(props) {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         storeLocal("is_new_user",true)
-                        window.location.href = '/'
+                        router.push('/')
                     }
                 });
             } else {

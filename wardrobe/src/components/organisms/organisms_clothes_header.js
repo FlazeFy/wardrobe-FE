@@ -5,11 +5,14 @@ import { faArrowRight, faMars, faPlus, faVenus, faVenusMars } from '@fortawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoleculesClothesStatus from '../molecules/molecules_clothes_status'
 import ClothesDetailAddUsedHistory from '../../app/clothes/detail/[id]/sections/clothes_detail_add_used_history'
+import { useRouter } from 'next/navigation'
 
 export default function OrganismsClothesHeader(props) {
+    const router = useRouter()
+
     const handleBoxClick = (id, type) => {
         if(type != 'clothes'){
-            window.location.href = `/clothes/detail/${id}`
+            router.push(`/clothes/detail/${id}`)
         }
     };
     

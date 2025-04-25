@@ -1,8 +1,11 @@
 import { getCleanTitleFromCtx } from "../../modules/helpers/converter"
+import { useRouter } from 'next/navigation'
 
 export default function MoleculesScheduleMiniBox(props){
+    const router = useRouter()
+
     const handleBoxClick = (id) => {
-        window.location.href = `/clothes/detail/${id}`
+        router.push(`/clothes/detail/${id}`)
     }
     
     return (

@@ -9,12 +9,14 @@ import MoleculesField from '../../components/molecules/molecules_field'
 import AtomsBreakLine from '../../components/atoms/atoms_breakline'
 import { getErrorValidation } from '../../modules/helpers/converter'
 import { getLocal } from '../../modules/storages/local'
+import { useRouter } from 'next/navigation'
 
 export default function LandingSectionLogin(props) {
     const usernameLocal = getLocal('username_key')
     const [username, setUsername] = useState(usernameLocal ?? "")
     const [password, setPassword] = useState("")
     const [msgAll, setResMsgAll] = useState(null)
+    const router = useRouter()
 
     // Services
     const handleSubmit = async (e) => {
@@ -46,7 +48,7 @@ export default function LandingSectionLogin(props) {
                     confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                       window.location.href = '/clothes'
+                       router.push('/clothes')
                     }
                 });
             } else {
@@ -101,7 +103,7 @@ export default function LandingSectionLogin(props) {
                         <MoleculesField title="Username" type={'text'} id="username-input" defaultValue={username} handleChange={(e) => {
                             setUsername(e.target.value)
                         }}/>
-                        <MoleculesField title="Password" type={'text'} id="password-input" handleChange={(e) => {
+                        <MoleculesField title="Password" type={'text'} id="password-input" defaultValue={password} handleChange={(e) => {
                             setPassword(e.target.value)
                         }}/>
                         <AtomsBreakLine length={1}/>

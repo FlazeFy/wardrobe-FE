@@ -8,10 +8,12 @@ import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { countDiffInDays } from '../../../../../modules/helpers/converter'
 import RecoverClothesUsedById from './recover_clothes_used_by_id'
 import { getCookie } from '../../../../../modules/storages/cookie'
+import { useRouter } from 'next/navigation'
 
 export default function ClothesDetailDeleteClothesById(props) {
     const [isValidated, setIsValidated] = useState(false)
     const tokenKey = getCookie("token_key")
+    const router = useRouter()
 
     // Services
     const handleSubmit = async (id) => {
@@ -42,7 +44,7 @@ export default function ClothesDetailDeleteClothesById(props) {
                         }).then((result) => {
                             if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
                                 if(props.type_delete == 'hard'){
-                                    window.location.href = '/clothes'
+                                    router.push('/clothes')
                                 } else {
                                     props.fetchClothes()
                                 }

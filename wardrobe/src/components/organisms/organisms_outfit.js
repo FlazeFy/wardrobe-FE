@@ -1,9 +1,12 @@
 "use client"
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function OrganismsOutfit(props) {
+    const router = useRouter()
+
     const handleBoxClick = (id) => {
-        window.location.href = `/clothes/outfit/${id}`
+        router.push(`/clothes/detail/${id}`)
     };
     
     return (

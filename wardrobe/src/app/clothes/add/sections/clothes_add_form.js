@@ -9,6 +9,7 @@ import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_
 import MoleculesField from '../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../modules/storages/local'
 import { getErrorValidation } from '../../../../modules/helpers/converter'
+import { useRouter } from 'next/navigation'
 
 export default function ClothesAddForm(props) {
     const [error, setError] = useState(null)
@@ -35,6 +36,7 @@ export default function ClothesAddForm(props) {
     const [isFavorite, setIsFavorite] = useState(false)
     const [isScheduled, setIsScheduled] = useState(false)
     const now = new Date()
+    const router = useRouter()
 
     // Dictionaries for select options
     const [clothesSizeDictionary, setClothesSizeDictionary] = useState([])
@@ -155,7 +157,7 @@ export default function ClothesAddForm(props) {
                     confirmButtonText: "Okay!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = `/clothes/detail/${response.data.data.id}`
+                        router.push(`/clothes/detail/${response.data.data.id}`)
                     }
                 });
             } else {

@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../modules/storages/cookie'
 import { getLocal } from '../../../modules/storages/local'
 import { postSaveOutfit } from '../../../modules/api/outfit/service'
+import { useRouter } from 'next/navigation'
 
 export default function ProfileSectionSignOut(props) {
     const tokenKey = getCookie("token_key")
+    const router = useRouter()
 
     // Services
     const handleSubmit = async () => {
@@ -42,7 +44,7 @@ export default function ProfileSectionSignOut(props) {
                                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
                                     localStorage.clear()
                                     document.cookie = "cookieName=; path=/"
-                                    window.location.href = '/'
+                                    router.push('/')
                                 }
                             })
                         } else {

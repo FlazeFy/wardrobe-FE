@@ -1,10 +1,13 @@
 "use client"
 import { convertDatetimeBasedLocal } from '../../../../../modules/helpers/converter';
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function ClothesDetailSectionFoundedOutfit(props) {
+    const router = useRouter()
+
     const handleBoxClick = (id) => {
-        window.location.href = `/clothes/outfit/${id}`
+        router.push(`/clothes/outfit/${id}`)
     };
 
     if(props.items){
