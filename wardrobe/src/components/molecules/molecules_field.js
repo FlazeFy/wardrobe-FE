@@ -10,9 +10,9 @@ export default function MoleculesField(props){
             }
             {
                 props.type == 'text' || props.type == 'number' || props.type == 'date' || props.type == 'password' ?
-                    <input className='form-control' value={props.defaultValue} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id}></input>
+                    <input className='form-control' value={props.defaultValue ?? ''} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id}></input>
                 : props.type == 'textarea' ?
-                    <textarea className='form-control' style={{minHeight:"200px"}} value={props.defaultValue} id={props.id} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
+                    <textarea className='form-control' style={{minHeight:"200px"}} value={props.defaultValue ?? ''} id={props.id} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
                 : props.type == 'select' ? 
                     <select className="form-select" onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id} value={props.defaultValue}>
                         {

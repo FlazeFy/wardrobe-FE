@@ -8,7 +8,6 @@ import MoleculesChartBar from '../../../../components/molecules/molecules_chart_
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 
 export default function GeneratedSectionOutfitMostUsed(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])

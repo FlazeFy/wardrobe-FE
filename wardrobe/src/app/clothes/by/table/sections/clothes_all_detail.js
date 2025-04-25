@@ -10,7 +10,6 @@ import MoleculesAlertBox from '../../../../../components/molecules/molecules_ale
 import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
 
 export default function ClothesSectionAllDetail(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

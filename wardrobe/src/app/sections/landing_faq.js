@@ -6,9 +6,9 @@ import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import MoleculesFAQBox from "../../components/molecules/molecules_faq_box";
 import { getCookie } from "../../modules/storages/cookie";
+import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
 
 export default function LandingSectionFAQ() {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
@@ -73,15 +73,15 @@ export default function LandingSectionFAQ() {
                 <AtomsBreakLine length={2}/>
                 <h2 className="mb-0">Ask Anything About Our Apps?</h2>
                 <hr></hr>   
-                <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">FAQ</span>'s</h1>
-                <h2 className="mb-2">Here's The Latest Question The People Given To Us</h2>
+                <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">FAQ</span>&apos;s</h1>
+                <h2 className="mb-2">Here&apos;s The Latest Question The People Given To Us</h2>
                 <a className="btn btn-primary fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
                 <a className="btn btn-primary fw-bold" href={!tokenKey ? '/feedback':'/profile'}><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</a>
                 <div className="row mt-4">
                     {
                         items.map((dt, idx)=>{
                             return (
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-12 mx-auto">
+                                <div className="col-lg-6 col-md-6 col-sm-6 col-12 mx-auto" key={idx}>
                                     <MoleculesFAQBox id={idx} question={dt.question} answer={dt.answer} created_at={dt.created_at}/>
                                 </div>
                             )

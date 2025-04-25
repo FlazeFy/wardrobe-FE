@@ -10,7 +10,6 @@ import { getCookie } from '../../../modules/storages/cookie'
 import AtomsBreakLine from '../../../components/atoms/atoms_breakline'
 
 export default function ClothesSectionUnfinishedWash(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
@@ -72,10 +71,10 @@ export default function ClothesSectionUnfinishedWash(props) {
                         <h4 className="mb-0 fw-bold"><FontAwesomeIcon icon={faWarning}/> Unfinished Wash</h4>
                         <div className='row mb-3'>
                             {
-                                items.map((el)=>{
+                                items.map((dt,idx)=>{
                                     return (
-                                        <div className={props.source == "clothes_page" ? 'col-lg-4 col-md-6 col-sm-12 col-12' :'col-lg-12 col-md-12 col-sm-12 col-12' }> 
-                                            <MoleculesUnfinishedWashBox item={el}/>
+                                        <div className={props.source == "clothes_page" ? 'col-lg-4 col-md-6 col-sm-12 col-12' :'col-lg-12 col-md-12 col-sm-12 col-12' } key={idx}> 
+                                            <MoleculesUnfinishedWashBox item={dt}/>
                                         </div>
                                     )
                                 })

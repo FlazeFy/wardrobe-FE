@@ -1,4 +1,5 @@
 "use client"
+import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
 import { getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
 import { faDice } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +14,6 @@ import { getLocal, storeLocal } from "../../../..//modules/storages/local";
 import { getCookie } from "../../../../modules/storages/cookie";
 
 export default function GeneratedSectionRandomOutift(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
@@ -237,10 +237,10 @@ export default function GeneratedSectionRandomOutift(props) {
                 <div className='row'>
                     {
                         items.length > 0 && items.some(dt => dt.selected) ? (
-                            items.map((dt) => {
+                            items.map((dt,idx) => {
                                 if (dt.selected) {
                                     return (
-                                        <div className='col-lg-2 col-md-3 col-sm-4 col-6 mx-auto' key={dt.clothes_type}>
+                                        <div className='col-lg-2 col-md-3 col-sm-4 col-6 mx-auto' key={idx}>
                                             <OrganismsClothesHeader items={dt} type="random"/>
                                         </div>
                                     );

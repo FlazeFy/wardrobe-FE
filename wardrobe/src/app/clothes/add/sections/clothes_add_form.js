@@ -11,7 +11,6 @@ import { getLocal, storeLocal } from '../../../../modules/storages/local'
 import { getErrorValidation } from '../../../../modules/helpers/converter'
 
 export default function ClothesAddForm(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

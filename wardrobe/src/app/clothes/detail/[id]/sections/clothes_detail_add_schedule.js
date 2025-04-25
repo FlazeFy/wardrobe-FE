@@ -9,7 +9,6 @@ import MoleculesAlertBox from '../../../../../components/molecules/molecules_ale
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 
 export default function ClothesDetailAddSchedule(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [msgAll, setResMsgAll] = useState(null)

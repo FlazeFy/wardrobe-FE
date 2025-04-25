@@ -7,7 +7,6 @@ import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box
 import { getCookie } from '../../../modules/storages/cookie'
 
 export default function StatsSectionMostUsedClothesDaily(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])

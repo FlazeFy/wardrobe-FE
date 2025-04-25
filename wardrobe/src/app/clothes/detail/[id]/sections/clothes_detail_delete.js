@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import Swal from 'sweetalert2'
-
 import { faTrash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
@@ -11,8 +10,6 @@ import RecoverClothesUsedById from './recover_clothes_used_by_id'
 import { getCookie } from '../../../../../modules/storages/cookie'
 
 export default function ClothesDetailDeleteClothesById(props) {
-    //Initial variable
-    // const token = getLocal("token_key")
     const [isValidated, setIsValidated] = useState(false)
     const tokenKey = getCookie("token_key")
 

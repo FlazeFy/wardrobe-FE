@@ -8,7 +8,6 @@ import { getCookie } from '../../../modules/storages/cookie'
 import OrganismsHistoryBox from '../../../components/organisms/organisms_history_box'
 
 export default function ProfileSectionAllHistory(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

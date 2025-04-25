@@ -12,7 +12,7 @@ export default function ClothesDetailCheckSchedule(props) {
             return (
                 <div className='alert alert-primary' role='alert'>
                     <h4><FontAwesomeIcon icon={faCircleInfo}/> Information</h4>
-                    <p className="mb-0">Don't forget, This clothes is set to wear today!</p>
+                    <p className="mb-0">Don&apos;t forget, This clothes is set to wear today!</p>
                 </div>
             )
         } else {

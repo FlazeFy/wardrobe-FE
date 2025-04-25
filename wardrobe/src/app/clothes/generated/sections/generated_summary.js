@@ -7,7 +7,6 @@ import { getCookie } from "../../../../modules/storages/cookie"
 import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter"
 
 export default function GeneratedSectionSummary(){
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItem] = useState(null)

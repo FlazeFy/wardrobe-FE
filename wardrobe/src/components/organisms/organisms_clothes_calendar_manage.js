@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 export default function OrganismsClothesCalendarManage(props) {
-    
     return (
         <div className='box-clothes p-2'>
             <div className='d-flex justify-content-start'>

@@ -7,7 +7,6 @@ import { getCookie } from "../../../modules/storages/cookie";
 import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
 
 export default function CalendarSectionTomorrowSchedule(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

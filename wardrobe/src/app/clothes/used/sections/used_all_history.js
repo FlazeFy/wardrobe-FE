@@ -5,9 +5,9 @@ import { getCookie } from '../../../../modules/storages/cookie'
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import UsedHardDeleteUsedHistory from './used_hard_delete_used_history'
+import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 
 export default function UsedAllHistory(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

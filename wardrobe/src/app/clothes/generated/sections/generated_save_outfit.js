@@ -157,6 +157,7 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
         );
     }
 });
+GeneratedSectionSaveOutfit.displayName = "GeneratedSectionSaveOutfit"
 
 export default function GeneratedSectionRandomOutift() {
     const saveOutfitRef = useRef(null);

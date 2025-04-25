@@ -3,7 +3,6 @@ import OrganismsClothesHeader from '../../../../../components/organisms/organism
 import React from 'react'
 
 export default function OutfitSectionAttachedClothes(props) {
-    
     return (
         <>
             <h2 className="fw-bold">Attached Clothes</h2>

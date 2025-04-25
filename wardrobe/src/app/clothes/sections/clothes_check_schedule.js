@@ -8,7 +8,6 @@ import { getCookie } from '../../../modules/storages/cookie'
 import MoleculesScheduleMiniBox from '../../../components/molecules/molecules_schedule_mini_box'
 
 export default function ClothesCheckSchedule(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
@@ -59,13 +58,13 @@ export default function ClothesCheckSchedule(props) {
                     <div className='row'>
                         <div className='col-lg-3 col-md-4 col-sm-6 col-6'>
                             <h4><FontAwesomeIcon icon={faCircleInfo}/> Information</h4>
-                            <p className="mb-0">Don't forget, This clothes is set to wear today!</p>
+                            <p className="mb-0">Don&apos;t forget, This clothes is set to wear today!</p>
                             <p className="mb-0">Today is <b>{dayNameLong}</b></p>
                         </div>
                         {
-                            items && items.map((dt)=>{
+                            items && items.map((dt,idx)=>{
                                 return (
-                                        <div className='col-lg-3 col-md-4 col-sm-6 col-6'>
+                                        <div className='col-lg-3 col-md-4 col-sm-6 col-6' key={idx}>
                                             <MoleculesScheduleMiniBox item={dt}/>
                                         </div>
                                     )

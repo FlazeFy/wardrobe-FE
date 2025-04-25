@@ -18,7 +18,7 @@ export default function ClothesDetailSchedule(props) {
                     {
                         props.items.map((dt,idx) => {
                             return (
-                                <tr className='text-center'>
+                                <tr className='text-center' key={idx}>
                                     <td>{dt.day}</td>
                                     <td>{dt.schedule_note ?? <span className='text-secondary fst-italic'>- No Notes Provided -</span>}</td>
                                     <td>{convertDatetimeBasedLocal(dt.created_at)}</td>

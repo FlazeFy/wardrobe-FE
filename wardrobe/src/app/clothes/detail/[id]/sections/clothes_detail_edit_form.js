@@ -10,7 +10,6 @@ import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../modules/storages/local'
 
 export default function ClothesDetailEditForm(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const tokenKey = getCookie("token_key")

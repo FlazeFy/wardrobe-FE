@@ -7,7 +7,6 @@ import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_
 import { convertDatetimeBasedLocal } from '../../../../modules/helpers/converter'
 
 export default function ClothesAddSectionLastHistory(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItem] = useState(null)

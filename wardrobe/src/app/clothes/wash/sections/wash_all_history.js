@@ -8,7 +8,6 @@ import OrganismsClothesWashBox from '../../../../components/organisms/organisms_
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 
 export default function WashSectionAllHistory(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
@@ -65,9 +64,9 @@ export default function WashSectionAllHistory(props) {
             <div className='row'>
                 {
                     items && items.length > 0 ? 
-                        items.map((dt) => {
-                            return <div className='col-xl-6 col-lg-12 col-md-6 col-sm-12 col-12'>
-                                <OrganismsClothesWashBox item={dt} fetchWashClothes={fetchWashClothes}/>
+                        items.map((dt,idx) => {
+                            return <div className='col-xl-6 col-lg-12 col-md-6 col-sm-12 col-12' key={idx}>
+                                <OrganismsClothesWashBox key={idx} item={dt} fetchWashClothes={fetchWashClothes}/>
                             </div>
                         })
                     : 

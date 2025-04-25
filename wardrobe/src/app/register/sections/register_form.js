@@ -68,7 +68,7 @@ export default function RegisterSectionForm(props) {
     return (
         <div>
             <h1 className="mb-0 fw-bold">Getting Started</h1>
-            <h4 className="text-secondary">Let's Create Your Account Here!</h4>
+            <h4 className="text-secondary">Let&apos;s Create Your Account Here!</h4>
             <MoleculesField title="Email" isDisabled={props.isDisabled} type={'text'} defaultValue={props.email} handleChange={(e) => {
                 props.setEmail(e.target.value)
             }}/>

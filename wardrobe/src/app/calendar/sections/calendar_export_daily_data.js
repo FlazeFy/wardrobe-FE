@@ -7,7 +7,6 @@ import { getCookie } from '../../../modules/storages/cookie'
 import { faPrint } from '@fortawesome/free-solid-svg-icons'
 
 export default function CalendarSectionExportDailyData(props) {
-    //Initial variable
     const tokenKey = getCookie("token_key")
 
     // Services

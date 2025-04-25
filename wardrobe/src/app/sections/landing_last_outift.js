@@ -156,7 +156,7 @@ export default function LandingSectionLastOutfit(props) {
                                 <p className='mb-0 fst-italic' style={{fontSize:"var(--textXMD)"}}>Last Updated {lastHitWeather ?? '-'}</p>
                             </div>
                             <h2 className="mb-2" style={{fontWeight:"800"}}>Do you <span className="text-main">want to hangout</span>?</h2>
-                            <p>We can generate your today's outfit based on your wardrobe, cleaning status, schedule, and today's weather.</p>
+                            <p>We can generate your today&apos;s outfit based on your wardrobe, cleaning status, schedule, and today&apos;s weather.</p>
                             <a className="btn btn-primary fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
                         </div>
                         <AtomsBreakLine length={4}/>

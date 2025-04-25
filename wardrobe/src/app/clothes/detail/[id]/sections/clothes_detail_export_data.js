@@ -7,7 +7,6 @@ import Swal from 'sweetalert2'
 import { getCookie } from '../../../../../modules/storages/cookie'
 
 export default function ClothesDetailSectionExportData(props) {
-    //Initial variable
     const tokenKey = getCookie("token_key")
 
     // Services

@@ -1,8 +1,6 @@
 "use client"
 import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from '../../../../modules/helpers/converter'
 import { getCookie } from '../../../../modules/storages/cookie'
-import { faFire } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
@@ -12,7 +10,6 @@ import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 import HardDeleteClothesById from './hard_delete_clothes_by_id'
 
 export default function ClothesSectionAllDeletedClothes(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

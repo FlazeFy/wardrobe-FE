@@ -71,7 +71,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
             <div className="mx-4 text-center mx-auto" style={{ maxWidth: "1280px" }}>
                 <h1 className="mb-3" style={{ fontSize: "74px", fontWeight: "800" }}>My Outfit</h1>
                 <h5 className="mb-4 text-secondary">
-                    Here's your outfit that are generated automatically or manually. Each of these outfits contains some clothes that you can wear.
+                    Here&apos;s your outfit that are generated automatically or manually. Each of these outfits contains some clothes that you can wear.
                 </h5>
                 <AtomsBreakLine length={1} />
                 <div className="row" id="outfit-holder">

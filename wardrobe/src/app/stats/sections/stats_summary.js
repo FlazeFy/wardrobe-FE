@@ -8,7 +8,6 @@ import { formatCurrency } from '../../../modules/helpers/converter'
 import { getCookie } from '../../../modules/storages/cookie'
 
 export default function StatsSectionSummary(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

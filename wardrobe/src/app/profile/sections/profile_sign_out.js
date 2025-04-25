@@ -9,7 +9,6 @@ import { getLocal } from '../../../modules/storages/local'
 import { postSaveOutfit } from '../../../modules/api/outfit/service'
 
 export default function ProfileSectionSignOut(props) {
-    //Initial variable
     const tokenKey = getCookie("token_key")
 
     // Services

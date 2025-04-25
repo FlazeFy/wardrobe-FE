@@ -2,7 +2,6 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 
 export default function MoleculesChartBar(props) {
-    //Initial variable
     var chart = [];
 
     //Converter

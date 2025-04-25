@@ -8,7 +8,6 @@ import { getCookie } from '../../modules/storages/cookie'
 import { getCleanTitleFromCtx } from '../../modules/helpers/converter'
 
 export default function OrganismsExportBox(props) {
-    //Initial variable
     const tokenKey = getCookie("token_key")
 
     // Services

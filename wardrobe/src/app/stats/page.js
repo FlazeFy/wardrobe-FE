@@ -23,7 +23,7 @@ export default function StatsPage() {
                 <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <div className="container-fluid custom-container">
                         <AtomsBreakLine length={1}/>
-                        <h2 className="mb-0">Here you can see statistic, trends, and summary that are gather from your clothes's found in this apps</h2>
+                        <h2 className="mb-0">Here you can see statistic, trends, and summary that are gather from your clothes&apos;s found in this apps</h2>
                         <hr></hr>
                         <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">Stats</span> Page</h1>
                         <AtomsBreakLine length={1}/>

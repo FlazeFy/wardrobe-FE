@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../modules/storages/cookie'
 
 export default function WashSectionHardDeleteWash(props) {
-    //Initial variable
     const tokenKey = getCookie("token_key")
 
     // Services

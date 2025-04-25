@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function MoleculesChartPie(props) {
-    //Initial variable
     var chart = []
 
     //Converter

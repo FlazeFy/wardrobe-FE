@@ -1,4 +1,3 @@
-//Font awesome classicon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faWarning } from "@fortawesome/free-solid-svg-icons"
 import { getCleanTitleFromCtx } from '../../modules/helpers/converter'

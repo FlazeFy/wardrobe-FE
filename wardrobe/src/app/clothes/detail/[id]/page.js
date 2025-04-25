@@ -18,7 +18,6 @@ import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded
 import DetailSectionClothesHeader from "./sections/detail_clothes_header";
 
 export default function ClothesDetailPage({params}) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
@@ -118,7 +117,7 @@ export default function ClothesDetailPage({params}) {
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <div className="form-container">
                             <h2 className="mb-0 fw-bold">Outfit</h2>
-                            <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn't have found in any clothes</span>}</h5>
+                            <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn&apost have found in any clothes</span>}</h5>
                             <ClothesDetailSectionFoundedOutfit items={items.outfit}/>
                         </div>
                     </div>

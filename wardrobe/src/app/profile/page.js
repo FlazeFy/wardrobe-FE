@@ -15,7 +15,6 @@ import ProfileSectionSignOut from "./sections/profile_sign_out";
 import ProfileSectionPropsProfile from "./sections/profile_props_profile";
 
 export default function ProfilePage(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

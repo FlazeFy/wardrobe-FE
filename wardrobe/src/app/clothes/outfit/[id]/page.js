@@ -17,7 +17,6 @@ import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used"
 import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes";
 
 export default function ClothesOutfitPage({params, ...props}) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

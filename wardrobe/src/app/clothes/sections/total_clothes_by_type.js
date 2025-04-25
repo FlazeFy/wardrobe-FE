@@ -8,7 +8,6 @@ import { getCookie } from '../../../modules/storages/cookie'
 import { getLocal, storeLocal } from '../../../modules/storages/local'
 
 export default function ClothesSectionTotalByType(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])

@@ -8,7 +8,6 @@ import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 
 export default function GeneratedSectionOutfitMonthlyTotalUsed(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])

@@ -2,7 +2,7 @@
 import OrganismsClothesCalendarManage from "../../../components/organisms/organisms_clothes_calendar_manage";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../modules/storages/cookie";
@@ -67,8 +67,8 @@ export default function CalendarSectionManage(props) {
                                                 <h5 className="mb-2">Used History</h5>
                                                 {
                                                     items.used_history ?
-                                                        items.used_history.map(dt => {
-                                                            return <OrganismsClothesCalendarManage item={dt} type="used_history"/>
+                                                        items.used_history.map((dt,idx) => {
+                                                            return <OrganismsClothesCalendarManage key={idx} item={dt} type="used_history"/>
                                                         })
                                                     :
                                                         <span className="fst-italic">- No Clothes Used Found -</span>
@@ -78,8 +78,8 @@ export default function CalendarSectionManage(props) {
                                                 <h5 className="mb-2">Weekly Schedule</h5>
                                                 {
                                                     items.weekly_schedule ?
-                                                        items.weekly_schedule.map(dt => {
-                                                            return <OrganismsClothesCalendarManage item={dt} type="weekly_schedule"/>
+                                                        items.weekly_schedule.map((dt,idx) => {
+                                                            return <OrganismsClothesCalendarManage key={idx} item={dt} type="weekly_schedule"/>
                                                         })
                                                     :
                                                         <span className="fst-italic">- No Weekly Schedule Found -</span>
@@ -89,8 +89,8 @@ export default function CalendarSectionManage(props) {
                                                 <h5 className="mb-2">Wash Schedule</h5>
                                                 {
                                                     items.wash_schedule ?
-                                                        items.wash_schedule.map(dt => {
-                                                            return <OrganismsClothesCalendarManage item={dt} type="wash_schedule"/>
+                                                        items.wash_schedule.map((dt,idx) => {
+                                                            return <OrganismsClothesCalendarManage key={idx} item={dt} type="wash_schedule"/>
                                                         })
                                                     :
                                                         <span className="fst-italic">- No Wash Schedule Found -</span>
@@ -100,8 +100,8 @@ export default function CalendarSectionManage(props) {
                                                 <h5 className="mb-2">Buyed History</h5>
                                                 {
                                                     items.buyed_history ?
-                                                        items.buyed_history.map(dt => {
-                                                            return <OrganismsClothesCalendarManage item={dt} type="used_history"/>
+                                                        items.buyed_history.map((dt,idx) => {
+                                                            return <OrganismsClothesCalendarManage key={idx} item={dt} type="used_history"/>
                                                         })
                                                     :
                                                         <span className="fst-italic">- No Buyed History Found -</span>
@@ -111,8 +111,8 @@ export default function CalendarSectionManage(props) {
                                                 <h5 className="mb-2">Add Wardrobe</h5>
                                                 {
                                                     items.add_wardrobe ?
-                                                        items.add_wardrobe.map(dt => {
-                                                            return <OrganismsClothesCalendarManage item={dt} type="add_wardrobe"/>
+                                                        items.add_wardrobe.map((dt,idx) => {
+                                                            return <OrganismsClothesCalendarManage key={idx} item={dt} type="add_wardrobe"/>
                                                         })
                                                     :
                                                         <span className="fst-italic">- No History Added Found -</span>

@@ -10,7 +10,6 @@ import OrganismsClothesHeader from '../../../../../components/organisms/organism
 import { getCleanTitleFromCtx } from '../../../../../modules/helpers/converter'
 
 export default function OutfitDetailPostOutfitClothes(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)

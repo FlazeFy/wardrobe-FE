@@ -4,11 +4,9 @@ import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import { getLocal, storeLocal } from "../../modules/storages/local";
 
 export default function LandingFeedback(props) {
-    //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
