@@ -50,6 +50,14 @@
   --whiteColor : #FFFFFF;
   --greyColor : #F3F3F3;
   --shadowColor : #808080;
+
+  --flazenPrimaryColor: #fcf2e5;
+  --flazenSecondaryColor: #f6f6f6;
+  --flazenDarkColor: #343146;
+  --flazenGreyColor: #979797;
+  --flazenDangerColor: #dc5987;
+  --flazenWarningColor: #eac661;
+  --flazenInfoColor: #845c98;
 }
 
 body {
@@ -128,4 +136,40 @@ hr {
   font-weight: 600;
   border-radius: var(--roundedLG);
   margin-right: var(--spaceSM) !important;
+}
+
+#alert-flazenapps {
+  position: fixed;
+  bottom: var(--spaceLG);
+  left: var(--spaceLG);
+  z-index: 999;
+}
+#alert-flazenapps .content {
+  background: var(--flazenPrimaryColor);
+  border-radius: var(--roundedLG);
+  width:480px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#alert-flazenapps h1 {
+  font-size:var(--textJumbo) !important;
+  color: var(--flazenDarkColor) !important;
+  letter-spacing: normal !important;
+}
+#alert-flazenapps p, #alert-flazenapps a {
+  font-size:var(--textMD);
+}
+#alert-flazenapps .btn-primary {
+  background:var(--flazenInfoColor) !important;
+}
+#alert-flazenapps .btn-danger {
+  background:var(--flazenDangerColor) !important;
+}
+#alert-flazenapps .btn-link {
+  background:var(--flazenWarningColor) !important;
+  padding: var(--spaceMini) var(--spaceSM) !important;
+}
+#alert-flazenapps .btn-primary, #alert-flazenapps .btn-danger {
+  border: none;
+  font-size: var(--textMD);
+  padding: var(--spaceSM) var(--spaceMD) !important;
 }

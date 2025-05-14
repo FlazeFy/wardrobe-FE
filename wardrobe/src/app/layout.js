@@ -12,6 +12,7 @@ import '../modules/styles/navbar.css'
 import '../modules/styles/modal.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import DetectFlazenAppsAlert from "./sections/all_detect_flazenapps";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" >
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>{children}<DetectFlazenAppsAlert/></body>
     </html>
   );
 }
