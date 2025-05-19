@@ -22,7 +22,7 @@ export default function MoleculesField(props){
                         }
                     </select>
                 : props.type == 'toggle' ?
-                    <Switch onChange={props.handleChange} checked={props.defaultValue} disabled={props.isDisabled ?? false} checkedIcon={false} uncheckedIcon={false}/>
+                    <Switch onChange={props.handleChange} id={props.id} checked={props.defaultValue} disabled={props.isDisabled ?? false} checkedIcon={false} uncheckedIcon={false}/>
                 : props.type == 'checkbox' ?
                     <div className="form-check">
                         <input className="form-check-input" type="checkbox" onChange={props.handleChange} id={props.id} checked={props.defaultValue} disabled={props.isDisabled}></input>

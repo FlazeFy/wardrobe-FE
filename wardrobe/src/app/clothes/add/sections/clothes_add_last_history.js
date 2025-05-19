@@ -60,7 +60,7 @@ export default function ClothesAddSectionLastHistory(props) {
         )
     } else {
         return (
-            <div className='d-block mx-auto' style={{width:"700px"}}> 
+            <div className='d-block mx-auto' style={{width:"700px"}} id="last_history-section"> 
                 <div className='d-flex justify-content-end'>
                     <h1 className="mb-0" style={{fontSize:"calc(var(--textXJumbo)*1.1)", fontWeight:"800"}}>Last <span className="text-main">History</span></h1>
                 </div>

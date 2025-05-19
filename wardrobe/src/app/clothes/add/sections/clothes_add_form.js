@@ -120,6 +120,24 @@ export default function ClothesAddForm(props) {
     const handleSubmit = async (e) => {
         try {
             const formData = new FormData()
+
+            if(clothesBuyAt){
+                const todayDate = new Date()
+                const clothesBuyAtDate = new Date(clothesBuyAt)
+
+                if(clothesBuyAtDate > todayDate){
+                    Swal.fire({
+                        icon: "error",
+                        title: "Validation Error",
+                        text: "You can't set clothes buy at date more than today date",
+                        confirmButtonText: "Okay!"
+                    });
+        
+                    setResMsgAll("You can't set clothes buy at date more than today date",)
+                    return
+                }
+            }
+
             formData.append("clothes_name", clothesName)
             formData.append("clothes_desc", clothesDesc)
             formData.append("clothes_merk", clothesMerk)
@@ -160,24 +178,30 @@ export default function ClothesAddForm(props) {
                         router.push(`/clothes/detail/${response.data.data.id}`)
                     }
                 });
+            } 
+        } catch (error) {
+            Swal.close()
+            const msg = getErrorValidation(error.response.data.message)
+            
+            if (error.response && (error.response.status === 422 || error.response.status === 409)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Validation Error",
+                    text: msg,
+                    confirmButtonText: "Okay!"
+                });
+    
+                setResMsgAll(msg)
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: getErrorValidation(response.data.message),
+                    text: "Something went wrong!",
                     confirmButtonText: "Okay!"
-                })
-                setResMsgAll(response.data.message)
+                });
+    
+                setResMsgAll(error);
             }
-        } catch (error) {
-            Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
-            setResMsgAll(error)
         }
     }
 
@@ -204,53 +228,53 @@ export default function ClothesAddForm(props) {
         return (
             <div className='row'>
                 <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
-                    <MoleculesField title="Clothes Name" type={'text'} defaultValue={clothesName} handleChange={(e) => {
+                    <MoleculesField title="Clothes Name" id="clothes_name" type={'text'} defaultValue={clothesName} handleChange={(e) => {
                         setClothesName(e.target.value)
                     }}/>
-                    <MoleculesField title="Description" type={'textarea'} defaultValue={clothesDesc} handleChange={(e) => {
+                    <MoleculesField title="Description" id="clothes_desc" type={'textarea'} defaultValue={clothesDesc} handleChange={(e) => {
                         setClothesDesc(e.target.value)
                     }}/>
-                    <MoleculesField title="Merk" type={'text'} defaultValue={clothesMerk} handleChange={(e) => {
+                    <MoleculesField title="Merk" id="clothes_merk" type={'text'} defaultValue={clothesMerk} handleChange={(e) => {
                         setClothesMerk(e.target.value)
                     }}/>
                     <div className='row'>
                         <div className='col-lg-8 col-md-7 col-sm-6 col-8'>
-                            <MoleculesField title="Price" type={'number'} defaultValue={clothesPrice} handleChange={(e) => {
+                            <MoleculesField title="Price" id="clothes_price" type={'number'} defaultValue={clothesPrice} handleChange={(e) => {
                                 setClothesPrice(e.target.value)
                             }}/>
                         </div>
                         <div className='col-lg-4 col-md-5 col-sm-6 col-4'>
-                            <MoleculesField title="Qty" type={'number'} defaultValue={clothesQty} handleChange={(e) => {
+                            <MoleculesField title="Qty" id="clothes_qty" type={'number'} defaultValue={clothesQty} handleChange={(e) => {
                                 setClothesQty(e.target.value)
                             }}/>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-lg-4 col-md-6 col-sm-6 col-8'>
-                            <MoleculesField title="Gender" type={'select'} defaultValue={clothesGender} items={clothesGenderDictionary} handleChange={(e) => {
+                            <MoleculesField title="Gender" id="clothes_gender" type={'select'} defaultValue={clothesGender} items={clothesGenderDictionary} handleChange={(e) => {
                                 setClothesGender(e.target.value)
                             }}/>
                         </div>
                         <div className='col-lg-3 col-md-6 col-sm-6 col-4'>
-                            <MoleculesField title="Size" type="select" defaultValue={clothesSize} items={clothesSizeDictionary} handleChange={(e) => setClothesSize(e.target.value)}/>
+                            <MoleculesField title="Size" type="select" id="clothes_size" defaultValue={clothesSize} items={clothesSizeDictionary} handleChange={(e) => setClothesSize(e.target.value)}/>
                         </div>
                         <div className='col-lg-5 col-md-12 col-sm-12 col-12'>
-                            <MoleculesField title="Type" type="select" defaultValue={clothesType} items={clothesTypeDictionary} handleChange={(e) => setClothesType(e.target.value)}/>
+                            <MoleculesField title="Type" type="select" id="clothes_type" defaultValue={clothesType} items={clothesTypeDictionary} handleChange={(e) => setClothesType(e.target.value)}/>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-lg-7 col-md-12 col-sm-6 col-12'>
-                            <MoleculesField title="Made From" type="select" defaultValue={clothesMadeFrom} items={clothesMadeFromDictionary} handleChange={(e) => setClothesMadeFrom(e.target.value)}/>
+                            <MoleculesField title="Made From" type="select" id="clothes_made_from" defaultValue={clothesMadeFrom} items={clothesMadeFromDictionary} handleChange={(e) => setClothesMadeFrom(e.target.value)}/>
                         </div>
                         <div className='col-lg-5 col-md-12 col-sm-6 col-12'>
-                            <MoleculesField title="Category" type="select" defaultValue={clothesCategory} items={clothesCategoryDictionary} handleChange={(e) => setClothesCategory(e.target.value)}/>
+                            <MoleculesField title="Category" type="select" id="clothes_category" defaultValue={clothesCategory} items={clothesCategoryDictionary} handleChange={(e) => setClothesCategory(e.target.value)}/>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-lg-6 col-md-12 col-sm-12 col-12'>
-                            <MoleculesField title="Buy At" type="date" defaultValue={clothesBuyAt} handleChange={(e) => setClothesBuyAt(e.target.value)}/>
+                            <MoleculesField title="Buy At" type="date" id="clothes_buy_at" defaultValue={clothesBuyAt} handleChange={(e) => setClothesBuyAt(e.target.value)}/>
                         </div>
-                        <div className='col-lg-6 col-md-12 col-sm-12     col-12'>
+                        <div className='col-lg-6 col-md-12 col-sm-12 col-12'>
                         </div>
                     </div>
                     {/* {
@@ -266,19 +290,19 @@ export default function ClothesAddForm(props) {
                     <h2 className="fw-bold">Clothes Status</h2>
                     <div className='d-flex justify-content-start'>
                         <div className='me-2'>
-                            <MoleculesField title="Is Faded" type="toggle" defaultValue={isFaded} handleChange={(e)=>setIsFaded(e)}/>
+                            <MoleculesField title="Is Faded" type="toggle" id="is_faded" defaultValue={isFaded} handleChange={(e)=>setIsFaded(e)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Has Washed" type="toggle" defaultValue={hasWashed} handleChange={(e)=>setHasWashed(e)}/>
+                            <MoleculesField title="Has Washed" type="toggle" id="has_washed" defaultValue={hasWashed} handleChange={(e)=>setHasWashed(e)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Has Ironed" type="toggle" defaultValue={hasIroned} handleChange={(e)=>setHasIroned(e)}/>
+                            <MoleculesField title="Has Ironed" type="toggle" id="has_ironed" defaultValue={hasIroned} handleChange={(e)=>setHasIroned(e)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Is Favorite" type="toggle" defaultValue={isFavorite} handleChange={(e)=>setIsFavorite(e)}/>
+                            <MoleculesField title="Is Favorite" type="toggle" id="is_favorite" defaultValue={isFavorite} handleChange={(e)=>setIsFavorite(e)}/>
                         </div>
                         <div className='me-2'>
-                            <MoleculesField title="Is Scheduled" type="toggle" defaultValue={isScheduled} handleChange={(e)=>setIsScheduled(e)}/>
+                            <MoleculesField title="Is Scheduled" type="toggle" id="is_scheduled" defaultValue={isScheduled} handleChange={(e)=>setIsScheduled(e)}/>
                         </div>
                     </div>
                 </div> 

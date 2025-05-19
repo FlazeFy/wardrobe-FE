@@ -60,5 +60,5 @@ export default function RecoverClothesUsedById(props) {
         })
     }
 
-    return <button className='btn btn-success ms-2' onClick={(e)=>handleRecover(props.id)}><FontAwesomeIcon icon={faRotateLeft}/>{ props.button_with_title && <> Recover</>}</button>
+    return <button className='btn btn-success btn-recover ms-2' onClick={(e)=>handleRecover(props.id)}><FontAwesomeIcon icon={faRotateLeft}/>{ props.button_with_title && <> Recover</>}</button>
 }

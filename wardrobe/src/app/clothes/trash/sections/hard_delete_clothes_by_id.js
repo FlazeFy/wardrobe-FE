@@ -60,5 +60,5 @@ export default function HardDeleteClothesById(props) {
         })
     }
 
-    return <button className='btn btn-danger' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faFire}/></button>
+    return <button className='btn btn-danger btn-delete' onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faFire}/></button>
 }

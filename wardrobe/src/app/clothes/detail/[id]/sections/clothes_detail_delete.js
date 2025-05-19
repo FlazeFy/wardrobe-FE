@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 
 export default function ClothesDetailDeleteClothesById(props) {
     const [isValidated, setIsValidated] = useState(false)
+    const [clothesName, setClothesName] = useState('')
     const tokenKey = getCookie("token_key")
     const router = useRouter()
 
@@ -73,26 +74,23 @@ export default function ClothesDetailDeleteClothesById(props) {
     const dayRemain = countDiffInDays(props.deleted_at)
 
     return (
-        <div>
-            <div>
-                <div className='alert alert-danger' role='alert'>
-                    <h2 className="mb-0 fw-bold"><FontAwesomeIcon icon={faTriangleExclamation}/> {props.type_delete == 'hard' && <>Permanentally</>} Delete Clothes</h2>
-                    {
-                        props.type_delete == 'hard' ?
-                            <p>This item has been deleted. You can <b>Recover</b> or <b>Permanentally Delete</b> it. This clothes is <b>{dayRemain != 30 ? 30 - dayRemain : 30} days</b> away from permanentally delete</p>
-                        : 
-                            <p>You can delete this clothes and still can be <b>Recovered</b> before it pass <b>30 days</b> since it was deleted. And also you can permanentally delete it right now after normal delete if you want it dissapear before 30 days</p>
-                    }
-                    <MoleculesField title="Re-Type your Clothes Name to Verify Delete" type={'text'} handleChange={(e) => {
-                        e.target.value == props.clothes_name ? setIsValidated(true) : setIsValidated(false) 
-                    }}/>
-                    <div className='d-flex justify-content-start'>
-                        <button className='btn btn-danger' disabled={!isValidated} onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/> Delete</button>
-                        {
-                            props.type_delete == 'hard' && <RecoverClothesUsedById id={props.id} button_with_title={true} fetchClothes={props.fetchClothes}/>
-                        }
-                    </div>
-                </div>
+        <div className='alert alert-danger' role='alert' id="delete_clothes-section">
+            <h2 className="mb-0 fw-bold"><FontAwesomeIcon icon={faTriangleExclamation}/> {props.type_delete == 'hard' && <>Permanentally</>} Delete Clothes</h2>
+            {
+                props.type_delete == 'hard' ?
+                    <p>This item has been deleted. You can <b>Recover</b> or <b>Permanentally Delete</b> it. This clothes is <b>{dayRemain != 30 ? 30 - dayRemain : 30} days</b> away from permanentally delete</p>
+                : 
+                    <p>You can delete this clothes and still can be <b>Recovered</b> before it pass <b>30 days</b> since it was deleted. And also you can permanentally delete it right now after normal delete if you want it dissapear before 30 days</p>
+            }
+            <MoleculesField title="Re-Type your Clothes Name to Verify Delete" id="clothes_name_delete_confirmation" type={'text'} defaultValue={clothesName} handleChange={(e) => {
+                e.target.value == props.clothes_name ? setIsValidated(true) : setIsValidated(false) 
+                setClothesName(e.target.value)
+            }}/>
+            <div className='d-flex justify-content-start'>
+                <button className='btn btn-danger' disabled={!isValidated} onClick={(e)=>handleSubmit(props.id)}><FontAwesomeIcon icon={faTrash}/> Delete</button>
+                {
+                    props.type_delete == 'hard' && <RecoverClothesUsedById id={props.id} button_with_title={true} fetchClothes={props.fetchClothes}/>
+                }
             </div>
         </div>
     ) 
