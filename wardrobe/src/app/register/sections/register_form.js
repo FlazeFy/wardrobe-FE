@@ -2,68 +2,14 @@
 import { faCheck, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import Swal from 'sweetalert2'
 import MoleculesField from '../../../components/molecules/molecules_field'
-import Axios from 'axios'
-import { getErrorValidation } from '../../../modules/helpers/converter'
-import { storeLocal } from '../../../modules/storages/local'
+import { postRegister } from '@/modules/repositories/auth_repository'
 
 export default function RegisterSectionForm(props) {
     // Services
     const handleSubmit = async (e) => {
-        try {
-            const body = {
-                "username" : props.username,
-                "password" : props.password,
-                "email" : props.email,
-            }
-
-            Swal.showLoading()
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/register", JSON.stringify(body), {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type' : 'application/json'
-                }
-            })
-            Swal.close()
-
-            if(response.status === 201){
-                Swal.fire({
-                    title: "Success!",
-                    text: response.data.message,
-                    icon: "success",
-                    allowOutsideClick: false,
-                    confirmButtonText: "Okay!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        props.setIsDisabled(true)
-                        props.setIsRegistered(true)
-                        props.setShowFormToken(true)
-                        props.setStartValidationTimer(true)
-                        storeLocal("username_key",response.data.result.username)
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
-            }
-        } catch (error) {
-            Swal.close()
-            const status = error?.response?.status
-            const message = error?.response?.data?.result || "Something went wrong!"
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: status == 500 ? "Something went wrong!" : getErrorValidation(message),
-                confirmButtonText: "Okay!"
-            })
-        }
-    }
+        postRegister(props)
+    }   
 
     return (
         <div>

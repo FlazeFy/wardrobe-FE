@@ -9,6 +9,7 @@ import MoleculesAlertBox from '../../../../../components/molecules/molecules_ale
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../modules/storages/local'
 import { getErrorValidation } from '@/modules/helpers/converter'
+import { postUsedClothes } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesDetailAddUsedHistory(props) {
     const [error, setError] = useState(null)
@@ -83,70 +84,9 @@ export default function ClothesDetailAddUsedHistory(props) {
         })
     }
 
-    // Services
+    // Repositories
     const handleSubmit = async (e) => {
-        try {
-            const body = {
-                "clothes_id" : props.id,
-                "used_context" : usedContext,
-                "clothes_note" : clothesNotes
-            }
-
-            Swal.showLoading()
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/history", JSON.stringify(body), {
-                headers: {
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${tokenKey}`,
-                    'Content-Type' : 'application/json'
-                }
-            })
-            Swal.close()
-
-            if(response.status === 201){
-                Swal.fire({
-                    title: "Success!",
-                    text: response.data.message,
-                    icon: "success",
-                    allowOutsideClick: false,
-                    confirmButtonText: "Okay!"
-                }).then((result) => {
-                    if (result.isConfirmed && props.fetchClothes) {
-                       props.fetchClothes()
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: response.data.message,
-                    confirmButtonText: "Okay!"
-                })
-                setResMsgAll(response.data.message)
-            }
-        } catch (error) {
-            Swal.close()
-            const msg = getErrorValidation(error.response.data.message)
-            
-            if (error.response && (error.response.status === 422)) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Validation Error",
-                    text: msg,
-                    confirmButtonText: "Okay!"
-                });
-    
-                setResMsgAll(msg)
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                });
-    
-                setResMsgAll(error);
-            }
-        }
+        postUsedClothes(usedContext,clothesNotes,tokenKey,props)
     }
 
     if (error) {

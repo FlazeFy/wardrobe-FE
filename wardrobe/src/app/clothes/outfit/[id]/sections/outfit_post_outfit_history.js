@@ -6,6 +6,7 @@ import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../../modules/storages/cookie'
 import { getErrorValidation } from '@/modules/helpers/converter'
+import { postSaveOutfitHistory } from '@/modules/repositories/outfit_repository'
 
 export default function OutfitSectionPostOutfitHistory(props) {
     const tokenKey = getCookie("token_key")
@@ -21,63 +22,7 @@ export default function OutfitSectionPostOutfitHistory(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                try {
-                    const data = {
-                        outfit_id : id,
-                        used_context: 'Work'
-                    }
-                    let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/save`, JSON.stringify(data), {
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${tokenKey}`,
-                        }
-                    })
-                    
-                    if(response.status === 201){
-                        Swal.fire({
-                            title: "Success!",
-                            text: response.data.message,
-                            icon: "success",
-                            confirmButtonText: "Okay!"
-                        }).then((result) => {
-                            if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                                props.fetchOutfit()
-                                props.fetchAllHistory()
-                            }
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-                            confirmButtonText: "Okay!"
-                        })
-                    }
-                } catch (error) {
-                    Swal.close()
-                    const msg = getErrorValidation(error.response.data.message)
-                    
-                    if (error.response && (error.response.status === 422 || error.response.status === 409)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Validation Error",
-                            text: msg,
-                            confirmButtonText: "Okay!"
-                        });
-            
-                        setResMsgAll(msg)
-                    } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-                            confirmButtonText: "Okay!"
-                        });
-            
-                        setResMsgAll(error);
-                    }
-                }
+                postSaveOutfitHistory(id,tokenKey,props)
             } 
         })
     }

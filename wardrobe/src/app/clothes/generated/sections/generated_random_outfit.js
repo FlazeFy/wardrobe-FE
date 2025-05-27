@@ -122,7 +122,7 @@ export default function GeneratedSectionRandomOutift(props) {
         }
     }
 
-    // Service
+    // Repositories
     const handleSubmit = async (e) => {
         try {
             let clothes_type = ''

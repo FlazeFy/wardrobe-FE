@@ -1,11 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import PinInput from 'react-pin-input'
-import Swal from 'sweetalert2'
-import Axios from 'axios'
-import { getLocal, storeLocal } from '../../../modules/storages/local'
-import { getErrorValidation } from '../../../modules/helpers/converter'
 import { useRouter } from 'next/navigation'
+import { postValidateRegister } from '@/modules/repositories/auth_repository'
 
 export default function RegisterSectionValidate(props) {
     const [token, setToken] = useState("")
@@ -36,55 +33,7 @@ export default function RegisterSectionValidate(props) {
 
     // Services
     const handleSubmit = async (e, token) => {
-        try {
-            const username = getLocal("username_key")
-            const body = {
-                "token" : token,
-                "username" : username
-            }
-
-            Swal.showLoading()
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/register/validate", JSON.stringify(body), {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type' : 'application/json'
-                }
-            })
-            Swal.close()
-
-            if(response.status === 200){
-                Swal.fire({
-                    title: "Success!",
-                    text: response.data.message,
-                    icon: "success",
-                    allowOutsideClick: false,
-                    confirmButtonText: "Okay!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        storeLocal("is_new_user",true)
-                        router.push('/')
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
-            }
-        } catch (error) {
-            Swal.close()
-            const status = error?.response?.status
-            const message = error?.response?.data?.result || "Something went wrong!"
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: status == 500 ? "Something went wrong!" : getErrorValidation(message),
-                confirmButtonText: "Okay!"
-            })
-        }
+        postValidateRegister(token,router)
     }
 
     return (
