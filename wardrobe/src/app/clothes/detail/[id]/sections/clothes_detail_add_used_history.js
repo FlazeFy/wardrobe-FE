@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../modules/storages/local'
+import { getErrorValidation } from '@/modules/helpers/converter'
 
 export default function ClothesDetailAddUsedHistory(props) {
     const [error, setError] = useState(null)
@@ -124,13 +125,27 @@ export default function ClothesDetailAddUsedHistory(props) {
             }
         } catch (error) {
             Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
-            setResMsgAll(error)
+            const msg = getErrorValidation(error.response.data.message)
+            
+            if (error.response && (error.response.status === 422)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Validation Error",
+                    text: msg,
+                    confirmButtonText: "Okay!"
+                });
+    
+                setResMsgAll(msg)
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
+                });
+    
+                setResMsgAll(error);
+            }
         }
     }
 
@@ -163,15 +178,15 @@ export default function ClothesDetailAddUsedHistory(props) {
                             </div>
                             <div className="modal-body">
                                 {
-                                    props.clothes_name && <MoleculesField title="Clothes Name" type="text" defaultValue={props.clothes_name} isDisabled={true}/>
+                                    props.clothes_name && <MoleculesField title="Clothes Name" class="clothes_name" type="text" defaultValue={props.clothes_name} isDisabled={true}/>
                                 }
-                                <MoleculesField title="Notes" type={'textarea'} defaultValue={clothesNotes} handleChange={(e) => {
+                                <MoleculesField title="Notes" type={'textarea'} class="clothes_note" defaultValue={clothesNotes} handleChange={(e) => {
                                     setClothesNote(e.target.value)
                                 }}/>
-                                <MoleculesField title="Context" type="select" defaultValue={usedContext} items={usedContextDictionary} handleChange={(e) => setUsedContext(e.target.value)}/>
+                                <MoleculesField title="Context" type="select" class="used_context" defaultValue={usedContext} items={usedContextDictionary} handleChange={(e) => setUsedContext(e.target.value)}/>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-success" onClick={handleSubmit}><FontAwesomeIcon icon={faFloppyDisk}/> Save changes</button>
+                                <button type="button" className="btn btn-success" onClick={handleSubmit}><FontAwesomeIcon icon={faFloppyDisk}/> Save</button>
                             </div>
                         </div>
                     </div>

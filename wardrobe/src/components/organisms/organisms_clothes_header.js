@@ -61,7 +61,7 @@ export default function OrganismsClothesHeader(props) {
                     props.type == 'clothes' && (
                         <div className='row mt-2'>
                             <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
-                                <a className='btn btn-success w-100' data-bs-toggle="modal" data-bs-target={"#addHistoryModal_"+props.items.id}><FontAwesomeIcon icon={faPlus}/> Use It Now!</a>
+                                <a className='btn btn-success btn-add-used-history w-100' data-bs-toggle="modal" data-bs-target={"#addHistoryModal_"+props.items.id}><FontAwesomeIcon icon={faPlus}/> Use It Now!</a>
                             </div>
                             <div className='col-lg-6 col-md-6 col-sm-12 col-12'>
                                 <a className='btn btn-primary btn-detail w-100' href={`/clothes/detail/${props.items.id}`}><FontAwesomeIcon icon={faArrowRight}/> Detail</a>

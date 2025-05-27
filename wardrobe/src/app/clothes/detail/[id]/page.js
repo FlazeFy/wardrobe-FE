@@ -96,7 +96,7 @@ export default function ClothesDetailPage({params}) {
                         <div className="form-container" id="used_history-section">
                             <div style={{maxWidth:"50vw"}}>
                                 <h2 className="mb-0 fw-bold">Used History</h2>
-                                <h5 className="text-secondary">Start from <b>{convertDatetimeBasedLocal(items.last_used_history)}</b>, this clothes has been used for <b>{items.total_used_history}</b> times. 
+                                <h5 className="text-secondary">Start from <b>{convertDatetimeBasedLocal(items.last_used_history)}</b>, this clothes has been used for <b id="total_used-text">{items.total_used_history}</b> times. 
                                     <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at} with_button={true}/></h5>
                             </div>
                             <AtomsBreakLine length={1}/>
@@ -115,9 +115,9 @@ export default function ClothesDetailPage({params}) {
 
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div className="form-container">
+                        <div className="form-container" id="outfit-section">
                             <h2 className="mb-0 fw-bold">Outfit</h2>
-                            <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn&apost have found in any clothes</span>}</h5>
+                            <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn&apost have found in any outfit</span>}</h5>
                             <ClothesDetailSectionFoundedOutfit items={items.outfit}/>
                         </div>
                     </div>

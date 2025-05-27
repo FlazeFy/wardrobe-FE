@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
+import { getErrorValidation } from '@/modules/helpers/converter'
 
 export default function ClothesDetailAddSchedule(props) {
     const [error, setError] = useState(null)
@@ -69,22 +70,26 @@ export default function ClothesDetailAddSchedule(props) {
             }
         } catch (error) {
             Swal.close()
-            if (error.response.status === 409) {
+            const msg = getErrorValidation(error.response.data.message)
+            
+            if (error.response && (error.response.status === 422 || error.response.status === 409)) {
                 Swal.fire({
                     icon: "error",
-                    title: "Oops...",
-                    text: error.response.data.message,
+                    title: "Validation Error",
+                    text: msg,
                     confirmButtonText: "Okay!"
-                })
-                setResMsgAll(error)
+                });
+    
+                setResMsgAll(msg)
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
                     confirmButtonText: "Okay!"
-                })
-                setResMsgAll(error)
+                });
+    
+                setResMsgAll(error);
             }
         }
     }
@@ -123,8 +128,8 @@ export default function ClothesDetailAddSchedule(props) {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
-                                <MoleculesField title="Context" type="select" defaultValue={day} items={dayDictionary} handleChange={(e) => setDay(e.target.value)}/>
-                                <MoleculesField title="Notes" type={'textarea'} defaultValue={scheduleNote} handleChange={(e) => {
+                                <MoleculesField title="Day" id="day" type="select" defaultValue={day} items={dayDictionary} handleChange={(e) => setDay(e.target.value)}/>
+                                <MoleculesField title="Notes" id="schedule_note" type={'textarea'} defaultValue={scheduleNote} handleChange={(e) => {
                                     setScheduleNote(e.target.value)
                                 }}/>
                                 <MoleculesField title="Is Remind" type="toggle" defaultValue={isRemind == 1 ? true : false} handleChange={(e)=>setIsRemind(e == true ? 1 : 0)}/>

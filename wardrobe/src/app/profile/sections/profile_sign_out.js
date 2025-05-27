@@ -6,7 +6,7 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../modules/storages/cookie'
 import { getLocal } from '../../../modules/storages/local'
-import { postSaveOutfit } from '../../../modules/api/outfit/service'
+import { postSaveOutfit } from '../../../modules/repositories/outfit_service'
 import { useRouter } from 'next/navigation'
 
 export default function ProfileSectionSignOut(props) {

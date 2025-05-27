@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react"
 import Swal from "sweetalert2";
 import { getCookie } from "../../../../modules/storages/cookie";
-import { postSaveOutfit } from "../../../../modules/api/outfit/service";
+import { postSaveOutfit } from "../../../../modules/repositories/outfit_service";
 
 export default function GeneratedSectionSaveLocalGenerated(props) {
     const tokenKey = getCookie("token_key")

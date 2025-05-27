@@ -1,7 +1,7 @@
 "use client"
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
-import { getCleanTitleFromCtx } from "../../../../modules/helpers/converter";
+import { getCleanTitleFromCtx, getErrorValidation } from "../../../../modules/helpers/converter";
 import { faDice } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react"
@@ -203,12 +203,27 @@ export default function GeneratedSectionRandomOutift(props) {
             }
         } catch (error) {
             Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
+            const msg = getErrorValidation(error.response.data.message)
+            
+            if (error.response && (error.response.status === 422)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Validation Error",
+                    text: msg,
+                    confirmButtonText: "Okay!"
+                });
+    
+                setResMsgAll(msg)
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
+                });
+    
+                setResMsgAll(error);
+            }
         }
     }
 

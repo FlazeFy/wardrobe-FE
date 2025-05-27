@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../../modules/storages/cookie'
+import { getErrorValidation } from '@/modules/helpers/converter'
 
 export default function OutfitSectionPostOutfitHistory(props) {
     const tokenKey = getCookie("token_key")
@@ -54,12 +55,28 @@ export default function OutfitSectionPostOutfitHistory(props) {
                         })
                     }
                 } catch (error) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
+                    Swal.close()
+                    const msg = getErrorValidation(error.response.data.message)
+                    
+                    if (error.response && (error.response.status === 422 || error.response.status === 409)) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Validation Error",
+                            text: msg,
+                            confirmButtonText: "Okay!"
+                        });
+            
+                        setResMsgAll(msg)
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Something went wrong!",
+                            confirmButtonText: "Okay!"
+                        });
+            
+                        setResMsgAll(error);
+                    }
                 }
             } 
         })

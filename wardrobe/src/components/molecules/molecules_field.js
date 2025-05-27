@@ -10,11 +10,11 @@ export default function MoleculesField(props){
             }
             {
                 props.type == 'text' || props.type == 'number' || props.type == 'date' || props.type == 'password' ?
-                    <input className='form-control' value={props.defaultValue ?? ''} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id}></input>
+                    <input className={'form-control '+props.class ?? ''} value={props.defaultValue ?? ''} type={props.type} onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id}></input>
                 : props.type == 'textarea' ?
-                    <textarea className='form-control' style={{minHeight:"200px"}} value={props.defaultValue ?? ''} id={props.id} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
+                    <textarea className={'form-control '+props.class ?? ''} style={{minHeight:"200px"}} value={props.defaultValue ?? ''} id={props.id} type={props.type} disabled={props.isDisabled ?? false} onChange={props.handleChange}></textarea>
                 : props.type == 'select' ? 
-                    <select className="form-select" onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id} value={props.defaultValue}>
+                    <select className={'form-select '+props.class ?? ''} onChange={props.handleChange} disabled={props.isDisabled ?? false} id={props.id} value={props.defaultValue}>
                         {
                             props.items.map((el, idx)=>{
                                 return <option value={el} key={idx}>{getCleanTitleFromCtx(el)}</option>

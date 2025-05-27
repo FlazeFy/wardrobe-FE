@@ -6,6 +6,7 @@ import Axios from 'axios'
 import React, { useState } from "react"
 import Swal from 'sweetalert2'
 import MoleculesField from '../../../components/molecules/molecules_field'
+import { getErrorValidation } from '../../../modules/helpers/converter'
 
 export default function FeedbackSectionSend() {
     const [feedbackRate, setFeedbackRate] = useState(0)
@@ -71,14 +72,27 @@ export default function FeedbackSectionSend() {
                 })
             }
         } catch (error) {
-            Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: error,
-                confirmButtonText: "Okay!"
-            })
-            setResMsgAll(error)
+            const msg = getErrorValidation(error.response.data.message)
+            
+            if (error.response && (error.response.status === 422)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Validation Error",
+                    text: msg,
+                    confirmButtonText: "Okay!"
+                });
+    
+                setResMsgAll(msg)
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    confirmButtonText: "Okay!"
+                });
+    
+                setResMsgAll(error)
+            }
         }
     }
 
