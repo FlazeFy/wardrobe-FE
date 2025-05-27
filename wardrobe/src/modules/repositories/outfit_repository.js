@@ -1,15 +1,19 @@
 import { getLocal } from "../storages/local"
 import Axios from 'axios'
 import Swal from "sweetalert2"
-import { getErrorValidation } from "@/modules/helpers/converter"
+import { messageError } from "../helpers/message"
 
 export const postSaveOutfit = async (token) => {
     try {
+        Swal.hideLoading()
+
+        // Payload
         const data = JSON.parse(getLocal('generated_outfit_history'))
         const body = {
             'list_outfit' : data
         }
 
+        // Exec
         let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/save`, JSON.stringify(body), {
             headers: {
                 'Accept': 'application/json',
@@ -18,7 +22,7 @@ export const postSaveOutfit = async (token) => {
             }
         })
         
-        Swal.hideLoading()
+        // Response
         if(response.status === 201){
             Swal.fire({
                 title: "Success!",
@@ -39,27 +43,6 @@ export const postSaveOutfit = async (token) => {
             })
         }
     } catch (error) {
-        Swal.close()
-        const msg = getErrorValidation(error.response.data.message)
-        
-        if (error.response && (error.response.status === 422 || error.response.status === 409)) {
-            Swal.fire({
-                icon: "error",
-                title: "Validation Error",
-                text: msg,
-                confirmButtonText: "Okay!"
-            });
-
-            setResMsgAll(msg)
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            });
-
-            setResMsgAll(error);
-        }
+        messageError(error)
     }
 }

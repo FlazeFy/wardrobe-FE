@@ -1,93 +1,22 @@
 "use client"
-import { storeCookie } from '../../modules/storages/cookie'
 import { faArrowRight, faSignIn } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Axios from 'axios'
 import React, { useState } from "react"
-import Swal from 'sweetalert2'
 import MoleculesField from '../../components/molecules/molecules_field'
 import AtomsBreakLine from '../../components/atoms/atoms_breakline'
-import { getErrorValidation } from '../../modules/helpers/converter'
 import { getLocal } from '../../modules/storages/local'
 import { useRouter } from 'next/navigation'
+import { postLogin } from '@/modules/repositories/auth_repository'
 
 export default function LandingSectionLogin(props) {
     const usernameLocal = getLocal('username_key')
     const [username, setUsername] = useState(usernameLocal ?? "")
     const [password, setPassword] = useState("")
-    const [msgAll, setResMsgAll] = useState(null)
     const router = useRouter()
 
-    // Services
+    // Repositories
     const handleSubmit = async (e) => {
-        try {
-            const body = {
-                "username" : username,
-                "password" : password,
-            }
-
-            Swal.showLoading()
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/login", JSON.stringify(body), {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type' : 'application/json'
-                }
-            })
-            Swal.close()
-
-            if(response.status === 200){
-                const username = response.data.result.username
-                storeCookie('token_key',response.data.token)
-                storeCookie('username_key',username)
-
-                Swal.fire({
-                    title: "Success!",
-                    text: `Welcome, ${username}`,
-                    icon: "success",
-                    allowOutsideClick: false,
-                    confirmButtonText: "Okay!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                       router.push('/clothes')
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: response.data.result,
-                    confirmButtonText: "Okay!"
-                })
-                setResMsgAll(response.data.result)
-            }
-        } catch (error) {
-            Swal.close()
-            if (error.response && error.response.status === 401) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: error.response.data.result,
-                    confirmButtonText: "Okay!"
-                })
-                setResMsgAll(error)
-            } else if(error.response.status === 422){
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: getErrorValidation(error.response.data.result),
-                    confirmButtonText: "Okay!"
-                })
-                setResMsgAll(error)
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
-                setResMsgAll(error)
-            }
-        }
+        postLogin(username,password,router)
     }
 
     return (

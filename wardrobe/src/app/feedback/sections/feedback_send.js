@@ -2,98 +2,18 @@
 import { getCookie } from '../../../modules/storages/cookie'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Axios from 'axios'
 import React, { useState } from "react"
-import Swal from 'sweetalert2'
 import MoleculesField from '../../../components/molecules/molecules_field'
-import { getErrorValidation } from '../../../modules/helpers/converter'
+import { postFeedback } from '@/modules/repositories/feedback_repository'
 
 export default function FeedbackSectionSend() {
     const [feedbackRate, setFeedbackRate] = useState(0)
     const [feedbackBody, setFeedbackBody] = useState("")
     const tokenKey = getCookie("token_key")
-    const [msgAll, setResMsgAll] = useState(null)
 
-    // Services
+    // Repositories
     const handleSubmit = async (e) => {
-        try {
-            const body = {
-                feedback_rate : feedbackRate,
-                feedback_body : feedbackBody,
-            }
-            if(body.feedback_body.trim().length > 0){
-                if(body.feedback_rate > 0 && body.feedback_rate <= 5){
-                    Swal.showLoading()
-                    const response = await Axios.post("http://127.0.0.1:8000/api/v1/feedback", JSON.stringify(body), {
-                        headers: {
-                            'Accept': 'application/json',
-                            'Authorization': `Bearer ${tokenKey}`,
-                            'Content-Type' : 'application/json'
-                        }
-                    })
-                    Swal.close()
-
-                    if(response.status === 201){
-                        Swal.fire({
-                            title: "Success!",
-                            text: response.data.message,
-                            icon: "success",
-                            allowOutsideClick: false,
-                            confirmButtonText: "Okay!"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                setFeedbackBody("")
-                                setFeedbackRate(0)
-                            }
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: response.data.message,
-                            confirmButtonText: "Okay!"
-                        })
-                        setResMsgAll(response.data.message)
-                    }
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: 'The feedback rate field is required',
-                        confirmButtonText: "Okay!"
-                    })
-                }
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: 'The feedback body field is required',
-                    confirmButtonText: "Okay!"
-                })
-            }
-        } catch (error) {
-            const msg = getErrorValidation(error.response.data.message)
-            
-            if (error.response && (error.response.status === 422)) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Validation Error",
-                    text: msg,
-                    confirmButtonText: "Okay!"
-                });
-    
-                setResMsgAll(msg)
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                });
-    
-                setResMsgAll(error)
-            }
-        }
+        postFeedback(feedbackRate, feedbackBody, tokenKey, setFeedbackBody, setFeedbackRate)
     }
 
     return (
