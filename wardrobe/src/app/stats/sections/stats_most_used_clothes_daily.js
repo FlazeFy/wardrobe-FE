@@ -56,7 +56,7 @@ export default function StatsSectionMostUsedClothesDaily(props) {
             <> 
                 {
                     items.map((dt, idx)=>{
-                        return <div className='mb-2' key={"used-clothes-"+idx}>
+                        return <div className='mb-2 day_section-box' key={"used-clothes-"+idx}>
                             <h4 data-bs-toggle="collapse" href={"#collapseMostUsedDaily_"+dt.day}><span className='btn btn-primary rounded-pill px-3 w-100 text-start'>
                                 {dt.day == today && <a className='btn btn-danger py-1 px-3'>Today</a>} {dt.day}</span>
                             </h4>

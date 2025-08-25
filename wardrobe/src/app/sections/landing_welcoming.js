@@ -4,59 +4,29 @@ import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getCookie } from "../../modules/storages/cookie";
-import { getLocal, storeLocal } from '../../modules/storages/local'
+import { fetchWelcomeStats } from "@/modules/repositories/general_repository";
 
 export default function LandingSectionWelcoming(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
     const [usernameKey, setUsernameKey] = useState(null)
-    const now = new Date()
-
-    const fetchWelcomeStats = () => {
-        const oldTimeHit = getLocal('last_hit-welcome_stats')
-        const oldTime = new Date(JSON.parse(oldTimeHit))
-        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
-    
-        const fetchData = (data) => {
-            Swal.close()
-            setIsLoaded(true)
-            setItems(data)
-        }
-    
-        if (timeDiffInSec < 360 && oldTimeHit) {
-            const oldData = JSON.parse(getLocal('welcome_stats'))
-            fetchData(oldData)
-        } else {
-            fetch(`http://127.0.0.1:8000/api/v1/stats/all`)
-            .then(res => res.json())
-                .then(
-                (result) => {
-                    Swal.close()
-                    setIsLoaded(true)
-                    fetchData(result.data)
-                    storeLocal('welcome_stats', JSON.stringify(result.data))
-                    storeLocal('last_hit-welcome_stats', JSON.stringify(now)) 
-                },
-                (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
-                    setError(error)
-                }
-            )
-        }
-    }
 
     useEffect(() => {
         Swal.showLoading()
-        fetchWelcomeStats()
+        const now = new Date()
+        fetchWelcomeStats(
+            now,
+            (data) => {
+                setIsLoaded(true)
+                setItems(data)
+            },
+            (err) => {
+                setError(err)
+            }
+        )
         setUsernameKey(getCookie('username_key'))
-    },[])
+    }, [])
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>

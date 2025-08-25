@@ -54,7 +54,7 @@ export default function StatsPage() {
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex flex-column justify-content-center" id="most_used_clothes_daily_per_clothes_type_list-section">
                     <AtomsBreakLine length={2}/>
-                    <div className="form-container">
+                    <div className="form-container" id="most_used_clothes_daily_per_clothes_type-section">
                         <div style={{maxWidth:"50vw"}}>
                             <h2 className="mb-0 fw-bold">Most Used Clothes Daily per Clothes Type</h2>
                             <h5 className="text-secondary">We analyze the most used clothes by day and per its clothes type. The list is clickable and you can directly navigate to the clothes detail</h5>

@@ -8,7 +8,7 @@ import MoleculesFAQBox from "../../components/molecules/molecules_faq_box";
 import { getCookie } from "../../modules/storages/cookie";
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
 
-export default function LandingSectionFAQ() {
+export default function LandingSectionFAQ(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
