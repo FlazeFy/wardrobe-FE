@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import Axios from 'axios'
 import { messageError } from "../helpers/message";
+import { getLocal, storeLocal } from "../storages/local";
 
 export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
     clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,tokenKey,router) => {
@@ -203,5 +204,52 @@ export const postOutfitClothes = async (selectedItem,tokenKey,props) => {
         }
     } catch (error) {
         messageError(error)
+    }
+}
+
+export async function fetchClothesSummary(now, onSuccess, onError, tokenKey) {
+    try {
+        const oldTimeHit = getLocal("last_hit-stats_summary")
+        const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
+        const timeDiffInSec = oldTime ? Math.floor((now - oldTime) / 1000) : null
+
+        const fetchData = (data) => {
+            Swal.close()
+            onSuccess(data)
+        }
+
+        if (timeDiffInSec !== null && timeDiffInSec < 360 && oldTimeHit) {
+            const oldData = JSON.parse(getLocal("stats_summary"))
+            fetchData(oldData)
+            return
+        }
+
+        const headers = {
+            "Content-Type": "application/json",
+            ...(tokenKey ? { "Authorization": `Bearer ${tokenKey}` } : {})
+        }
+        
+        const response = await fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/summary`, {
+            method: "GET",
+            headers,
+        })
+        const result = await response.json()
+
+        if (response.ok) {
+            fetchData(result)
+            storeLocal("stats_summary", JSON.stringify(result.data))
+            storeLocal("last_hit-stats_summary", JSON.stringify(now))
+        } else {
+            throw new Error(result.message || "Failed to fetch data")
+        }
+    } catch (error) {
+        Swal.close()
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            confirmButtonText: "Okay!",
+        })
+        onError(error)
     }
 }

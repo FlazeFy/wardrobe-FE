@@ -1,11 +1,11 @@
 "use client"
-import { getLocal, storeLocal } from '../../../modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { formatCurrency } from '../../../modules/helpers/converter'
 import { getCookie } from '../../../modules/storages/cookie'
+import { fetchClothesSummary } from '@/modules/repositories/clothes_repository'
 
 export default function StatsSectionSummary(props) {
     const [error, setError] = useState(null)
@@ -14,52 +14,19 @@ export default function StatsSectionSummary(props) {
     const tokenKey = getCookie("token_key")
     const now = new Date()
 
-    const fetchSummary = () => {
-        const oldTimeHit = getLocal('last_hit-stats_summary')
-        const oldTime = new Date(JSON.parse(oldTimeHit))
-        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
-    
-        const fetchData = (data) => {
-            Swal.close()
-            setIsLoaded(true)
-            setItems(data) 
-        }
-    
-        if (timeDiffInSec < 360 && oldTimeHit) {
-            const oldData = JSON.parse(getLocal('stats_summary'))
-            fetchData(oldData)
-        } else {
-            fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/summary`, {
-                headers: {
-                    'Authorization': `Bearer ${tokenKey}`,
-                },
-            })
-            .then(res => res.json())
-                .then(
-                (result) => {
-                    Swal.close()
-                    setIsLoaded(true)
-                    fetchData(result.data)
-                    storeLocal('stats_summary', JSON.stringify(result.data))
-                    storeLocal('last_hit-stats_summary', JSON.stringify(now)) 
-                },
-                (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
-                    setError(error)
-                }
-            )
-        }
-    }
-
     useEffect(() => {
         Swal.showLoading()
-        fetchSummary()
+        fetchClothesSummary(
+            now, 
+            (data) => {
+                setIsLoaded(true)
+                setItems(data) 
+            },
+            (err) => {
+                setError(err)
+            },
+            tokenKey
+        )
     },[])
 
     if (error) {
