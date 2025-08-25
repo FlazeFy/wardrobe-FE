@@ -30,27 +30,27 @@ export default function EmbedAppSummaryPage() {
     } else if (!isLoaded) {
         return (
             <div>
-                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
+                <h3 className='text-center text-white mt-2 fst-italic'>Loading...</h3>
             </div>
         )
     } else {
         return (
             <main className={styles.main}>
                 <div className="p-2">
-                    <h3 className="fw-bold mb-0">{items.total_user} {items.total_user > 0 && '+'}</h3>
-                    <h5 className="text-secondary">Active User</h5>
+                    <h1 className="fw-bold mb-0">{items.total_user} {items.total_user > 0 && '+'}</h1>
+                    <h3 className="text-secondary">Active User</h3>
                 </div>
                 <div className="p-2">
-                    <h3 className="fw-bold mb-0">{items.total_outfit_decision} {items.total_outfit_decision > 0 && '+'}</h3>
-                    <h5 className="text-secondary">Outfit Decision</h5>
+                    <h1 className="fw-bold mb-0">{items.total_outfit_decision} {items.total_outfit_decision > 0 && '+'}</h1>
+                    <h3 className="text-secondary">Outfit Decision</h3>
                 </div>
                 <div className="p-2">
-                    <h3 className="fw-bold mb-0">{items.total_schedule} {items.total_schedule > 0 && '+'}</h3>
-                    <h5 className="text-secondary">Schedule Reminder</h5>
+                    <h1 className="fw-bold mb-0">{items.total_schedule} {items.total_schedule > 0 && '+'}</h1>
+                    <h3 className="text-secondary">Schedule Reminder</h3>
                 </div>
                 <div className="p-2">
-                    <h3 className="fw-bold mb-0">{items.total_clothes} {items.total_clothes > 0 && '+'}</h3>
-                    <h5 className="text-secondary">Clothes</h5>
+                    <h1 className="fw-bold mb-0">{items.total_clothes} {items.total_clothes > 0 && '+'}</h1>
+                    <h3 className="text-secondary">Clothes</h3>
                 </div>
             </main>
         )
