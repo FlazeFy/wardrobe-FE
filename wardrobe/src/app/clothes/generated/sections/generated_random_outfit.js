@@ -72,12 +72,7 @@ export default function GeneratedSectionRandomOutift(props) {
                     storeLocal('last_hit-dct_category_type', JSON.stringify(now)) 
                 },
                 (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                    })
+                    messageError(error)
                     setError(error)
                 }
             )

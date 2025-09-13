@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../modules/storages/local'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ClothesDetailEditForm(props) {
     const [error, setError] = useState(null)
@@ -93,12 +94,7 @@ export default function ClothesDetailEditForm(props) {
                     storeLocal('last_hit-dct_all_dct', JSON.stringify(now)) 
                 },
                 (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                    })
+                    messageError(error)
                     setError(error)
                 }
             )

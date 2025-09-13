@@ -36,12 +36,7 @@ export const postSaveOutfit = async (token) => {
                 }
             })
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
+            messageError("Something went wrong!")
         }
     } catch (error) {
         messageError(error)
@@ -79,12 +74,7 @@ export const postSaveOutfitHistory = async (id,tokenKey,props) => {
                 }
             })
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
+            messageError("Something went wrong!")
         }
     } catch (error) {
         messageError(error)

@@ -6,6 +6,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../modules/storages/cookie";
+import { messageError } from "@/modules/helpers/message";
 
 export default function CalendarSectionManage(props) {
     const [error, setError] = useState(null)
@@ -32,13 +33,7 @@ export default function CalendarSectionManage(props) {
                 setIsFetched(true) // Mark as fetched
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )

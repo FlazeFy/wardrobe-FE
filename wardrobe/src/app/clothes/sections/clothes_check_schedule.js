@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { getCookie } from '../../../modules/storages/cookie'
 import MoleculesScheduleMiniBox from '../../../components/molecules/molecules_schedule_mini_box'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ClothesCheckSchedule(props) {
     const [error, setError] = useState(null)
@@ -31,13 +32,7 @@ export default function ClothesCheckSchedule(props) {
                 setItems(result.data) 
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )

@@ -32,13 +32,7 @@ export default function CalendarSectionTomorrowSchedule(props) {
                 setItems(result.data) 
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )

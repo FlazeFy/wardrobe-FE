@@ -91,12 +91,7 @@ export const postRegister = async (props) => {
                 }
             });
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
+            messageError("Something went wrong!")
         }
     } catch (error) {
         messageError(error)
@@ -138,12 +133,7 @@ export const postValidateRegister = async (token,router) => {
                 }
             });
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
+            messageError("Something went wrong!")
         }
     } catch (error) {
         messageError(error)

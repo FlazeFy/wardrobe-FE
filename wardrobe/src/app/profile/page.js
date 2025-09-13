@@ -13,6 +13,7 @@ import ProfileSectionExportData from "./sections/profile_export_data";
 import ProfileSectionSendQuestion from "./sections/profile_post_question";
 import ProfileSectionSignOut from "./sections/profile_sign_out";
 import ProfileSectionPropsProfile from "./sections/profile_props_profile";
+import { messageError } from "@/modules/helpers/message";
 
 export default function ProfilePage(props) {
     const [error, setError] = useState(null)
@@ -40,13 +41,7 @@ export default function ProfilePage(props) {
                 setItems(result.data)  
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )

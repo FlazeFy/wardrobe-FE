@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../components/molecules/molecules_no_data'
+import { messageError } from '@/modules/helpers/message'
 
 export default function EmbedMostClothesCtx(props) {
     const [error, setError] = useState(null)
@@ -35,13 +36,7 @@ export default function EmbedMostClothesCtx(props) {
                 setItemsClothesCategory(result.data.clothes_category)  
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )
@@ -50,11 +45,7 @@ export default function EmbedMostClothesCtx(props) {
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
-        return (
-            <div>
-                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
-            </div>
-        )
+        return <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
     } else {
         return (
             <div className='row'> 

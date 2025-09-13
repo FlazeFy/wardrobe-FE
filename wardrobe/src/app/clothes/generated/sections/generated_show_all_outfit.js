@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { getCookie } from "../../../../modules/storages/cookie";
 import MoleculesNoData from "../../../../components/molecules/molecules_no_data";
+import { messageError } from "@/modules/helpers/message";
 
 export default function GeneratedSectionShowAllOutfit(props) {
     // Initial variables
@@ -40,13 +41,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
                 setMaxPage(result.data ? result.data.last_page : 1)
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                });
+                messageError(error)
                 setError(error)
             }
         )

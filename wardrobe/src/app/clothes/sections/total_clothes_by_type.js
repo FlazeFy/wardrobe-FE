@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
 import { getLocal, storeLocal } from '../../../modules/storages/local'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ClothesSectionTotalByType(props) {
     const [error, setError] = useState(null)
@@ -44,13 +45,7 @@ export default function ClothesSectionTotalByType(props) {
                     storeLocal('last_hit-total_clothes_by_type', JSON.stringify(now))
                 },
                 (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
+                    messageError(error)
                     setError(error)
                 }
             )

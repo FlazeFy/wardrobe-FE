@@ -10,6 +10,7 @@ import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../modules/storages/local'
 import { getErrorValidation } from '@/modules/helpers/converter'
 import { postUsedClothes } from '@/modules/repositories/clothes_repository'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ClothesDetailAddUsedHistory(props) {
     const [error, setError] = useState(null)
@@ -58,12 +59,7 @@ export default function ClothesDetailAddUsedHistory(props) {
                     storeLocal('last_hit-dct_used_context', JSON.stringify(now)) 
                 },
                 (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                    })
+                    messageError(error)
                     setError(error)
                 }
             )

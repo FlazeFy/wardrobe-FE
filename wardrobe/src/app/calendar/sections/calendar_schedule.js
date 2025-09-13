@@ -6,6 +6,7 @@ import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box
 import { getCookie } from "../../../modules/storages/cookie";
 import CalendarSectionExportDailyData from "./calendar_export_daily_data";
 import CalendarSectionManage from "./calendar_manage";
+import { messageError } from "@/modules/helpers/message";
 
 export default function CalendarSectionSchedule(props) {
     const [error, setError] = useState(null)
@@ -39,13 +40,7 @@ export default function CalendarSectionSchedule(props) {
                 setToday(formattedDate)
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )

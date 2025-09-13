@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
 import OrganismsHistoryBox from '../../../components/organisms/organisms_history_box'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ProfileSectionAllHistory(props) {
     const [error, setError] = useState(null)
@@ -45,13 +46,7 @@ export default function ProfileSectionAllHistory(props) {
             Swal.close()
         })
         .catch(error => {
-            Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
+            messageError(error)
             setError(error)
         })
     }

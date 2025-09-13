@@ -43,12 +43,7 @@ export default function OutfitSectionHardDeleteOutfitHistory(props) {
                             }
                         })
                     } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-                            confirmButtonText: "Okay!"
-                        })
+                        messageError("Something went wrong!")
                     }
                 } catch (error) {
                     messageError(error)

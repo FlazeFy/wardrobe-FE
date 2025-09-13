@@ -5,6 +5,7 @@ import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import { getCookie } from "../../../../modules/storages/cookie"
 import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter"
+import { messageError } from "@/modules/helpers/message"
 
 export default function GeneratedSectionSummary(){
     const [error, setError] = useState(null)
@@ -52,13 +53,7 @@ export default function GeneratedSectionSummary(){
                 }
             })
             .catch(error => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             })
         }

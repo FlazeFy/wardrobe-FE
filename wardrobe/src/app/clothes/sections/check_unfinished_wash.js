@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
 import AtomsBreakLine from '../../../components/atoms/atoms_breakline'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ClothesSectionUnfinishedWash(props) {
     const [error, setError] = useState(null)
@@ -39,13 +40,7 @@ export default function ClothesSectionUnfinishedWash(props) {
             Swal.close()
         })
         .catch(error => {
-            Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonText: "Okay!"
-            })
+            messageError(error)
             setError(error)
         })
     }

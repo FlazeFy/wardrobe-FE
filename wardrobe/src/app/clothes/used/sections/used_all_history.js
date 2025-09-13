@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import UsedHardDeleteUsedHistory from './used_hard_delete_used_history'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
+import { messageError } from '@/modules/helpers/message'
 
 export default function UsedAllHistory(props) {
     const [error, setError] = useState(null)
@@ -33,13 +34,7 @@ export default function UsedAllHistory(props) {
                 setItems(result.data ? result.data.data :null)  
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )

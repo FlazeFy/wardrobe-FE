@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import MoleculesFAQBox from "../../components/molecules/molecules_faq_box";
 import { getCookie } from "../../modules/storages/cookie";
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
+import { messageError } from "@/modules/helpers/message";
 
 export default function LandingSectionFAQ(props) {
     const [error, setError] = useState(null)
@@ -41,12 +42,7 @@ export default function LandingSectionFAQ(props) {
                     storeLocal('last_hit-faq', JSON.stringify(now)) 
                 },
                 (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                    })
+                    messageError(error)
                     setError(error)
                 }
             )

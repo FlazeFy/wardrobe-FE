@@ -15,6 +15,7 @@ import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_histor
 import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes";
 import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used";
 import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes";
+import { messageError } from "@/modules/helpers/message";
 
 export default function ClothesOutfitPage({params, ...props}) {
     const [error, setError] = useState(null)
@@ -46,13 +47,7 @@ export default function ClothesOutfitPage({params, ...props}) {
             },
             (error) => {
                 setIsLoaded(true)
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )
@@ -82,12 +77,7 @@ export default function ClothesOutfitPage({params, ...props}) {
             Swal.close()
             if (error.message != 404) {
                 setError(error)
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                });
+                messageError(error)
             } else {
                 setIsLoaded(true)
             }

@@ -96,12 +96,7 @@ export default function ClothesAddForm(props) {
                     storeLocal('last_hit-dct_all_dct', JSON.stringify(now)) 
                 },
                 (error) => {
-                    Swal.close()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                    })
+                    messageError(error)
                     setError(error)
                 }
             )

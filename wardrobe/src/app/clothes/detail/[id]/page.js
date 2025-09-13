@@ -16,6 +16,7 @@ import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule";
 import { getCookie } from "../../../../modules/storages/cookie";
 import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit";
 import DetailSectionClothesHeader from "./sections/detail_clothes_header";
+import { messageError } from "@/modules/helpers/message";
 
 export default function ClothesDetailPage({params}) {
     const [error, setError] = useState(null)
@@ -43,13 +44,7 @@ export default function ClothesDetailPage({params}) {
                 setItems(result.data)  
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
+                messageError(error)
                 setError(error)
             }
         )

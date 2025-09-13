@@ -30,11 +30,7 @@ export default function EmbedAppSummaryPage(props) {
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
-        return (
-            <div>
-                <h3 className='text-center text-white mt-2 fst-italic'>Loading...</h3>
-            </div>
-        )
+        return <h3 className='text-center text-white mt-2 fst-italic'>Loading...</h3>
     } else {
         return (
             <main className={styles.main}>

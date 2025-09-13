@@ -4,11 +4,15 @@ import { getLocal, storeLocal } from "../storages/local"
 
 export async function fetchMonthlyClothes(year, onSuccess, onError, tokenKey) {
     try {
+        const headers = {
+            'Content-Type': 'application/json',
+        }
+        if(tokenKey) {
+            headers['Authorization'] = `Bearer ${tokenKey}`
+        }
+
         fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/created_buyed/${year}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
+            headers: headers,
         })
         .then(res => res.json())
             .then(

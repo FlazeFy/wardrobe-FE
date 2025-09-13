@@ -7,6 +7,7 @@ import AtomsBreakLine from '../../components/atoms/atoms_breakline'
 import { convertDatetimeBasedLocal } from '../../modules/helpers/converter'
 import { getLocal, storeLocal } from '../../modules/storages/local'
 import MoleculesAlertBox from '../../components/molecules/molecules_alert_box'
+import { messageError } from '@/modules/helpers/message'
 
 export default function LandingSectionLastOutfit(props) {
     const [error, setError] = useState(null)
@@ -92,12 +93,7 @@ export default function LandingSectionLastOutfit(props) {
                 setItems(result.data)
             },
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                });
+                messageError(error)
                 setError(error)
             }
         )
