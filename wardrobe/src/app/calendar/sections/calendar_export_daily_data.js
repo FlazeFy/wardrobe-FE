@@ -5,6 +5,7 @@ import Axios from 'axios'
 import Swal from 'sweetalert2'
 import { getCookie } from '../../../modules/storages/cookie'
 import { faPrint } from '@fortawesome/free-solid-svg-icons'
+import { messageError } from '@/modules/helpers/message'
 
 export default function CalendarSectionExportDailyData(props) {
     const tokenKey = getCookie("token_key")
@@ -51,13 +52,7 @@ export default function CalendarSectionExportDailyData(props) {
                 })
             }
         } catch (error) {
-            Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: error,
-                confirmButtonText: "Okay!"
-            })
+            messageError(error)
         }
     }
 

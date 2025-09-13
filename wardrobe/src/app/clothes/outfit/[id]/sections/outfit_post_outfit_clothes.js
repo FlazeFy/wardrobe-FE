@@ -9,6 +9,7 @@ import MoleculesAlertBox from '../../../../../components/molecules/molecules_ale
 import OrganismsClothesHeader from '../../../../../components/organisms/organisms_clothes_header'
 import { getCleanTitleFromCtx } from '../../../../../modules/helpers/converter'
 import { postOutfitClothes } from '@/modules/repositories/clothes_repository'
+import { messageError } from '@/modules/helpers/message'
 
 export default function OutfitDetailPostOutfitClothes(props) {
     const [error, setError] = useState(null)
@@ -127,12 +128,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                         setResMsgAll(response.data.message)
                     }
                 } catch (error) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
+                    messageError(error)
                 }
             } 
         })
@@ -165,11 +161,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
-        return (
-            <div>
-                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
-            </div>
-        )
+        return <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
     } else {
         return (
             <>

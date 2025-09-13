@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../../modules/storages/cookie'
+import { messageError } from '@/modules/helpers/message'
 
 export default function RecoverClothesUsedById(props) {
     const tokenKey = getCookie("token_key")
@@ -41,20 +42,10 @@ export default function RecoverClothesUsedById(props) {
                             }
                         })
                     } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-                            confirmButtonText: "Okay!"
-                        })
+                        messageError("Something went wrong!")
                     }
                 } catch (error) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
+                    messageError(error)
                 }
             } 
         })

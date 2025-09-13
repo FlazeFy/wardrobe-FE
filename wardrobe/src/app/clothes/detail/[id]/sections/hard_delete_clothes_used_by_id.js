@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../../modules/storages/cookie'
+import { messageError } from '@/modules/helpers/message'
 
 export default function HardDeleteClothesUsedById(props) {
     const tokenKey = getCookie("token_key")
@@ -57,12 +58,7 @@ export default function HardDeleteClothesUsedById(props) {
                             })
                         }
                     } catch (error) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-                            confirmButtonText: "Okay!"
-                        })
+                        messageError(error)
                     }
                 } 
             })

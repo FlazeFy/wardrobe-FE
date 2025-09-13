@@ -55,11 +55,7 @@ export default function ClothesSectionAllHeader(props) {
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
-        return (
-            <div>
-                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
-            </div>
-        )
+        return <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
     } else {
         return (
             <div className='row' id="clothes_holder"> 

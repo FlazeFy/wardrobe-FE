@@ -9,6 +9,7 @@ import { countDiffInDays } from '../../../../../modules/helpers/converter'
 import RecoverClothesUsedById from './recover_clothes_used_by_id'
 import { getCookie } from '../../../../../modules/storages/cookie'
 import { useRouter } from 'next/navigation'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ClothesDetailDeleteClothesById(props) {
     const [isValidated, setIsValidated] = useState(false)
@@ -60,12 +61,7 @@ export default function ClothesDetailDeleteClothesById(props) {
                         })
                     }
                 } catch (error) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
+                    messageError(error)
                 }
             } 
         })

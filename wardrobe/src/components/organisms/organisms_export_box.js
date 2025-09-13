@@ -6,6 +6,7 @@ import Axios from 'axios'
 import Swal from 'sweetalert2'
 import { getCookie } from '../../modules/storages/cookie'
 import { getCleanTitleFromCtx } from '../../modules/helpers/converter'
+import { messageError } from '@/modules/helpers/message'
 
 export default function OrganismsExportBox(props) {
     const tokenKey = getCookie("token_key")
@@ -50,13 +51,7 @@ export default function OrganismsExportBox(props) {
                 })
             }
         } catch (error) {
-            Swal.close()
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: error,
-                confirmButtonText: "Okay!"
-            })
+            messageError(error)
         }
     }
 

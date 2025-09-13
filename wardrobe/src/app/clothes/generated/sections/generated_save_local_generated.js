@@ -5,6 +5,7 @@ import React from "react"
 import Swal from "sweetalert2";
 import { getCookie } from "../../../../modules/storages/cookie";
 import { postSaveOutfit } from "../../../../modules/repositories/outfit_repository";
+import { messageError } from "@/modules/helpers/message";
 
 export default function GeneratedSectionSaveLocalGenerated(props) {
     const tokenKey = getCookie("token_key")
@@ -23,13 +24,7 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
                 try {
                     postSaveOutfit(tokenKey)
                 } catch (error) {
-                    Swal.hideLoading()
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        confirmButtonText: "Okay!"
-                    })
+                    messageError(error)
                 }
             } 
         })

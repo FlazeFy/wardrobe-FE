@@ -8,6 +8,7 @@ import { getCookie } from '../../../modules/storages/cookie'
 import { getLocal } from '../../../modules/storages/local'
 import { postSaveOutfit } from '../../../modules/repositories/outfit_repository'
 import { useRouter } from 'next/navigation'
+import { messageError } from '@/modules/helpers/message'
 
 export default function ProfileSectionSignOut(props) {
     const tokenKey = getCookie("token_key")
@@ -56,12 +57,7 @@ export default function ProfileSectionSignOut(props) {
                             })
                         }
                     } catch (error) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-                            confirmButtonText: "Okay!"
-                        })
+                        messageError(error)
                     }
                 } 
             })

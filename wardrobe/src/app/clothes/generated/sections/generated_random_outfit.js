@@ -12,6 +12,7 @@ import GeneratedSectionSaveOutfit from "./generated_save_outfit";
 import Axios from 'axios'
 import { getLocal, storeLocal } from "../../../..//modules/storages/local";
 import { getCookie } from "../../../../modules/storages/cookie";
+import { messageError } from '@/modules/helpers/message';
 
 export default function GeneratedSectionRandomOutift(props) {
     const [error, setError] = useState(null)
@@ -215,14 +216,8 @@ export default function GeneratedSectionRandomOutift(props) {
     
                 setResMsgAll(msg)
             } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                });
-    
-                setResMsgAll(error);
+                messageError(error)
+                setResMsgAll(error)
             }
         }
     }
@@ -230,11 +225,7 @@ export default function GeneratedSectionRandomOutift(props) {
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
     } else if (!isLoaded) {
-        return (
-            <div>
-                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
-            </div>
-        )
+        return <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
     } else {
         return (
             <div className="container-generator mx-auto text-center d-block" style={{maxWidth:"1280px", textAlign:"center"}}>
