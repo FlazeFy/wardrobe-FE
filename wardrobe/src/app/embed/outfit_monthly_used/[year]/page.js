@@ -4,20 +4,19 @@ import { getCookie } from '../../../../modules/storages/cookie'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
-import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
+import MoleculesAlertBox from '@/components/molecules/molecules_alert_box'
+import MoleculesNoData from '@/components/molecules/molecules_no_data'
 import { fetchOutfitMonthlyTotalUsed } from '@/modules/repositories/stats_repository'
 
-export default function GeneratedSectionOutfitMonthlyTotalUsed(props) {
+export default function EmbedOutfitMonthlyTotalUsed({params}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         Swal.showLoading()
         fetchOutfitMonthlyTotalUsed(
-            props.year,
+            params.year,
             (data) => {
                 setIsLoaded(true)
                 setItems(data)
@@ -25,7 +24,7 @@ export default function GeneratedSectionOutfitMonthlyTotalUsed(props) {
             (err) => {
                 setError(err)
             },
-            tokenKey
+            null
         )
     },[])
 

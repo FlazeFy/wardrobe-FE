@@ -1,3 +1,4 @@
+"use client"
 import styles from "../../page.module.css";
 import OrganismsNavbar from "../../../components/organisms/organisms_navbar";
 import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
@@ -9,8 +10,12 @@ import GeneratedSectionOutfitMostUsed from "./sections/generated_outfit_most_use
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GeneratedSectionSummary from "./sections/generated_summary";
+import { useState } from "react";
 
 export default function GeneratedPage() {
+    const currentYear = new Date().getFullYear()
+    const [year, setYear] = useState(currentYear)
+
     return (
         <main className={styles.main}>
             <OrganismsNavbar current="clothes"/>
@@ -25,7 +30,7 @@ export default function GeneratedPage() {
             <AtomsBreakLine length={3}/>
             <GeneratedSectionOutfitMostUsed/>
             <AtomsBreakLine length={3}/>
-            <GeneratedSectionOutfitMonthlyTotalUsed/>
+            <GeneratedSectionOutfitMonthlyTotalUsed year={year}/>
             <AtomsBreakLine length={5}/>
             <GeneratedSectionShowAllOutfit ctx={"all_outfit"}/>
             <MoleculesFooter/>
