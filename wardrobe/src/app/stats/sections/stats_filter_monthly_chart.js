@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../components/molecules/molecules_field'
-import { getLocal, storeLocal } from '../../../modules/storages/local'
+import { fetchYear } from '@/modules/repositories/stats_repository'
 
 export default function StatsSectionFilterMonthlyChart(props) {
     const [error, setError] = useState(null)
@@ -16,50 +16,20 @@ export default function StatsSectionFilterMonthlyChart(props) {
     // Dictionaries for select options
     const [yearDictionary, setYearDictionary] = useState([])
 
-    const fetchYear = () => {
-        const oldTimeHit = getLocal('last_hit-available_year_filter')
-        const oldTime = new Date(JSON.parse(oldTimeHit))
-        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
-    
-        const fetchData = (data) => {
-            Swal.close()
-            setIsLoaded(true)
-            const year = data.map(el => el.year.toString())
-            setYearDictionary(year)
-        }
-    
-        if (timeDiffInSec < 360 && oldTimeHit) {
-            const oldData = JSON.parse(getLocal('available_year_filter'))
-            fetchData(oldData)
-        } else {
-            fetch(`http://127.0.0.1:8000/api/v1/user/my_year`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenKey}`, 
-                },
-            })
-            .then(res => res.json())
-            .then(result => {
-                fetchData(result.data)
-                storeLocal('available_year_filter', JSON.stringify(result.data))
-                storeLocal('last_hit-available_year_filter', JSON.stringify(now))
-            })
-            .catch(error => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
-                setError(error)
-            })
-        }
-    }
-
     useEffect(() => {
         Swal.showLoading()
-        fetchYear()
+        fetchYear(
+            now,
+            (result) => {
+                setIsLoaded(true)
+                const year = result.map(el => el.year.toString())
+                setYearDictionary(year)
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey
+        )
     },[])
 
     if (error) {

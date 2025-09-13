@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
+import { fetchYearlyActivity } from '@/modules/repositories/stats_repository'
 
 export default function StatsYearlyActivity(props) {
     const [error, setError] = useState(null)
@@ -14,29 +15,15 @@ export default function StatsYearlyActivity(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/yearly/clothes_used`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
+        fetchYearlyActivity(
             (result) => {
-                Swal.close()
                 setIsLoaded(true)
-                setItems(result.data)
-            },
+                setItems(result)
+            }, 
             (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
                 setError(error)
-            }
+            },
+            tokenKey
         )
     },[])
 

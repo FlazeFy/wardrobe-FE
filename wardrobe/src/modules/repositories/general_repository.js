@@ -29,13 +29,7 @@ export async function fetchWelcomeStats(now, onSuccess, onError) {
             throw new Error(result.message || "Failed to fetch data")
         }
     } catch (error) {
-        Swal.close()
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            confirmButtonText: "Okay!",
-        })
+        messageError(error)
         onError(error)
     }
 }

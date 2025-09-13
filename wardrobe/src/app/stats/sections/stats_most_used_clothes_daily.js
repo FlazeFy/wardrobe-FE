@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
+import { fetchMostUsedClothesDaily } from '@/modules/repositories/stats_repository'
 
 export default function StatsSectionMostUsedClothesDaily(props) {
     const [error, setError] = useState(null)
@@ -15,31 +16,17 @@ export default function StatsSectionMostUsedClothesDaily(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/most/used/daily`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
+        fetchMostUsedClothesDaily(
             (result) => {
-                Swal.close()
                 setIsLoaded(true)
-                setItems(result.data)
-
+                setItems(result)
                 const today = new Date().toLocaleDateString('en-US', { weekday: 'short' })
                 setToday(today)
             },
-            (error) => {
-                Swal.close()
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonText: "Okay!"
-                })
-                setError(error)
-            }
+            (err) => {
+                setError(err)
+            },
+            tokenKey
         )
     },[])
 
