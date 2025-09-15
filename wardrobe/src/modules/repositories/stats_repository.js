@@ -135,6 +135,35 @@ export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError, toke
     }
 }
 
+export async function fetchOutfitMostUsed(year, onSuccess, onError, tokenKey){
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+        }
+        if(tokenKey){
+            headers['Authorization'] = `Bearer ${tokenKey}` 
+        }
+
+        fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/most/used/${year}`, {
+            headers: headers,
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                setError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}
+
 export async function fetchYear(now, onSuccess, onError, tokenKey) {
     try {
         const oldTimeHit = getLocal("last_hit-available_year_filter")

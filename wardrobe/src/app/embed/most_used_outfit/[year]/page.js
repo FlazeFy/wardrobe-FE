@@ -1,23 +1,21 @@
 "use client"
-import { getCookie } from '../../../../modules/storages/cookie'
 import React from 'react'
 import { useState, useEffect } from "react"
-import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import MoleculesChartBar from '../../../../components/molecules/molecules_chart_bar'
-import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
+import MoleculesAlertBox from '@/components/molecules/molecules_alert_box'
+import MoleculesChartBar from '@/components/molecules/molecules_chart_bar'
+import MoleculesNoData from '@/components/molecules/molecules_no_data'
 import { fetchOutfitMostUsed } from '@/modules/repositories/stats_repository'
 import Swal from 'sweetalert2'
 
-export default function GeneratedSectionOutfitMostUsed(props) {
+export default function EmbedOutfitMostUsed({params}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const tokenKey = getCookie("token_key")
 
     useEffect(() => {
         Swal.showLoading()
         fetchOutfitMostUsed(
-            props.year, 
+            params.year, 
             (result) => {
                 setIsLoaded(true)
                 setItems(result)
@@ -25,7 +23,7 @@ export default function GeneratedSectionOutfitMostUsed(props) {
             (err) => {
                 setError(err)
             },
-            tokenKey)
+            null)
     },[])
 
     if (error) {

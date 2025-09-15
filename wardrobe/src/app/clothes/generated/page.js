@@ -28,7 +28,7 @@ export default function GeneratedPage() {
             </div>
             <GeneratedSectionRandomOutift/>
             <AtomsBreakLine length={3}/>
-            <GeneratedSectionOutfitMostUsed/>
+            <GeneratedSectionOutfitMostUsed year={year}/>
             <AtomsBreakLine length={3}/>
             <GeneratedSectionOutfitMonthlyTotalUsed year={year}/>
             <AtomsBreakLine length={5}/>
