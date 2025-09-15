@@ -71,6 +71,62 @@ export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSiz
     }
 }
 
+export const hardDeleteClothesById = async (id,tokenKey,action) => {
+    try {
+        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy/${id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenKey}`,
+            }
+        })
+        if(response.status === 200){
+            Swal.fire({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                confirmButtonText: "Okay!"
+            }).then((result) => {
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
+                    action
+                }
+            })
+        } else {
+            messageError("Something went wrong!")
+        }
+    } catch (error) {
+        messageError(error)
+    }
+} 
+
+export const recoverClothesById = async (id,tokenKey,action) => {
+    try {
+        let response = await Axios.put(`http://127.0.0.1:8000/api/v1/clothes/recover/${id}`, null, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenKey}`,
+            }
+        })
+        if(response.status === 200){
+            Swal.fire({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                confirmButtonText: "Okay!"
+            }).then((result) => {
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
+                    action
+                }
+            })
+        } else {
+            messageError("Something went wrong!")
+        }
+    } catch (error) {
+        messageError(error)
+    }
+} 
+
 export const postSchedule = async (day,isRemind,scheduleNote,tokenKey,props) => {
     try {
         Swal.showLoading()
@@ -242,6 +298,34 @@ export async function fetchClothesSummary(now, onSuccess, onError, tokenKey) {
         } else {
             throw new Error(result.message || "Failed to fetch data")
         }
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}
+
+export default function fetchTrash(onSuccess, onError, tokenKey){
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/trash`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenKey}` 
+            }
+        })
+        .then(res => {
+            if (res.status === 404) {
+                onSuccess(null)
+                return null
+            }
+            Swal.close()
+            return res.json()
+        })
+        .then(result => {
+            if (result) {
+                onSuccess(result.data.data)
+            }
+            Swal.close()
+        })
     } catch (error) {
         messageError(error)
         onError(error)

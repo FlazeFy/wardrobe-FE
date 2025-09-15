@@ -6,7 +6,7 @@ import { faTrash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { countDiffInDays } from '../../../../../modules/helpers/converter'
-import RecoverClothesUsedById from './recover_clothes_used_by_id'
+import RecoverClothesUsedById from './recover_clothes_by_id'
 import { getCookie } from '../../../../../modules/storages/cookie'
 import { useRouter } from 'next/navigation'
 import { messageError } from '@/modules/helpers/message'

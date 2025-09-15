@@ -3,12 +3,11 @@ import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from '../../../../mod
 import { getCookie } from '../../../../modules/storages/cookie'
 import React from 'react'
 import { useState, useEffect } from "react"
-import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import RecoverClothesUsedById from '../../detail/[id]/sections/recover_clothes_used_by_id'
+import RecoverClothesById from '../../detail/[id]/sections/recover_clothes_by_id'
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 import HardDeleteClothesById from './hard_delete_clothes_by_id'
-import { messageError } from '@/modules/helpers/message'
+import fetchTrash from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionAllDeletedClothes(props) {
     const [error, setError] = useState(null)
@@ -16,36 +15,17 @@ export default function ClothesSectionAllDeletedClothes(props) {
     const [items, setItems] = useState(null)
     const tokenKey = getCookie("token_key")
 
-    const fetchClothes = () => {
-        Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/trash`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => {
-            if (res.status === 404) {
-                setIsLoaded(true)
-                setItems(null)
-                return null
-            }
-            Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) {
-                setIsLoaded(true)
-                setItems(result.data.data)
-            }
-            Swal.close()
-        })
-        .catch(error => {
-            messageError(error)
-            setError(error)
-        })
-    }
     useEffect(() => {
-        fetchClothes()
+        fetchTrash(
+            (res) => {
+                setIsLoaded(true)
+                setItems(res)
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey
+        )
     },[])
 
     if (error) {
@@ -93,8 +73,8 @@ export default function ClothesSectionAllDeletedClothes(props) {
                                         <p className='m-0 mb-2'>{convertDatetimeBasedLocal(el.deleted_at)}</p>
                                     </td>
                                     <td>
-                                        <HardDeleteClothesById id={el.id} fetchClothes={fetchClothes}/>
-                                        <RecoverClothesUsedById id={el.id} button_with_title={false} fetchClothes={fetchClothes}/>
+                                        <HardDeleteClothesById id={el.id} fetchTrash={fetchTrash}/>
+                                        <RecoverClothesById id={el.id} button_with_title={false} fetchTrash={fetchTrash}/>
                                     </td>
                                 </tr>
                             })
