@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getCookie } from '../../../modules/storages/cookie'
 import OrganismsHistoryBox from '../../../components/organisms/organisms_history_box'
-import { messageError } from '@/modules/helpers/message'
+import { fetchHistory } from '@/modules/repositories/history_repository'
 
 export default function ProfileSectionAllHistory(props) {
     const [error, setError] = useState(null)
@@ -17,38 +17,26 @@ export default function ProfileSectionAllHistory(props) {
     const tokenKey = getCookie("token_key")
 
     useEffect(() => {
+        handleFetchHistory(page)
+    }, [])
+    
+    const handleFetchHistory = (page = 1) => {
         Swal.showLoading()
-        fetchHistory()
-    },[])
-
-    const fetchHistory = () => {
-        fetch(`http://127.0.0.1:8000/api/v1/history?page=${page}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
+        // Repositories
+        fetchHistory(
+            page,
+            (result) => {
+                setIsLoaded(true)
+                setItems(result ? result.data : null)
+                setMaxPage(result ? result.last_page : 0)
+                Swal.close()
             },
-        })
-        .then(res => {
-            if (res.status === 404) {
-                setIsLoaded(true)
-                setItems(null)
-                setMaxPage(0)
-                return null
-            }
-            Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) {
-                setIsLoaded(true)
-                setItems(result.data.data) 
-                setMaxPage(result.data.last_page)
-            }
-            Swal.close()
-        })
-        .catch(error => {
-            messageError(error)
-            setError(error)
-        })
+            (error) => {
+                setError(error)
+                Swal.close()
+            },
+            tokenKey
+        )
     }
 
     if (error) {
@@ -62,7 +50,7 @@ export default function ProfileSectionAllHistory(props) {
                 {
                     items ? 
                         items.map((dt, idx) => (
-                            <OrganismsHistoryBox key={idx} items={dt} fetchHistory={fetchHistory}/>
+                            <OrganismsHistoryBox key={idx} items={dt} fetchHistory={handleFetchHistory}/>
                         ))
                     : <MoleculesNoData title="No History Found"/>
                 }

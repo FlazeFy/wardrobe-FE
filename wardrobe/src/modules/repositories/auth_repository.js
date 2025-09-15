@@ -139,3 +139,35 @@ export const postValidateRegister = async (token,router) => {
         messageError(error)
     }
 }
+
+export const postSignOut = async (tokenKey,router) => {
+    try {
+        Swal.showLoading()
+        let response = await Axios.get(`http://127.0.0.1:8000/api/v1/logout`, {
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${tokenKey}`,
+            }
+        })
+        
+        if(response.status === 200){
+            Swal.fire({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                allowOutsideClick: false,
+                confirmButtonText: "Okay!"
+            }).then((result) => {
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
+                    localStorage.clear()
+                    document.cookie = "cookieName=; path=/"
+                    router.push('/')
+                }
+            })
+        } else {
+            messageError("Something went wrong!")
+        }
+    } catch (error) {
+        messageError(error)
+    }
+}
