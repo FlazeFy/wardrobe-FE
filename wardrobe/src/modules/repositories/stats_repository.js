@@ -83,11 +83,15 @@ export async function fetchMostUsedClothesDaily(onSuccess, onError, tokenKey){
 
 export async function fetchYearlyActivity(onSuccess, onError, tokenKey) {
     try {
+        const headers = {
+            'Content-Type': 'application/json',
+        }
+        if(tokenKey){
+            headers['Authorization'] = `Bearer ${tokenKey}` 
+        }
+
         fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/yearly/clothes_used`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
+            headers: headers,
         })
         .then(res => res.json())
             .then(
@@ -97,7 +101,6 @@ export async function fetchYearlyActivity(onSuccess, onError, tokenKey) {
             },
             (error) => {
                 messageError(error)
-                setError(error)
             }
         )
     } catch (error) {
