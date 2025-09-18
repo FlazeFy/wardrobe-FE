@@ -6,36 +6,30 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../modules/storages/cookie";
-import { messageError } from "@/modules/helpers/message";
+import { fetchCalendarDetail } from "@/modules/repositories/clothes_repository";
 
 export default function CalendarSectionManage(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const [isFetched, setIsFetched] = useState(false) // Track if data is fetched
+    const [isFetched, setIsFetched] = useState(false)
     const tokenKey = getCookie("token_key")
 
     const fetchCalendar = () => {
-        if (isFetched) return; // Prevent multiple API calls
+        if (isFetched) return; 
 
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/detail/date/${props.date}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-        .then(
+        fetchCalendarDetail(
+            props.date,
             (result) => {
-                Swal.close()
                 setIsLoaded(true)
-                setItems(result.data) 
-                setIsFetched(true) // Mark as fetched
+                setItems(result) 
+                setIsFetched(true)
             },
             (error) => {
-                messageError(error)
                 setError(error)
-            }
+            },
+            tokenKey
         )
     }
 

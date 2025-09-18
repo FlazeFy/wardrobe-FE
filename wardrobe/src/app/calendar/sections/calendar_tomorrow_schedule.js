@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../modules/storages/cookie";
 import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
+import fetchTomorrowSchedule from "@/modules/repositories/clothes_repository";
 
 export default function CalendarSectionTomorrowSchedule(props) {
     const [error, setError] = useState(null)
@@ -14,29 +15,18 @@ export default function CalendarSectionTomorrowSchedule(props) {
 
     useEffect(() => {
         const today = new Date().toLocaleDateString('en-US', { weekday: 'short' })
-        fetchTomorrowSchedule(today)
-    }, [])
-
-    const fetchTomorrowSchedule = (day) => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/tomorrow/${day}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data) 
-            },
-            (error) => {
-                messageError(error)
-                setError(error)
-            }
-        )
-    }
+        fetchTomorrowSchedule(
+        today, 
+        (result) => {
+            setIsLoaded(true)
+            setItems(result) 
+        }, 
+        (error) => {
+            setError(error)
+        }, 
+        tokenKey)
+    }, [])
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>

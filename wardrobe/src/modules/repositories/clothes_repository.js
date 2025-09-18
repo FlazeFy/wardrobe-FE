@@ -304,7 +304,7 @@ export async function fetchClothesSummary(now, onSuccess, onError, tokenKey) {
     }
 }
 
-export default function fetchTrash(onSuccess, onError, tokenKey){
+export async function fetchTrash(onSuccess, onError, tokenKey){
     try {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/trash`, {
             headers: {
@@ -330,4 +330,76 @@ export default function fetchTrash(onSuccess, onError, tokenKey){
         messageError(error)
         onError(error)
     }
+}
+
+export default function fetchTomorrowSchedule(day, onSuccess, onError, tokenKey){
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/tomorrow/${day}`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`, 
+            },
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    } 
+}
+
+export async function fetchCalendar(month, year, onSuccess, onError, tokenKey){
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/${month}/${year}`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`, 
+            },
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    } 
+}
+
+export async function fetchCalendarDetail(date,onSuccess,onError,tokenKey){
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/detail/date/${date}`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`, 
+            },
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    } 
 }

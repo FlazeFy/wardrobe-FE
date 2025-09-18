@@ -1,12 +1,11 @@
 "use client"
 import OrganismsClothesHeader from "../../../components/organisms/organisms_clothes_header";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
 import { getCookie } from "../../../modules/storages/cookie";
 import CalendarSectionExportDailyData from "./calendar_export_daily_data";
 import CalendarSectionManage from "./calendar_manage";
-import { messageError } from "@/modules/helpers/message";
+import { fetchCalendar } from "@/modules/repositories/clothes_repository";
 
 export default function CalendarSectionSchedule(props) {
     const [error, setError] = useState(null)
@@ -17,19 +16,11 @@ export default function CalendarSectionSchedule(props) {
     const [today, setToday] = useState() 
     const tokenKey = getCookie("token_key")
 
-    const fetchCalendar = () => {
-        Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/${month}/${year}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
+    useEffect(() => {
+        fetchCalendar(month, year, 
             (result) => {
-                Swal.close()
                 setIsLoaded(true)
-                setItems(result.data) 
+                setItems(result) 
 
                 const currentDate = new Date()
                 const formattedDate = currentDate.toLocaleDateString('en-GB', {
@@ -38,16 +29,12 @@ export default function CalendarSectionSchedule(props) {
                     year: 'numeric',
                 });
                 setToday(formattedDate)
-            },
+            }, 
             (error) => {
-                messageError(error)
                 setError(error)
-            }
+            }, 
+            tokenKey
         )
-    }
-
-    useEffect(() => {
-        fetchCalendar()
     }, [month_year])
 
     const getDatesForMonth = (month, year) => {
