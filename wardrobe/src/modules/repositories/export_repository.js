@@ -85,3 +85,44 @@ export async function fetchExportCalendar(type, target, fileName, ctx, tokenKey)
         messageError(error)
     }
 }
+
+export async function fetchExportClothesDetail(id, tokenKey){
+    try {
+        Swal.showLoading()
+        const response = await Axios.get(`http://127.0.0.1:8000/api/v1/export/clothes/detail/pdf/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`,
+            },
+            responseType: 'blob'
+        })
+        Swal.close()
+
+        if(response.status === 200){
+            const fileName = `clothes-detail-${id}.pdf`
+
+            const url = window.URL.createObjectURL(new Blob([response.data]))
+            const link = document.createElement('a')
+            link.href = url
+            link.setAttribute('download', fileName)
+            document.body.appendChild(link)
+            link.click()
+            link.remove()
+
+            Swal.fire({
+                title: "Success!",
+                text: `Clothes detail downloaded`,
+                icon: "success",
+                confirmButtonText: "Okay!"
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `Clothes detail failed to download`,
+                confirmButtonText: "Okay!"
+            })
+        }
+    } catch (error) {
+        messageError(error)
+    }
+}

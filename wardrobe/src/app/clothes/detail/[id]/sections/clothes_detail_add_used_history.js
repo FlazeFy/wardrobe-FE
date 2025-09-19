@@ -2,13 +2,11 @@
 import { getCookie } from '../../../../../modules/storages/cookie'
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Axios from 'axios'
 import React, { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../modules/storages/local'
-import { getErrorValidation } from '@/modules/helpers/converter'
 import { postUsedClothes } from '@/modules/repositories/clothes_repository'
 import { messageError } from '@/modules/helpers/message'
 

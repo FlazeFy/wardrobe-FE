@@ -7,7 +7,7 @@ import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_
 import RecoverClothesById from '../../detail/[id]/sections/recover_clothes_by_id'
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 import HardDeleteClothesById from './hard_delete_clothes_by_id'
-import fetchTrash from '@/modules/repositories/clothes_repository'
+import { fetchTrash } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionAllDeletedClothes(props) {
     const [error, setError] = useState(null)

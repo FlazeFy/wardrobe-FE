@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import { faFire } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../modules/storages/cookie'
-import { hardDeleteClothesById } from '@/modules/repositories/clothes_repository'
+import { deleteClothesById } from '@/modules/repositories/clothes_repository'
 
 export default function HardDeleteClothesById(props) {
     const tokenKey = getCookie("token_key")
@@ -20,7 +20,7 @@ export default function HardDeleteClothesById(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                hardDeleteClothesById(id, tokenKey, props.fetchTrash())
+                deleteClothesById(id, 'hard', tokenKey, props.fetchTrash())
             } 
         })
     }

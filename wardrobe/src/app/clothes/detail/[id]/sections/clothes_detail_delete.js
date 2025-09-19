@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react'
-import Axios from 'axios'
 import Swal from 'sweetalert2'
 import { faTrash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,7 +8,7 @@ import { countDiffInDays } from '../../../../../modules/helpers/converter'
 import RecoverClothesUsedById from './recover_clothes_by_id'
 import { getCookie } from '../../../../../modules/storages/cookie'
 import { useRouter } from 'next/navigation'
-import { messageError } from '@/modules/helpers/message'
+import { deleteClothesById } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesDetailDeleteClothesById(props) {
     const [isValidated, setIsValidated] = useState(false)
@@ -28,36 +27,7 @@ export default function ClothesDetailDeleteClothesById(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                try {
-                    let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/${props.type_delete == 'hard' ? 'destroy' : 'delete'}/${id}`, {
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${tokenKey}`,
-                        }
-                    })
-                    
-                    if(response.status === 200){
-                        Swal.fire({
-                            title: "Success!",
-                            text: response.data.message,
-                            icon: "success",
-                            confirmButtonText: "Okay!"
-                        }).then((result) => {
-                            if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                                if(props.type_delete == 'hard'){
-                                    router.push('/clothes')
-                                } else {
-                                    props.fetchClothes()
-                                }
-                            }
-                        })
-                    } else {
-                        messageError("Something went wrong!")
-                    }
-                } catch (error) {
-                    messageError(error)
-                }
+                deleteClothesById(id,props.type_delete,tokenKey,props.type_delete == 'hard' ? router.push('/clothes'):props.fetchClothes())
             } 
         })
     }
