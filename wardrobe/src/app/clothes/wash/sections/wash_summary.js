@@ -2,10 +2,9 @@
 import { getCookie } from '../../../../modules/storages/cookie'
 import React from 'react'
 import { useState, useEffect } from "react"
-import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import { convertDatetimeBasedLocal } from '../../../../modules/helpers/converter'
-import { messageError } from '@/modules/helpers/message'
+import { fetchWashSummary } from '@/modules/repositories/wash_repository'
 
 export default function WashSectionSummary(props) {
     const [error, setError] = useState(null)
@@ -14,44 +13,24 @@ export default function WashSectionSummary(props) {
     const [dayWashDur, setDayWashDur] = useState(0)
     const [hrWashDur, setHrWashDur] = useState(0)
     const tokenKey = getCookie("token_key")
-
-    const fetchfetchWashSummary = () => {
-        Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/wash/summary`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => {
-            if (res.status === 404) {
-                setIsLoaded(true)
-                setItem(null)
-                return null
-            }
-            Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) {
-                setIsLoaded(true)
-                setItem(result.data)
-                const hour = result.data.avg_wash_dur_per_clothes
-
-                const days = Math.floor(hour / 24)
-                const hours = hour % 24
-                setDayWashDur(days)
-                setHrWashDur(hours)
-            }
-            Swal.close()
-        })
-        .catch(error => {
-            messageError(error)
-            setError(error)
-        })
-    }
     
     useEffect(() => {
-        fetchfetchWashSummary()
+        fetchWashSummary(
+            (result) => {
+                setIsLoaded(true)
+                setItem(result.status === 400 ? null : result.data)
+
+                if(result.status === 200){
+                    const hour = result.data.avg_wash_dur_per_clothes
+
+                    const days = Math.floor(hour / 24)
+                    const hours = hour % 24
+                    setDayWashDur(days)
+                    setHrWashDur(hours)
+                }
+            }, (error) => {
+                setError(error)
+            }, tokenKey)
     },[])
 
     if (error) {

@@ -3,10 +3,9 @@ import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 import { convertDatetimeBasedLocal } from '../../../../modules/helpers/converter'
 import { getCookie } from '../../../../modules/storages/cookie'
 import React, { useEffect, useState } from 'react'
-import Swal from 'sweetalert2'
 import UsedHardDeleteUsedHistory from './used_hard_delete_used_history'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import { messageError } from '@/modules/helpers/message'
+import { fetchUsedHistory } from '@/modules/repositories/clothes_repository'
 
 export default function UsedAllHistory(props) {
     const [error, setError] = useState(null)
@@ -15,30 +14,15 @@ export default function UsedAllHistory(props) {
     const tokenKey = getCookie("token_key")
 
     useEffect(() => {
-        fetchUsedHistory()
-    },[])
-
-    const fetchUsedHistory = () => {
-        Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/all/desc`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
+        fetchUsedHistory(
             (result) => {
-                Swal.close()
                 setIsLoaded(true)
-                setItems(result.data ? result.data.data :null)  
-            },
+                setItems(result ? result.data :null)  
+            }, 
             (error) => {
-                messageError(error)
                 setError(error)
-            }
-        )
-    }
+            }, tokenKey)
+    },[])
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
-import { messageError } from '@/modules/helpers/message'
+import { fetchMonthlyClothesUsed } from '@/modules/repositories/clothes_repository'
 
 export default function UsedMonthlyClothesUsed(props) {
     const [error, setError] = useState(null)
@@ -14,31 +14,16 @@ export default function UsedMonthlyClothesUsed(props) {
     const [items, setItems] = useState([])
     const tokenKey = getCookie("token_key")
 
-    const fetchMonthlyClothesUsed = (year) => {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/used/${year}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data)
-            },
-            (error) => {
-                messageError(error)
-                setError(error)
-            }
-        )
-    }
-
     useEffect(() => {
         Swal.showLoading()
         if (props.year) {
-            fetchMonthlyClothesUsed(props.year)
+            fetchMonthlyClothesUsed(props.year, 
+                (result) => {
+                    setIsLoaded(true)
+                    setItems(result)
+                }, (error) => {
+                    setError(error)
+                }, tokenKey)
         }
     },[props.year])
 

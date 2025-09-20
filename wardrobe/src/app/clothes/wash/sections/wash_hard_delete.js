@@ -1,11 +1,10 @@
 "use client"
 import React from 'react'
-import Axios from 'axios'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCookie } from '../../../../modules/storages/cookie'
-import { messageError } from '@/modules/helpers/message'
+import { deleteWashById } from '@/modules/repositories/wash_repository'
 
 export default function WashSectionHardDeleteWash(props) {
     const tokenKey = getCookie("token_key")
@@ -21,32 +20,7 @@ export default function WashSectionHardDeleteWash(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                try {
-                    let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_wash/${id}`, {
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${tokenKey}`,
-                        }
-                    })
-                    
-                    if(response.status === 200){
-                        Swal.fire({
-                            title: "Success!",
-                            text: response.data.message,
-                            confirmButtonText: "Okay!",
-                            icon: "success"
-                        }).then((result) => {
-                            if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                                props.fetchWashClothes()
-                            }
-                        })
-                    } else {
-                        messageError("Something went wrong!")
-                    }
-                } catch (error) {
-                    messageError(error)
-                }
+                deleteWashById(id,tokenKey,props.fetchWashClothes())
             } 
         })
     }

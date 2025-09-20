@@ -125,7 +125,36 @@ export const deleteClothesUsedById = async (id,tokenKey,action) => {
     } catch (error) {
         messageError(error)
     }
-} 
+}
+
+export const deleteUsedHistoryById = async (id,tokenKey,action) => {
+    try {
+        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_used/${id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenKey}`,
+            }
+        })
+        
+        if(response.status === 200){
+            Swal.fire({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                confirmButtonText: "Okay!"
+            }).then((result) => {
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
+                    action 
+                }
+            })
+        } else {
+            messageError("Something went wrong!")
+        }
+    } catch (error) {
+        messageError(error)
+    }
+}
 
 export const recoverClothesById = async (id,tokenKey,action) => {
     try {
@@ -364,6 +393,55 @@ export default function fetchTomorrowSchedule(day, onSuccess, onError, tokenKey)
     try {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/tomorrow/${day}`, {
             headers: {
+                'Authorization': `Bearer ${tokenKey}`, 
+            },
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    } 
+}
+
+export async function fetchUsedHistory(onSuccess, onError, tokenKey){
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/all/desc`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`, 
+            },
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    } 
+}
+
+export async function fetchMonthlyClothesUsed(year, onSuccess, onError, tokenKey){
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/used/${year}`, {
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${tokenKey}`, 
             },
         })
