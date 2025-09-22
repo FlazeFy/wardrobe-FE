@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import OrganismsClothesHeader from '../../../../../components/organisms/organisms_clothes_header'
 import { getCleanTitleFromCtx } from '../../../../../modules/helpers/converter'
-import { postOutfitClothes } from '@/modules/repositories/clothes_repository'
+import { fetchClothesHeader, postOutfitClothes } from '@/modules/repositories/clothes_repository'
 import { messageError } from '@/modules/helpers/message'
 
 export default function OutfitDetailPostOutfitClothes(props) {
@@ -25,26 +25,19 @@ export default function OutfitDetailPostOutfitClothes(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/header/all/desc`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
-        })
-        .then(res => res.json())
-            .then(
+        fetchClothesHeader(
             (result) => {
-                Swal.close()
                 setIsLoaded(true)
-                setItems(result.data.data)
+                setItems(result)
 
                 if(props.selectedClothes){
                     setAttachedItems(props.selectedClothes)
                 }
             },
             (error) => {
-                messageError(error)
                 setError(error)
-            }
+            },
+            tokenKey
         )
     },[])
 

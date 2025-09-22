@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
-import { messageError } from '@/modules/helpers/message'
+import { fetchOutfitMonthlyTotalUsedById } from '@/modules/repositories/outfit_repository'
 
 export default function OutfitSectionMonthlyTotalUsed(props) {
     const [error, setError] = useState(null)
@@ -16,24 +16,15 @@ export default function OutfitSectionMonthlyTotalUsed(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${props.id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
+        fetchOutfitMonthlyTotalUsedById(props.id, 
             (result) => {
-                Swal.close()
                 setIsLoaded(true)
-                setItems(result.data)
+                setItems(result)
             },
             (error) => {
-                messageError(error)
                 setError(error)
-            }
-        )
+            },
+            tokenKey)
     },[])
 
     if (error) {

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { getCookie } from "../../../../modules/storages/cookie";
 import MoleculesNoData from "../../../../components/molecules/molecules_no_data";
-import { messageError } from "@/modules/helpers/message";
+import { fetchAllOutfit } from "@/modules/repositories/outfit_repository";
 
 export default function GeneratedSectionShowAllOutfit(props) {
     // Initial variables
@@ -20,37 +20,29 @@ export default function GeneratedSectionShowAllOutfit(props) {
     const tokenKey = getCookie("token_key")
 
     useEffect(() => {
-        fetchAllOutfit(1)
+        getAllOutfit(1)
     }, [])
 
-    const fetchAllOutfit = (currentPage) => {
+    const getAllOutfit = (page) => {
         Swal.showLoading();
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit?page=${currentPage}`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${tokenKey}`, 
-            },
-        })
-        .then((res) => res.json())
-        .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
+        fetchAllOutfit(page,
+        (result) => {
+            setIsLoaded(true)
 
-                result.data ? setItems((prevItems) => [...prevItems, ...result.data.data]) : setItems(null)
-                setMaxPage(result.data ? result.data.last_page : 1)
-            },
-            (error) => {
-                messageError(error)
-                setError(error)
-            }
-        )
+            result ? setItems((prevItems) => [...prevItems, ...result.data]) : setItems(null)
+            setMaxPage(result ? result.last_page : 1)
+        },
+        (error) => {
+            setIsLoaded(true)
+            setError(error)
+        },
+        tokenKey)
     }
 
     const seeMore = () => {
         const nextPage = page + 1
         setPage(nextPage)
-        fetchAllOutfit(nextPage)
+        getAllOutfit(1)    
     }
 
     if (error) {

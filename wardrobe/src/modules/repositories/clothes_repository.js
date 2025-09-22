@@ -88,7 +88,7 @@ export const deleteClothesById = async (id,type_delete,tokenKey,action) => {
                 confirmButtonText: "Okay!"
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action 
+                    action() 
                 }
             })
         } else {
@@ -116,7 +116,7 @@ export const deleteClothesUsedById = async (id,tokenKey,action) => {
                 confirmButtonText: "Okay!"
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action 
+                    action() 
                 }
             })
         } else {
@@ -145,7 +145,7 @@ export const deleteUsedHistoryById = async (id,tokenKey,action) => {
                 confirmButtonText: "Okay!"
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action 
+                    action() 
                 }
             })
         } else {
@@ -173,7 +173,7 @@ export const recoverClothesById = async (id,tokenKey,action) => {
                 confirmButtonText: "Okay!"
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action
+                    action()
                 }
             })
         } else {
@@ -425,6 +425,30 @@ export async function fetchUsedHistory(onSuccess, onError, tokenKey){
             (result) => {
                 Swal.close()
                 onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    } 
+}
+
+export async function fetchClothesHeader(onSuccess, onError, tokenKey){
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/header/all/desc`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`, 
+            },
+        })
+        .then(res => res.json())
+            .then(
+            (result) => {
+                Swal.close()
+                onSuccess(result.data.data)
             },
             (error) => {
                 messageError(error)

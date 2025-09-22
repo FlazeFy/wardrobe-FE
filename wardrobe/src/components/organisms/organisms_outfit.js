@@ -6,7 +6,7 @@ export default function OrganismsOutfit(props) {
     const router = useRouter()
 
     const handleBoxClick = (id) => {
-        router.push(`/clothes/detail/${id}`)
+        router.push(`/clothes/outfit/${id}`)
     };
     
     return (

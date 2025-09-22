@@ -19,7 +19,7 @@ export const deleteScheduleById = async (id,tokenKey,action) => {
                 confirmButtonText: "Okay!"
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action
+                    action()
                 }
             })
         } else {
