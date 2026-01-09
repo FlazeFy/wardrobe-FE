@@ -10,17 +10,29 @@
 .navbar, .footer {
     position: sticky !important;
     top: var(--spaceLG) !important;
-    padding: var(--spaceLG) !important;
+    padding: var(--spaceMD) 0 !important;
     z-index: 999;
     border-radius: var(--roundedJumbo);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar, .footer {
+        padding: var(--spaceXMD) 0 !important;
+    } 
+}
+@media (max-width: 575px) {
+    .navbar, .footer {
+        padding: var(--spaceMD) 0 !important;
+    } 
+}
 .navbar .nav-item {
-    padding: var(--spaceSM) var(--spaceMD);
     cursor: pointer;
     margin-right: var(--spaceSM);
     color: var(--blackColor) !important;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding-inline: var(--spaceMD);
     font-size: var(--textXLG) !important;
     border-radius: var(--roundedLG);
     border: 1.75px solid transparent;

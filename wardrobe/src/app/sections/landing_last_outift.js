@@ -105,58 +105,56 @@ export default function LandingSectionLastOutfit(props) {
         return <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
     } else {
         return (
-            <div className="mx-4">
-                <div className="row">
-                    <div className="col-lg-6 col-md-12">
-                        <AtomsBreakLine length={4}/>
-                        {
-                            items && (
-                                <>
-                                    <div className="d-inline-block mb-2">
-                                        {
-                                            items.clothes.map((dt, idx) => {
-                                                let maxWidth = ["20%", "25%", "22%", "18%"][idx] || "15%"
-                                                return (
-                                                    <img key={idx} src={dt.clothes_image ?? "/images/hat_sample.jpg"} style={{ maxWidth, minWidth: "100px" }} className={`img img-fluid img-rounded mb-2 ${idx === items.clothes.length - 2 ? "me-3" : ""}`}/>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <h5 className="text-secondary mb-0">Set at {convertDatetimeBasedLocal(items.last_used)}</h5>
-                                </>
-                            )
-                        }
-                        <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>
-                            {items ? <>Last <span className="text-main">Outfit</span></> : <span className="text-secondary">- No Outfit History Found -</span>}
-                        </h1>
-                        <hr/>
-                        {
-                            items ? (
-                                <h2 className="mb-0">See more outfit history? <a className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faArrowRight}/> History</a></h2>
-                            ) : (
-                                <h2 className="mb-0">Use your outfit right now, or create a new one? <a className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faArrowRight}/> Add New Outfit</a></h2>
-                            )
-                        }
-                        <AtomsBreakLine length={4}/>
-                    </div>
-                    <div className="col-lg-6 col-md-12 d-flex flex-column justify-content-center">
-                        <AtomsBreakLine length={4}/>
-                        <div className="container-generator" style={{height:"40vh", textAlign:"start"}}>
-                            <div className="position-absolute text-end" style={{top:"var(--spaceXLG)", right:"var(--spaceXLG)"}}>
-                                {
-                                    weather && (
-                                        <h5>{Math.round(weather.temp)}°C | {weather.condition} | {weather.humidity}% Humidity | <FontAwesomeIcon icon={faLocationDot}/> {weather.city}</h5>
-                                    )
-                                }
-                                <h4 className='mb-0'>Today is {todayName}</h4>
-                                <p className='mb-0 fst-italic' style={{fontSize:"var(--textXMD)"}}>Last Updated {lastHitWeather ?? '-'}</p>
-                            </div>
-                            <h2 className="mb-2" style={{fontWeight:"800"}}>Do you <span className="text-main">want to hangout</span>?</h2>
-                            <p>We can generate your today&apos;s outfit based on your wardrobe, cleaning status, schedule, and today&apos;s weather.</p>
-                            <a className="btn btn-primary fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
+            <div className="row">
+                <div className="col-lg-6 col-md-12">
+                    <AtomsBreakLine length={4}/>
+                    {
+                        items && (
+                            <>
+                                <div className="d-inline-block mb-2">
+                                    {
+                                        items.clothes.map((dt, idx) => {
+                                            let maxWidth = ["20%", "25%", "22%", "18%"][idx] || "15%"
+                                            return (
+                                                <img key={idx} src={dt.clothes_image ?? "/images/hat_sample.jpg"} style={{ maxWidth, minWidth: "100px" }} className={`img img-fluid img-rounded mb-2 ${idx === items.clothes.length - 2 ? "me-3" : ""}`}/>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <p className="text-secondary mb-0">Set at {convertDatetimeBasedLocal(items.last_used)}</p>
+                            </>
+                        )
+                    }
+                    <h2 className="mb-0 text-title" style={{fontWeight:"800"}}>
+                        {items ? <>Last <span className="text-main">Outfit</span></> : <span className="text-secondary">- No Outfit History Found -</span>}
+                    </h2>
+                    <hr/>
+                    {
+                        items ? (
+                            <h2 className="mb-0">See more outfit history? <a className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faArrowRight}/> History</a></h2>
+                        ) : (
+                            <h2 className="mb-0">Use your outfit right now, or create a new one? <a className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faArrowRight}/> Add New Outfit</a></h2>
+                        )
+                    }
+                    <AtomsBreakLine length={4}/>
+                </div>
+                <div className="col-lg-6 col-md-12 d-flex flex-column justify-content-center">
+                    <AtomsBreakLine length={4}/>
+                    <div className="container-generator" style={{textAlign:"start"}}>
+                        <div className="text-end w-100" style={{top:"var(--spaceXLG)", right:"var(--spaceXLG)"}}>
+                            {
+                                weather && (
+                                    <h5>{Math.round(weather.temp)}°C | {weather.condition} | {weather.humidity}% Humidity | <FontAwesomeIcon icon={faLocationDot}/> {weather.city}</h5>
+                                )
+                            }
+                            <h4 className='mb-0'>Today is {todayName}</h4>
+                            <p className='mb-0 fst-italic' style={{fontSize:"var(--textXMD)"}}>Last Updated {lastHitWeather ?? '-'}</p>
                         </div>
-                        <AtomsBreakLine length={4}/>
+                        <h4 className="mb-2 text-title" style={{fontWeight:"800"}}>Do you <span className="text-main">want to hangout</span>?</h4>
+                        <p>We can generate your today&apos;s outfit based on your wardrobe, cleaning status, schedule, and today&apos;s weather.</p>
+                        <a className="btn btn-primary fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
                     </div>
+                    <AtomsBreakLine length={4}/>
                 </div>
             </div>
         )

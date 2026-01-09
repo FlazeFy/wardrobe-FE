@@ -40,3 +40,12 @@ h5, h6 {
 .custom-container label {
     color: var(--whiteColor) !important;
 }
+
+.text-title {
+    font-size: var(--textHuge);
+}
+@media (max-width: 575px) {
+    .text-title {
+        font-size: var(--textXJumbo);
+    } 
+}

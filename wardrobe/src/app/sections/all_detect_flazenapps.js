@@ -62,7 +62,7 @@ export default function DetectFlazenAppsAlert() {
                     style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}}>FlazenApps Was Here!</button>
                 <div className="collapse multi-collapse mt-2" id="multiCollapseExample1">
                     <div className="content p-3" style={{ background: 'var(--flazenPrimaryColor)', borderRadius: 'var(--roundedLG)', width: 480 }}>
-                        <h1 className="mb-2" style={{ fontSize: 'calc(var(--textJumbo)*1.25)', color: 'var(--flazenDarkColor)' }}>Hey FlazenApps Was Here!</h1>
+                        <h2 className="mb-2" style={{ fontSize: 'calc(var(--textJumbo)*1.25)', color: 'var(--flazenDarkColor)' }}>Hey FlazenApps Was Here!</h2>
                         <p className="text-dark mb-2">We know that you have opened <b>Wardrobe</b> from <b>FlazenApps</b> platform, are you want to use our testing account so you can explore this apps easily?</p>
                         <button className="btn btn-primary me-2" onClick={handleLoginTestAcc}>Yeah, Bring Me There!</button>
                         <button className="btn btn-danger" onClick={handleRejectTestAcc}>Maybe, Later</button>

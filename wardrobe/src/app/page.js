@@ -23,11 +23,19 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <OrganismsNavbar current=""/>
-      <LandingSectionWelcoming/>
-      <MoleculesSectionDivider/>
-      {
-        tokenKey ? <LandingSectionLastOutfit/> : <LandingSectionLogin ctx="login"/>
-      }
+      <div className="row mt-5">
+        <div className="col-12 order-3 order-sm-1">
+          <LandingSectionWelcoming/>
+        </div>
+        <div className="col-12 order-2">
+          <MoleculesSectionDivider/>
+        </div>
+        <div className="col-12 order-1 order-sm-3">
+          {
+            tokenKey ? <LandingSectionLastOutfit/> : <LandingSectionLogin ctx="login"/>
+          }
+        </div>
+      </div>
       <MoleculesSectionDivider/>
       <LandingSectionFeatures/>
       <MoleculesSectionDivider/>

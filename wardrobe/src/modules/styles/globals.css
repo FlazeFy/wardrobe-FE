@@ -173,3 +173,15 @@ hr {
   font-size: var(--textMD);
   padding: var(--spaceSM) var(--spaceMD) !important;
 }
+
+/* Transform */
+.feature-box:hover, .faq-box:hover, .unfinished-wash-box:hover, .history-box:hover, .wash-box:hover, .box:hover, 
+.btn-navigate-menu-custom:hover, .box-clothes:hover, .box-schedule-mini:hover, .box-outfit-simple:hover {
+  transform: scale(1.05);
+}
+@media (max-width: 991px) {
+  .feature-box:hover, .faq-box:hover, .unfinished-wash-box:hover, .history-box:hover, .wash-box:hover, .box:hover, 
+  .btn-navigate-menu-custom:hover, .box-clothes:hover, .box-schedule-mini:hover, .box-outfit-simple:hover {
+    transform: none;
+  } 
+}

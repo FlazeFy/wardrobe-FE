@@ -61,14 +61,16 @@ export default function LandingSectionFAQ(props) {
         return <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
     } else {
         return (
-            <div className="container custom-container mx-auto text-center" style={{minWidth:"1080px"}}>
-                <AtomsBreakLine length={2}/>
-                <h2 className="mb-0">Ask Anything About Our Apps?</h2>
+            <div className="container custom-container mx-auto text-center">
+                <AtomsBreakLine length={1}/>
+                <h4 className="mb-0">Ask Anything About Our Apps?</h4>
                 <hr></hr>   
-                <h1 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">FAQ</span>&apos;s</h1>
-                <h2 className="mb-2">Here&apos;s The Latest Question The People Given To Us</h2>
-                <a className="btn btn-primary fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
-                <a className="btn btn-primary fw-bold" href={!tokenKey ? '/feedback':'/profile'}><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</a>
+                <h2 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">FAQ</span>&apos;s</h2>
+                <h6 className="mb-3">Here&apos;s The Latest Question The People Given To Us</h6>
+                <div className="mb-2">
+                    <a className="btn btn-primary fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
+                    <a className="btn btn-primary fw-bold" href={!tokenKey ? '/feedback':'/profile'}><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</a>
+                </div>
                 <div className="row mt-4">
                     {
                         items.map((dt, idx)=>{
