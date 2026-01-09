@@ -14,7 +14,7 @@ export const postSaveOutfit = async (token) => {
         }
 
         // Exec
-        let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/save`, JSON.stringify(body), {
+        let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/save`, body, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

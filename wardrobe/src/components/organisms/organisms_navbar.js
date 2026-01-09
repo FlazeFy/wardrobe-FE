@@ -2,7 +2,7 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { getCookie } from "../../modules/storages/cookie";
+import { getLocal } from "../../modules/storages/local";
 import AtomsNavItem from "../atoms/atoms_nav_item";
 
 export default function OrganismsNavbar(props) {
@@ -10,8 +10,8 @@ export default function OrganismsNavbar(props) {
     const [usernameKey, setUsernameKey] = useState(null)
 
     useEffect(() => {
-        setTokenKey(getCookie('token_key'))
-        setUsernameKey(getCookie('username_key'))
+        setTokenKey(getLocal('token_key'))
+        setUsernameKey(getLocal('username_key'))
     }, [])
     
     return  (

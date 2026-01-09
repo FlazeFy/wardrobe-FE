@@ -3,7 +3,7 @@ import OrganismsClothesHeader from "../../../components/organisms/organisms_clot
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
-import { getCookie } from "../../../modules/storages/cookie";
+import { getLocal } from "../../../modules/storages/local";
 import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
 import fetchTomorrowSchedule from "@/modules/repositories/clothes_repository";
 
@@ -11,7 +11,7 @@ export default function CalendarSectionTomorrowSchedule(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         const today = new Date().toLocaleDateString('en-US', { weekday: 'short' })

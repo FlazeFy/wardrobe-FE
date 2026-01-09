@@ -1,4 +1,3 @@
-import { storeCookie } from "../storages/cookie"
 import Axios from 'axios'
 import Swal from 'sweetalert2'
 import { messageError } from "../helpers/message"
@@ -15,7 +14,7 @@ export const postLogin = async (username, password,router) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/login", JSON.stringify(body), {
+        const response = await Axios.post("http://127.0.0.1:8000/api/v1/login", body, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type' : 'application/json'
@@ -25,9 +24,9 @@ export const postLogin = async (username, password,router) => {
 
         // Response
         if(response.status === 200){
-            const username = response.data.result.username
-            storeCookie('token_key',response.data.token)
-            storeCookie('username_key',username)
+            const username = response.data.message.username
+            storeLocal('token_key',response.data.token)
+            storeLocal('username_key',username)
 
             Swal.fire({
                 title: "Success!",
@@ -65,7 +64,7 @@ export const postRegister = async (props) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/register", JSON.stringify(body), {
+        const response = await Axios.post("http://127.0.0.1:8000/api/v1/register", body, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type' : 'application/json'
@@ -110,7 +109,7 @@ export const postValidateRegister = async (token,router) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/register/validate", JSON.stringify(body), {
+        const response = await Axios.post("http://127.0.0.1:8000/api/v1/register/validate", body, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type' : 'application/json'

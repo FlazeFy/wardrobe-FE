@@ -3,12 +3,12 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getCookie } from '../../../../../modules/storages/cookie'
+import { getLocal } from '../../../../../modules/storages/local'
 import { messageError } from '@/modules/helpers/message'
 import { recoverClothesById } from '@/modules/repositories/clothes_repository'
 
 export default function RecoverClothesById(props) {
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     // Services
     const handleRecover = async (id) => {

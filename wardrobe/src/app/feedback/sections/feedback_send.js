@@ -1,5 +1,5 @@
 "use client"
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from "react"
@@ -9,7 +9,7 @@ import { postFeedback } from '@/modules/repositories/feedback_repository'
 export default function FeedbackSectionSend() {
     const [feedbackRate, setFeedbackRate] = useState(0)
     const [feedbackBody, setFeedbackBody] = useState("")
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     // Repositories
     const handleSubmit = async (e) => {

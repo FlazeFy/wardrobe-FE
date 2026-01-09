@@ -4,14 +4,14 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import { fetchMostUsedClothesDaily } from '@/modules/repositories/stats_repository'
 
 export default function StatsSectionMostUsedClothesDaily(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const [today, setToday] = useState(null)
 
     useEffect(() => {

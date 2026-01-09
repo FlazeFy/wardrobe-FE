@@ -3,7 +3,7 @@ import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
 import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { getCookie } from "../../modules/storages/cookie";
+import { getLocal } from "../../modules/storages/local";
 import { fetchWelcomeStats } from "@/modules/repositories/general_repository";
 
 export default function LandingSectionWelcoming(props) {
@@ -25,7 +25,7 @@ export default function LandingSectionWelcoming(props) {
                 setError(err)
             }
         )
-        setUsernameKey(getCookie('username_key'))
+        setUsernameKey(getLocal('username_key'))
     }, [])
 
     if (error) {

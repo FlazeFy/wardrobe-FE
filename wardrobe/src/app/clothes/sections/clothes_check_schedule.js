@@ -4,7 +4,7 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import MoleculesScheduleMiniBox from '../../../components/molecules/molecules_schedule_mini_box'
 import { messageError } from '@/modules/helpers/message'
 
@@ -12,7 +12,7 @@ export default function ClothesCheckSchedule(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const today = new Date()
     const dayName = today.toLocaleString('en-US', { weekday: 'short' })
     const dayNameLong = today.toLocaleString('en-US', { weekday: 'long' })

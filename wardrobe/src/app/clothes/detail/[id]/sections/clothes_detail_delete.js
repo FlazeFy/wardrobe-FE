@@ -6,14 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { countDiffInDays } from '../../../../../modules/helpers/converter'
 import RecoverClothesUsedById from './recover_clothes_by_id'
-import { getCookie } from '../../../../../modules/storages/cookie'
+import { getLocal } from '../../../../../modules/storages/local'
 import { useRouter } from 'next/navigation'
 import { deleteClothesById } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesDetailDeleteClothesById(props) {
     const [isValidated, setIsValidated] = useState(false)
     const [clothesName, setClothesName] = useState('')
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const router = useRouter()
 
     // Services

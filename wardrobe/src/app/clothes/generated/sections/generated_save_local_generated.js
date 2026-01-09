@@ -3,12 +3,12 @@ import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react"
 import Swal from "sweetalert2";
-import { getCookie } from "../../../../modules/storages/cookie";
+import { getLocal } from "../../../../modules/storages/local";
 import { postSaveOutfit } from "../../../../modules/repositories/outfit_repository";
 import { messageError } from "@/modules/helpers/message";
 
 export default function GeneratedSectionSaveLocalGenerated(props) {
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     const saveAllLocalGenerated = () => {
         Swal.fire({

@@ -1,15 +1,13 @@
 "use client"
 import React from 'react'
-import Axios from 'axios'
 import Swal from 'sweetalert2'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getCookie } from '../../../../../modules/storages/cookie'
-import { getErrorValidation } from '@/modules/helpers/converter'
+import { getLocal } from '../../../../../modules/storages/local'
 import { postSaveOutfitHistory } from '@/modules/repositories/outfit_repository'
 
 export default function OutfitSectionPostOutfitHistory(props) {
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     // Services
     const handleSubmit = async (id) => {

@@ -1,6 +1,6 @@
 "use client"
 import { convertDatetimeBasedLocal, getCleanTitleFromCtx, numberToPrice } from '../../../../../modules/helpers/converter'
-import { getCookie } from '../../../../../modules/storages/cookie'
+import { getLocal } from '../../../../../modules/storages/local'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
@@ -14,7 +14,7 @@ export default function ClothesSectionAllDetail(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         Swal.showLoading()

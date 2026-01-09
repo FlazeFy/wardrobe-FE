@@ -31,7 +31,7 @@ export default function LandingSectionLogin(props) {
                     <MoleculesField title="Username" type={'text'} id="username-input" defaultValue={username} handleChange={(e) => {
                         setUsername(e.target.value)
                     }}/>
-                    <MoleculesField title="Password" type={'text'} id="password-input" defaultValue={password} handleChange={(e) => {
+                    <MoleculesField title="Password" type={'password'} id="password-input" defaultValue={password} handleChange={(e) => {
                         setPassword(e.target.value)
                     }}/>
                     <AtomsBreakLine length={1}/>

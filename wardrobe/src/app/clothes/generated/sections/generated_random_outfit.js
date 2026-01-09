@@ -11,7 +11,6 @@ import GeneratedSectionConfigurateTemplate from "./generated_configurate_templat
 import GeneratedSectionSaveOutfit from "./generated_save_outfit";
 import Axios from 'axios'
 import { getLocal, storeLocal } from "../../../..//modules/storages/local";
-import { getCookie } from "../../../../modules/storages/cookie";
 import { messageError } from '@/modules/helpers/message';
 
 export default function GeneratedSectionRandomOutift(props) {
@@ -20,7 +19,7 @@ export default function GeneratedSectionRandomOutift(props) {
     const [items, setItems] = useState(null)
     const [isGenerated, setIsGenerated] =  useState(false)
     const saveOutfitRef = useRef(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const now = new Date()
 
     useEffect(() => {
@@ -137,7 +136,7 @@ export default function GeneratedSectionRandomOutift(props) {
             }
 
             Swal.showLoading()
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/generate", JSON.stringify(body), {
+            const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/generate", body, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${tokenKey}`,

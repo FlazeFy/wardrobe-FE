@@ -17,7 +17,7 @@ export const postFeedback = async (feedbackRate, feedbackBody, tokenKey, setFeed
         if(body.feedback_body.trim().length > 0){
             if(body.feedback_rate > 0 && body.feedback_rate <= 5){
                 // Exec
-                const response = await Axios.post("http://127.0.0.1:8000/api/v1/feedback", JSON.stringify(body), {
+                const response = await Axios.post("http://127.0.0.1:8000/api/v1/feedback", body, {
                     headers: {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${tokenKey}`,

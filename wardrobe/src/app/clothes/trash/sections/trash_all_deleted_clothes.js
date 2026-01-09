@@ -1,6 +1,6 @@
 "use client"
 import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from '../../../../modules/helpers/converter'
-import { getCookie } from '../../../../modules/storages/cookie'
+import { getLocal } from '../../../../modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
@@ -13,7 +13,7 @@ export default function ClothesSectionAllDeletedClothes(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchTrash(

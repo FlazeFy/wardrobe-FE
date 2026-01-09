@@ -13,7 +13,7 @@ import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_hist
 import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete";
 import ClothesDetailSchedule from "./sections/clothes_detail_schedule";
 import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule";
-import { getCookie } from "../../../../modules/storages/cookie";
+import { getLocal } from "../../../../modules/storages/local";
 import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit";
 import DetailSectionClothesHeader from "./sections/detail_clothes_header";
 import { messageError } from "@/modules/helpers/message";
@@ -22,7 +22,7 @@ export default function ClothesDetailPage({params}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchClothes()

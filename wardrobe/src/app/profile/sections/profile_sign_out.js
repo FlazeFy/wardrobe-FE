@@ -3,14 +3,13 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getCookie } from '../../../modules/storages/cookie'
 import { getLocal } from '../../../modules/storages/local'
 import { postSaveOutfit } from '../../../modules/repositories/outfit_repository'
 import { useRouter } from 'next/navigation'
 import { postSignOut } from '@/modules/repositories/auth_repository'
 
 export default function ProfileSectionSignOut(props) {
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const router = useRouter()
 
     // Repositories

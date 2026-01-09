@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
-import { getCookie } from "../../../modules/storages/cookie";
+import { getLocal } from "../../../modules/storages/local";
 import { fetchCalendarDetail } from "@/modules/repositories/clothes_repository";
 
 export default function CalendarSectionManage(props) {
@@ -13,7 +13,7 @@ export default function CalendarSectionManage(props) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
     const [isFetched, setIsFetched] = useState(false)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     const fetchCalendar = () => {
         if (isFetched) return; 

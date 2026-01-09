@@ -1,15 +1,13 @@
 "use client"
 import React from 'react'
-import Axios from 'axios'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getCookie } from '../../../../../modules/storages/cookie'
-import { messageError } from '@/modules/helpers/message'
+import { getLocal } from '../../../../../modules/storages/local'
 import { deleteScheduleById } from '@/modules/repositories/schedule_repository'
 
 export default function HardDeleteSchedule(props) {
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     // Services
     const handleSubmit = async (id) => {

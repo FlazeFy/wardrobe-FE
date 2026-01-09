@@ -1,5 +1,4 @@
 "use client"
-import { getCookie } from '../../../../modules/storages/cookie'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useEffect } from "react"
@@ -13,7 +12,7 @@ import { postClothes } from '@/modules/repositories/clothes_repository'
 export default function ClothesAddForm(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const [clothesName, setClothesName] = useState("")
     const [clothesDesc, setClothesDesc] = useState("")
     const [clothesMerk, setClothesMerk] = useState("")

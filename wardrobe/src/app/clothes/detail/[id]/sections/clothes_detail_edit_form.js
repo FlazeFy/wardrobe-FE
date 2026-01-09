@@ -1,5 +1,4 @@
 "use client"
-import { getCookie } from '../../../../../modules/storages/cookie'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
@@ -13,7 +12,7 @@ import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
 export default function ClothesDetailEditForm(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const [clothesName, setClothesName] = useState(props.item.clothes_name)
     const [clothesDesc, setClothesDesc] = useState(props.item.clothes_desc)
     const [clothesMerk, setClothesMerk] = useState(props.item.clothes_merk)

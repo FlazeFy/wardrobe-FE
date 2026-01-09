@@ -3,11 +3,11 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import { hardDeleteHistory } from '@/modules/repositories/history_repository'
 
 export default function ProfileSectionHardDeleteHistory(props) {
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     // Repositories
     const handleSubmit = async (id) => {

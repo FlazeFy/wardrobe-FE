@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { getCookie } from "../modules/storages/cookie";
+import { getLocal } from "../modules/storages/local";
 import AtomsBreakLine from "../components/atoms/atoms_breakline";
 import MoleculesFooter from "../components/molecules/molecules_footer";
 import MoleculesSectionDivider from "../components/molecules/molecules_section_divider";
@@ -17,7 +17,7 @@ import LandingSectionFAQ from "./sections/landing_faq";
 export default function Home() {
   const [tokenKey, setTokenKey] = useState(null);
   useEffect(() => {
-      setTokenKey(getCookie('token_key'))
+      setTokenKey(getLocal('token_key'))
   }, [])
 
   return (

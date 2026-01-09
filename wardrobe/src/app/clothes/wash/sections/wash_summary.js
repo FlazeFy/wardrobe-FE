@@ -1,5 +1,5 @@
 "use client"
-import { getCookie } from '../../../../modules/storages/cookie'
+import { getLocal } from '../../../../modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
@@ -12,7 +12,7 @@ export default function WashSectionSummary(props) {
     const [item, setItem] = useState(null)
     const [dayWashDur, setDayWashDur] = useState(0)
     const [hrWashDur, setHrWashDur] = useState(0)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     
     useEffect(() => {
         fetchWashSummary(

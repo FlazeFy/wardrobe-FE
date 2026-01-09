@@ -197,7 +197,7 @@ export const postSchedule = async (day,isRemind,scheduleNote,tokenKey,props) => 
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/schedule", JSON.stringify(body), {
+        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/schedule", body, {
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${tokenKey}`,
@@ -240,7 +240,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,tokenKey,props) =
         }
 
         Swal.showLoading()
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/history", JSON.stringify(body), {
+        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/history", body, {
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${tokenKey}`,
@@ -285,7 +285,7 @@ export const postOutfitClothes = async (selectedItem,tokenKey,props) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/save/clothes", JSON.stringify(body), {
+        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/save/clothes", body, {
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${tokenKey}`,

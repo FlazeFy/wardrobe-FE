@@ -1,5 +1,5 @@
 "use client"
-import { getCookie } from '../../../../modules/storages/cookie'
+import { getLocal } from '../../../../modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
@@ -11,11 +11,11 @@ export default function ClothesAddSectionLastHistory(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItem] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     const fetchLastHistory = () => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/last_history`, {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/last`, {
             headers: {
                 'Authorization': `Bearer ${tokenKey}`, 
             },

@@ -4,7 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import MoleculesNoData from '../../../components/molecules/molecules_no_data'
 import { fetchMostClothesCtx } from '@/modules/repositories/stats_repository'
 
@@ -16,7 +16,7 @@ export default function StatsSectionMostClothesCtx(props) {
     const [itemsClothesSize, setItemsClothesSize] = useState([])
     const [itemsClothesMade, setItemsClothesMade] = useState([])
     const [itemsClothesCategory, setItemsClothesCategory] = useState([])
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         Swal.showLoading()

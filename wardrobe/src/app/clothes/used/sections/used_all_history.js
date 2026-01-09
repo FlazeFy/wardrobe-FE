@@ -1,7 +1,7 @@
 "use client"
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
 import { convertDatetimeBasedLocal } from '../../../../modules/helpers/converter'
-import { getCookie } from '../../../../modules/storages/cookie'
+import { getLocal } from '../../../../modules/storages/local'
 import React, { useEffect, useState } from 'react'
 import UsedHardDeleteUsedHistory from './used_hard_delete_used_history'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
@@ -11,7 +11,7 @@ export default function UsedAllHistory(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchUsedHistory(

@@ -4,7 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import OrganismsHistoryBox from '../../../components/organisms/organisms_history_box'
 import { fetchHistory } from '@/modules/repositories/history_repository'
 
@@ -14,7 +14,7 @@ export default function ProfileSectionAllHistory(props) {
     const [items, setItems] = useState(null)
     const [maxPage, setMaxPage] = useState(0)
     const [page, setPage] = useState(1)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         handleFetchHistory(page)

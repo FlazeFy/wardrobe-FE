@@ -2,11 +2,11 @@
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import { fetchExportCalendar } from '@/modules/repositories/export_repository'
 
 export default function CalendarSectionExportData(props) {
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     // Services
     const handleDownload = async () => {

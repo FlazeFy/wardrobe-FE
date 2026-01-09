@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faDice, faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import { getCookie } from '../../modules/storages/cookie'
 import AtomsBreakLine from '../../components/atoms/atoms_breakline'
 import { convertDatetimeBasedLocal } from '../../modules/helpers/converter'
 import { getLocal, storeLocal } from '../../modules/storages/local'
@@ -15,7 +14,7 @@ export default function LandingSectionLastOutfit(props) {
     const [todayName, setTodayName] = useState("")
     const [items, setItems] = useState(null)
     const [weather, setWeather] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const [lastHitWeather, setLastHitWeather] = useState(null)
     const now = new Date()
 

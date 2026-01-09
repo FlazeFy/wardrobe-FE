@@ -4,7 +4,6 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
-import { getCookie } from '../../../modules/storages/cookie'
 import { getLocal, storeLocal } from '../../../modules/storages/local'
 import { messageError } from '@/modules/helpers/message'
 
@@ -12,7 +11,7 @@ export default function ClothesSectionTotalByType(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const now = new Date()
 
     const fetchTotalClothes = () => {

@@ -2,7 +2,7 @@
 import OrganismsClothesHeader from "../../../components/organisms/organisms_clothes_header";
 import { useEffect, useState } from "react";
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
-import { getCookie } from "../../../modules/storages/cookie";
+import { getLocal } from "../../../modules/storages/local";
 import CalendarSectionExportDailyData from "./calendar_export_daily_data";
 import CalendarSectionManage from "./calendar_manage";
 import { fetchCalendar } from "@/modules/repositories/clothes_repository";
@@ -14,7 +14,7 @@ export default function CalendarSectionSchedule(props) {
     const { month_year } = props
     const [month, year] = month_year.split('-').map(Number)
     const [today, setToday] = useState() 
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchCalendar(month, year, 

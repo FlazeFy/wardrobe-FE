@@ -14,7 +14,7 @@ export const postQuestion = async (question,tokenKey,setQuestion) => {
         // Validator
         if(body.question.trim().length > 0){
             // Exec
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/question", JSON.stringify(body), {
+            const response = await Axios.post("http://127.0.0.1:8000/api/v1/question", body, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${tokenKey}`,

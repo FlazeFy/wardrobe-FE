@@ -1,6 +1,6 @@
 "use client"
 import MoleculesLineChart from '../../../../components/molecules/molecules_line_chart'
-import { getCookie } from '../../../../modules/storages/cookie'
+import { getLocal } from '../../../../modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'

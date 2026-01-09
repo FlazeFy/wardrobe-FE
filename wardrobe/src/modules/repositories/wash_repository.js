@@ -4,7 +4,7 @@ import { messageError } from "../helpers/message";
 
 export async function fetchWashClothes(page, onSuccess, onError, tokenKey){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/wash_history?page=${page}&is_detailed=true`, {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/wash/history?page=${page}&is_detailed=true`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${tokenKey}` 

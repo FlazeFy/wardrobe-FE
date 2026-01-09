@@ -1,5 +1,5 @@
 "use client"
-import { getCookie } from '../../../../../modules/storages/cookie'
+import { getLocal } from '../../../../../modules/storages/local'
 import { faFloppyDisk, faGears } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Axios from 'axios'
@@ -18,7 +18,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
     const [selectedItem, setSelectedItems] = useState([])
     const [attachedItem, setAttachedItems] = useState([])
     const [msgAll, setResMsgAll] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     // Dictionaries for select options
     const [usedContextDictionary, setUsedContextDictionary] = useState([])

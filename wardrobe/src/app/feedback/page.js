@@ -6,13 +6,13 @@ import MoleculesFooter from "../../components/molecules/molecules_footer";
 import FeedbackSectionSend from "./sections/feedback_send";
 import ProfileSectionSendQuestion from "../profile/sections/profile_post_question";
 import { useEffect, useState } from "react";
-import { getCookie } from "../../modules/storages/cookie";
+import { getLocal } from "../../modules/storages/local";
 
 export default function FeedbackPage() {
     const [tokenKey, setTokenKey] = useState(null)
 
     useEffect(() => {
-        setTokenKey(getCookie('token_key'))
+        setTokenKey(getLocal('token_key'))
     }, [])
 
     return (

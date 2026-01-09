@@ -1,5 +1,4 @@
 "use client"
-import { getCookie } from '../../../../../modules/storages/cookie'
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useEffect } from "react"
@@ -14,7 +13,7 @@ export default function ClothesDetailAddUsedHistory(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [msgAll, setResMsgAll] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
     const [usedContext, setUsedContext] = useState("")
     const [clothesNotes, setClothesNote] = useState("")
     const now = new Date()

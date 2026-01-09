@@ -5,7 +5,6 @@ import AtomsBreakLine from "../../components/atoms/atoms_breakline";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import MoleculesFAQBox from "../../components/molecules/molecules_faq_box";
-import { getCookie } from "../../modules/storages/cookie";
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
 import { messageError } from "@/modules/helpers/message";
 
@@ -51,7 +50,7 @@ export default function LandingSectionFAQ(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        setTokenKey(getCookie('token_key'))
+        setTokenKey(getLocal('token_key'))
         fetchFAQ()
     },[])
 

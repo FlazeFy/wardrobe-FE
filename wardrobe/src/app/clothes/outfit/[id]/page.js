@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getCookie } from "../../../../modules/storages/cookie";
+import { getLocal } from "../../../../modules/storages/local";
 import Swal from "sweetalert2";
 import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
 import OutfitSectionUsedById from "./sections/outfit_used_by_id";
@@ -23,7 +23,7 @@ export default function ClothesOutfitPage({params, ...props}) {
     const [items, setItems] = useState(null)
     const [usedHistoryItems, setUsedHistoryItems] = useState(null)
     const [usedHistoryMaxPage, setUsedHistoryMaxPage] = useState(0)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchOutfit()

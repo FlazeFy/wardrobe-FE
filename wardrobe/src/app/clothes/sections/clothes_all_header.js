@@ -4,7 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
-import { getCookie } from '../../../modules/storages/cookie'
+import { getLocal } from '../../../modules/storages/local'
 import MoleculesNoData from '../../../components/molecules/molecules_no_data'
 import { messageError } from '@/modules/helpers/message'
 
@@ -12,7 +12,7 @@ export default function ClothesSectionAllHeader(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getCookie("token_key")
+    const tokenKey = getLocal("token_key")
 
     const fetchClothes = () => {
         Swal.showLoading()
