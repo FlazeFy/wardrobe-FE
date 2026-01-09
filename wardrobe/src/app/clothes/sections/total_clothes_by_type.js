@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getLocal, storeLocal } from '../../../modules/storages/local'
-import { messageError } from '@/modules/helpers/message'
+import { fetchTotalClothesByType } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionTotalByType(props) {
     const [error, setError] = useState(null)
@@ -13,42 +13,43 @@ export default function ClothesSectionTotalByType(props) {
     const [items, setItems] = useState([])
     const tokenKey = getLocal("token_key")
     const now = new Date()
+    const contextKey = 'total_clothes_by_type'
+
+    const fetchDataHandler = (result) => {
+        Swal.close()
+        setIsLoaded(true)
+        setItems(result.data)
+
+        // Temp data
+        storeLocal(`${contextKey}_temp`, JSON.stringify(result))
+        storeLocal(`last_hit-${contextKey}`, JSON.stringify(now))
+    }
 
     const fetchTotalClothes = () => {
-        const oldTimeHit = getLocal('last_hit-total_clothes_by_type')
-        const oldTime = new Date(JSON.parse(oldTimeHit))
-        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+        // Check temp data expired time
+        const oldTimeHit = getLocal(`last_hit-${contextKey}`)
 
-        const fetchData = (data) => {
-            Swal.close()
-            setIsLoaded(true)
-            setItems(data.data) 
+        if (oldTimeHit) {
+            const oldTime = new Date(JSON.parse(oldTimeHit))
+            const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+
+            if (timeDiffInSec < 180) {
+                const oldData = JSON.parse(getLocal(`${contextKey}_temp`))
+                fetchDataHandler(oldData)
+                return
+            }
         }
-        
-        if(timeDiffInSec < 180 && oldTimeHit){
-            const oldData = JSON.parse(getLocal('total_clothes_by_type_temp'))
-            fetchData(oldData)
-        } else {
-            fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/by/clothes_type`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenKey}`, 
-                },
-            })
-            .then(res => res.json())
-                .then(
-                (result) => {
-                    fetchData(result)
-                    storeLocal('total_clothes_by_type_temp', JSON.stringify(result))
-                    storeLocal('last_hit-total_clothes_by_type', JSON.stringify(now))
-                },
-                (error) => {
-                    messageError(error)
-                    setError(error)
-                }
-            )
-        }
+
+        // Fetch repo
+        fetchTotalClothesByType(
+            (result) => {
+                fetchDataHandler(result)
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey
+        )
     }
 
     useEffect(() => {

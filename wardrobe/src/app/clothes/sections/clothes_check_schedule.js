@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { getLocal } from '../../../modules/storages/local'
 import MoleculesScheduleMiniBox from '../../../components/molecules/molecules_schedule_mini_box'
-import { messageError } from '@/modules/helpers/message'
+import { fetchTodaySchedule } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesCheckSchedule(props) {
     const [error, setError] = useState(null)
@@ -19,24 +19,21 @@ export default function ClothesCheckSchedule(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/${dayName}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
+
+        // Fetch repo
+        fetchTodaySchedule(
+            dayName,
             (result) => {
                 Swal.close()
                 setIsLoaded(true)
-                setItems(result.data) 
+                setItems(result)
             },
             (error) => {
-                messageError(error)
                 setError(error)
-            }
+            },
+            tokenKey
         )
-    },[])
+    }, [])
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>

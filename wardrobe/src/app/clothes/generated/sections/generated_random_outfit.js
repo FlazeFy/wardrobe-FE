@@ -12,6 +12,7 @@ import GeneratedSectionSaveOutfit from "./generated_save_outfit";
 import Axios from 'axios'
 import { getLocal, storeLocal } from "../../../..//modules/storages/local";
 import { messageError } from '@/modules/helpers/message';
+import { fetchDictionary } from '@/modules/repositories/dictionary_repository';
 
 export default function GeneratedSectionRandomOutift(props) {
     const [error, setError] = useState(null)
@@ -31,51 +32,48 @@ export default function GeneratedSectionRandomOutift(props) {
         const localHistory = getLocal('generated_outfit_history')
         if (localHistory) {
             setIsGenerated(true)
-        } 
-
+        }
+    
         const oldTimeHit = getLocal('last_hit-dct_category_type')
-        const oldTime = new Date(JSON.parse(oldTimeHit))
-        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
     
         const fetchData = (data) => {
             Swal.close()
             setIsLoaded(true)
-            let final_data = []
-            data.forEach(el => {
-                final_data.push({
-                    clothes_image: null,
-                    clothes_category: getCleanTitleFromCtx(el.clothes_category),
-                    clothes_type: el.clothes_type,
-                    selected: false,
-                })
-            });
-            setItems(final_data)  
+    
+            const final_data = data.map(el => ({
+                clothes_image: null,
+                clothes_category: getCleanTitleFromCtx(el.clothes_category),
+                clothes_type: el.clothes_type,
+                selected: false,
+            }))
+    
+            setItems(final_data)
         }
     
-        if (timeDiffInSec < 540 && oldTimeHit) {
-            const oldData = JSON.parse(getLocal('dct_category_type'))
-            fetchData(oldData)
-        } else {
-            fetch(`http://127.0.0.1:8000/api/v1/dct/clothes/category_type`, {
-                headers: {
-                    'Authorization': `Bearer ${tokenKey}`,
-                },
-            })
-            .then(res => res.json())
-                .then(
-                (result) => {
-                    Swal.close()
-                    setIsLoaded(true)
-                    fetchData(result.data)
-                    storeLocal('dct_category_type', JSON.stringify(result.data))
-                    storeLocal('last_hit-dct_category_type', JSON.stringify(now)) 
-                },
-                (error) => {
-                    messageError(error)
-                    setError(error)
-                }
-            )
+        // Check temp data expired time
+        if (oldTimeHit) {
+            const oldTime = new Date(JSON.parse(oldTimeHit))
+            const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+    
+            if (timeDiffInSec < 540) {
+                const oldData = JSON.parse(getLocal('dct_category_type'))
+                fetchData(oldData)
+                return
+            }
         }
+
+        // Fetch repo
+        fetchDictionary(
+            (data) => {
+                fetchData(data)
+                storeLocal('dct_category_type', JSON.stringify(data))
+                storeLocal('last_hit-dct_category_type', JSON.stringify(now))
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey, '/clothes/category_type'
+        )
     }
 
     const handleTemplateChange = (clothesType, isSelected) => {

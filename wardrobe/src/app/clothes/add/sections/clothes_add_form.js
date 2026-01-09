@@ -8,6 +8,7 @@ import MoleculesField from '../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../modules/storages/local'
 import { useRouter } from 'next/navigation'
 import { postClothes } from '@/modules/repositories/clothes_repository'
+import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
 
 export default function ClothesAddForm(props) {
     const [error, setError] = useState(null)
@@ -43,9 +44,8 @@ export default function ClothesAddForm(props) {
 
     const fetchDct = () => {
         const oldTimeHit = getLocal('last_hit-dct_all_dct')
-        const oldTime = new Date(JSON.parse(oldTimeHit))
-        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
     
+        // Set value of dictionary based on the type
         const fetchData = (data) => {
             Swal.close()
             setIsLoaded(true)
@@ -76,30 +76,30 @@ export default function ClothesAddForm(props) {
             setClothesType(type[0])
         }
     
-        if (timeDiffInSec < 540 && oldTimeHit) {
-            const oldData = JSON.parse(getLocal('dct_all_dct'))
-            fetchData(oldData)
-        } else {
-            fetch(`http://127.0.0.1:8000/api/v1/dct/clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type`, {
-                headers: {
-                    'Authorization': `Bearer ${tokenKey}`,
-                },
-            })
-            .then(res => res.json())
-                .then(
-                (result) => {
-                    Swal.close()
-                    setIsLoaded(true)
-                    fetchData(result.data)
-                    storeLocal('dct_all_dct', JSON.stringify(result.data))
-                    storeLocal('last_hit-dct_all_dct', JSON.stringify(now)) 
-                },
-                (error) => {
-                    messageError(error)
-                    setError(error)
-                }
-            )
+        // Check temp data expired time
+        if (oldTimeHit) {
+            const oldTime = new Date(JSON.parse(oldTimeHit))
+            const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+    
+            if (timeDiffInSec < 540) {
+                const oldData = JSON.parse(getLocal('dct_all_dct'))
+                fetchData(oldData)
+                return
+            }
         }
+    
+        // Fetch repo
+        fetchDictionary(
+            (data) => {
+                fetchData(data)
+                storeLocal('dct_all_dct', JSON.stringify(data))
+                storeLocal('last_hit-dct_all_dct', JSON.stringify(now))
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey, 'clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type'
+        )
     }
 
     useEffect(() => {

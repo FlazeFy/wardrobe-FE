@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getLocal } from '../../../modules/storages/local'
 import MoleculesNoData from '../../../components/molecules/molecules_no_data'
-import { messageError } from '@/modules/helpers/message'
+import { fetchAllClothesHeader } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionAllHeader(props) {
     const [error, setError] = useState(null)
@@ -14,37 +14,26 @@ export default function ClothesSectionAllHeader(props) {
     const [items, setItems] = useState(null)
     const tokenKey = getLocal("token_key")
 
-    const fetchClothes = () => {
+    useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/header/all/desc`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
+
+        // Fetch repo
+        fetchAllClothesHeader(
+            (data) => {
+                Swal.close()
+                setIsLoaded(true)
+                setItems(data)
             },
-        })
-        .then(res => {
-            if (res.status === 404) {
+            () => {
+                Swal.close()
                 setIsLoaded(true)
                 setItems(null)
-                return null
-            }
-            Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) {
-                setIsLoaded(true)
-                setItems(result.data.data)
-            }
-            Swal.close()
-        })
-        .catch(error => {
-            messageError(error)
-            setError(error)
-        })
-    }
-
-    useEffect(() => {
-        fetchClothes()
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey
+        )
     },[])
 
     if (error) {

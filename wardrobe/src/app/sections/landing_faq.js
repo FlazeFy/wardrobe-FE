@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import MoleculesFAQBox from "../../components/molecules/molecules_faq_box";
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
-import { messageError } from "@/modules/helpers/message";
+import { fetchFAQ } from "@/modules/repositories/question_repository";
 
 export default function LandingSectionFAQ(props) {
     const [error, setError] = useState(null)
@@ -15,44 +15,44 @@ export default function LandingSectionFAQ(props) {
     const [tokenKey, setTokenKey] = useState(null)
     const now = new Date()
 
-    const fetchFAQ = () => {
+    const fetchFAQHandler = () => {
         const oldTimeHit = getLocal('last_hit-faq')
-        const oldTime = new Date(JSON.parse(oldTimeHit))
-        const timeDiffInSec = Math.floor((now - oldTime) / 1000)
-    
+
         const fetchData = (data) => {
             Swal.close()
             setIsLoaded(true)
             setItems(data)
         }
-    
-        if (timeDiffInSec < 360 && oldTimeHit) {
-            const oldData = JSON.parse(getLocal('faq'))
-            fetchData(oldData)
-        } else {
-            fetch(`http://127.0.0.1:8000/api/v1/question/faq`)
-            .then(res => res.json())
-                .then(
-                (result) => {
-                    Swal.close()
-                    setIsLoaded(true)
-                    fetchData(result.data)
-                    storeLocal('faq', JSON.stringify(result.data))
-                    storeLocal('last_hit-faq', JSON.stringify(now)) 
-                },
-                (error) => {
-                    messageError(error)
-                    setError(error)
-                }
-            )
+
+        if (oldTimeHit) {
+            const oldTime = new Date(JSON.parse(oldTimeHit))
+            const timeDiffInSec = Math.floor((now - oldTime) / 1000)
+
+            if (timeDiffInSec < 360) {
+                const oldData = JSON.parse(getLocal('faq'))
+                fetchData(oldData)
+                return
+            }
         }
+
+        // Fetch repo
+        fetchFAQ(
+            (data) => {
+                fetchData(data)
+                storeLocal('faq', JSON.stringify(data))
+                storeLocal('last_hit-faq', JSON.stringify(now))
+            },
+            (error) => {
+                setError(error)
+            }
+        )
     }
 
     useEffect(() => {
         Swal.showLoading()
         setTokenKey(getLocal('token_key'))
-        fetchFAQ()
-    },[])
+        fetchFAQHandler()
+    }, [])
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>

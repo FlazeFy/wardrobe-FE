@@ -55,3 +55,22 @@ export const postQuestion = async (question,tokenKey,setQuestion) => {
         messageError(error)
     }
 }
+
+export const fetchFAQ = (onSuccess, onError) => {
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/question/faq`)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}

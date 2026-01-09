@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import { getLocal } from '../../../modules/storages/local'
 import AtomsBreakLine from '../../../components/atoms/atoms_breakline'
-import { messageError } from '@/modules/helpers/message'
+import { fetchUnfinishedWash } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionUnfinishedWash(props) {
     const [error, setError] = useState(null)
@@ -16,37 +16,26 @@ export default function ClothesSectionUnfinishedWash(props) {
     const [items, setItems] = useState(null)
     const tokenKey = getLocal("token_key")
 
-    const fetchUnfinishedWash = () => {
+    useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/wash/unfinished`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
+
+        // Fetch repo
+        fetchUnfinishedWash(
+            (data) => {
+                Swal.close()
+                setIsLoaded(true)
+                setItems(data)
             },
-        })
-        .then(res => {
-            if (res.status === 404) {
+            () => {
+                Swal.close()
                 setIsLoaded(true)
                 setItems(null)
-                return null
-            }
-            Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) {
-                setIsLoaded(true)
-                setItems(result.data.data)
-            }
-            Swal.close()
-        })
-        .catch(error => {
-            messageError(error)
-            setError(error)
-        })
-    }
-
-    useEffect(() => {
-        fetchUnfinishedWash()
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey
+        )
     },[])
 
     if (error) {

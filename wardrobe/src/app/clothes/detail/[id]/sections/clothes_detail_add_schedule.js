@@ -21,7 +21,7 @@ export default function ClothesDetailAddSchedule(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        setDayDictionary(['Sun','Mon','Tue','Wed','Thu','Fri','Sat'])
+        setDayDictionary(['sun','mon','tue','wed','thu','fri','sat'])
         setIsLoaded(true)
     },[])
 

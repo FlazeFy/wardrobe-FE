@@ -389,6 +389,116 @@ export async function fetchTrash(onSuccess, onError, tokenKey){
     }
 }
 
+export const fetchTotalClothesByType = (onSuccess, onError, tokenKey) => {
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/by/clothes_type`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenKey}`,
+            },
+        })
+        .then(res => res.json())
+        .then(
+            (result) => {
+                onSuccess(result)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}
+
+export const fetchTodaySchedule = (dayName, onSuccess, onError, tokenKey) => {
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/${dayName}`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`,
+            },
+        })
+        .then(res => res.json())
+        .then(
+            (result) => {
+                onSuccess(result.data)
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}
+
+export const fetchAllClothesHeader = (onSuccess, onNotFound, onError, tokenKey) => {
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/header/all/desc`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`,
+            },
+        })
+        .then(res => {
+            if (res.status === 404) {
+                onNotFound()
+                return null
+            }
+            return res.json()
+        })
+        .then(
+            (result) => {
+                if (result) {
+                    onSuccess(result.data.data)
+                }
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}
+
+export const fetchUnfinishedWash = (onSuccess, onNotFound, onError, tokenKey) => {
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/wash/unfinished`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`,
+            },
+        })
+        .then(res => {
+            if (res.status === 404) {
+                onNotFound()
+                return null
+            }
+            return res.json()
+        })
+        .then(
+            (result) => {
+                if (result) {
+                    onSuccess(result.data.data)
+                }
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}
+
 export default function fetchTomorrowSchedule(day, onSuccess, onError, tokenKey){
     try {
         fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/tomorrow/${day}`, {
@@ -532,4 +642,35 @@ export async function fetchCalendarDetail(date,onSuccess,onError,tokenKey){
         messageError(error)
         onError(error)
     } 
+}
+
+export const fetchLastClothesHistory = (onSuccess, onNotFound, onError, tokenKey) => {
+    try {
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/last`, {
+            headers: {
+                'Authorization': `Bearer ${tokenKey}`,
+            },
+        })
+        .then(res => {
+            if (res.status === 404) {
+                onNotFound()
+                return null
+            }
+            return res.json()
+        })
+        .then(
+            (result) => {
+                if (result) {
+                    onSuccess(result.data)
+                }
+            },
+            (error) => {
+                messageError(error)
+                onError(error)
+            }
+        )
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
 }

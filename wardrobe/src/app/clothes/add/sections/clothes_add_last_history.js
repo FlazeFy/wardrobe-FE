@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import { convertDatetimeBasedLocal } from '../../../../modules/helpers/converter'
-import { messageError } from '@/modules/helpers/message'
+import { fetchLastClothesHistory } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesAddSectionLastHistory(props) {
     const [error, setError] = useState(null)
@@ -13,36 +13,26 @@ export default function ClothesAddSectionLastHistory(props) {
     const [item, setItem] = useState(null)
     const tokenKey = getLocal("token_key")
 
-    const fetchLastHistory = () => {
+    useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/last`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
+
+        // Fetch repo
+        fetchLastClothesHistory(
+            (data) => {
+                Swal.close()
+                setIsLoaded(true)
+                setItem(data)
             },
-        })
-        .then(res => {
-            if (res.status === 404) {
+            () => {
+                Swal.close()
                 setIsLoaded(true)
                 setItem(null)
-                return null
-            }
-            Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) {
-                setIsLoaded(true)
-                setItem(result.data)
-            }
-            Swal.close()
-        })
-        .catch(error => {
-            messageError(error)
-            setError(error)
-        })
-    }
-    useEffect(() => {
-        fetchLastHistory()
+            },
+            (error) => {
+                setError(error)
+            },
+            tokenKey
+        )
     },[])
 
     if (error) {
