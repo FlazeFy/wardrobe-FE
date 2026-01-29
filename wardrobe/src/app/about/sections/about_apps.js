@@ -7,5 +7,5 @@ export default function AboutSectionApps() {
                 Join us and we will keeps your style decision effortless and organize.
             </h5>
         </div>
-    );
+    )
 }

@@ -1,6 +1,6 @@
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"
 import Axios from 'axios'
-import { messageError } from "../helpers/message";
+import { messageError } from "../helpers/message"
 
 export async function fetchWashClothes(page, onSuccess, onError, tokenKey){
     try {

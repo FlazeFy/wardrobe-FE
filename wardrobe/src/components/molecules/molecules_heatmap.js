@@ -1,6 +1,6 @@
-import React from 'react';
-import dynamic from 'next/dynamic';
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+import React from 'react'
+import dynamic from 'next/dynamic'
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function MoleculesChartHeatmap(props) {
     const getSeries = (data) => {
@@ -11,21 +11,21 @@ export default function MoleculesChartHeatmap(props) {
             const dayData = data.filter(el => el.day === dy).map(el => ({
                 x: el.context,  
                 y: el.total    
-            }));
+            }))
     
             data_heatmap.push({
                 name: dy,       
                 data: dayData   
-            });
-        });
+            })
+        })
     
         return data_heatmap;
-    };
+    }
     
 
     const getCategories = (data) => {
         return [...new Set(data.map(item => item.context))]
-    };
+    }
 
     const data = props.items;
 
@@ -81,7 +81,7 @@ export default function MoleculesChartHeatmap(props) {
                 },
             },
         },
-    };
+    }
     
 
     return (
@@ -93,5 +93,5 @@ export default function MoleculesChartHeatmap(props) {
                 height={props.height ?? 'auto'}
             />
         </div>
-    );
+    )
 }

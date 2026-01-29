@@ -32,7 +32,7 @@ export async function fetchExport(ctx, type, tokenKey){
                 text: `${getCleanTitleFromCtx(ctx)} data downloaded`,
                 icon: "success",
                 confirmButtonText: "Okay!"
-            });
+            })
         } else {
             Swal.fire({
                 icon: "error",
@@ -72,7 +72,7 @@ export async function fetchExportCalendar(type, target, fileName, ctx, tokenKey)
                 text: `Calendar ${ctx} downloaded`,
                 icon: "success",
                 confirmButtonText: "Okay!"
-            });
+            })
         } else {
             Swal.fire({
                 icon: "error",
@@ -113,7 +113,7 @@ export async function fetchExportClothesDetail(id, tokenKey){
                 text: `Clothes detail downloaded`,
                 icon: "success",
                 confirmButtonText: "Okay!"
-            });
+            })
         } else {
             Swal.fire({
                 icon: "error",

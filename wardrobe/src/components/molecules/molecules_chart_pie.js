@@ -1,27 +1,31 @@
 import React from 'react'
-import dynamic from 'next/dynamic';
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+import dynamic from 'next/dynamic'
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function MoleculesChartPie(props) {
     var chart = []
 
     //Converter
-    const data = Object.values(props.items);
+    const data = Object.values(props.items)
 
     const getSeries = (val) => {
-        let catSeries = [];
+        let catSeries = []
+
         val.forEach(e => { 
             catSeries.push(parseInt(e.total))
-        });
-        return catSeries;
+        })
+
+        return catSeries
     }
 
     const getCategory = (val) => {
-        let catData = [];
+        let catData = []
+
         val.forEach(e => { 
             catData.push(e.context)
-        });
-        return catData;
+        })
+        
+        return catData
     }
 
     chart = {
@@ -32,7 +36,7 @@ export default function MoleculesChartPie(props) {
                 position: "bottom"
             },
         }
-    };
+    }
 
     return (
         <div className="m-2 p-2">
@@ -44,6 +48,6 @@ export default function MoleculesChartPie(props) {
                 width={"100%"}
             />
         </div>
-    );
+    )
 }
   

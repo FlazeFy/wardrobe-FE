@@ -1,12 +1,12 @@
 "use client"
-import styles from "../page.module.css";
-import OrganismsNavbar from "../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../components/molecules/molecules_footer";
-import RegisterSectionForm from "./sections/register_form";
-import RegisterSectionTNC from "./sections/register_tnc";
-import RegisterSectionValidate from "./sections/register_validate";
-import { useState } from "react";
+import styles from "../page.module.css"
+import OrganismsNavbar from "../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../components/molecules/molecules_footer"
+import RegisterSectionForm from "./sections/register_form"
+import RegisterSectionTNC from "./sections/register_tnc"
+import RegisterSectionValidate from "./sections/register_validate"
+import { useState } from "react"
 
 export default function RegisterPage(props) {
     const [isDisabled, setIsDisabled] = useState(true)
@@ -52,5 +52,5 @@ export default function RegisterPage(props) {
             
             <MoleculesFooter/>
         </main>
-    );
+    )
 }

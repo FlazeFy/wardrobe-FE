@@ -1,4 +1,4 @@
-import { convertDatetimeBasedLocal } from "../../modules/helpers/converter";
+import { convertDatetimeBasedLocal } from "../../modules/helpers/converter"
 
 export default function MoleculesFAQBox(props) {
     return (
@@ -12,6 +12,6 @@ export default function MoleculesFAQBox(props) {
                 <p className="mb-0">{props.answer}</p>
             </div>
         </div>
-    );
+    )
 }
   

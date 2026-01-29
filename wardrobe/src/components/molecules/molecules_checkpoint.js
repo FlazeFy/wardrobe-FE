@@ -10,6 +10,6 @@ export default function MoleculesCheckpoint(props) {
                 )
             }
         </div>
-    );
+    )
 }
   

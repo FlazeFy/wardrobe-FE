@@ -1,14 +1,14 @@
 "use client"
-import AtomsBreakLine from "../../../..//components/atoms/atoms_breakline";
+import AtomsBreakLine from "../../../..//components/atoms/atoms_breakline"
 import React, { useEffect, useState } from "react"
-import Swal from "sweetalert2";
-import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
-import OrganismsOutfit from "../../../../components/organisms/organisms_outfit";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { getLocal } from "../../../../modules/storages/local";
-import MoleculesNoData from "../../../../components/molecules/molecules_no_data";
-import { fetchAllOutfit } from "@/modules/repositories/outfit_repository";
+import Swal from "sweetalert2"
+import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box"
+import OrganismsOutfit from "../../../../components/organisms/organisms_outfit"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { getLocal } from "../../../../modules/storages/local"
+import MoleculesNoData from "../../../../components/molecules/molecules_no_data"
+import { fetchAllOutfit } from "@/modules/repositories/outfit_repository"
 
 export default function GeneratedSectionShowAllOutfit(props) {
     // Initial variables
@@ -24,7 +24,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
     }, [])
 
     const getAllOutfit = (page) => {
-        Swal.showLoading();
+        Swal.showLoading()
         fetchAllOutfit(page,
         (result) => {
             setIsLoaded(true)

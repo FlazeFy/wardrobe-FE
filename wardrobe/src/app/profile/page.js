@@ -1,19 +1,19 @@
 "use client"
-import styles from "../page.module.css";
-import OrganismsNavbar from "../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../components/molecules/molecules_footer";
-import Swal from "sweetalert2";
-import { useEffect, useState } from "react";
-import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
-import ProfileSectionEditForm from "./sections/profile_edit_form";
-import { getLocal } from "../../modules/storages/local";
-import ProfileSectionAllHistory from "./sections/profile_all_history";
-import ProfileSectionExportData from "./sections/profile_export_data";
-import ProfileSectionSendQuestion from "./sections/profile_post_question";
-import ProfileSectionSignOut from "./sections/profile_sign_out";
-import ProfileSectionPropsProfile from "./sections/profile_props_profile";
-import { messageError } from "@/modules/helpers/message";
+import styles from "../page.module.css"
+import OrganismsNavbar from "../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../components/molecules/molecules_footer"
+import Swal from "sweetalert2"
+import { useEffect, useState } from "react"
+import MoleculesAlertBox from "../../components/molecules/molecules_alert_box"
+import ProfileSectionEditForm from "./sections/profile_edit_form"
+import { getLocal } from "../../modules/storages/local"
+import ProfileSectionAllHistory from "./sections/profile_all_history"
+import ProfileSectionExportData from "./sections/profile_export_data"
+import ProfileSectionSendQuestion from "./sections/profile_post_question"
+import ProfileSectionSignOut from "./sections/profile_sign_out"
+import ProfileSectionPropsProfile from "./sections/profile_props_profile"
+import { messageError } from "@/modules/helpers/message"
 
 export default function ProfilePage(props) {
     const [error, setError] = useState(null)
@@ -109,6 +109,6 @@ export default function ProfilePage(props) {
                 
                 <MoleculesFooter/>
             </main>
-        );
+        )
     }
 }

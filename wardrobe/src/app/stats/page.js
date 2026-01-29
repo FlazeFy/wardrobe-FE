@@ -1,15 +1,15 @@
 "use client"
-import styles from "../page.module.css";
-import OrganismsNavbar from "../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../components/molecules/molecules_footer";
-import StatsSectionMostClothesCtx from "./sections/stats_most_clothes_ctx";
-import StatsSectionSummary from "./sections/stats_summary";
-import StatsYearlyActivity from "./sections/stats_yearly_activity";
-import StatsMonthlyClothes from "./sections/stats_monthly_clothes";
-import StatsSectionFilterMonthlyChart from "./sections/stats_filter_monthly_chart";
-import { useState } from "react";
-import StatsSectionMostUsedClothesDaily from "./sections/stats_most_used_clothes_daily";
+import styles from "../page.module.css"
+import OrganismsNavbar from "../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../components/molecules/molecules_footer"
+import StatsSectionMostClothesCtx from "./sections/stats_most_clothes_ctx"
+import StatsSectionSummary from "./sections/stats_summary"
+import StatsYearlyActivity from "./sections/stats_yearly_activity"
+import StatsMonthlyClothes from "./sections/stats_monthly_clothes"
+import StatsSectionFilterMonthlyChart from "./sections/stats_filter_monthly_chart"
+import { useState } from "react"
+import StatsSectionMostUsedClothesDaily from "./sections/stats_most_used_clothes_daily"
 
 export default function StatsPage() {
     const currentYear = new Date().getFullYear()
@@ -102,5 +102,5 @@ export default function StatsPage() {
 
             <MoleculesFooter/>
         </main>
-      );
+    )
 }

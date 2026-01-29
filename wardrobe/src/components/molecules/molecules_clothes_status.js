@@ -30,6 +30,6 @@ export default function MoleculesClothesStatus(props) {
                 )
             }
         </div>
-    );
+    )
 }
   

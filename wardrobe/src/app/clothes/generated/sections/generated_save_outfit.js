@@ -1,12 +1,12 @@
 "use client"
-import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
-import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
-import { faCheck, faFire, faFloppyDisk, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box"
+import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter"
+import { faCheck, faFire, faFloppyDisk, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useRef } from "react"
-import Swal from "sweetalert2";
-import { getLocal, storeLocal } from "../../../../modules/storages/local";
-import GeneratedSectionSaveLocalGenerated from "./generated_save_local_generated";
+import Swal from "sweetalert2"
+import { getLocal, storeLocal } from "../../../../modules/storages/local"
+import GeneratedSectionSaveLocalGenerated from "./generated_save_local_generated"
 
 const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
     const [error, setError] = useState(null)
@@ -15,7 +15,7 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
 
     useImperativeHandle(ref, () => ({
         fetchLocalHistory
-    }));
+    }))
 
     useEffect(() => {
         fetchLocalHistory()
@@ -154,18 +154,19 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
                     </div>
                 </div>
             </>
-        );
+        )
     }
-});
+})
+
 GeneratedSectionSaveOutfit.displayName = "GeneratedSectionSaveOutfit"
 
 export default function GeneratedSectionRandomOutift() {
-    const saveOutfitRef = useRef(null);
+    const saveOutfitRef = useRef(null)
 
     const handleGenerate = () => {
         Swal.showLoading()
         setTimeout(() => {
-            Swal.close();
+            Swal.close()
             Swal.fire({
                 title: "Generated!",
                 icon: "success",

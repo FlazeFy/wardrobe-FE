@@ -1,13 +1,13 @@
-import styles from "../page.module.css";
-import OrganismsNavbar from "../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../components/molecules/molecules_footer";
-import { faArrowRight,  faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ClothesSectionAllHeader from "./sections/clothes_all_header";
-import ClothesSectionTotalByType from "./sections/total_clothes_by_type";
-import ClothesCheckSchedule from "./sections/clothes_check_schedule";
-import ClothesSectionUnfinishedWash from "./sections/check_unfinished_wash";
+import styles from "../page.module.css"
+import OrganismsNavbar from "../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../components/molecules/molecules_footer"
+import { faArrowRight,  faTrash } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ClothesSectionAllHeader from "./sections/clothes_all_header"
+import ClothesSectionTotalByType from "./sections/total_clothes_by_type"
+import ClothesCheckSchedule from "./sections/clothes_check_schedule"
+import ClothesSectionUnfinishedWash from "./sections/check_unfinished_wash"
 
 export default function ClothesPage() {
     return (
@@ -79,5 +79,5 @@ export default function ClothesPage() {
 
             <MoleculesFooter/>
         </main>
-      );
+    )
 }

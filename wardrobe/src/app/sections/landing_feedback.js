@@ -1,10 +1,10 @@
 "use client"
-import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
-import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { fetchFeedback } from "@/modules/repositories/feedback_repository";
+import MoleculesAlertBox from "../../components/molecules/molecules_alert_box"
+import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useEffect, useState } from "react"
+import Swal from "sweetalert2"
+import { fetchFeedback } from "@/modules/repositories/feedback_repository"
 
 export default function LandingFeedback(props) {
     const [error, setError] = useState(null)
@@ -74,6 +74,6 @@ export default function LandingFeedback(props) {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }

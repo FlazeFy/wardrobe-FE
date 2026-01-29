@@ -1,11 +1,11 @@
 "use client"
-import OrganismsClothesHeader from "../../../components/organisms/organisms_clothes_header";
-import { useEffect, useState } from "react";
-import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
-import { getLocal } from "../../../modules/storages/local";
-import CalendarSectionExportDailyData from "./calendar_export_daily_data";
-import CalendarSectionManage from "./calendar_manage";
-import { fetchCalendar } from "@/modules/repositories/clothes_repository";
+import OrganismsClothesHeader from "../../../components/organisms/organisms_clothes_header"
+import { useEffect, useState } from "react"
+import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box"
+import { getLocal } from "../../../modules/storages/local"
+import CalendarSectionExportDailyData from "./calendar_export_daily_data"
+import CalendarSectionManage from "./calendar_manage"
+import { fetchCalendar } from "@/modules/repositories/clothes_repository"
 
 export default function CalendarSectionSchedule(props) {
     const [error, setError] = useState(null)
@@ -27,7 +27,7 @@ export default function CalendarSectionSchedule(props) {
                     day: '2-digit',
                     month: 'short',
                     year: 'numeric',
-                });
+                })
                 setToday(formattedDate)
             }, 
             (error) => {
@@ -40,19 +40,21 @@ export default function CalendarSectionSchedule(props) {
     const getDatesForMonth = (month, year) => {
         const dates = [];
         const daysInMonth = new Date(year, month, 0).getDate()
+
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(year, month - 1, day)
             const formattedDate = date.toLocaleDateString('en-GB', {
                 day: '2-digit',
                 month: 'short',
                 year: 'numeric',
-            });
+            })
             dates.push({ formattedDate, dayOfWeek: date.getDay() })
         }
-        return dates;
-    };
 
-    const dates = getDatesForMonth(month, year);
+        return dates
+    }
+
+    const dates = getDatesForMonth(month, year)
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
@@ -103,6 +105,6 @@ export default function CalendarSectionSchedule(props) {
                     }
                 </tbody>
             </table>
-        );
+        )
     }
 }

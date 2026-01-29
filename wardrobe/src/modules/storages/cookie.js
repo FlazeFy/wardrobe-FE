@@ -10,7 +10,7 @@ export const storeCookie = (name, val, days = 7) => {
             valueToStore = val.trim()
         }
 
-        const date = new Date();
+        const date = new Date()
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
         const expires = `expires=${date.toUTCString()}`
 

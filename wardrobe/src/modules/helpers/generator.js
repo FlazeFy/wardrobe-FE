@@ -4,4 +4,4 @@ export const getCurrentMonthYear = () => {
     const year = today.getFullYear()
     
     return `${month}-${year}`
-};
+}

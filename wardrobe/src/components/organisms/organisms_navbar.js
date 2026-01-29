@@ -1,9 +1,9 @@
 "use client"
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import { getLocal } from "../../modules/storages/local";
-import AtomsNavItem from "../atoms/atoms_nav_item";
+import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useEffect, useState } from "react"
+import { getLocal } from "../../modules/storages/local"
+import AtomsNavItem from "../atoms/atoms_nav_item"
 
 export default function OrganismsNavbar(props) {
     const [tokenKey, setTokenKey] = useState(null)

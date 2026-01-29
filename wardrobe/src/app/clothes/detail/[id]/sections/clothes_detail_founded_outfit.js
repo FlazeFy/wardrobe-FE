@@ -1,5 +1,5 @@
 "use client"
-import { convertDatetimeBasedLocal } from '../../../../../modules/helpers/converter';
+import { convertDatetimeBasedLocal } from '../../../../../modules/helpers/converter'
 import React from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -8,7 +8,7 @@ export default function ClothesDetailSectionFoundedOutfit(props) {
 
     const handleBoxClick = (id) => {
         router.push(`/clothes/outfit/${id}`)
-    };
+    }
 
     if(props.items){
         return (

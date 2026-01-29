@@ -1,12 +1,12 @@
 "use client"
-import styles from "../page.module.css";
-import OrganismsNavbar from "../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../components/molecules/molecules_footer";
-import FeedbackSectionSend from "./sections/feedback_send";
-import ProfileSectionSendQuestion from "../profile/sections/profile_post_question";
-import { useEffect, useState } from "react";
-import { getLocal } from "../../modules/storages/local";
+import styles from "../page.module.css"
+import OrganismsNavbar from "../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../components/molecules/molecules_footer"
+import FeedbackSectionSend from "./sections/feedback_send"
+import ProfileSectionSendQuestion from "../profile/sections/profile_post_question"
+import { useEffect, useState } from "react"
+import { getLocal } from "../../modules/storages/local"
 
 export default function FeedbackPage() {
     const [tokenKey, setTokenKey] = useState(null)
@@ -29,5 +29,5 @@ export default function FeedbackPage() {
             <AtomsBreakLine length={2}/>
             <MoleculesFooter/>
         </main>
-      );
+    )
 }

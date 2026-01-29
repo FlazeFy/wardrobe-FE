@@ -18,6 +18,6 @@ export default function CalendarSectionExportData(props) {
             <label>Export Data</label><br></br>
             <a className='btn btn-success' onClick={(e) => handleDownload()}><FontAwesomeIcon icon={faDownload}/> Download Excel</a>
         </div>
-    );
+    )
 }
   

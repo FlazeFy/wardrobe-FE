@@ -1,7 +1,7 @@
 "use client"
-import { convertDatetimeBasedLocal } from "../../../../../modules/helpers/converter";
+import { convertDatetimeBasedLocal } from "../../../../../modules/helpers/converter"
 import React from "react"
-import OutfitSectionHardDeleteOutfitHistory from "./outfit_hard_delete_outfit_history";
+import OutfitSectionHardDeleteOutfitHistory from "./outfit_hard_delete_outfit_history"
 
 export default function OutfitSectionUsedById(props) {
     return (

@@ -119,7 +119,7 @@ export default function ClothesAddForm(props) {
             const reader = new FileReader()
             reader.onload = () => {
                 setClothesImage(reader.result)
-            };
+            }
             reader.readAsDataURL(file)
         }
     }

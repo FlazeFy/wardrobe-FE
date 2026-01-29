@@ -40,5 +40,5 @@ export default function LandingSectionLogin(props) {
                 </div>
             </div>
         </div>
-    );
+    )
 }

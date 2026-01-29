@@ -1,6 +1,6 @@
-import MoleculesFeaturesBox from "../../components/molecules/molecules_features_box";
-import { faArrowRight, faCalendar, faCircleQuestion,faDice,faPersonDress,faPieChart,faShirt, faTable } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MoleculesFeaturesBox from "../../components/molecules/molecules_features_box"
+import { faArrowRight, faCalendar, faCircleQuestion,faDice,faPersonDress,faPieChart,faShirt, faTable } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function LandingSectionFeatures() {
     return (
@@ -48,5 +48,5 @@ export default function LandingSectionFeatures() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

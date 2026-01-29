@@ -18,6 +18,6 @@ export default function ClothesDetailSectionExportData(props) {
             <label>Export Data</label><br></br>
             <a className='btn btn-success' onClick={(e) => handleDownload(props.id)}><FontAwesomeIcon icon={faDownload}/> Download PDF</a>
         </div>
-    );
+    )
 }
   

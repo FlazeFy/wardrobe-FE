@@ -1,18 +1,18 @@
 "use client"
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
-import { getCleanTitleFromCtx, getErrorValidation } from "../../../../modules/helpers/converter";
-import { faDice } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AtomsBreakLine from "../../../../components/atoms/atoms_breakline"
+import { getCleanTitleFromCtx, getErrorValidation } from "../../../../modules/helpers/converter"
+import { faDice } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useEffect, useRef, useState } from "react"
-import Swal from "sweetalert2";
-import OrganismsClothesHeader from "../../../../components/organisms/organisms_clothes_header";
-import GeneratedSectionConfigurateTemplate from "./generated_configurate_template";
-import GeneratedSectionSaveOutfit from "./generated_save_outfit";
+import Swal from "sweetalert2"
+import OrganismsClothesHeader from "../../../../components/organisms/organisms_clothes_header"
+import GeneratedSectionConfigurateTemplate from "./generated_configurate_template"
+import GeneratedSectionSaveOutfit from "./generated_save_outfit"
 import Axios from 'axios'
-import { getLocal, storeLocal } from "../../../..//modules/storages/local";
-import { messageError } from '@/modules/helpers/message';
-import { fetchDictionary } from '@/modules/repositories/dictionary_repository';
+import { getLocal, storeLocal } from "../../../..//modules/storages/local"
+import { messageError } from '@/modules/helpers/message'
+import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
 
 export default function GeneratedSectionRandomOutift(props) {
     const [error, setError] = useState(null)
@@ -185,7 +185,7 @@ export default function GeneratedSectionRandomOutift(props) {
                         })
                         setItems(final_data)  
                     }
-                });
+                })
             } else {
                 Swal.fire({
                     icon: "error",
@@ -204,7 +204,7 @@ export default function GeneratedSectionRandomOutift(props) {
                     title: "Validation Error",
                     text: msg,
                     confirmButtonText: "Okay!"
-                });
+                })
     
                 setResMsgAll(msg)
             } else {
@@ -241,9 +241,10 @@ export default function GeneratedSectionRandomOutift(props) {
                                         <div className='col-lg-2 col-md-3 col-sm-4 col-6 mx-auto' key={idx}>
                                             <OrganismsClothesHeader items={dt} type="random"/>
                                         </div>
-                                    );
+                                    )
                                 }
-                                return null;
+
+                                return null
                             })
                         ) : (
                             <div className="my-2"><p>- No Active Template -</p></div>
@@ -251,6 +252,6 @@ export default function GeneratedSectionRandomOutift(props) {
                     }
                 </div>
             </div>
-        );
+        )
     }
 }

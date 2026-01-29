@@ -1,11 +1,11 @@
-import styles from "../../page.module.css";
-import OrganismsNavbar from "../../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../../components/molecules/molecules_footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import UsedAllHistory from "./sections/used_all_history";
-import UsedMonthlyClothesUsed from "./sections/used_monthly_clothes_used";
+import styles from "../../page.module.css"
+import OrganismsNavbar from "../../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../../components/molecules/molecules_footer"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import UsedAllHistory from "./sections/used_all_history"
+import UsedMonthlyClothesUsed from "./sections/used_monthly_clothes_used"
 
 export default function ClothesUsed() {
     return (

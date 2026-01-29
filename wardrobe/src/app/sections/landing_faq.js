@@ -1,12 +1,12 @@
-import { getLocal, storeLocal } from "../../modules/storages/local";
-import { faArrowRight, faCircleQuestion, } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import Swal from "sweetalert2";
-import { useEffect, useState } from "react";
-import MoleculesFAQBox from "../../components/molecules/molecules_faq_box";
-import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
-import { fetchFAQ } from "@/modules/repositories/question_repository";
+import { getLocal, storeLocal } from "../../modules/storages/local"
+import { faArrowRight, faCircleQuestion, } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import Swal from "sweetalert2"
+import { useEffect, useState } from "react"
+import MoleculesFAQBox from "../../components/molecules/molecules_faq_box"
+import MoleculesAlertBox from "../../components/molecules/molecules_alert_box"
+import { fetchFAQ } from "@/modules/repositories/question_repository"
 
 export default function LandingSectionFAQ(props) {
     const [error, setError] = useState(null)
@@ -83,6 +83,6 @@ export default function LandingSectionFAQ(props) {
                 </div>
                 <AtomsBreakLine length={2}/>
             </div>
-        );
+        )
     }
 }

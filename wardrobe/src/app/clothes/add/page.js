@@ -1,12 +1,12 @@
 "use client"
-import styles from "../../page.module.css";
-import OrganismsNavbar from "../../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../../components/molecules/molecules_footer";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ClothesAddForm from "./sections/clothes_add_form";
-import ClothesAddSectionLastHistory from "./sections/clothes_add_last_history";
+import styles from "../../page.module.css"
+import OrganismsNavbar from "../../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../../components/molecules/molecules_footer"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ClothesAddForm from "./sections/clothes_add_form"
+import ClothesAddSectionLastHistory from "./sections/clothes_add_last_history"
 
 export default function ClothesAddPage() {
     return (

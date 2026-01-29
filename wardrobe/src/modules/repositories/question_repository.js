@@ -34,7 +34,7 @@ export const postQuestion = async (question,tokenKey,setQuestion) => {
                     if (result.isConfirmed) {
                         setQuestion("")
                     }
-                });
+                })
             } else {
                 Swal.fire({
                     icon: "error",

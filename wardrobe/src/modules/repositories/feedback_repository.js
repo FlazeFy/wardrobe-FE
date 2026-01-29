@@ -39,7 +39,7 @@ export const postFeedback = async (feedbackRate, feedbackBody, tokenKey, setFeed
                             setFeedbackBody("")
                             setFeedbackRate(0)
                         }
-                    });
+                    })
                 } else {
                     Swal.fire({
                         icon: "error",

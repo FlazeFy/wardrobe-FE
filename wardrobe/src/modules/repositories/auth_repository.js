@@ -38,7 +38,7 @@ export const postLogin = async (username, password,router) => {
                 if (result.isConfirmed) {
                    router.push('/clothes')
                 }
-            });
+            })
         } else {
             Swal.fire({
                 icon: "error",
@@ -88,7 +88,7 @@ export const postRegister = async (props) => {
                     props.setStartValidationTimer(true)
                     storeLocal("username_key",response.data.result.username)
                 }
-            });
+            })
         } else {
             messageError("Something went wrong!")
         }
@@ -130,7 +130,7 @@ export const postValidateRegister = async (token,router) => {
                     storeLocal("is_new_user",true)
                     router.push('/')
                 }
-            });
+            })
         } else {
             messageError("Something went wrong!")
         }

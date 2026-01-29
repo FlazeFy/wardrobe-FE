@@ -104,7 +104,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                             if (result.isConfirmed) {
                                props.fetchOutfit()
                             }
-                        });
+                        })
                     } else {
                         Swal.fire({
                             icon: "error",

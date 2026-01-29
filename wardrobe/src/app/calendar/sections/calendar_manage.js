@@ -1,12 +1,12 @@
 "use client"
-import OrganismsClothesCalendarManage from "../../../components/organisms/organisms_clothes_calendar_manage";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import Swal from "sweetalert2";
-import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box";
-import { getLocal } from "../../../modules/storages/local";
-import { fetchCalendarDetail } from "@/modules/repositories/clothes_repository";
+import OrganismsClothesCalendarManage from "../../../components/organisms/organisms_clothes_calendar_manage"
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useState } from "react"
+import Swal from "sweetalert2"
+import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box"
+import { getLocal } from "../../../modules/storages/local"
+import { fetchCalendarDetail } from "@/modules/repositories/clothes_repository"
 
 export default function CalendarSectionManage(props) {
     const [error, setError] = useState(null)

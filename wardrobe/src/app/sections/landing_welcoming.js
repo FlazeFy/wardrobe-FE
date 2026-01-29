@@ -1,10 +1,9 @@
 "use client"
-import MoleculesAlertBox from "../../components/molecules/molecules_alert_box";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { getLocal } from "../../modules/storages/local";
-import { fetchWelcomeStats } from "@/modules/repositories/general_repository";
+import MoleculesAlertBox from "../../components/molecules/molecules_alert_box"
+import { useEffect, useState } from "react"
+import Swal from "sweetalert2"
+import { getLocal } from "../../modules/storages/local"
+import { fetchWelcomeStats } from "@/modules/repositories/general_repository"
 
 export default function LandingSectionWelcoming(props) {
     const [error, setError] = useState(null)
@@ -70,6 +69,6 @@ export default function LandingSectionWelcoming(props) {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }

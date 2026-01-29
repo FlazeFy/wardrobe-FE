@@ -1,12 +1,12 @@
-import styles from "../../page.module.css";
-import OrganismsNavbar from "../../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../../components/molecules/molecules_footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import WashSectionAllHistory from "./sections/wash_all_history";
-import ClothesSectionUnfinishedWash from "../sections/check_unfinished_wash";
-import WashSectionSummary from "./sections/wash_summary";
+import styles from "../../page.module.css"
+import OrganismsNavbar from "../../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../../components/molecules/molecules_footer"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import WashSectionAllHistory from "./sections/wash_all_history"
+import ClothesSectionUnfinishedWash from "../sections/check_unfinished_wash"
+import WashSectionSummary from "./sections/wash_summary"
 
 export default function ClothesWash() {
     return (

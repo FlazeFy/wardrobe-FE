@@ -1,7 +1,7 @@
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"
 import Axios from 'axios'
-import { messageError } from "../helpers/message";
-import { getLocal, storeLocal } from "../storages/local";
+import { messageError } from "../helpers/message"
+import { getLocal, storeLocal } from "../storages/local"
 
 export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
     clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,tokenKey,router) => {
@@ -20,7 +20,7 @@ export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSiz
                     title: "Validation Error",
                     text: "You can't set clothes buy at date more than today date",
                     confirmButtonText: "Okay!"
-                });
+                })
                 return
             }
         }
@@ -64,7 +64,7 @@ export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSiz
                 if (result.isConfirmed) {
                     router.push(`/clothes/detail/${response.data.data.id}`)
                 }
-            });
+            })
         } 
     } catch (error) {
         messageError(error)
@@ -218,7 +218,7 @@ export const postSchedule = async (day,isRemind,scheduleNote,tokenKey,props) => 
                 if (result.isConfirmed) {
                    props.fetchClothes()
                 }
-            });
+            })
         } else {
             Swal.fire({
                 icon: "error",
@@ -260,7 +260,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,tokenKey,props) =
                 if (result.isConfirmed && props.fetchClothes) {
                    props.fetchClothes()
                 }
-            });
+            })
         } else {
             Swal.fire({
                 icon: "error",
@@ -306,7 +306,7 @@ export const postOutfitClothes = async (selectedItem,tokenKey,props) => {
                 if (result.isConfirmed) {
                    props.fetchOutfit()
                 }
-            });
+            })
         } else {
             Swal.fire({
                 icon: "error",

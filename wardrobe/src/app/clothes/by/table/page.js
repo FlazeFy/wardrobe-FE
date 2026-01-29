@@ -1,10 +1,10 @@
-import styles from "../../../page.module.css";
-import OrganismsNavbar from "../../../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../../../components/molecules/molecules_footer";
-import ClothesSectionAllDetail from "./sections/clothes_all_detail";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
+import styles from "../../../page.module.css"
+import OrganismsNavbar from "../../../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../../../components/molecules/molecules_footer"
+import ClothesSectionAllDetail from "./sections/clothes_all_detail"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft, faTrash } from "@fortawesome/free-solid-svg-icons"
 
 export default function ClothesByTable() {
     return (

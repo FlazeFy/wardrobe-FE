@@ -1,21 +1,21 @@
 "use client"
-import styles from "../../../page.module.css";
-import OrganismsNavbar from "../../../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../../../components/molecules/molecules_footer";
-import { useEffect, useState } from "react";
-import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getLocal } from "../../../../modules/storages/local";
-import Swal from "sweetalert2";
-import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
-import OutfitSectionUsedById from "./sections/outfit_used_by_id";
-import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_history";
-import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes";
-import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used";
-import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes";
-import { messageError } from "@/modules/helpers/message";
+import styles from "../../../page.module.css"
+import OrganismsNavbar from "../../../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../../../components/molecules/molecules_footer"
+import { useEffect, useState } from "react"
+import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { getLocal } from "../../../../modules/storages/local"
+import Swal from "sweetalert2"
+import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter"
+import OutfitSectionUsedById from "./sections/outfit_used_by_id"
+import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_history"
+import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes"
+import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used"
+import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes"
+import { messageError } from "@/modules/helpers/message"
 
 export default function ClothesOutfitPage({params, ...props}) {
     const [error, setError] = useState(null)
@@ -81,7 +81,7 @@ export default function ClothesOutfitPage({params, ...props}) {
             } else {
                 setIsLoaded(true)
             }
-        });
+        })
     }
 
     if (error) {

@@ -1,7 +1,7 @@
 "use client"
-import { useEffect } from "react";
+import { useEffect } from "react"
 import { Poppins } from 'next/font/google'
-import { Inter } from "next/font/google";
+import { Inter } from "next/font/google"
 import '../modules/styles/globals.css'
 import '../modules/styles/table.css'
 import '../modules/styles/form.css'
@@ -12,9 +12,9 @@ import '../modules/styles/navbar.css'
 import '../modules/styles/modal.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import DetectFlazenAppsAlert from "./sections/all_detect_flazenapps";
+import DetectFlazenAppsAlert from "./sections/all_detect_flazenapps"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -23,12 +23,12 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }) {
   useEffect(() => {
-    require("bootstrap/dist/js/bootstrap.bundle");
-  }, []);
+    require("bootstrap/dist/js/bootstrap.bundle")
+  }, [])
 
   return (
     <html lang="en" >
       <body className={poppins.className}>{children}<DetectFlazenAppsAlert/></body>
     </html>
-  );
+  )
 }

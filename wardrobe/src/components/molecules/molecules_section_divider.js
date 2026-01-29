@@ -1,4 +1,4 @@
-import AtomsBreakLine from "../atoms/atoms_breakline";
+import AtomsBreakLine from "../atoms/atoms_breakline"
 
 export default function MoleculesSectionDivider() {
     return (

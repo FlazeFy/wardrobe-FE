@@ -1,10 +1,10 @@
-import styles from "../../page.module.css";
-import OrganismsNavbar from "../../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../../components/molecules/molecules_footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import ClothesSectionAllDeletedClothes from "./sections/trash_all_deleted_clothes";
+import styles from "../../page.module.css"
+import OrganismsNavbar from "../../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../../components/molecules/molecules_footer"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import ClothesSectionAllDeletedClothes from "./sections/trash_all_deleted_clothes"
 
 export default function ClothesTrash() {
     return (

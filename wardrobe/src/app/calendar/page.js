@@ -1,20 +1,20 @@
 "use client"
-import styles from "../page.module.css";
-import OrganismsNavbar from "../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../components/molecules/molecules_footer";
-import CalendarSectionSchedule from "./sections/calendar_schedule";
-import CalendarSectionMonthYear from "./sections/calendar_month_year";
-import { useState } from "react";
-import { getCurrentMonthYear } from "../../modules/helpers/generator";
-import CalendarSectionExportData from "./sections/calendar_export_data";
-import CalendarSectionTomorrowSchedule from "./sections/calendar_tomorrow_schedule";
+import styles from "../page.module.css"
+import OrganismsNavbar from "../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../components/molecules/molecules_footer"
+import CalendarSectionSchedule from "./sections/calendar_schedule"
+import CalendarSectionMonthYear from "./sections/calendar_month_year"
+import { useState } from "react"
+import { getCurrentMonthYear } from "../../modules/helpers/generator"
+import CalendarSectionExportData from "./sections/calendar_export_data"
+import CalendarSectionTomorrowSchedule from "./sections/calendar_tomorrow_schedule"
 
 export default function CalendarPage() {
     const [monthYear, setMonthYear] = useState(getCurrentMonthYear()) 
     const handleMonthYearChange = (val) => {
         setMonthYear(val)
-    };
+    }
 
     return (
         <main className={styles.main}>
@@ -44,5 +44,5 @@ export default function CalendarPage() {
             <CalendarSectionSchedule ctx="calendar_schedule" month_year={monthYear}/>
             <MoleculesFooter/>
         </main>
-    );
+    )
 }

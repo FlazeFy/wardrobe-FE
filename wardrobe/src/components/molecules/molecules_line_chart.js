@@ -1,7 +1,7 @@
 import React from 'react'
-import dynamic from 'next/dynamic';
-import { getCleanTitleFromCtx } from '../../modules/helpers/converter';
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+import dynamic from 'next/dynamic'
+import { getCleanTitleFromCtx } from '../../modules/helpers/converter'
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function MoleculesLineChart(props) {
     const processChartData = (data) => {
@@ -15,10 +15,10 @@ export default function MoleculesLineChart(props) {
                 x: item[stringKey],
                 y: item[key] 
             }))
-        }));
+        }))
 
-        return series;
-    };
+        return series
+    }
 
     const chart = {
         series: processChartData(props.data),
@@ -47,16 +47,11 @@ export default function MoleculesLineChart(props) {
                 },
             },
         },
-    };
+    }
 
     return (
         <div className="m-2 p-2">
-            <Chart
-                options={chart.options}
-                series={chart.series}
-                type="line"
-                height={props.height ?? 420}
-            />
+            <Chart options={chart.options} series={chart.series} type="line" height={props.height ?? 420}/>
         </div>
-    );
+    )
 }

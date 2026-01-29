@@ -14,7 +14,7 @@ export default function OrganismsClothesHeader(props) {
         if(type != 'clothes'){
             router.push(`/clothes/detail/${id}`)
         }
-    };
+    }
     
     return (
         <>

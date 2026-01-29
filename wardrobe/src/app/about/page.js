@@ -1,9 +1,9 @@
-import styles from "../page.module.css";
-import OrganismsNavbar from "../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../components/molecules/molecules_footer";
-import AboutSectionCreator from "./sections/about_creator";
-import AboutSectionApps from "./sections/about_apps";
+import styles from "../page.module.css"
+import OrganismsNavbar from "../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../components/molecules/molecules_footer"
+import AboutSectionCreator from "./sections/about_creator"
+import AboutSectionApps from "./sections/about_apps"
 
 export default function AboutPage() {
     return (
@@ -20,5 +20,5 @@ export default function AboutPage() {
             <AtomsBreakLine length={2}/>
             <MoleculesFooter/>
         </main>
-      );
+    )
 }

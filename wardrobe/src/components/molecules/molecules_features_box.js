@@ -9,6 +9,6 @@ export default function MoleculesFeaturesBox(props) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
   

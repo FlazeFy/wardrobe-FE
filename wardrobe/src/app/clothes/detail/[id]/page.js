@@ -1,22 +1,22 @@
 "use client"
-import styles from "../../../page.module.css";
-import OrganismsNavbar from "../../../../components/organisms/organisms_navbar";
-import AtomsBreakLine from "../../../../components/atoms/atoms_breakline";
-import MoleculesFooter from "../../../../components/molecules/molecules_footer";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter";
-import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box";
-import ClothesDetailEditForm from "./sections/clothes_detail_edit_form";
-import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history";
-import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history";
-import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete";
-import ClothesDetailSchedule from "./sections/clothes_detail_schedule";
-import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule";
-import { getLocal } from "../../../../modules/storages/local";
-import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit";
-import DetailSectionClothesHeader from "./sections/detail_clothes_header";
-import { messageError } from "@/modules/helpers/message";
+import styles from "../../../page.module.css"
+import OrganismsNavbar from "../../../../components/organisms/organisms_navbar"
+import AtomsBreakLine from "../../../../components/atoms/atoms_breakline"
+import MoleculesFooter from "../../../../components/molecules/molecules_footer"
+import { useEffect, useState } from "react"
+import Swal from "sweetalert2"
+import { convertDatetimeBasedLocal } from "../../../../modules/helpers/converter"
+import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box"
+import ClothesDetailEditForm from "./sections/clothes_detail_edit_form"
+import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history"
+import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history"
+import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete"
+import ClothesDetailSchedule from "./sections/clothes_detail_schedule"
+import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule"
+import { getLocal } from "../../../../modules/storages/local"
+import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit"
+import DetailSectionClothesHeader from "./sections/detail_clothes_header"
+import { messageError } from "@/modules/helpers/message"
 
 export default function ClothesDetailPage({params}) {
     const [error, setError] = useState(null)

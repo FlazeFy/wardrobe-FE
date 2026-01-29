@@ -1,7 +1,7 @@
 "use client"
-import MoleculesField from "../../../../components/molecules/molecules_field";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MoleculesField from "../../../../components/molecules/molecules_field"
+import { faGear } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
 
 export default function GeneratedSectionConfigurateTemplate(props) {
@@ -45,5 +45,5 @@ export default function GeneratedSectionConfigurateTemplate(props) {
                 </div>
             </div>
         </>
-    );
+    )
 }

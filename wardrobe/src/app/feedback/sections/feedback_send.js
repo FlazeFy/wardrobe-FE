@@ -34,5 +34,5 @@ export default function FeedbackSectionSend() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

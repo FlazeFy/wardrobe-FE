@@ -42,7 +42,7 @@ export const countDiffInDays = (val) => {
     } catch (error) {
         throw error;
     }
-};
+}
 
 export const numberToPrice = (val) => {
     try {

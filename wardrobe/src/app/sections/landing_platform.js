@@ -1,5 +1,5 @@
-import { faDownload, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload, faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function LandingSectionPlatform() {
     return (
@@ -22,5 +22,5 @@ export default function LandingSectionPlatform() {
                 <img src={"/images/platform.jpg"} className="img img-fluid img-rounded mb-5 mb-lg-0"/>
             </div>
         </div>
-    );
+    )
 }

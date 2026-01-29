@@ -7,7 +7,7 @@ export default function OrganismsOutfit(props) {
 
     const handleBoxClick = (id) => {
         router.push(`/clothes/outfit/${id}`)
-    };
+    }
     
     return (
         <div className={`box-clothes`} onClick={(e)=> handleBoxClick(props.items.id)}>
