@@ -16,6 +16,7 @@ import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes
 import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used"
 import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes"
 import { messageError } from "@/modules/helpers/message"
+import Link from "next/link"
 
 export default function ClothesOutfitPage({params, ...props}) {
     const [error, setError] = useState(null)
@@ -102,7 +103,9 @@ export default function ClothesOutfitPage({params, ...props}) {
                         <AtomsBreakLine length={4}/>
                         <div className="d-flex justify-content-start">
                             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
-                                <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
+                                <Link href="/clothes">
+                                    <button className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></button>
+                                </Link>
                             </div>
                             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
                                 <h2 className="mb-0">Outfit Name</h2>

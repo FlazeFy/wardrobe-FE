@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 import { fetchFeedback } from "@/modules/repositories/feedback_repository"
+import Link from "next/link"
 
 export default function LandingFeedback(props) {
     const [error, setError] = useState(null)
@@ -70,7 +71,9 @@ export default function LandingFeedback(props) {
                     <h2 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}>What <span className="text-main">they say</span>?</h2>
                     <h4>Give your experience when using us too</h4>
                     <div className="d-flex justify-content-center justify-content-xl-end">
-                        <a className="btn btn-success fw-bold" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> Feedback</a>
+                        <Link href="/feedback">
+                            <button className="btn btn-success fw-bold"><FontAwesomeIcon icon={faArrowRight}/> Feedback</button>
+                        </Link>
                     </div>
                 </div>
             </div>

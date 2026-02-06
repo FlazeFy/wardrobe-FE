@@ -7,6 +7,7 @@ import { convertDatetimeBasedLocal } from '../../modules/helpers/converter'
 import { getLocal, storeLocal } from '../../modules/storages/local'
 import MoleculesAlertBox from '../../components/molecules/molecules_alert_box'
 import { messageError } from '@/modules/helpers/message'
+import Link from "next/link"
 
 export default function LandingSectionLastOutfit(props) {
     const [error, setError] = useState(null)
@@ -151,7 +152,9 @@ export default function LandingSectionLastOutfit(props) {
                         </div>
                         <h4 className="mb-2 text-title" style={{fontWeight:"800"}}>Do you <span className="text-main">want to hangout</span>?</h4>
                         <p>We can generate your today&apos;s outfit based on your wardrobe, cleaning status, schedule, and today&apos;s weather.</p>
-                        <a className="btn btn-primary fw-bold" href="/clothes/generated"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</a>
+                        <Link href="/clothes/generated">
+                            <button className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faDice}/> Set My Outfit Now!</button>
+                        </Link>
                     </div>
                     <AtomsBreakLine length={4}/>
                 </div>

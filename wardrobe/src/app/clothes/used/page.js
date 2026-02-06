@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import UsedAllHistory from "./sections/used_all_history"
 import UsedMonthlyClothesUsed from "./sections/used_monthly_clothes_used"
+import Link from "next/link"
 
 export default function ClothesUsed() {
     return (
@@ -17,7 +18,9 @@ export default function ClothesUsed() {
                     <AtomsBreakLine length={4}/>
                     <div className="d-flex justify-content-start">
                         <div className="me-4 pe-3">
-                            <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
+                            <Link href="/clothes">
+                                <button className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></button>
+                            </Link>
                         </div>
                     </div>
                     <hr></hr>
@@ -36,7 +39,6 @@ export default function ClothesUsed() {
                     <UsedAllHistory/>
                 </div>
             </div>
-
             <MoleculesFooter/>
         </main>
     )

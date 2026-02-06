@@ -7,6 +7,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ClothesAddForm from "./sections/clothes_add_form"
 import ClothesAddSectionLastHistory from "./sections/clothes_add_last_history"
+import Link from "next/link"
 
 export default function ClothesAddPage() {
     return (
@@ -17,7 +18,9 @@ export default function ClothesAddPage() {
                 <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                     <div className="d-flex justify-content-start">
                         <div className="me-4 pe-3">
-                            <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
+                            <Link href="/clothes">
+                                <button className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></button>
+                            </Link>
                         </div>
                     </div>
                     <hr></hr>

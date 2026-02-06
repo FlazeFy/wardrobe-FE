@@ -7,6 +7,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import WashSectionAllHistory from "./sections/wash_all_history"
 import ClothesSectionUnfinishedWash from "../sections/check_unfinished_wash"
 import WashSectionSummary from "./sections/wash_summary"
+import Link from "next/link"
 
 export default function ClothesWash() {
     return (
@@ -18,7 +19,9 @@ export default function ClothesWash() {
                     <AtomsBreakLine length={4}/>
                     <div className="d-flex justify-content-start">
                         <div className="me-4 pe-3">
-                            <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
+                            <Link href="/clothes">
+                                <button className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></button>
+                            </Link>
                         </div>
                     </div>
                     <hr></hr>

@@ -5,6 +5,7 @@ import MoleculesFooter from "../../../components/molecules/molecules_footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import ClothesSectionAllDeletedClothes from "./sections/trash_all_deleted_clothes"
+import Link from "next/link"
 
 export default function ClothesTrash() {
     return (
@@ -13,7 +14,9 @@ export default function ClothesTrash() {
             <AtomsBreakLine length={2}/>
             <div className="d-flex justify-content-start">
                 <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
-                    <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
+                    <Link href="/clothes">
+                        <button className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></button>
+                    </Link>
                 </div>
                 <div>
                     <h2 className="mb-0 fw-bold">Deleted Clothes</h2>

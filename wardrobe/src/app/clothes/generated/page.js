@@ -11,6 +11,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import GeneratedSectionSummary from "./sections/generated_summary"
 import { useState } from "react"
+import Link from "next/link"
 
 export default function GeneratedPage() {
     const currentYear = new Date().getFullYear()
@@ -22,7 +23,9 @@ export default function GeneratedPage() {
             <AtomsBreakLine length={3}/>
             <div className="mx-auto mb-3 w-100 d-flex justify-content-start" style={{maxWidth:"1280px"}}>
                 <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
-                    <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></a>
+                    <Link href="/clothes">
+                        <button className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></button>
+                    </Link>
                 </div>
                 <GeneratedSectionSummary/>
             </div>

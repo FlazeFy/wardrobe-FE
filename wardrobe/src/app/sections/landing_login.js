@@ -7,6 +7,7 @@ import AtomsBreakLine from '../../components/atoms/atoms_breakline'
 import { getLocal } from '../../modules/storages/local'
 import { useRouter } from 'next/navigation'
 import { postLogin } from '@/modules/repositories/auth_repository'
+import Link from "next/link"
 
 export default function LandingSectionLogin(props) {
     const usernameLocal = getLocal('username_key')
@@ -36,7 +37,9 @@ export default function LandingSectionLogin(props) {
                     }}/>
                     <AtomsBreakLine length={1}/>
                     <button type="button" className="btn btn-success me-2" id="submit-login-button" onClick={handleSubmit}><FontAwesomeIcon icon={faSignIn}/> Sign In</button>
-                    <a type="button" className="btn btn-primary" href="/register"><FontAwesomeIcon icon={faArrowRight}/> New User?<span className='d-none d-lg-inline-block'> Join Now</span></a>
+                    <Link href="/register">
+                        <button type="button" className="btn btn-primary"><FontAwesomeIcon icon={faArrowRight}/> New User?<span className='d-none d-lg-inline-block'> Join Now</span></button>
+                    </Link>
                 </div>
             </div>
         </div>

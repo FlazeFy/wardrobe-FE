@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
 import { getLocal } from "../../modules/storages/local"
 import AtomsNavItem from "../atoms/atoms_nav_item"
+import Link from "next/link"
 
 export default function OrganismsNavbar(props) {
     const [tokenKey, setTokenKey] = useState(null)
@@ -17,7 +18,9 @@ export default function OrganismsNavbar(props) {
     return  (
         <nav className="navbar navbar-expand-lg w-100">
             <div className="container-fluid">
-                <h2 className="text-main me-3" style={{fontWeight:800}} href="/">Wardrobe</h2>
+                <Link href="/">
+                    <h2 className="text-main me-3" style={{fontWeight:800}}>Wardrobe</h2>
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

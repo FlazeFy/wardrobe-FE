@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
 import { messageError } from '@/modules/helpers/message'
+import Link from "next/link"
 
 export default function ClothesSectionAllDetail(props) {
     const [error, setError] = useState(null)
@@ -133,7 +134,9 @@ export default function ClothesSectionAllDetail(props) {
                                         <p className='m-0'>{el.updated_at ? convertDatetimeBasedLocal(el.updated_at) :'-'}</p>
                                     </td>
                                     <td>
-                                        <a className='btn btn-warning' href={`/clothes/detail/${el.id}`}><FontAwesomeIcon icon={faPenToSquare}/></a>
+                                        <Link href={`/clothes/detail/${el.id}`}>
+                                            <button className='btn btn-warning'><FontAwesomeIcon icon={faPenToSquare}/></button>
+                                        </Link>
                                     </td>
                                 </tr>
                             })

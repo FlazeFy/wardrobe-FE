@@ -7,12 +7,15 @@ import React from 'react'
 import ClothesDetailCheckDeleted from './clothes_detail_check_deleted'
 import ClothesDetailCheckSchedule from './clothes_detail_check_schedule'
 import ClothesDetailSectionExportData from './clothes_detail_export_data'
+import Link from "next/link"
 
 export default function DetailSectionClothesHeader(props) {
     return <div id="clothes_detail_header-section">
         <div className="d-flex justify-content-start">
             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
-                <a href="/clothes" className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/> </a>
+                <Link href="/clothes">
+                    <button className="btn btn-danger h-100 pt-3"><FontAwesomeIcon icon={faArrowLeft} size={"xl"}/></button>
+                </Link>
             </div>
             <div className="me-4 pe-3" style={{borderRight:"2px solid var(--shadowColor)"}}>
                 <h2 className="mb-0">Category</h2>

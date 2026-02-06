@@ -9,6 +9,7 @@ import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box
 import { getLocal } from '../../../modules/storages/local'
 import AtomsBreakLine from '../../../components/atoms/atoms_breakline'
 import { fetchUnfinishedWash } from '@/modules/repositories/clothes_repository'
+import Link from "next/link"
 
 export default function ClothesSectionUnfinishedWash(props) {
     const [error, setError] = useState(null)
@@ -62,8 +63,11 @@ export default function ClothesSectionUnfinishedWash(props) {
                         </div>
                         {
                             props.source == "clothes_page" && (
-                                <h5 className="text-secondary">For more wash history you can <a className="btn btn-primary mx-2" href={"/clothes/wash"}><FontAwesomeIcon icon={faArrowRight}/> See More</a>
-                                . Or maybe <a className="btn btn-success text-white"><FontAwesomeIcon icon={faCheck}/> Finish All Wash</a>
+                                <h5 className="text-secondary">For more wash history you can 
+                                    <Link href="/clothes/wash">
+                                        <button className="btn btn-primary mx-2"><FontAwesomeIcon icon={faArrowRight}/> See More</button>
+                                    </Link>
+                                    . Or maybe <a className="btn btn-success text-white"><FontAwesomeIcon icon={faCheck}/> Finish All Wash</a>
                                 </h5>
                             )
                         }

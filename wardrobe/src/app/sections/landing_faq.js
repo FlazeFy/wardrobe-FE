@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import MoleculesFAQBox from "../../components/molecules/molecules_faq_box"
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box"
 import { fetchFAQ } from "@/modules/repositories/question_repository"
+import Link from "next/link"
 
 export default function LandingSectionFAQ(props) {
     const [error, setError] = useState(null)
@@ -67,8 +68,12 @@ export default function LandingSectionFAQ(props) {
                 <h2 className="mb-0" style={{fontSize:"74px", fontWeight:"800"}}><span className="text-main">FAQ</span>&apos;s</h2>
                 <h6 className="mb-3">Here&apos;s The Latest Question The People Given To Us</h6>
                 <div className="mb-2">
-                    <a className="btn btn-primary fw-bold me-2" href="/feedback"><FontAwesomeIcon icon={faArrowRight}/> See More!</a>
-                    <a className="btn btn-primary fw-bold" href={!tokenKey ? '/feedback':'/profile'}><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</a>
+                    <Link href="/feedback">
+                        <button className="btn btn-primary fw-bold me-2"><FontAwesomeIcon icon={faArrowRight}/> See More!</button>
+                    </Link>
+                    <Link href={!tokenKey ? '/feedback':'/profile'}>
+                        <button className="btn btn-primary fw-bold"><FontAwesomeIcon icon={faCircleQuestion}/> I Want To Ask</button>
+                    </Link>
                 </div>
                 <div className="row mt-4">
                     {
