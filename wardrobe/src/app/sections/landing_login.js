@@ -4,14 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from "react"
 import MoleculesField from '../../components/molecules/molecules_field'
 import AtomsBreakLine from '../../components/atoms/atoms_breakline'
-import { getLocal } from '../../modules/storages/local'
 import { useRouter } from 'next/navigation'
 import { postLogin } from '@/modules/repositories/auth_repository'
 import Link from "next/link"
 
 export default function LandingSectionLogin(props) {
-    const usernameLocal = getLocal('username_key')
-    const [username, setUsername] = useState(usernameLocal ?? "")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const router = useRouter()
 

@@ -2,14 +2,14 @@
 import MoleculesAlertBox from "../../components/molecules/molecules_alert_box"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
-import { getLocal } from "../../modules/storages/local"
 import { fetchWelcomeStats } from "@/modules/repositories/general_repository"
+import useAuthStore from "@/modules/store/auth_store"
 
 export default function LandingSectionWelcoming(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const [usernameKey, setUsernameKey] = useState(null)
+    const { username } = useAuthStore()
 
     useEffect(() => {
         Swal.showLoading()
@@ -24,7 +24,6 @@ export default function LandingSectionWelcoming(props) {
                 setError(err)
             }
         )
-        setUsernameKey(getLocal('username_key'))
     }, [])
 
     if (error) {
@@ -39,7 +38,7 @@ export default function LandingSectionWelcoming(props) {
                         <h4 className="mb-0">Wardrobe is your ultimate clothing assistant, helping you organize outfits, track history, manage schedules, and plan weekly looks</h4>
                         <hr></hr>
                         <h2 className="mb-4 text-title" style={{fontWeight:"800"}}>Effortless style <span className="text-main">decision and Organize</span></h2>
-                        <h1 className="mb-0">{usernameKey ? <>Welcome, {usernameKey}</> : <>Join us Now. Its <span className="text-success fw-bold">Free!</span></>}</h1>
+                        <h1 className="mb-0">{username ? <>Welcome, {username}</> : <>Join us Now. Its <span className="text-success fw-bold">Free!</span></>}</h1>
                     </div>
                 </div>
                 <div className="col-xl-6 col-lg-12 text-end d-flex flex-column justify-content-center">

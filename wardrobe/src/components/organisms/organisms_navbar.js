@@ -1,19 +1,13 @@
 "use client"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useEffect, useState } from "react"
-import { getLocal } from "../../modules/storages/local"
 import AtomsNavItem from "../atoms/atoms_nav_item"
 import Link from "next/link"
+import useAuthStore from "@/modules/store/auth_store"
 
 export default function OrganismsNavbar(props) {
-    const [tokenKey, setTokenKey] = useState(null)
-    const [usernameKey, setUsernameKey] = useState(null)
-
-    useEffect(() => {
-        setTokenKey(getLocal('token_key'))
-        setUsernameKey(getLocal('username_key'))
-    }, [])
+    const { username } = useAuthStore()
+    const isSignedIn = !!username
     
     return  (
         <nav className="navbar navbar-expand-lg w-100">
@@ -28,7 +22,7 @@ export default function OrganismsNavbar(props) {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <AtomsNavItem title="Home" url="" active={props.current}/>                        
                         {
-                            tokenKey ? (
+                            isSignedIn ? (
                                 <>
                                     <AtomsNavItem title="Clothes" url="clothes" active={props.current}/>
                                     <AtomsNavItem title="Calendar" url="calendar" active={props.current}/>
@@ -47,7 +41,9 @@ export default function OrganismsNavbar(props) {
                         <AtomsNavItem title="About Us" url="about" active={props.current}/>
                     </ul>
                     <form className="d-flex">
-                        <a className="btn btn-primary" href={tokenKey ? '/profile' : '/'}>{tokenKey ? <><FontAwesomeIcon icon={faUser}/> {usernameKey}</> : <>Sign In</>}</a>
+                        <Link href={isSignedIn ? '/profile' : '/'}>
+                            <button className="btn btn-primary">{isSignedIn ? <><FontAwesomeIcon icon={faUser}/> {username}</> : <>Sign In</>}</button>
+                        </Link>
                     </form>
                 </div>
             </div>
