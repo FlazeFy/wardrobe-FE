@@ -4,10 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AtomsNavItem from "../atoms/atoms_nav_item"
 import Link from "next/link"
 import useAuthStore from "@/modules/store/auth_store"
+import { useEffect } from "react"
+import { getLocal } from "@/modules/storages/local"
 
 export default function OrganismsNavbar(props) {
-    const { username } = useAuthStore()
+    const { username, hydrateAuth } = useAuthStore()
     const isSignedIn = !!username
+
+    useEffect(() => {
+        hydrateAuth()
+    }, [])   
     
     return  (
         <nav className="navbar navbar-expand-lg w-100">

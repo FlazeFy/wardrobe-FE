@@ -92,7 +92,9 @@ export const postRegister = async (props) => {
                     // Store global state
                     const { onLoginStore } = useAuthStore.getState() 
                     onLoginStore({
-                        username: response.data.result.username
+                        username: response.data.result.username,
+                        email: response.data.result.email,
+                        role: response.data.result.role
                     })
                 }
             })
@@ -167,7 +169,6 @@ export const postSignOut = async (tokenKey,router) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
                     // Clear local storage
                     localStorage.clear()
-                    document.cookie = "cookieName=; path=/"
                     // Clear global state
                     const { onLogOutStore } = useAuthStore.getState() 
                     onLogOutStore()
