@@ -19,9 +19,7 @@ export async function fetchWashClothes(page, onSuccess, onError, tokenKey){
             return res.json()
         })
         .then(result => {
-            if (result) {
-                onSuccess(result)
-            }
+            if (result) onSuccess(result)
             Swal.close()
         })
         .catch(error => {
@@ -50,9 +48,7 @@ export async function fetchWashSummary(onSuccess, onError, tokenKey){
             return res.json()
         })
         .then(result => {
-            if (result) {
-                onSuccess(result)
-            }
+            if (result) onSuccess(result)
             Swal.close()
         })
         .catch(error => {
@@ -82,9 +78,7 @@ export const deleteWashById = async (id,tokenKey,action) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action() 
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
         } else {
             messageError("Something went wrong!")

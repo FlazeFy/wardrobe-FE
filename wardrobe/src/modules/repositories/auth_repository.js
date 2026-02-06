@@ -38,9 +38,7 @@ export const postLogin = async (username, password,router) => {
                 allowOutsideClick: false,
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed) {
-                   router.push('/clothes')
-                }
+                if (result.isConfirmed) router.push('/clothes')
             })
         } else {
             Swal.fire({

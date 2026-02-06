@@ -1,8 +1,7 @@
 export const getCleanTitleFromCtx = (val) => {
     try {
         const newVal = val.replaceAll('_', ' ')
-        const cap = newVal.split(" ").
-            map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+        const cap = newVal.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
         
         return cap
     } catch (error) {
@@ -27,9 +26,7 @@ export const convertDatetimeBasedLocal = (datetime) => {
 export const countDiffInDays = (val) => {
     try {
         const inputDate = new Date(val)
-        if (isNaN(inputDate)) {
-            throw new Error("Invalid date format")
-        }
+        if (isNaN(inputDate)) throw new Error("Invalid date format")
 
         const today = new Date()
         today.setHours(0, 0, 0, 0)
@@ -46,12 +43,7 @@ export const countDiffInDays = (val) => {
 
 export const numberToPrice = (val) => {
     try {
-        if (val >= 1000) {
-            const res = (val / 1000).toFixed(0)
-            return res + 'K'
-        } else {
-            return val.toString()
-        }
+        return val >= 1000 ? `${(val / 1000).toFixed(0)}K` : val.toString()
     } catch (error) {
         throw error
     }

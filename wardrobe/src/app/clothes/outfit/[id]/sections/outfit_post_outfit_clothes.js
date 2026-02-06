@@ -30,9 +30,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                 setIsLoaded(true)
                 setItems(result)
 
-                if(props.selectedClothes){
-                    setAttachedItems(props.selectedClothes)
-                }
+                if(props.selectedClothes) setAttachedItems(props.selectedClothes)
             },
             (error) => {
                 setError(error)
@@ -42,9 +40,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
     },[])
 
     // Repositories
-    const handleSubmit = async (e) => {
-        postOutfitClothes(selectedItem,tokenKey,props)
-    }
+    const handleSubmit = async (e) => postOutfitClothes(selectedItem,tokenKey,props)
 
     const handleAdd = (dt) => {
         const newClothes = {
@@ -57,9 +53,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
         let found = false 
         const combineItem = [...attachedItem, ...selectedItem]
         combineItem.forEach((el)=> {
-            if(el.clothes_type == dt.clothes_type){
-                found = true
-            }
+            if(el.clothes_type == dt.clothes_type) found = true
         })
 
         if(!found){
@@ -101,9 +95,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
                             allowOutsideClick: false,
                             confirmButtonText: "Okay!"
                         }).then((result) => {
-                            if (result.isConfirmed) {
-                               props.fetchOutfit()
-                            }
+                            if (result.isConfirmed) props.fetchOutfit()
                         })
                     } else {
                         Swal.fire({
@@ -126,9 +118,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
 
         if(type == 'selected'){
             selectedItem.forEach((el)=> {
-                if(el.clothes_id != dt.clothes_id){
-                    newClothes.push(el)
-                }
+                if(el.clothes_id != dt.clothes_id) newClothes.push(el)
             })
             setSelectedItems(newClothes)
         } else if(type == 'attached'){

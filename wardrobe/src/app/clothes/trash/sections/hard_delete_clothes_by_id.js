@@ -19,9 +19,7 @@ export default function HardDeleteClothesById(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
-            if (result.isConfirmed) {
-                deleteClothesById(id, 'hard', tokenKey, props.fetchTrash())
-            } 
+            if (result.isConfirmed) deleteClothesById(id, 'hard', tokenKey, props.fetchTrash())
         })
     }
 

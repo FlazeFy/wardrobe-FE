@@ -19,9 +19,7 @@ export async function fetchHistory(page, onSuccess, onError, tokenKey){
             return res.json()
         })
         .then(result => {
-            if (result) {
-                onSuccess(result.data)
-            }
+            if (result) onSuccess(result.data)
             Swal.close()
         })
     } catch (error) {
@@ -47,9 +45,7 @@ export async function hardDeleteHistory(id,action,tokenKey){
                 confirmButtonText: "Okay!",
                 icon: "success"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action()
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
         } else {
             messageError("Something went wrong!")

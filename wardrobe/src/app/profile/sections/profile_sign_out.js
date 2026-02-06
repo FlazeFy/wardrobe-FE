@@ -23,9 +23,7 @@ export default function ProfileSectionSignOut(props) {
                 confirmButtonText: "Yes, Sign Out!",
                 cancelButtonText: "No, Cancel!"
             }).then(async (result) => {
-                if (result.isConfirmed) {
-                    postSignOut(tokenKey,router)
-                } 
+                if (result.isConfirmed) postSignOut(tokenKey,router)
             })
         }
         const saveGeneratedOutfits = (token) => {

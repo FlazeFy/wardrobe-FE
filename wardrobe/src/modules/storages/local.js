@@ -3,11 +3,7 @@ export const storeLocal = (name,val) => {
         if (Array.isArray(val) && val != false && val != true) {
             val = JSON.stringify(val)
         } else {
-            if(val == null || val == false || val == true){
-                val = val
-            } else {
-                val = val.trim()
-            }
+            val = val == null || typeof val === "boolean" ? val : val.trim()
         }
         localStorage.setItem(name, val)
     } catch (error) {
@@ -17,9 +13,7 @@ export const storeLocal = (name,val) => {
 
 export const getLocal = (name) => {
     try {
-        if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
-            return window.localStorage.getItem(name)
-        }
+        if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') return window.localStorage.getItem(name)
         return null
     } catch (error) {
         throw error

@@ -19,9 +19,7 @@ export default function HardDeleteSchedule(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!",
         }).then(async (result) => {
-            if (result.isConfirmed) {
-                deleteScheduleById(id,tokenKey,props.fetchClothes())
-            } 
+            if (result.isConfirmed) deleteScheduleById(id,tokenKey,props.fetchClothes())
         })
     }
 

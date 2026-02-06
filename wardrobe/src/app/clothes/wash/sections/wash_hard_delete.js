@@ -19,9 +19,7 @@ export default function WashSectionHardDeleteWash(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
-            if (result.isConfirmed) {
-                deleteWashById(id,tokenKey,props.fetchWashClothes())
-            } 
+            if (result.isConfirmed) deleteWashById(id,tokenKey,props.fetchWashClothes())
         })
     }
 

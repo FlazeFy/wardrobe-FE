@@ -20,13 +20,7 @@ export default function RecoverClothesById(props) {
             confirmButtonText: "Yes, Recover it!",
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    recoverClothesById(id, tokenKey, props.fetchTrash())
-                } catch (error) {
-                    messageError(error)
-                }
-            } 
+            if (result.isConfirmed) recoverClothesById(id, tokenKey, props.fetchTrash())
         })
     }
 

@@ -21,14 +21,10 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
         fetchLocalHistory()
 
         const modalElement = document.getElementById("saveOutfitModal")
-        if (modalElement) {
-            modalElement.addEventListener("shown.bs.modal", fetchLocalHistory)
-        }
+        if (modalElement) modalElement.addEventListener("shown.bs.modal", fetchLocalHistory)
 
         return () => {
-            if (modalElement) {
-                modalElement.removeEventListener("shown.bs.modal", fetchLocalHistory)
-            }
+            if (modalElement) modalElement.removeEventListener("shown.bs.modal", fetchLocalHistory)
         }
     }, [])
 
@@ -36,11 +32,7 @@ const GeneratedSectionSaveOutfit = forwardRef((props, ref) => {
         try {
             Swal.showLoading()
             const localHistory = getLocal('generated_outfit_history')
-            if (localHistory) {
-                setItems(JSON.parse(localHistory))
-            } else {
-                setItems([])
-            }
+            localHistory ? setItems(JSON.parse(localHistory)) : setItems([])
             setIsLoaded(true)
             Swal.close()
         } catch (err) {

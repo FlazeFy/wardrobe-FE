@@ -9,9 +9,7 @@ export const postSaveOutfit = async (token) => {
 
         // Payload
         const data = JSON.parse(getLocal('generated_outfit_history'))
-        const body = {
-            'list_outfit' : data
-        }
+        const body = { 'list_outfit' : data }
 
         // Exec
         let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/save`, body, {
@@ -31,9 +29,7 @@ export const postSaveOutfit = async (token) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed) {
-                    localStorage.removeItem('generated_outfit_history')
-                }
+                if (result.isConfirmed) localStorage.removeItem('generated_outfit_history')
             })
         } else {
             messageError("Something went wrong!")
@@ -146,9 +142,7 @@ export const deleteOutfitHistoryById = async (id,action,tokenKey) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action()
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
         } else {
             messageError("Something went wrong!")

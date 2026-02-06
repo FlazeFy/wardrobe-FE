@@ -61,9 +61,7 @@ export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSiz
                 allowOutsideClick: false,
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed) {
-                    router.push(`/clothes/detail/${response.data.data.id}`)
-                }
+                if (result.isConfirmed) router.push(`/clothes/detail/${response.data.data.id}`)
             })
         } 
     } catch (error) {
@@ -87,9 +85,7 @@ export const deleteClothesById = async (id,type_delete,tokenKey,action) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action() 
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
         } else {
             messageError("Something went wrong!")
@@ -115,9 +111,7 @@ export const deleteClothesUsedById = async (id,tokenKey,action) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action() 
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
         } else {
             messageError("Something went wrong!")
@@ -144,9 +138,7 @@ export const deleteUsedHistoryById = async (id,tokenKey,action) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action() 
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
         } else {
             messageError("Something went wrong!")
@@ -172,9 +164,7 @@ export const recoverClothesById = async (id,tokenKey,action) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action()
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
         } else {
             messageError("Something went wrong!")
@@ -215,9 +205,7 @@ export const postSchedule = async (day,isRemind,scheduleNote,tokenKey,props) => 
                 allowOutsideClick: false,
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed) {
-                   props.fetchClothes()
-                }
+                if (result.isConfirmed) props.fetchClothes()
             })
         } else {
             Swal.fire({
@@ -257,9 +245,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,tokenKey,props) =
                 allowOutsideClick: false,
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed && props.fetchClothes) {
-                   props.fetchClothes()
-                }
+                if (result.isConfirmed && props.fetchClothes) props.fetchClothes()
             })
         } else {
             Swal.fire({
@@ -303,9 +289,7 @@ export const postOutfitClothes = async (selectedItem,tokenKey,props) => {
                 allowOutsideClick: false,
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed) {
-                   props.fetchOutfit()
-                }
+                if (result.isConfirmed) props.fetchOutfit()
             })
         } else {
             Swal.fire({
@@ -378,9 +362,7 @@ export async function fetchTrash(onSuccess, onError, tokenKey){
             return res.json()
         })
         .then(result => {
-            if (result) {
-                onSuccess(result.data.data)
-            }
+            if (result) onSuccess(result.data.data)
             Swal.close()
         })
     } catch (error) {
@@ -453,9 +435,7 @@ export const fetchAllClothesHeader = (onSuccess, onNotFound, onError, tokenKey) 
         })
         .then(
             (result) => {
-                if (result) {
-                    onSuccess(result.data.data)
-                }
+                if (result) onSuccess(result.data.data)
             },
             (error) => {
                 messageError(error)
@@ -660,9 +640,7 @@ export const fetchLastClothesHistory = (onSuccess, onNotFound, onError, tokenKey
         })
         .then(
             (result) => {
-                if (result) {
-                    onSuccess(result.data)
-                }
+                if (result) onSuccess(result.data)
             },
             (error) => {
                 messageError(error)

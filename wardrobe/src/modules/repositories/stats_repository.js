@@ -4,12 +4,8 @@ import { getLocal, storeLocal } from "../storages/local"
 
 export async function fetchMonthlyClothes(year, onSuccess, onError, tokenKey) {
     try {
-        const headers = {
-            'Content-Type': 'application/json',
-        }
-        if(tokenKey) {
-            headers['Authorization'] = `Bearer ${tokenKey}`
-        }
+        const headers = { 'Content-Type': 'application/json' }
+        if(tokenKey) headers['Authorization'] = `Bearer ${tokenKey}`
 
         fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/created_buyed/${year}`, {
             headers: headers,
@@ -83,12 +79,8 @@ export async function fetchMostUsedClothesDaily(onSuccess, onError, tokenKey){
 
 export async function fetchYearlyActivity(onSuccess, onError, tokenKey) {
     try {
-        const headers = {
-            'Content-Type': 'application/json',
-        }
-        if(tokenKey){
-            headers['Authorization'] = `Bearer ${tokenKey}` 
-        }
+        const headers = { 'Content-Type': 'application/json' }
+        if(tokenKey) headers['Authorization'] = `Bearer ${tokenKey}` 
 
         fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/yearly/clothes_used`, {
             headers: headers,
@@ -111,12 +103,8 @@ export async function fetchYearlyActivity(onSuccess, onError, tokenKey) {
 
 export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError, tokenKey){
     try {
-        const headers = {
-            'Content-Type': 'application/json',
-        }
-        if(tokenKey){
-            headers['Authorization'] = `Bearer ${tokenKey}` 
-        }
+        const headers = { 'Content-Type': 'application/json' }
+        if(tokenKey) headers['Authorization'] = `Bearer ${tokenKey}` 
 
         fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/${year}/all`, {
             headers: headers,
@@ -140,12 +128,8 @@ export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError, toke
 
 export async function fetchOutfitMostUsed(year, onSuccess, onError, tokenKey){
     try {
-        const headers = {
-            'Content-Type': 'application/json',
-        }
-        if(tokenKey){
-            headers['Authorization'] = `Bearer ${tokenKey}` 
-        }
+        const headers = { 'Content-Type': 'application/json' }
+        if (tokenKey) headers['Authorization'] = `Bearer ${tokenKey}` 
 
         fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/most/used/${year}`, {
             headers: headers,

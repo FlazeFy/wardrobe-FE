@@ -19,9 +19,7 @@ export default function UsedHardDeleteUsedHistory(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!",
         }).then(async (result) => {
-            if (result.isConfirmed) {
-                deleteUsedHistoryById(id,tokenKey,props.fetchClothes())
-            } 
+            if (result.isConfirmed) deleteUsedHistoryById(id,tokenKey,props.fetchClothes())
         })
     }
 

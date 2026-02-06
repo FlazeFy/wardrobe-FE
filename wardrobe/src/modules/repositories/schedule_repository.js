@@ -18,9 +18,7 @@ export const deleteScheduleById = async (id,tokenKey,action) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             }).then((result) => {
-                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                    action()
-                }
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
         } else {
             messageError("Something went wrong!")

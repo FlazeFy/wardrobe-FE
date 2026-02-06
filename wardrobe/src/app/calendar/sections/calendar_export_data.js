@@ -9,9 +9,7 @@ export default function CalendarSectionExportData(props) {
     const tokenKey = getLocal("token_key")
 
     // Services
-    const handleDownload = async () => {
-        fetchExportCalendar('excel',props.year,`calendar-${props.year}.xlsx`, 'data', tokenKey)
-    }
+    const handleDownload = async () => fetchExportCalendar('excel',props.year,`calendar-${props.year}.xlsx`, 'data', tokenKey)
 
     return (
         <div className="field ms-3">

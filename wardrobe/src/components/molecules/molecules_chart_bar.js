@@ -10,9 +10,7 @@ export default function MoleculesChartBar(props) {
         setIsClient(true)
     }, [])
 
-    if (!isClient) {
-        return <div>Loading...</div>
-    }
+    if (!isClient) return <div>Loading...</div>
 
     const data = Object.values(props.items)
 

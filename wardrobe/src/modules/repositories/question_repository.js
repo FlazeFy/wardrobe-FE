@@ -7,9 +7,7 @@ export const postQuestion = async (question,tokenKey,setQuestion) => {
         Swal.showLoading()
 
         // Payload
-        const body = {
-            "question" : question,
-        }
+        const body = { "question" : question }
 
         // Validator
         if(body.question.trim().length > 0){
@@ -31,9 +29,7 @@ export const postQuestion = async (question,tokenKey,setQuestion) => {
                     allowOutsideClick: false,
                     confirmButtonText: "Okay!"
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        setQuestion("")
-                    }
+                    if (result.isConfirmed) setQuestion("")
                 })
             } else {
                 Swal.fire({

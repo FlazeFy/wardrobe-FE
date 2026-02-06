@@ -11,9 +11,7 @@ export default function OrganismsClothesHeader(props) {
     const router = useRouter()
 
     const handleBoxClick = (id, type) => {
-        if(type != 'clothes'){
-            router.push(`/clothes/detail/${id}`)
-        }
+        if (type != 'clothes') router.push(`/clothes/detail/${id}`)
     }
     
     return (
