@@ -12,13 +12,14 @@ import '../modules/styles/navbar.css'
 import '../modules/styles/modal.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import DetectFlazenAppsAlert from "./sections/all_detect_flazenapps"
+import DetectFlazenAppsAlert from "./(public)/sections/all_detect_flazenapps"
 
 const inter = Inter({ subsets: ["latin"] })
 
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
+  variable: "--font-poppins",
 })
 
 export default function RootLayout({ children }) {

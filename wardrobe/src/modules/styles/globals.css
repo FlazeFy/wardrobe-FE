@@ -58,11 +58,14 @@
   --flazenDangerColor: #dc5987;
   --flazenWarningColor: #eac661;
   --flazenInfoColor: #845c98;
+
+  --font-main: var(--font-poppins);
 }
 
 body {
   color: var(--darkColor);
   background: var(--whiteColor);
+  font-family: var(--font-main);
 }
 
 @media (prefers-color-scheme: dark) {
