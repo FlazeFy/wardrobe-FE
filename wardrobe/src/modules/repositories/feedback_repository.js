@@ -70,30 +70,24 @@ export const fetchFeedback = async (now, onSuccess, onError) => {
         const oldTimeHit = getLocal("last_hit-feedback_stats")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
         const timeDiffInSec = oldTime ? Math.floor((now - oldTime) / 1000) : null
-
+    
         const fetchData = (data) => {
-            Swal.close()
             onSuccess(data)
         }
-
+    
         if (timeDiffInSec !== null && timeDiffInSec < 360 && oldTimeHit) {
             const oldData = JSON.parse(getLocal("feedback_stats_temp"))
             fetchData(oldData)
             return
         }
-
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/stats/feedback/top`)
-        const result = await response.json()
-
-        if (response.ok) {
-            fetchData(result)
-            storeLocal("feedback_stats_temp", JSON.stringify(result.data))
-            storeLocal("last_hit-feedback_stats_temp", JSON.stringify(now))
-        } else {
-            throw new Error(result.message || "Failed to fetch data")
-        }
+    
+        const response = await apiCall.get(`http://127.0.0.1:8000/api/v1/stats/feedback/top`)
+    
+        fetchData(response.data)
+        storeLocal("feedback_stats_temp", JSON.stringify(response.data.data))
+        storeLocal("last_hit-feedback_stats_temp", JSON.stringify(now))
     } catch (error) {
         messageError(error)
         onError(error)
-    }
+    }    
 }

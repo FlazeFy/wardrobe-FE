@@ -6,30 +6,24 @@ export const fetchWelcomeStats = async (now, onSuccess, onError) => {
         const oldTimeHit = getLocal("last_hit-welcome_stats")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
         const timeDiffInSec = oldTime ? Math.floor((now - oldTime) / 1000) : null
-
+    
         const fetchData = (data) => {
-            Swal.close()
             onSuccess(data)
         }
-
+    
         if (timeDiffInSec !== null && timeDiffInSec < 360 && oldTimeHit) {
             const oldData = JSON.parse(getLocal("welcome_stats"))
             fetchData(oldData)
             return
         }
-
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/stats/all`)
-        const result = await response.json()
-
-        if (response.ok) {
-            fetchData(result.data)
-            storeLocal("welcome_stats", JSON.stringify(result.data))
-            storeLocal("last_hit-welcome_stats", JSON.stringify(now))
-        } else {
-            throw new Error(result.message || "Failed to fetch data")
-        }
+    
+        const response = await apiCall.get(`http://127.0.0.1:8000/api/v1/stats/all`)
+    
+        fetchData(response.data.data)
+        storeLocal("welcome_stats", JSON.stringify(response.data.data))
+        storeLocal("last_hit-welcome_stats", JSON.stringify(now))
     } catch (error) {
         messageError(error)
         onError(error)
-    }
+    }    
 }

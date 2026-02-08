@@ -6,23 +6,17 @@ const MODULE_URL = "/api/v1/history"
 
 export const fetchHistory = async (page, onSuccess, onError) => {
     try {
-        fetch(`${MODULE_URL}?page=${page}`)
-        .then(res => {
-            if (res.status === 404) {
-                onSuccess(null)
-                return null
-            }
-            Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) onSuccess(result.data)
-            Swal.close()
-        })
+        const response = await apiCall.get(`${MODULE_URL}?page=${page}`)
+        onSuccess(response.data.data)
     } catch (error) {
+        if (error.response && error.response.status === 404) {
+            onSuccess(null)
+            return
+        }
+    
         messageError(error)
         onError(error)
-    }
+    }    
 }
 
 export const hardDeleteHistory = async (id,action) => {

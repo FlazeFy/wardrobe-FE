@@ -5,19 +5,10 @@ const MODULE_URL = "/api/v1/dct"
 
 export const fetchDictionary = async (onSuccess, onError, dctType) => {
     try {
-        fetch(`${MODULE_URL}/${dctType}`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/${dctType}`)
+        onSuccess(response.data.data)
     } catch (error) {
         messageError(error)
         onError(error)
-    }
+    }    
 }

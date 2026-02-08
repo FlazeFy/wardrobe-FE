@@ -48,19 +48,10 @@ export const postQuestion = async (question,setQuestion) => {
     }
 }
 
-export const fetchFAQ = (onSuccess, onError) => {
+export const fetchFAQ = async (onSuccess, onError) => {
     try {
-        fetch(`${MODULE_URL}/faq`)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/faq`)
+        onSuccess(response.data.data)
     } catch (error) {
         messageError(error)
         onError(error)

@@ -7,8 +7,6 @@ const MODULE_URL = "/api/v1/clothes/outfit"
 
 export const postSaveOutfit = async () => {
     try {
-        Swal.showLoading()
-
         // Payload
         const data = JSON.parse(getLocal('generated_outfit_history'))
         const body = { 'list_outfit' : data }
@@ -69,40 +67,22 @@ export const postSaveOutfitHistory = async (id,props) => {
 
 export const fetchAllOutfit = async (page, onSuccess, onError) => {
     try {
-        fetch(`${MODULE_URL}?page=${page}`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}?page=${page}`)
+        onSuccess(response.data.data)
     } catch (error) {
         messageError(error)
         onError(error)
-    }
+    }    
 }
 
 export const fetchOutfitMonthlyTotalUsedById = async (id, onSuccess, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${id}`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-            }
-        )
+        const response = await apiCall.get(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${id}`)
+        onSuccess(response.data.data)
     } catch (error) {
         messageError(error)
         onError(error)
-    }
+    }    
 }
 
 export const deleteOutfitHistoryById = async (id,action) => {
@@ -131,30 +111,24 @@ export const fetchOutfitSummary = async (now, onSuccess, onError) => {
         const oldTimeHit = getLocal("last_hit-generated_outfit_summary")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
         const timeDiffInSec = oldTime ? Math.floor((now - oldTime) / 1000) : null
-
+    
         const fetchData = (data) => {
-            Swal.close()
             onSuccess(data)
         }
-
+    
         if (timeDiffInSec !== null && timeDiffInSec < 540 && oldTimeHit) {
             const oldData = JSON.parse(getLocal("generated_outfit_summary"))
             fetchData(oldData)
             return
         }
-
-        const response = await fetch(`${MODULE_URL}/summary`)
-        const result = await response.json()
-
-        if (response.ok) {
-            fetchData(result.data)
-            storeLocal('generated_outfit_summary', JSON.stringify(result.data))
-            storeLocal('last_hit-generated_outfit_summary', JSON.stringify(now))
-        } else {
-            throw new Error(result.message || "Failed to fetch data")
-        }
+    
+        const response = await apiCall.get(`${MODULE_URL}/summary`)
+    
+        fetchData(response.data.data)
+        storeLocal("generated_outfit_summary", JSON.stringify(response.data.data))
+        storeLocal("last_hit-generated_outfit_summary", JSON.stringify(now))
     } catch (error) {
         messageError(error)
         onError(error)
-    }
+    }    
 }
