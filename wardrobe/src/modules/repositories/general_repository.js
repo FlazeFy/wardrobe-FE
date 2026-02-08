@@ -1,4 +1,4 @@
-import Swal from "sweetalert2"
+import apiCall from '@/configs/axios'
 import { getLocal, storeLocal } from '../../modules/storages/local.js'
 
 export const fetchWelcomeStats = async (now, onSuccess, onError) => {
@@ -23,7 +23,6 @@ export const fetchWelcomeStats = async (now, onSuccess, onError) => {
         storeLocal("welcome_stats", JSON.stringify(response.data.data))
         storeLocal("last_hit-welcome_stats", JSON.stringify(now))
     } catch (error) {
-        messageError(error)
         onError(error)
     }    
 }

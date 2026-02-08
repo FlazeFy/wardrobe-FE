@@ -1,5 +1,4 @@
 import Swal from 'sweetalert2'
-import { messageError } from '@/modules/helpers/message'
 import apiCall from '@/configs/axios'
 
 const MODULE_URL = "/api/v1/history"
@@ -14,12 +13,12 @@ export const fetchHistory = async (page, onSuccess, onError) => {
             return
         }
     
-        messageError(error)
+        onError(error)
         onError(error)
     }    
 }
 
-export const hardDeleteHistory = async (id,action) => {
+export const hardDeleteHistory = async (id, action, onError) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/destroy/${id}`)
         
@@ -33,9 +32,9 @@ export const hardDeleteHistory = async (id,action) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
         } else {
-            messageError("Something went wrong!")
+            onError("Something went wrong!")
         }
     } catch (error) {
-        messageError(error)
+        onError(error)
     }
 }

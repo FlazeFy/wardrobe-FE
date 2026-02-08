@@ -1,10 +1,9 @@
 import Swal from 'sweetalert2'
 import apiCall from '@/configs/axios'
-import { messageError } from "../helpers/message"
 
 const MODULE_URL = "/api/v1/question"
 
-export const postQuestion = async (question,setQuestion) => {
+export const postQuestion = async (question, setQuestion, onError) => {
     try {
         Swal.showLoading()
 
@@ -44,7 +43,7 @@ export const postQuestion = async (question,setQuestion) => {
             })
         }
     } catch (error) {
-        messageError(error)
+        onError(error)
     }
 }
 
@@ -53,7 +52,6 @@ export const fetchFAQ = async (onSuccess, onError) => {
         const response = await apiCall.get(`${MODULE_URL}/faq`)
         onSuccess(response.data.data)
     } catch (error) {
-        messageError(error)
         onError(error)
     }
 }

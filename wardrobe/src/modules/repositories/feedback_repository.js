@@ -1,11 +1,10 @@
 import Swal from 'sweetalert2'
 import apiCall from '@/configs/axios'
-import { messageError } from "../helpers/message"
 import { getLocal, storeLocal } from '../../modules/storages/local.js'
 
 const MODULE_URL = "/api/v1/feedback"
 
-export const postFeedback = async (feedbackRate, feedbackBody, setFeedbackBody, setFeedbackRate) => {
+export const postFeedback = async (feedbackRate, feedbackBody, setFeedbackBody, setFeedbackRate, onError) => {
     try {
         Swal.showLoading()
 
@@ -61,7 +60,7 @@ export const postFeedback = async (feedbackRate, feedbackBody, setFeedbackBody, 
             })
         }
     } catch (error) {
-        messageError(error)
+        onError(error)
     }
 }
 
@@ -87,7 +86,6 @@ export const fetchFeedback = async (now, onSuccess, onError) => {
         storeLocal("feedback_stats_temp", JSON.stringify(response.data.data))
         storeLocal("last_hit-feedback_stats_temp", JSON.stringify(now))
     } catch (error) {
-        messageError(error)
         onError(error)
     }    
 }

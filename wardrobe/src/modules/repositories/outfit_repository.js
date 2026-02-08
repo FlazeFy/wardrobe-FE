@@ -1,11 +1,10 @@
 import { getLocal, storeLocal } from "../storages/local"
 import apiCall from '@/configs/axios'
 import Swal from "sweetalert2"
-import { messageError } from "../helpers/message"
 
 const MODULE_URL = "/api/v1/clothes/outfit"
 
-export const postSaveOutfit = async () => {
+export const postSaveOutfit = async (onError) => {
     try {
         // Payload
         const data = JSON.parse(getLocal('generated_outfit_history'))
@@ -26,14 +25,14 @@ export const postSaveOutfit = async () => {
                 if (result.isConfirmed) localStorage.removeItem('generated_outfit_history')
             })
         } else {
-            messageError("Something went wrong!")
+            onError("Something went wrong!")
         }
     } catch (error) {
-        messageError(error)
+        onError(error)
     }
 }
 
-export const postSaveOutfitHistory = async (id,props) => {
+export const postSaveOutfitHistory = async (id, props, onError) => {
     try {
         // Payload
         const data = {
@@ -58,10 +57,10 @@ export const postSaveOutfitHistory = async (id,props) => {
                 }
             })
         } else {
-            messageError("Something went wrong!")
+            onError("Something went wrong!")
         }
     } catch (error) {
-        messageError(error)
+        onError(error)
     }
 }
 
@@ -70,7 +69,6 @@ export const fetchAllOutfit = async (page, onSuccess, onError) => {
         const response = await apiCall.get(`${MODULE_URL}?page=${page}`)
         onSuccess(response.data.data)
     } catch (error) {
-        messageError(error)
         onError(error)
     }    
 }
@@ -80,12 +78,11 @@ export const fetchOutfitMonthlyTotalUsedById = async (id, onSuccess, onError) =>
         const response = await apiCall.get(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${id}`)
         onSuccess(response.data.data)
     } catch (error) {
-        messageError(error)
         onError(error)
     }    
 }
 
-export const deleteOutfitHistoryById = async (id,action) => {
+export const deleteOutfitHistoryById = async (id, action, onError) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/history/by/${id}`)
         
@@ -99,10 +96,10 @@ export const deleteOutfitHistoryById = async (id,action) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
         } else {
-            messageError("Something went wrong!")
+            onError("Something went wrong!")
         }
     } catch (error) {
-        messageError(error)
+        onError(error)
     }
 }
 
@@ -128,7 +125,6 @@ export const fetchOutfitSummary = async (now, onSuccess, onError) => {
         storeLocal("generated_outfit_summary", JSON.stringify(response.data.data))
         storeLocal("last_hit-generated_outfit_summary", JSON.stringify(now))
     } catch (error) {
-        messageError(error)
         onError(error)
     }    
 }
