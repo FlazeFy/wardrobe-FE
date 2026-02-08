@@ -3,6 +3,9 @@ import Swal from 'sweetalert2'
 import { messageError } from "../helpers/message"
 import { storeLocal } from "../storages/local"
 import useAuthStore from '../store/auth_store'
+import apiCall from '@/configs/axios'
+
+const MODULE_URL = "/api/v1"
 
 export const postLogin = async (username, password,router) => {
     try {
@@ -15,7 +18,7 @@ export const postLogin = async (username, password,router) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/login", body, {
+        const response = await apiCall.post(`${MODULE_URL}/login`, body, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type' : 'application/json'
@@ -65,7 +68,7 @@ export const postRegister = async (props) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/register", body, {
+        const response = await apiCall.post(`${MODULE_URL}/register`, body, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type' : 'application/json'
@@ -116,7 +119,7 @@ export const postValidateRegister = async (token,router) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/register/validate", body, {
+        const response = await apiCall.post(`${MODULE_URL}/register/validate`, body, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type' : 'application/json'
@@ -146,15 +149,10 @@ export const postValidateRegister = async (token,router) => {
     }
 }
 
-export const postSignOut = async (tokenKey,router) => {
+export const postSignOut = async (router) => {
     try {
         Swal.showLoading()
-        let response = await Axios.get(`http://127.0.0.1:8000/api/v1/logout`, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.get(`${MODULE_URL}/logout`)
         
         if(response.status === 200){
             Swal.fire({

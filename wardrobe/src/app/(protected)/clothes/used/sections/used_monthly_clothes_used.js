@@ -1,6 +1,5 @@
 "use client"
 import MoleculesLineChart from '../../../../../components/molecules/molecules_line_chart'
-import { getLocal } from '../../../../../modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
@@ -12,7 +11,6 @@ export default function UsedMonthlyClothesUsed(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         Swal.showLoading()
@@ -23,7 +21,7 @@ export default function UsedMonthlyClothesUsed(props) {
                     setItems(result)
                 }, (error) => {
                     setError(error)
-                }, tokenKey)
+                })
         }
     },[props.year])
 

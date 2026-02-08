@@ -2,14 +2,11 @@ import Swal from "sweetalert2"
 import { messageError } from "../helpers/message"
 import { getLocal, storeLocal } from "../storages/local"
 
-export async function fetchMonthlyClothes(year, onSuccess, onError, tokenKey) {
-    try {
-        const headers = { 'Content-Type': 'application/json' }
-        if(tokenKey) headers['Authorization'] = `Bearer ${tokenKey}`
+const MODULE_URL = "/api/v1/stats"
 
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/created_buyed/${year}`, {
-            headers: headers,
-        })
+export async function fetchMonthlyClothes(year, onSuccess, onError) {
+    try {
+        fetch(`${MODULE_URL}/clothes/monthly/created_buyed/${year}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -27,14 +24,10 @@ export async function fetchMonthlyClothes(year, onSuccess, onError, tokenKey) {
     }
 }
 
-export async function fetchMostClothesCtx(onSuccess, onError, tokenKey){
+export async function fetchMostClothesCtx(onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/by/clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category`, {
+        fetch(`${MODULE_URL}/clothes/by/clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
         })
         .then(res => res.json())
             .then(
@@ -53,13 +46,9 @@ export async function fetchMostClothesCtx(onSuccess, onError, tokenKey){
     }
 }
 
-export async function fetchMostUsedClothesDaily(onSuccess, onError, tokenKey){
+export async function fetchMostUsedClothesDaily(onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/most/used/daily`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`${MODULE_URL}/clothes/most/used/daily`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -77,14 +66,9 @@ export async function fetchMostUsedClothesDaily(onSuccess, onError, tokenKey){
     }
 }
 
-export async function fetchYearlyActivity(onSuccess, onError, tokenKey) {
+export async function fetchYearlyActivity(onSuccess, onError) {
     try {
-        const headers = { 'Content-Type': 'application/json' }
-        if(tokenKey) headers['Authorization'] = `Bearer ${tokenKey}` 
-
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/yearly/clothes_used`, {
-            headers: headers,
-        })
+        fetch(`${MODULE_URL}/clothes/yearly/clothes_used`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -101,14 +85,9 @@ export async function fetchYearlyActivity(onSuccess, onError, tokenKey) {
     }
 }
 
-export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError, tokenKey){
+export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError){
     try {
-        const headers = { 'Content-Type': 'application/json' }
-        if(tokenKey) headers['Authorization'] = `Bearer ${tokenKey}` 
-
-        fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/${year}/all`, {
-            headers: headers,
-        })
+        fetch(`${MODULE_URL}/outfit/monthly/by_outfit/${year}/all`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -126,14 +105,9 @@ export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError, toke
     }
 }
 
-export async function fetchOutfitMostUsed(year, onSuccess, onError, tokenKey){
+export async function fetchOutfitMostUsed(year, onSuccess, onError){
     try {
-        const headers = { 'Content-Type': 'application/json' }
-        if (tokenKey) headers['Authorization'] = `Bearer ${tokenKey}` 
-
-        fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/most/used/${year}`, {
-            headers: headers,
-        })
+        fetch(`${MODULE_URL}/outfit/most/used/${year}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -151,7 +125,7 @@ export async function fetchOutfitMostUsed(year, onSuccess, onError, tokenKey){
     }
 }
 
-export async function fetchYear(now, onSuccess, onError, tokenKey) {
+export async function fetchYear(now, onSuccess, onError) {
     try {
         const oldTimeHit = getLocal("last_hit-available_year_filter")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
@@ -168,12 +142,7 @@ export async function fetchYear(now, onSuccess, onError, tokenKey) {
             return
         }
 
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/user/my_year`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        const response = await fetch(`http://127.0.0.1:8000/api/v1/user/my_year`)
         const result = await response.json()
 
         if (response.ok) {

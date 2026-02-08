@@ -1,15 +1,16 @@
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 import Swal from 'sweetalert2'
 import { getCleanTitleFromCtx } from '../helpers/converter'
 import { messageError } from '../helpers/message'
 
-export async function fetchExport(ctx, type, tokenKey){
+const MODULE_URL = "/api/v1/export"
+
+export async function fetchExport(ctx, type){
     try {
         Swal.showLoading()
-        const response = await Axios.get(`http://127.0.0.1:8000/api/v1/export/${ctx}/${type}`, {
+        const response = await apiCall.get(`${MODULE_URL}/${ctx}/${type}`, {
             headers: {
                 'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'Authorization': `Bearer ${tokenKey}`,
             },
             responseType: 'blob'
         })
@@ -46,13 +47,12 @@ export async function fetchExport(ctx, type, tokenKey){
     }
 }
 
-export async function fetchExportCalendar(type, target, fileName, ctx, tokenKey){
+export async function fetchExportCalendar(type, target, fileName, ctx){
     try {
         Swal.showLoading()
-        const response = await Axios.get(`http://127.0.0.1:8000/api/v1/export/clothes/calendar/${type}/${target}`, {
+        const response = await apiCall.get(`${MODULE_URL}/clothes/calendar/${type}/${target}`, {
             headers: {
                 'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'Authorization': `Bearer ${tokenKey}`,
             },
             responseType: 'blob'
         })
@@ -86,13 +86,10 @@ export async function fetchExportCalendar(type, target, fileName, ctx, tokenKey)
     }
 }
 
-export async function fetchExportClothesDetail(id, tokenKey){
+export async function fetchExportClothesDetail(id){
     try {
         Swal.showLoading()
-        const response = await Axios.get(`http://127.0.0.1:8000/api/v1/export/clothes/detail/pdf/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
+        const response = await apiCall.get(`${MODULE_URL}/clothes/detail/pdf/${id}`, {
             responseType: 'blob'
         })
         Swal.close()

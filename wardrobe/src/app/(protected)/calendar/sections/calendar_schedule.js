@@ -14,7 +14,6 @@ export default function CalendarSectionSchedule(props) {
     const { month_year } = props
     const [month, year] = month_year.split('-').map(Number)
     const [today, setToday] = useState() 
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchCalendar(month, year, 
@@ -32,8 +31,7 @@ export default function CalendarSectionSchedule(props) {
             }, 
             (error) => {
                 setError(error)
-            }, 
-            tokenKey
+            }
         )
     }, [month_year])
 

@@ -1,5 +1,4 @@
 "use client"
-import { getLocal } from '../../../../modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
@@ -10,7 +9,6 @@ import { fetchYear } from '@/modules/repositories/stats_repository'
 export default function StatsSectionFilterMonthlyChart(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const tokenKey = getLocal("token_key")
     const now = new Date()
 
     // Dictionaries for select options
@@ -27,8 +25,7 @@ export default function StatsSectionFilterMonthlyChart(props) {
             },
             (error) => {
                 setError(error)
-            },
-            tokenKey
+            }
         )
     },[])
 

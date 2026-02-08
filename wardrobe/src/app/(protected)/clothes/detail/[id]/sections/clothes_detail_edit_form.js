@@ -12,7 +12,6 @@ import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
 export default function ClothesDetailEditForm(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const tokenKey = getLocal("token_key")
     const [clothesName, setClothesName] = useState(props.item.clothes_name)
     const [clothesDesc, setClothesDesc] = useState(props.item.clothes_desc)
     const [clothesMerk, setClothesMerk] = useState(props.item.clothes_merk)
@@ -85,7 +84,7 @@ export default function ClothesDetailEditForm(props) {
                 storeLocal('last_hit-dct_all_dct', JSON.stringify(now)) 
             }, (error) => {
                 setError(error)
-            }, tokenKey)
+            })
         }
     }
 

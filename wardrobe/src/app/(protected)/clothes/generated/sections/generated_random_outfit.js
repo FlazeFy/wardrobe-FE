@@ -9,7 +9,6 @@ import Swal from "sweetalert2"
 import OrganismsClothesHeader from "../../../../../components/organisms/organisms_clothes_header"
 import GeneratedSectionConfigurateTemplate from "./generated_configurate_template"
 import GeneratedSectionSaveOutfit from "./generated_save_outfit"
-import Axios from 'axios'
 import { getLocal, storeLocal } from "../../../../../modules/storages/local"
 import { messageError } from '@/modules/helpers/message'
 import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
@@ -72,7 +71,7 @@ export default function GeneratedSectionRandomOutift(props) {
             (error) => {
                 setError(error)
             },
-            tokenKey, '/clothes/category_type'
+            '/clothes/category_type'
         )
     }
 
@@ -134,7 +133,7 @@ export default function GeneratedSectionRandomOutift(props) {
             }
 
             Swal.showLoading()
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/generate", body, {
+            const response = await apiCall.post("http://127.0.0.1:8000/api/v1/clothes/outfit/generate", body, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${tokenKey}`,

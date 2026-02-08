@@ -13,7 +13,6 @@ export default function CalendarSectionManage(props) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
     const [isFetched, setIsFetched] = useState(false)
-    const tokenKey = getLocal("token_key")
 
     const fetchCalendar = () => {
         if (isFetched) return; 
@@ -28,8 +27,7 @@ export default function CalendarSectionManage(props) {
             },
             (error) => {
                 setError(error)
-            },
-            tokenKey
+            }
         )
     }
 

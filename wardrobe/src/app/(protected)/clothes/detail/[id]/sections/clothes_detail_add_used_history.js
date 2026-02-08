@@ -78,9 +78,7 @@ export default function ClothesDetailAddUsedHistory(props) {
     }
 
     // Repositories
-    const handleSubmit = async (e) => {
-        postUsedClothes(usedContext,clothesNotes,tokenKey,props)
-    }
+    const handleSubmit = async (e) => postUsedClothes(usedContext,clothesNotes,tokenKey,props)
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>

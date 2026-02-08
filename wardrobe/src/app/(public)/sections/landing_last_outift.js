@@ -15,7 +15,6 @@ export default function LandingSectionLastOutfit(props) {
     const [todayName, setTodayName] = useState("")
     const [items, setItems] = useState(null)
     const [weather, setWeather] = useState(null)
-    const tokenKey = getLocal("token_key")
     const [lastHitWeather, setLastHitWeather] = useState(null)
     const now = new Date()
 
@@ -79,12 +78,7 @@ export default function LandingSectionLastOutfit(props) {
 
     const fetchLastOutfit = () => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/last`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/last`)
         .then((res) => res.json())
         .then(
             (result) => {

@@ -2,7 +2,6 @@
 import MoleculesAlertBox from "../../../../../components/molecules/molecules_alert_box"
 import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
-import { getLocal } from "../../../../../modules/storages/local"
 import { convertDatetimeBasedLocal } from "../../../../../modules/helpers/converter"
 import { fetchOutfitSummary } from "@/modules/repositories/outfit_repository"
 
@@ -10,7 +9,6 @@ export default function GeneratedSectionSummary(props){
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItem] = useState(null)
-    const tokenKey = getLocal("token_key")
     const now = new Date()
     
     useEffect(() => {
@@ -23,7 +21,7 @@ export default function GeneratedSectionSummary(props){
             (error) => {
                 setIsLoaded(true)
                 setError(error)
-            }, tokenKey)
+            })
     },[])
 
     if (error) {

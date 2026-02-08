@@ -1,15 +1,12 @@
 import Swal from "sweetalert2"
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 import { messageError } from "../helpers/message"
 
-export async function fetchWashClothes(page, onSuccess, onError, tokenKey){
+const MODULE_URL = "/api/v1/clothes/wash"
+
+export async function fetchWashClothes(page, onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/wash/history?page=${page}&is_detailed=true`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}` 
-            }
-        })
+        fetch(`${MODULE_URL}/history?page=${page}&is_detailed=true`)
         .then(res => {
             if (res.status === 404) {
                 onSuccess(res)
@@ -32,13 +29,9 @@ export async function fetchWashClothes(page, onSuccess, onError, tokenKey){
     }
 }
 
-export async function fetchWashSummary(onSuccess, onError, tokenKey){
+export async function fetchWashSummary(onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/wash/summary`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`http://127.0.0.1:8000/api/v1/stats/wash/summary`)
         .then(res => {
             if (res.status === 404) {
                 onSuccess(res)
@@ -61,15 +54,9 @@ export async function fetchWashSummary(onSuccess, onError, tokenKey){
     }
 }
 
-export const deleteWashById = async (id,tokenKey,action) => {
+export const deleteWashById = async (id,action) => {
     try {
-        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_wash/${id}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_wash/${id}`)
         
         if(response.status === 200){
             Swal.fire({

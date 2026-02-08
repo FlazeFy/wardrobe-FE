@@ -1,9 +1,11 @@
 import { getLocal, storeLocal } from "../storages/local"
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 import Swal from "sweetalert2"
 import { messageError } from "../helpers/message"
 
-export const postSaveOutfit = async (token) => {
+const MODULE_URL = "/api/v1/clothes/outfit"
+
+export const postSaveOutfit = async () => {
     try {
         Swal.showLoading()
 
@@ -12,13 +14,7 @@ export const postSaveOutfit = async (token) => {
         const body = { 'list_outfit' : data }
 
         // Exec
-        let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/save`, body, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            }
-        })
+        let response = await apiCall.post(`${MODULE_URL}/save`, body)
         Swal.hideLoading()
         
         // Response
@@ -39,7 +35,7 @@ export const postSaveOutfit = async (token) => {
     }
 }
 
-export const postSaveOutfitHistory = async (id,tokenKey,props) => {
+export const postSaveOutfitHistory = async (id,props) => {
     try {
         // Payload
         const data = {
@@ -48,13 +44,7 @@ export const postSaveOutfitHistory = async (id,tokenKey,props) => {
         }
 
         // Exec
-        let response = await Axios.post(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/save`, JSON.stringify(data), {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.post(`${MODULE_URL}/history/save`, JSON.stringify(data))
         
         // Response
         if(response.status === 201){
@@ -77,14 +67,9 @@ export const postSaveOutfitHistory = async (id,tokenKey,props) => {
     }
 }
 
-export async function fetchAllOutfit(page, onSuccess, onError, tokenKey) {
+export async function fetchAllOutfit(page, onSuccess, onError) {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit?page=${page}`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`${MODULE_URL}?page=${page}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -101,14 +86,9 @@ export async function fetchAllOutfit(page, onSuccess, onError, tokenKey) {
     }
 }
 
-export async function fetchOutfitMonthlyTotalUsedById(id, onSuccess, onError, tokenKey) {
+export async function fetchOutfitMonthlyTotalUsedById(id, onSuccess, onError) {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${id}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -125,15 +105,9 @@ export async function fetchOutfitMonthlyTotalUsedById(id, onSuccess, onError, to
     }
 }
 
-export const deleteOutfitHistoryById = async (id,action,tokenKey) => {
+export const deleteOutfitHistoryById = async (id,action) => {
     try {
-        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/by/${id}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.delete(`${MODULE_URL}/history/by/${id}`)
         
         if(response.status === 200){
             Swal.fire({
@@ -152,7 +126,7 @@ export const deleteOutfitHistoryById = async (id,action,tokenKey) => {
     }
 }
 
-export async function fetchOutfitSummary(now, onSuccess, onError, tokenKey) {
+export async function fetchOutfitSummary(now, onSuccess, onError) {
     try {
         const oldTimeHit = getLocal("last_hit-generated_outfit_summary")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
@@ -169,12 +143,7 @@ export async function fetchOutfitSummary(now, onSuccess, onError, tokenKey) {
             return
         }
 
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/summary`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        const response = await fetch(`${MODULE_URL}/summary`)
         const result = await response.json()
 
         if (response.ok) {

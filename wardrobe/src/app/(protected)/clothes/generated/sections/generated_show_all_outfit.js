@@ -6,7 +6,6 @@ import MoleculesAlertBox from "../../../../../components/molecules/molecules_ale
 import OrganismsOutfit from "../../../../../components/organisms/organisms_outfit"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
-import { getLocal } from "../../../../../modules/storages/local"
 import MoleculesNoData from "../../../../../components/molecules/molecules_no_data"
 import { fetchAllOutfit } from "@/modules/repositories/outfit_repository"
 
@@ -17,7 +16,6 @@ export default function GeneratedSectionShowAllOutfit(props) {
     const [items, setItems] = useState([])
     const [maxPage, setMaxPage] = useState(0)
     const [page, setPage] = useState(1)
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         getAllOutfit(1)
@@ -35,8 +33,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
         (error) => {
             setIsLoaded(true)
             setError(error)
-        },
-        tokenKey)
+        })
     }
 
     const seeMore = () => {

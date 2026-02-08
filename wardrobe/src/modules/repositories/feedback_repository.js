@@ -1,9 +1,11 @@
 import Swal from 'sweetalert2'
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 import { messageError } from "../helpers/message"
 import { getLocal, storeLocal } from '../../modules/storages/local.js'
 
-export const postFeedback = async (feedbackRate, feedbackBody, tokenKey, setFeedbackBody, setFeedbackRate) => {
+const MODULE_URL = "/api/v1/feedback"
+
+export const postFeedback = async (feedbackRate, feedbackBody, setFeedbackBody, setFeedbackRate) => {
     try {
         Swal.showLoading()
 
@@ -17,13 +19,7 @@ export const postFeedback = async (feedbackRate, feedbackBody, tokenKey, setFeed
         if(body.feedback_body.trim().length > 0){
             if(body.feedback_rate > 0 && body.feedback_rate <= 5){
                 // Exec
-                const response = await Axios.post("http://127.0.0.1:8000/api/v1/feedback", body, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${tokenKey}`,
-                        'Content-Type' : 'application/json'
-                    }
-                })
+                const response = await apiCall.post(`${MODULE_URL}`, body)
                 Swal.close()
 
                 // Response

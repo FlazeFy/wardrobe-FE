@@ -1,13 +1,11 @@
 import Swal from "sweetalert2"
 import { messageError } from "../helpers/message"
 
-export async function fetchDictionary(onSuccess, onError, tokenKey, dctType) {
+const MODULE_URL = "/api/v1/dct"
+
+export async function fetchDictionary(onSuccess, onError, dctType) {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/dct/${dctType}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
-        })
+        fetch(`${MODULE_URL}/${dctType}`)
         .then(res => res.json())
             .then(
             (result) => {

@@ -1,8 +1,10 @@
 import Swal from 'sweetalert2'
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 import { messageError } from "../helpers/message"
 
-export const postQuestion = async (question,tokenKey,setQuestion) => {
+const MODULE_URL = "/api/v1/question"
+
+export const postQuestion = async (question,setQuestion) => {
     try {
         Swal.showLoading()
 
@@ -12,13 +14,7 @@ export const postQuestion = async (question,tokenKey,setQuestion) => {
         // Validator
         if(body.question.trim().length > 0){
             // Exec
-            const response = await Axios.post("http://127.0.0.1:8000/api/v1/question", body, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${tokenKey}`,
-                    'Content-Type' : 'application/json'
-                }
-            })
+            const response = await apiCall.post(`${MODULE_URL}`, body)
 
             // Response
             if(response.status === 201){
@@ -54,7 +50,7 @@ export const postQuestion = async (question,tokenKey,setQuestion) => {
 
 export const fetchFAQ = (onSuccess, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/question/faq`)
+        fetch(`${MODULE_URL}/faq`)
         .then(res => res.json())
         .then(
             (result) => {

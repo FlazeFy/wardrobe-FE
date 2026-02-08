@@ -1,10 +1,12 @@
 import Swal from "sweetalert2"
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 import { messageError } from "../helpers/message"
 import { getLocal, storeLocal } from "../storages/local"
 
+const MODULE_URL = "/api/v1/clothes"
+
 export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
-    clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,tokenKey,router) => {
+    clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,router) => {
     try {
         Swal.showLoading()
 
@@ -44,12 +46,7 @@ export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSiz
         formData.append("is_scheduled", isScheduled ? 1 : 0)
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes", formData, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        const response = await apiCall.post(`${MODULE_URL}/`, formData)
         Swal.close()
 
         // Response
@@ -69,15 +66,9 @@ export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSiz
     }
 }
 
-export const deleteClothesById = async (id,type_delete,tokenKey,action) => {
+export const deleteClothesById = async (id,type_delete,action) => {
     try {
-        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/${type_delete == 'hard' ? 'destroy' : 'delete'}/${id}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.delete(`${MODULE_URL}/${type_delete == 'hard' ? 'destroy' : 'delete'}/${id}`)
         if(response.status === 200){
             Swal.fire({
                 title: "Success!",
@@ -95,15 +86,9 @@ export const deleteClothesById = async (id,type_delete,tokenKey,action) => {
     }
 } 
 
-export const deleteClothesUsedById = async (id,tokenKey,action) => {
+export const deleteClothesUsedById = async (id,action) => {
     try {
-        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_used/${id}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.delete(`${MODULE_URL}/destroy_used/${id}`)
         if(response.status === 200){
             Swal.fire({
                 title: "Success!",
@@ -121,15 +106,9 @@ export const deleteClothesUsedById = async (id,tokenKey,action) => {
     }
 }
 
-export const deleteUsedHistoryById = async (id,tokenKey,action) => {
+export const deleteUsedHistoryById = async (id,action) => {
     try {
-        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_used/${id}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.delete(`${MODULE_URL}/destroy_used/${id}`)
         
         if(response.status === 200){
             Swal.fire({
@@ -148,15 +127,9 @@ export const deleteUsedHistoryById = async (id,tokenKey,action) => {
     }
 }
 
-export const recoverClothesById = async (id,tokenKey,action) => {
+export const recoverClothesById = async (id,action) => {
     try {
-        let response = await Axios.put(`http://127.0.0.1:8000/api/v1/clothes/recover/${id}`, null, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.put(`${MODULE_URL}/recover/${id}`)
         if(response.status === 200){
             Swal.fire({
                 title: "Success!",
@@ -174,7 +147,7 @@ export const recoverClothesById = async (id,tokenKey,action) => {
     }
 } 
 
-export const postSchedule = async (day,isRemind,scheduleNote,tokenKey,props) => {
+export const postSchedule = async (day,isRemind,scheduleNote,props) => {
     try {
         Swal.showLoading()
 
@@ -187,13 +160,7 @@ export const postSchedule = async (day,isRemind,scheduleNote,tokenKey,props) => 
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/schedule", body, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-                'Content-Type' : 'application/json'
-            }
-        })
+        const response = await apiCall.post(`${MODULE_URL}/schedule`, body)
         Swal.close()
 
         // Response
@@ -219,7 +186,7 @@ export const postSchedule = async (day,isRemind,scheduleNote,tokenKey,props) => 
     }
 }
 
-export const postUsedClothes = async (usedContext,clothesNotes,tokenKey,props) => {
+export const postUsedClothes = async (usedContext,clothesNotes,props) => {
     try {
         const body = {
             "clothes_id" : props.id,
@@ -228,13 +195,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,tokenKey,props) =
         }
 
         Swal.showLoading()
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/history", body, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-                'Content-Type' : 'application/json'
-            }
-        })
+        const response = await apiCall.post(`${MODULE_URL}/history`, body)
         Swal.close()
 
         if(response.status === 201){
@@ -260,7 +221,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,tokenKey,props) =
     }
 }
 
-export const postOutfitClothes = async (selectedItem,tokenKey,props) => {
+export const postOutfitClothes = async (selectedItem,props) => {
     try {
         Swal.showLoading()
 
@@ -271,13 +232,7 @@ export const postOutfitClothes = async (selectedItem,tokenKey,props) => {
         }
 
         // Exec
-        const response = await Axios.post("http://127.0.0.1:8000/api/v1/clothes/outfit/save/clothes", body, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-                'Content-Type' : 'application/json'
-            }
-        })
+        const response = await apiCall.post(`${MODULE_URL}/outfit/save/clothes`, body)
         Swal.close()
 
         // Response
@@ -304,7 +259,7 @@ export const postOutfitClothes = async (selectedItem,tokenKey,props) => {
     }
 }
 
-export async function fetchClothesSummary(now, onSuccess, onError, tokenKey) {
+export async function fetchClothesSummary(now, onSuccess, onError) {
     try {
         const oldTimeHit = getLocal("last_hit-stats_summary")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
@@ -320,24 +275,15 @@ export async function fetchClothesSummary(now, onSuccess, onError, tokenKey) {
             fetchData(oldData)
             return
         }
-
-        const headers = {
-            "Content-Type": "application/json",
-            ...(tokenKey ? { "Authorization": `Bearer ${tokenKey}` } : {})
-        }
         
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/summary`, {
-            method: "GET",
-            headers,
-        })
-        const result = await response.json()
+        const response = await apiCall.get(`http://127.0.0.1:8000/api/v1/stats/clothes/summary`)
 
-        if (response.ok) {
-            fetchData(result)
-            storeLocal("stats_summary", JSON.stringify(result.data))
+        if (response.status === 200) {
+            fetchData(response.data.data)
+            storeLocal("stats_summary", JSON.stringify(response.data.data))
             storeLocal("last_hit-stats_summary", JSON.stringify(now))
         } else {
-            throw new Error(result.message || "Failed to fetch data")
+            throw new Error(response.data.message || "Failed to fetch data")
         }
     } catch (error) {
         messageError(error)
@@ -345,25 +291,20 @@ export async function fetchClothesSummary(now, onSuccess, onError, tokenKey) {
     }
 }
 
-export async function fetchTrash(onSuccess, onError, tokenKey){
+export async function fetchTrash(onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/trash`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}` 
-            }
-        })
+        apiCall.get(`${MODULE_URL}/trash`)
         .then(res => {
-            if (res.status === 404) {
-                onSuccess(null)
-                return null
-            }
             Swal.close()
-            return res.json()
+            onSuccess(res.data.data.data)
         })
-        .then(result => {
-            if (result) onSuccess(result.data.data)
+        .catch(err => {
             Swal.close()
+            if (err.response?.status === 404) {
+                onSuccess(null)
+                return
+            }
+            throw err
         })
     } catch (error) {
         messageError(error)
@@ -371,38 +312,27 @@ export async function fetchTrash(onSuccess, onError, tokenKey){
     }
 }
 
-export const fetchTotalClothesByType = (onSuccess, onError, tokenKey) => {
+export const fetchTotalClothesByType = (onSuccess, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/by/clothes_type`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            },
+        apiCall.get("/api/v1/stats/clothes/by/clothes_type")
+        .then(res => {
+            onSuccess(res.data)
         })
-        .then(res => res.json())
-        .then(
-            (result) => {
-                onSuccess(result)
-            },
-            (error) => {
-                messageError(error)
+        .catch(error => {
+            messageError(error)
+            if (typeof onError === "function") {
                 onError(error)
             }
-        )
+        })
     } catch (error) {
         messageError(error)
         onError(error)
     }
 }
 
-export const fetchTodaySchedule = (dayName, onSuccess, onError, tokenKey) => {
+export const fetchTodaySchedule = (dayName, onSuccess, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/${dayName}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
-        })
+        fetch(`${MODULE_URL}/schedule/${dayName}`)
         .then(res => res.json())
         .then(
             (result) => {
@@ -419,13 +349,9 @@ export const fetchTodaySchedule = (dayName, onSuccess, onError, tokenKey) => {
     }
 }
 
-export const fetchAllClothesHeader = (onSuccess, onNotFound, onError, tokenKey) => {
+export const fetchAllClothesHeader = (onSuccess, onNotFound, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/header/all/desc`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
-        })
+        fetch(`${MODULE_URL}/header/all/desc`)
         .then(res => {
             if (res.status === 404) {
                 onNotFound()
@@ -448,13 +374,9 @@ export const fetchAllClothesHeader = (onSuccess, onNotFound, onError, tokenKey) 
     }
 }
 
-export const fetchUnfinishedWash = (onSuccess, onNotFound, onError, tokenKey) => {
+export const fetchUnfinishedWash = (onSuccess, onNotFound, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/wash/unfinished`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
-        })
+        fetch(`${MODULE_URL}/wash/unfinished`)
         .then(res => {
             if (res.status === 404) {
                 onNotFound()
@@ -464,9 +386,7 @@ export const fetchUnfinishedWash = (onSuccess, onNotFound, onError, tokenKey) =>
         })
         .then(
             (result) => {
-                if (result) {
-                    onSuccess(result.data.data)
-                }
+                if (result) onSuccess(result.data.data)
             },
             (error) => {
                 messageError(error)
@@ -479,13 +399,9 @@ export const fetchUnfinishedWash = (onSuccess, onNotFound, onError, tokenKey) =>
     }
 }
 
-export default function fetchTomorrowSchedule(day, onSuccess, onError, tokenKey){
+export default function fetchTomorrowSchedule(day, onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/schedule/tomorrow/${day}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`${MODULE_URL}/schedule/tomorrow/${day}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -503,13 +419,9 @@ export default function fetchTomorrowSchedule(day, onSuccess, onError, tokenKey)
     } 
 }
 
-export async function fetchUsedHistory(onSuccess, onError, tokenKey){
+export async function fetchUsedHistory(onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/all/desc`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`${MODULE_URL}/history/all/desc`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -527,13 +439,9 @@ export async function fetchUsedHistory(onSuccess, onError, tokenKey){
     } 
 }
 
-export async function fetchClothesHeader(onSuccess, onError, tokenKey){
+export async function fetchClothesHeader(onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/header/all/desc`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`${MODULE_URL}/header/all/desc`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -551,14 +459,9 @@ export async function fetchClothesHeader(onSuccess, onError, tokenKey){
     } 
 }
 
-export async function fetchMonthlyClothesUsed(year, onSuccess, onError, tokenKey){
+export async function fetchMonthlyClothesUsed(year, onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/used/${year}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/used/${year}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -576,13 +479,9 @@ export async function fetchMonthlyClothesUsed(year, onSuccess, onError, tokenKey
     } 
 }
 
-export async function fetchCalendar(month, year, onSuccess, onError, tokenKey){
+export async function fetchCalendar(month, year, onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/${month}/${year}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/${month}/${year}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -600,13 +499,9 @@ export async function fetchCalendar(month, year, onSuccess, onError, tokenKey){
     } 
 }
 
-export async function fetchCalendarDetail(date,onSuccess,onError,tokenKey){
+export async function fetchCalendarDetail(date,onSuccess,onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/detail/date/${date}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/detail/date/${date}`)
         .then(res => res.json())
             .then(
             (result) => {
@@ -624,13 +519,9 @@ export async function fetchCalendarDetail(date,onSuccess,onError,tokenKey){
     } 
 }
 
-export const fetchLastClothesHistory = (onSuccess, onNotFound, onError, tokenKey) => {
+export const fetchLastClothesHistory = (onSuccess, onNotFound, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/history/last`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`,
-            },
-        })
+        fetch(`${MODULE_URL}/history/last`)
         .then(res => {
             if (res.status === 404) {
                 onNotFound()

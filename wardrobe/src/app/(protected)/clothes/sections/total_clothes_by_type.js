@@ -11,7 +11,6 @@ export default function ClothesSectionTotalByType(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
-    const tokenKey = getLocal("token_key")
     const now = new Date()
     const contextKey = 'total_clothes_by_type'
 
@@ -47,8 +46,7 @@ export default function ClothesSectionTotalByType(props) {
             },
             (error) => {
                 setError(error)
-            },
-            tokenKey
+            }
         )
     }
 

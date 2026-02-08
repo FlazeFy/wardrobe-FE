@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation'
 import { postSignOut } from '@/modules/repositories/auth_repository'
 
 export default function ProfileSectionSignOut(props) {
-    const tokenKey = getLocal("token_key")
     const router = useRouter()
 
     // Repositories
@@ -23,12 +22,11 @@ export default function ProfileSectionSignOut(props) {
                 confirmButtonText: "Yes, Sign Out!",
                 cancelButtonText: "No, Cancel!"
             }).then(async (result) => {
-                if (result.isConfirmed) postSignOut(tokenKey,router)
+                if (result.isConfirmed) postSignOut(router)
             })
         }
-        const saveGeneratedOutfits = (token) => {
-            postSaveOutfit(token)
-        }
+        
+        const saveGeneratedOutfits = (token) => postSaveOutfit(token)
 
         const generatedOutfit = JSON.parse(getLocal('generated_outfit_history'))
         if(generatedOutfit && generatedOutfit.length > 0){
@@ -45,7 +43,7 @@ export default function ProfileSectionSignOut(props) {
                 if (result.isConfirmed) {
                     validateSignOut()
                 } else if (result.isDenied) {
-                    saveGeneratedOutfits(tokenKey)
+                    saveGeneratedOutfits()
                 } else {
                     Swal.close()
                 }

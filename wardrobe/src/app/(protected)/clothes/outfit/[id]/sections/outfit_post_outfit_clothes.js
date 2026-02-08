@@ -1,8 +1,6 @@
 "use client"
-import { getLocal } from '../../../../../../modules/storages/local'
 import { faFloppyDisk, faGears } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Axios from 'axios'
 import React, { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../../components/molecules/molecules_alert_box'
@@ -18,7 +16,6 @@ export default function OutfitDetailPostOutfitClothes(props) {
     const [selectedItem, setSelectedItems] = useState([])
     const [attachedItem, setAttachedItems] = useState([])
     const [msgAll, setResMsgAll] = useState(null)
-    const tokenKey = getLocal("token_key")
 
     // Dictionaries for select options
     const [usedContextDictionary, setUsedContextDictionary] = useState([])
@@ -34,13 +31,12 @@ export default function OutfitDetailPostOutfitClothes(props) {
             },
             (error) => {
                 setError(error)
-            },
-            tokenKey
+            }
         )
     },[])
 
     // Repositories
-    const handleSubmit = async (e) => postOutfitClothes(selectedItem,tokenKey,props)
+    const handleSubmit = async (e) => postOutfitClothes(selectedItem,props)
 
     const handleAdd = (dt) => {
         const newClothes = {
@@ -79,7 +75,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/outfit/remove/${dt.clothes_id}/${props.id}`, {
+                    let response = await apiCall.delete(`http://127.0.0.1:8000/api/v1/clothes/outfit/remove/${dt.clothes_id}/${props.id}`, {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',

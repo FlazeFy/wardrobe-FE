@@ -3,17 +3,13 @@ import MoleculesField from '../../../../components/molecules/molecules_field'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
-import { getLocal } from '../../../../modules/storages/local'
 import { postQuestion } from '@/modules/repositories/question_repository'
 
 export default function ProfileSectionSendQuestion(props) {
     const [question, setQuestion] = useState("")
-    const tokenKey = getLocal("token_key")
 
     // Repositories
-    const handleSubmit = async (e) => {
-        postQuestion(question,tokenKey,setQuestion)
-    }
+    const handleSubmit = async (e) => postQuestion(question,setQuestion)
 
     return (
         <div id="question-section"> 

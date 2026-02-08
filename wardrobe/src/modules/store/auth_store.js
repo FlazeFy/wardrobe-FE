@@ -1,6 +1,5 @@
 import { create } from "zustand"
 import { fetchRefreshToken } from "../repositories/user_repository"
-import { getLocal } from "../storages/local"
 
 const useAuthStore = create((set, get) => ({
     username: "",
@@ -26,11 +25,10 @@ const useAuthStore = create((set, get) => ({
     },
     hydrateAuth: async () => {
         const state = get()
-        const tokenKey = getLocal("token_key")
 
-        if (state.isHydrated || state.username || !tokenKey) return
+        if (state.isHydrated || state.username) return
         try {
-            const data = await fetchRefreshToken(tokenKey)
+            const data = await fetchRefreshToken()
 
             if (!data) {
                 set({ isHydrated: true })

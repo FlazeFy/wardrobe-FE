@@ -11,7 +11,6 @@ export default function ClothesAddSectionLastHistory(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItem] = useState(null)
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         Swal.showLoading()
@@ -30,8 +29,7 @@ export default function ClothesAddSectionLastHistory(props) {
             },
             (error) => {
                 setError(error)
-            },
-            tokenKey
+            }
         )
     },[])
 

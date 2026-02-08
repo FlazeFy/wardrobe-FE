@@ -3,12 +3,9 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getLocal } from '../../../../../../modules/storages/local'
 import { postSaveOutfitHistory } from '@/modules/repositories/outfit_repository'
 
 export default function OutfitSectionPostOutfitHistory(props) {
-    const tokenKey = getLocal("token_key")
-
     // Services
     const handleSubmit = async (id) => {
         Swal.fire({
@@ -20,7 +17,7 @@ export default function OutfitSectionPostOutfitHistory(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                postSaveOutfitHistory(id,tokenKey,props)
+                postSaveOutfitHistory(id,props)
             } 
         })
     }

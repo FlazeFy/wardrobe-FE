@@ -7,7 +7,6 @@ import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box"
 import ProfileSectionEditForm from "./sections/profile_edit_form"
-import { getLocal } from "../../../modules/storages/local"
 import ProfileSectionAllHistory from "./sections/profile_all_history"
 import ProfileSectionExportData from "./sections/profile_export_data"
 import ProfileSectionSendQuestion from "./sections/profile_post_question"
@@ -19,7 +18,6 @@ export default function ProfilePage(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchProfile()
@@ -27,12 +25,7 @@ export default function ProfilePage(props) {
 
     const fetchProfile = () => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/user/my`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
+        fetch(`http://127.0.0.1:8000/api/v1/user/my`)
         .then(res => res.json())
             .then(
             (result) => {

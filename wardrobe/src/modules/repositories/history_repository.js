@@ -1,15 +1,12 @@
 import Swal from 'sweetalert2'
 import { messageError } from '@/modules/helpers/message'
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 
-export async function fetchHistory(page, onSuccess, onError, tokenKey){
+const MODULE_URL = "/api/v1/history"
+
+export async function fetchHistory(page, onSuccess, onError){
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/history?page=${page}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}` 
-            }
-        })
+        fetch(`${MODULE_URL}?page=${page}`)
         .then(res => {
             if (res.status === 404) {
                 onSuccess(null)
@@ -28,15 +25,9 @@ export async function fetchHistory(page, onSuccess, onError, tokenKey){
     }
 }
 
-export async function hardDeleteHistory(id,action,tokenKey){
+export async function hardDeleteHistory(id,action){
     try {
-        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/history/destroy/${id}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.delete(`${MODULE_URL}/destroy/${id}`)
         
         if(response.status === 200){
             Swal.fire({

@@ -1,16 +1,10 @@
 import Swal from "sweetalert2"
-import Axios from 'axios'
+import apiCall from '@/configs/axios'
 import { messageError } from "../helpers/message"
 
-export const deleteScheduleById = async (id,tokenKey,action) => {
+export const deleteScheduleById = async (id, action) => {
     try {
-        let response = await Axios.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_schedule/${id}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`,
-            }
-        })
+        let response = await apiCall.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_schedule/${id}`)
         if(response.status === 200){
             Swal.fire({
                 title: "Success!",

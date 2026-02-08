@@ -1,22 +1,16 @@
-export async function fetchRefreshToken(tokenKey) {
-    try {
-        const res = await fetch(
-            "http://127.0.0.1:8000/api/v1/user/refresh",
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${tokenKey}`,
-                },
-            }
-        )
-        if (!res.ok) return null
+import apiCall from "@/configs/axios"
 
-        const json = await res.json()
+const MODULE_URL = "/api/v1/stats"
+
+export async function fetchRefreshToken() {
+    try {
+        const res = await apiCall.get(`${MODULE_URL}/refresh`)
+        if (!res.status === 200) return null
 
         return {
-            username: json.message.username,
-            email: json.message.email,
-            role: json.role,
+            username: res.message.username,
+            email: res.message.email,
+            role: res.role,
         }
     } catch (error) {
         console.error("refresh token error:", error)

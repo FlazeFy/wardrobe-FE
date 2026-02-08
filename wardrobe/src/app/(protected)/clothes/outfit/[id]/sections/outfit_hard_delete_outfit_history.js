@@ -3,12 +3,9 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getLocal } from '../../../../../../modules/storages/local'
 import { deleteOutfitHistoryById } from '@/modules/repositories/outfit_repository'
 
 export default function OutfitSectionHardDeleteOutfitHistory(props) {
-    const tokenKey = getLocal("token_key")
-
     // Services
     const handleSubmit = async (id) => {
         Swal.fire({
@@ -23,7 +20,7 @@ export default function OutfitSectionHardDeleteOutfitHistory(props) {
                 deleteOutfitHistoryById(id,()=>{
                     props.fetchOutfit()
                     props.fetchAllHistory()
-                }, tokenKey)
+                })
             } 
         })
     }

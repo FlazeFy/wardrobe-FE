@@ -6,7 +6,6 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import { getLocal } from '../../../../modules/storages/local'
 import AtomsBreakLine from '../../../../components/atoms/atoms_breakline'
 import { fetchUnfinishedWash } from '@/modules/repositories/clothes_repository'
 import Link from "next/link"
@@ -15,7 +14,6 @@ export default function ClothesSectionUnfinishedWash(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         Swal.showLoading()
@@ -34,8 +32,7 @@ export default function ClothesSectionUnfinishedWash(props) {
             },
             (error) => {
                 setError(error)
-            },
-            tokenKey
+            }
         )
     },[])
 

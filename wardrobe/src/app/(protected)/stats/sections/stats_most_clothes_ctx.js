@@ -16,7 +16,6 @@ export default function StatsSectionMostClothesCtx(props) {
     const [itemsClothesSize, setItemsClothesSize] = useState([])
     const [itemsClothesMade, setItemsClothesMade] = useState([])
     const [itemsClothesCategory, setItemsClothesCategory] = useState([])
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         Swal.showLoading()
@@ -31,8 +30,7 @@ export default function StatsSectionMostClothesCtx(props) {
             },
             (err) => {
                 setError(err)
-            },
-            tokenKey
+            }
         )
     },[])
 

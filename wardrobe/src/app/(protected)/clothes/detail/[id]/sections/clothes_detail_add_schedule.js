@@ -1,5 +1,4 @@
 "use client"
-import { getLocal } from '../../../../../../modules/storages/local'
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useEffect } from "react"
@@ -11,7 +10,6 @@ import { postSchedule } from '@/modules/repositories/clothes_repository'
 export default function ClothesDetailAddSchedule(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const tokenKey = getLocal("token_key")
     const [day, setDay] = useState("")
     const [isRemind, setIsRemind] = useState(true)
     const [scheduleNote, setScheduleNote] = useState("")
@@ -26,9 +24,7 @@ export default function ClothesDetailAddSchedule(props) {
     },[])
 
     // Services
-    const handleSubmit = async (e) => {
-        postSchedule(day,isRemind,scheduleNote,tokenKey,props)
-    }
+    const handleSubmit = async (e) => postSchedule(day,isRemind,scheduleNote,props)
 
     const preventDeleted = () => {
         Swal.fire({

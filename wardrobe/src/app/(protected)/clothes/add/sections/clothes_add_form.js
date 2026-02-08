@@ -13,7 +13,6 @@ import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
 export default function ClothesAddForm(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const tokenKey = getLocal("token_key")
     const [clothesName, setClothesName] = useState("")
     const [clothesDesc, setClothesDesc] = useState("")
     const [clothesMerk, setClothesMerk] = useState("")
@@ -98,7 +97,7 @@ export default function ClothesAddForm(props) {
             (error) => {
                 setError(error)
             },
-            tokenKey, 'clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type'
+            'clothes_size,clothes_gender,clothes_made_from,clothes_category,clothes_type'
         )
     }
 
@@ -110,7 +109,7 @@ export default function ClothesAddForm(props) {
     // Services
     const handleSubmit = async (e) => {
         postClothes(clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
-            clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,tokenKey,router)
+            clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,router)
     }
 
     const handleImageChange = (e) => {
