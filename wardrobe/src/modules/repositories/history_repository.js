@@ -4,7 +4,7 @@ import apiCall from '@/configs/axios'
 
 const MODULE_URL = "/api/v1/history"
 
-export async function fetchHistory(page, onSuccess, onError){
+export const fetchHistory = async (page, onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}?page=${page}`)
         .then(res => {
@@ -25,7 +25,7 @@ export async function fetchHistory(page, onSuccess, onError){
     }
 }
 
-export async function hardDeleteHistory(id,action){
+export const hardDeleteHistory = async (id,action) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/destroy/${id}`)
         

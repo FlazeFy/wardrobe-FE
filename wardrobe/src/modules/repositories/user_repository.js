@@ -2,7 +2,7 @@ import apiCall from "@/configs/axios"
 
 const MODULE_URL = "/api/v1/stats"
 
-export async function fetchRefreshToken() {
+export const fetchRefreshToken = async () => {
     try {
         const res = await apiCall.get(`${MODULE_URL}/refresh`)
         if (!res.status === 200) return null

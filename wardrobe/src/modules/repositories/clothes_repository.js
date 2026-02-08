@@ -194,9 +194,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,props) => {
             "clothes_note" : clothesNotes
         }
 
-        Swal.showLoading()
         const response = await apiCall.post(`${MODULE_URL}/history`, body)
-        Swal.close()
 
         if(response.status === 201){
             Swal.fire({
@@ -223,8 +221,6 @@ export const postUsedClothes = async (usedContext,clothesNotes,props) => {
 
 export const postOutfitClothes = async (selectedItem,props) => {
     try {
-        Swal.showLoading()
-
         // Payload
         const body = {
             "outfit_id" : props.id,
@@ -233,7 +229,6 @@ export const postOutfitClothes = async (selectedItem,props) => {
 
         // Exec
         const response = await apiCall.post(`${MODULE_URL}/outfit/save/clothes`, body)
-        Swal.close()
 
         // Response
         if(response.status === 201){
@@ -259,14 +254,13 @@ export const postOutfitClothes = async (selectedItem,props) => {
     }
 }
 
-export async function fetchClothesSummary(now, onSuccess, onError) {
+export const fetchClothesSummary = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-stats_summary")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
         const timeDiffInSec = oldTime ? Math.floor((now - oldTime) / 1000) : null
 
         const fetchData = (data) => {
-            Swal.close()
             onSuccess(data)
         }
 
@@ -291,254 +285,142 @@ export async function fetchClothesSummary(now, onSuccess, onError) {
     }
 }
 
-export async function fetchTrash(onSuccess, onError){
+export const fetchTrash = async (onSuccess, onError) => {
     try {
-        apiCall.get(`${MODULE_URL}/trash`)
-        .then(res => {
-            Swal.close()
-            onSuccess(res.data.data.data)
-        })
-        .catch(err => {
-            Swal.close()
-            if (err.response?.status === 404) {
-                onSuccess(null)
-                return
-            }
-            throw err
-        })
+        const response = await apiCall.get(`${MODULE_URL}/trash`)
+        onSuccess(response.data.data.data)
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            onSuccess(null)
+            return
+        }
+
+        messageError(error)
+        onError(error)
+    }
+}
+
+export const fetchTotalClothesByType = async (onSuccess, onError) => {
+    try {
+        const response = await apiCall.get(`/api/v1/stats/clothes/by/clothes_type`)
+        onSuccess(response.data)
     } catch (error) {
         messageError(error)
         onError(error)
     }
 }
 
-export const fetchTotalClothesByType = (onSuccess, onError) => {
+export const fetchTodaySchedule = async (dayName, onSuccess, onError) => {
     try {
-        apiCall.get("/api/v1/stats/clothes/by/clothes_type")
-        .then(res => {
-            onSuccess(res.data)
-        })
-        .catch(error => {
-            messageError(error)
-            if (typeof onError === "function") {
-                onError(error)
-            }
-        })
+        const response = await apiCall.get(`${MODULE_URL}/schedule/${dayName}`)
+
+        onSuccess(response.data)
     } catch (error) {
         messageError(error)
         onError(error)
     }
 }
 
-export const fetchTodaySchedule = (dayName, onSuccess, onError) => {
+export const fetchAllClothesHeader = async (onSuccess, onNotFound, onError) => {
     try {
-        fetch(`${MODULE_URL}/schedule/${dayName}`)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/header/all/desc`)
+        onSuccess(response.data.data)
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            onNotFound()
+            return
+        }
+
+        messageError(error)
+        onError(error)
+    }
+}
+
+export const fetchUnfinishedWash = async (onSuccess, onNotFound, onError) => {
+    try {
+        const response = await apiCall.get(`${MODULE_URL}/wash/unfinished`)
+        onSuccess(response.data.data)
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            onNotFound()
+            return
+        }
+
+        messageError(error)
+        onError(error)
+    }
+}
+
+export const fetchTomorrowSchedule = async (day, onSuccess, onError) => {
+    try {
+        const response = await apiCall.get(`${MODULE_URL}/schedule/tomorrow/${day}`)
+        onSuccess(response.data.data)
     } catch (error) {
         messageError(error)
         onError(error)
     }
 }
 
-export const fetchAllClothesHeader = (onSuccess, onNotFound, onError) => {
+export const fetchUsedHistory = async (onSuccess, onError) => {
     try {
-        fetch(`${MODULE_URL}/header/all/desc`)
-        .then(res => {
-            if (res.status === 404) {
-                onNotFound()
-                return null
-            }
-            return res.json()
-        })
-        .then(
-            (result) => {
-                if (result) onSuccess(result.data.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/history/all/desc`)
+        onSuccess(response.data.data)
     } catch (error) {
         messageError(error)
         onError(error)
     }
 }
 
-export const fetchUnfinishedWash = (onSuccess, onNotFound, onError) => {
+export const fetchClothesHeader = async (onSuccess, onError) => {
     try {
-        fetch(`${MODULE_URL}/wash/unfinished`)
-        .then(res => {
-            if (res.status === 404) {
-                onNotFound()
-                return null
-            }
-            return res.json()
-        })
-        .then(
-            (result) => {
-                if (result) onSuccess(result.data.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/header/all/desc`)
+        onSuccess(response.data.data)
     } catch (error) {
         messageError(error)
         onError(error)
     }
 }
 
-export default function fetchTomorrowSchedule(day, onSuccess, onError){
+export const fetchMonthlyClothesUsed = async (year, onSuccess, onError) => {
     try {
-        fetch(`${MODULE_URL}/schedule/tomorrow/${day}`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/stats/clothes/monthly/used/${year}`)
+        onSuccess(response.data)
     } catch (error) {
         messageError(error)
         onError(error)
-    } 
+    }
 }
 
-export async function fetchUsedHistory(onSuccess, onError){
+export const fetchCalendar = async (month, year, onSuccess, onError) => {
     try {
-        fetch(`${MODULE_URL}/history/all/desc`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/stats/calendar/${month}/${year}`)
+        onSuccess(response.data)
     } catch (error) {
         messageError(error)
         onError(error)
-    } 
+    }
 }
 
-export async function fetchClothesHeader(onSuccess, onError){
+export const fetchCalendarDetail = async (date,onSuccess,onError) => {
     try {
-        fetch(`${MODULE_URL}/header/all/desc`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/stats/calendar/detail/date/${date}`)
+        onSuccess(response.data)
     } catch (error) {
         messageError(error)
         onError(error)
-    } 
+    }
 }
 
-export async function fetchMonthlyClothesUsed(year, onSuccess, onError){
+export const fetchLastClothesHistory = async (onSuccess, onNotFound, onError) => {
     try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/monthly/used/${year}`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
+        const response = await apiCall.get(`${MODULE_URL}/history/last`)
+        onSuccess(response.data)
     } catch (error) {
-        messageError(error)
-        onError(error)
-    } 
-}
+        if (error.response && error.response.status === 404) {
+            onNotFound()
+            return
+        }
 
-export async function fetchCalendar(month, year, onSuccess, onError){
-    try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/${month}/${year}`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
-    } catch (error) {
-        messageError(error)
-        onError(error)
-    } 
-}
-
-export async function fetchCalendarDetail(date,onSuccess,onError){
-    try {
-        fetch(`http://127.0.0.1:8000/api/v1/stats/calendar/detail/date/${date}`)
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
-    } catch (error) {
-        messageError(error)
-        onError(error)
-    } 
-}
-
-export const fetchLastClothesHistory = (onSuccess, onNotFound, onError) => {
-    try {
-        fetch(`${MODULE_URL}/history/last`)
-        .then(res => {
-            if (res.status === 404) {
-                onNotFound()
-                return null
-            }
-            return res.json()
-        })
-        .then(
-            (result) => {
-                if (result) onSuccess(result.data)
-            },
-            (error) => {
-                messageError(error)
-                onError(error)
-            }
-        )
-    } catch (error) {
         messageError(error)
         onError(error)
     }

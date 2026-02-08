@@ -65,7 +65,7 @@ export const postFeedback = async (feedbackRate, feedbackBody, setFeedbackBody, 
     }
 }
 
-export async function fetchFeedback(now, onSuccess, onError) {
+export const fetchFeedback = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-feedback_stats")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null

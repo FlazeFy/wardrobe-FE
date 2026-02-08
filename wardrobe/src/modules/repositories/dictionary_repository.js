@@ -3,7 +3,7 @@ import { messageError } from "../helpers/message"
 
 const MODULE_URL = "/api/v1/dct"
 
-export async function fetchDictionary(onSuccess, onError, dctType) {
+export const fetchDictionary = async (onSuccess, onError, dctType) => {
     try {
         fetch(`${MODULE_URL}/${dctType}`)
         .then(res => res.json())

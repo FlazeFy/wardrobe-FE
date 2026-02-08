@@ -5,7 +5,7 @@ import { messageError } from '../helpers/message'
 
 const MODULE_URL = "/api/v1/export"
 
-export async function fetchExport(ctx, type){
+export const fetchExport = async (ctx, type) => {
     try {
         Swal.showLoading()
         const response = await apiCall.get(`${MODULE_URL}/${ctx}/${type}`, {
@@ -47,7 +47,7 @@ export async function fetchExport(ctx, type){
     }
 }
 
-export async function fetchExportCalendar(type, target, fileName, ctx){
+export const fetchExportCalendar = async (type, target, fileName, ctx) => {
     try {
         Swal.showLoading()
         const response = await apiCall.get(`${MODULE_URL}/clothes/calendar/${type}/${target}`, {
@@ -86,7 +86,7 @@ export async function fetchExportCalendar(type, target, fileName, ctx){
     }
 }
 
-export async function fetchExportClothesDetail(id){
+export const fetchExportClothesDetail = async (id) => {
     try {
         Swal.showLoading()
         const response = await apiCall.get(`${MODULE_URL}/clothes/detail/pdf/${id}`, {

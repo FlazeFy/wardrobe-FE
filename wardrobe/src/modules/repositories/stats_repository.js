@@ -4,7 +4,7 @@ import { getLocal, storeLocal } from "../storages/local"
 
 const MODULE_URL = "/api/v1/stats"
 
-export async function fetchMonthlyClothes(year, onSuccess, onError) {
+export const fetchMonthlyClothes = async (year, onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}/clothes/monthly/created_buyed/${year}`)
         .then(res => res.json())
@@ -24,7 +24,7 @@ export async function fetchMonthlyClothes(year, onSuccess, onError) {
     }
 }
 
-export async function fetchMostClothesCtx(onSuccess, onError){
+export const fetchMostClothesCtx = async (onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}/clothes/by/clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category`, {
             method: 'POST',
@@ -46,7 +46,7 @@ export async function fetchMostClothesCtx(onSuccess, onError){
     }
 }
 
-export async function fetchMostUsedClothesDaily(onSuccess, onError){
+export const fetchMostUsedClothesDaily = async (onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}/clothes/most/used/daily`)
         .then(res => res.json())
@@ -66,7 +66,7 @@ export async function fetchMostUsedClothesDaily(onSuccess, onError){
     }
 }
 
-export async function fetchYearlyActivity(onSuccess, onError) {
+export const fetchYearlyActivity = async (onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}/clothes/yearly/clothes_used`)
         .then(res => res.json())
@@ -85,7 +85,7 @@ export async function fetchYearlyActivity(onSuccess, onError) {
     }
 }
 
-export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError){
+export const fetchOutfitMonthlyTotalUsed = async (year, onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}/outfit/monthly/by_outfit/${year}/all`)
         .then(res => res.json())
@@ -105,7 +105,7 @@ export async function fetchOutfitMonthlyTotalUsed(year, onSuccess, onError){
     }
 }
 
-export async function fetchOutfitMostUsed(year, onSuccess, onError){
+export const fetchOutfitMostUsed = async (year, onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}/outfit/most/used/${year}`)
         .then(res => res.json())
@@ -125,7 +125,7 @@ export async function fetchOutfitMostUsed(year, onSuccess, onError){
     }
 }
 
-export async function fetchYear(now, onSuccess, onError) {
+export const fetchYear = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-available_year_filter")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null

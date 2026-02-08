@@ -4,7 +4,7 @@ import { messageError } from "../helpers/message"
 
 const MODULE_URL = "/api/v1/clothes/wash"
 
-export async function fetchWashClothes(page, onSuccess, onError){
+export const fetchWashClothes = async (page, onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}/history?page=${page}&is_detailed=true`)
         .then(res => {
@@ -29,7 +29,7 @@ export async function fetchWashClothes(page, onSuccess, onError){
     }
 }
 
-export async function fetchWashSummary(onSuccess, onError){
+export const fetchWashSummary = async (onSuccess, onError) => {
     try {
         fetch(`http://127.0.0.1:8000/api/v1/stats/wash/summary`)
         .then(res => {

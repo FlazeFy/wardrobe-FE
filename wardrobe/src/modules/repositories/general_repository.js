@@ -1,7 +1,7 @@
 import Swal from "sweetalert2"
 import { getLocal, storeLocal } from '../../modules/storages/local.js'
 
-export async function fetchWelcomeStats(now, onSuccess, onError) {
+export const fetchWelcomeStats = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-welcome_stats")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null

@@ -67,7 +67,7 @@ export const postSaveOutfitHistory = async (id,props) => {
     }
 }
 
-export async function fetchAllOutfit(page, onSuccess, onError) {
+export const fetchAllOutfit = async (page, onSuccess, onError) => {
     try {
         fetch(`${MODULE_URL}?page=${page}`)
         .then(res => res.json())
@@ -86,7 +86,7 @@ export async function fetchAllOutfit(page, onSuccess, onError) {
     }
 }
 
-export async function fetchOutfitMonthlyTotalUsedById(id, onSuccess, onError) {
+export const fetchOutfitMonthlyTotalUsedById = async (id, onSuccess, onError) => {
     try {
         fetch(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${id}`)
         .then(res => res.json())
@@ -126,7 +126,7 @@ export const deleteOutfitHistoryById = async (id,action) => {
     }
 }
 
-export async function fetchOutfitSummary(now, onSuccess, onError) {
+export const fetchOutfitSummary = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-generated_outfit_summary")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
