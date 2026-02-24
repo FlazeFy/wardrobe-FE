@@ -24,9 +24,7 @@ export const postSaveOutfit = async (onError) => {
             }).then((result) => {
                 if (result.isConfirmed) localStorage.removeItem('generated_outfit_history')
             })
-        } else {
-            onError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         onError(error)
     }
@@ -56,9 +54,7 @@ export const postSaveOutfitHistory = async (id, props, onError) => {
                     props.fetchAllHistory()
                 }
             })
-        } else {
-            onError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         onError(error)
     }
@@ -95,9 +91,7 @@ export const deleteOutfitHistoryById = async (id, action, onError) => {
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
-        } else {
-            onError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         onError(error)
     }

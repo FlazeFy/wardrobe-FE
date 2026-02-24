@@ -7,88 +7,87 @@ import apiCall from '@/configs/axios'
 const MODULE_URL = "/api/v1"
 
 export const postLogin = async (username, password, router) => {
-    // Payload
-    const body = {
-        "username" : username,
-        "password" : password,
-    }
-
-    // Exec
-    const response = await apiCall.post(`${MODULE_URL}/login`, body, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type' : 'application/json'
+    try {
+        // Payload
+        const body = {
+            "username" : username,
+            "password" : password,
         }
-    })
 
-    // Response
-    if(response.status === 200){
-        // Store local storage
-        storeLocal('token_key',response.data.token)
-        // Store global state
-        const { onLoginStore } = useAuthStore.getState() 
-        onLoginStore(response.data)
+        // Exec
+        const response = await apiCall.post(`${MODULE_URL}/login`, body, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type' : 'application/json'
+            }
+        })
 
-        Swal.fire({
-            title: "Success!",
-            text: `Welcome, ${response.data.message.username}`,
-            icon: "success",
-            allowOutsideClick: false,
-            confirmButtonText: "Okay!"
-        }).then((result) => {
-            if (result.isConfirmed) router.push('/clothes')
-        })
-    } else {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: response.data.result,
-            confirmButtonText: "Okay!"
-        })
+        // Response
+        if(response.status === 200){
+            // Store local storage
+            storeLocal('token_key',response.data.token)
+            // Store global state
+            const { onLoginStore } = useAuthStore.getState() 
+            onLoginStore(response.data)
+
+            Swal.fire({
+                title: "Success!",
+                text: `Welcome, ${response.data.message.username}`,
+                icon: "success",
+                allowOutsideClick: false,
+                confirmButtonText: "Okay!"
+            }).then((result) => {
+                if (result.isConfirmed) router.push('/clothes')
+            })
+        }
+    } catch (error) {
+        messageError(error)
     }
 }
 
 export const postRegister = async (props) => {
-    // Payload
-    const body = {
-        "username" : props.username,
-        "password" : props.password,
-        "email" : props.email,
-    }
-
-    // Exec
-    const response = await apiCall.post(`${MODULE_URL}/register`, body, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type' : 'application/json'
+    try {
+        // Payload
+        const body = {
+            "username" : props.username,
+            "password" : props.password,
+            "email" : props.email,
         }
-    })
 
-    // Response
-    if(response.status === 201){
-        Swal.fire({
-            title: "Success!",
-            text: response.data.message,
-            icon: "success",
-            allowOutsideClick: false,
-            confirmButtonText: "Okay!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                props.setIsDisabled(true)
-                props.setIsRegistered(true)
-                props.setShowFormToken(true)
-                props.setStartValidationTimer(true)
-                // Store global state
-                const { onLoginStore } = useAuthStore.getState() 
-                onLoginStore({
-                    username: response.data.result.username,
-                    email: response.data.result.email,
-                    role: response.data.result.role
-                })
+        // Exec
+        const response = await apiCall.post(`${MODULE_URL}/register`, body, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type' : 'application/json'
             }
         })
-    } else {
-        messageError("Something went wrong!")
+
+        // Response
+        if(response.status === 201){
+            Swal.fire({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                allowOutsideClick: false,
+                confirmButtonText: "Okay!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    props.setIsDisabled(true)
+                    props.setIsRegistered(true)
+                    props.setShowFormToken(true)
+                    props.setStartValidationTimer(true)
+                    // Store global state
+                    const { onLoginStore } = useAuthStore.getState() 
+                    onLoginStore({
+                        username: response.data.result.username,
+                        email: response.data.result.email,
+                        role: response.data.result.role
+                    })
+                }
+            })
+        }
+    } catch (error) {
+        messageError(error)
     }
 }
 
@@ -123,36 +122,36 @@ export const postValidateRegister = async (token,router) => {
                     router.push('/')
                 }
             })
-        } else {
-            messageError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
 }
 
 export const postSignOut = async (router) => {
-    let response = await apiCall.get(`${MODULE_URL}/logout`)
-    
-    if(response.status === 200){
-        Swal.fire({
-            title: "Success!",
-            text: response.data.message,
-            icon: "success",
-            allowOutsideClick: false,
-            confirmButtonText: "Okay!"
-        }).then((result) => {
-            if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
-                // Clear local storage
-                localStorage.clear()
-                // Clear global state
-                const { onLogOutStore } = useAuthStore.getState() 
-                onLogOutStore()
+    try {
+        let response = await apiCall.get(`${MODULE_URL}/logout`)
+        
+        if(response.status === 200){
+            Swal.fire({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                allowOutsideClick: false,
+                confirmButtonText: "Okay!"
+            }).then((result) => {
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
+                    // Clear local storage
+                    localStorage.clear()
+                    // Clear global state
+                    const { onLogOutStore } = useAuthStore.getState() 
+                    onLogOutStore()
 
-                router.push('/')
-            }
-        })
-    } else {
-        messageError("Something went wrong!")
+                    router.push('/')
+                }
+            })
+        } 
+    } catch (error) {
+        messageError(error)
     }
 }

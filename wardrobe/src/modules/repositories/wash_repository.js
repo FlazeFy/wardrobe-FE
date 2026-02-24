@@ -44,9 +44,7 @@ export const deleteWashById = async (id, action, onError) => {
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
-        } else {
-            onError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         onError(error)
     }

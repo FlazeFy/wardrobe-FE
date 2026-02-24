@@ -14,9 +14,7 @@ export default function LandingSectionLogin(props) {
     const router = useRouter()
 
     // Repositories
-    const handleSubmit = async (e) => {
-        postLogin(username,password,router)
-    }
+    const handleSubmit = async (e) => postLogin(username,password,router)
 
     return (
         <div className='row' id={`${props.ctx}-section`}>

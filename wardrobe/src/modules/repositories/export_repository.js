@@ -34,14 +34,7 @@ export const fetchExport = async (ctx, type) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             })
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: `${getCleanTitleFromCtx(ctx)} data failed to download`,
-                confirmButtonText: "Okay!"
-            })
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -73,14 +66,7 @@ export const fetchExportCalendar = async (type, target, fileName, ctx) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             })
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: `Calendar ${ctx} failed to download`,
-                confirmButtonText: "Okay!"
-            })
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -111,14 +97,7 @@ export const fetchExportClothesDetail = async (id) => {
                 icon: "success",
                 confirmButtonText: "Okay!"
             })
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: `Clothes detail failed to download`,
-                confirmButtonText: "Okay!"
-            })
-        }
+        } 
     } catch (error) {
         messageError(error)
     }

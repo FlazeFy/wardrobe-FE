@@ -78,9 +78,7 @@ export const deleteClothesById = async (id,type_delete,action) => {
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
-        } else {
-            messageError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -98,9 +96,7 @@ export const deleteClothesUsedById = async (id,action) => {
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
-        } else {
-            messageError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -119,9 +115,7 @@ export const deleteUsedHistoryById = async (id,action) => {
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action() 
             })
-        } else {
-            messageError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -130,6 +124,7 @@ export const deleteUsedHistoryById = async (id,action) => {
 export const recoverClothesById = async (id,action) => {
     try {
         let response = await apiCall.put(`${MODULE_URL}/recover/${id}`)
+
         if(response.status === 200){
             Swal.fire({
                 title: "Success!",
@@ -139,9 +134,7 @@ export const recoverClothesById = async (id,action) => {
             }).then((result) => {
                 if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) action()
             })
-        } else {
-            messageError("Something went wrong!")
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -174,13 +167,7 @@ export const postSchedule = async (day,isRemind,scheduleNote,props) => {
             }).then((result) => {
                 if (result.isConfirmed) props.fetchClothes()
             })
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: response.data.message,
-            })
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -206,14 +193,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,props) => {
             }).then((result) => {
                 if (result.isConfirmed && props.fetchClothes) props.fetchClothes()
             })
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: response.data.message,
-                confirmButtonText: "Okay!"
-            })
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -241,14 +221,7 @@ export const postOutfitClothes = async (selectedItem,props) => {
             }).then((result) => {
                 if (result.isConfirmed) props.fetchOutfit()
             })
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: response.data.message,
-                confirmButtonText: "Okay!"
-            })
-        }
+        } 
     } catch (error) {
         messageError(error)
     }
@@ -276,8 +249,6 @@ export const fetchClothesSummary = async (now, onSuccess, onError) => {
             fetchData(response.data.data)
             storeLocal("stats_summary", JSON.stringify(response.data.data))
             storeLocal("last_hit-stats_summary", JSON.stringify(now))
-        } else {
-            throw new Error(response.data.message || "Failed to fetch data")
         }
     } catch (error) {
         messageError(error)
