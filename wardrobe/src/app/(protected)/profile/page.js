@@ -12,7 +12,7 @@ import ProfileSectionExportData from "./sections/profile_export_data"
 import ProfileSectionSendQuestion from "./sections/profile_post_question"
 import ProfileSectionSignOut from "./sections/profile_sign_out"
 import ProfileSectionPropsProfile from "./sections/profile_props_profile"
-import { messageError } from "@/modules/helpers/message"
+import { fetchMyProfileRepo } from "@/modules/repositories/user_repository"
 
 export default function ProfilePage(props) {
     const [error, setError] = useState(null)
@@ -20,25 +20,23 @@ export default function ProfilePage(props) {
     const [items, setItems] = useState(null)
 
     useEffect(() => {
-        fetchProfile()
-    },[])
-
-    const fetchProfile = () => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/user/my`)
-        .then(res => res.json())
-            .then(
+        fetchMyProfileRepo(
             (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data)  
+                setItems(result)  
+                finish()
             },
             (error) => {
-                messageError(error)
                 setError(error)
+                finish()
             }
         )
-    }
+
+        const finish = () => {
+            setIsLoaded(true)
+            Swal.close()
+        }
+    },[])
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>

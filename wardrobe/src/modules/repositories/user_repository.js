@@ -1,6 +1,6 @@
 import apiCall from "@/configs/axios"
 
-const MODULE_URL = "/api/v1/stats"
+const MODULE_URL = "/api/v1/user"
 
 export const fetchRefreshToken = async () => {
     try {
@@ -8,12 +8,22 @@ export const fetchRefreshToken = async () => {
         if (!res.status === 200) return null
 
         return {
-            username: res.message.username,
-            email: res.message.email,
-            role: res.role,
+            username: res.data.message.username,
+            email: res.data.message.email,
+            role: res.data.role,
         }
     } catch (error) {
         console.error("refresh token error:", error)
         return null
+    }
+}
+
+export const fetchMyProfileRepo = async (onSuccess, onError) => {
+    try {
+        const response = await apiCall.get(`${MODULE_URL}/my`)
+        onSuccess(response.data.data)
+    } catch (error) {
+        messageError(error)
+        onError(error)
     }
 }

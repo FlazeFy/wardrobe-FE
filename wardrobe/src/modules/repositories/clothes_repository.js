@@ -396,3 +396,13 @@ export const fetchLastClothesHistory = async (onSuccess, onNotFound, onError) =>
         onError(error)
     }
 }
+
+export const fetchClothesDetailByIDRepo = async (onSuccess, onError, id) => {
+    try {
+        const response = await apiCall.get(`${MODULE_URL}/detail/${id}`)
+        onSuccess(response.data.data)
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}

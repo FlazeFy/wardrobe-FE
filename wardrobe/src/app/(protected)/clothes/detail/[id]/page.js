@@ -13,41 +13,35 @@ import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_hist
 import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete"
 import ClothesDetailSchedule from "./sections/clothes_detail_schedule"
 import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule"
-import { getLocal } from "../../../../../modules/storages/local"
 import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit"
 import DetailSectionClothesHeader from "./sections/detail_clothes_header"
-import { messageError } from "@/modules/helpers/message"
+import { fetchClothesDetailByIDRepo } from "@/modules/repositories/clothes_repository"
 
 export default function ClothesDetailPage({params}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const [items, setItems] = useState(null)
-    const tokenKey = getLocal("token_key")
+    const [item, setItem] = useState(null)
 
     useEffect(() => {
-        fetchClothes()
+        fetchClothesDetail()
     },[])
 
-    const fetchClothes = () => {
-        Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/detail/${params.id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data)  
-            },
+    const fetchClothesDetail = () => {
+        fetchClothesDetailByIDRepo(
+            (response) => {
+                setItem(response)
+                finish()
+            }, 
             (error) => {
-                messageError(error)
                 setError(error)
-            }
+                finish()
+            }, params.id
         )
+
+        const finish = () => {
+            setIsLoaded(true)
+            Swal.close()
+        }
     }
 
     if (error) {
@@ -66,11 +60,11 @@ export default function ClothesDetailPage({params}) {
                 <div className="row">
                     <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={4}/>
-                        <DetailSectionClothesHeader items={items.detail} id={params.id} schedule={items.schedule}/>
+                        <DetailSectionClothesHeader items={item.detail} id={params.id} schedule={item.schedule}/>
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                         <AtomsBreakLine length={2}/>
-                        <img src={items.detail.clothes_image ?? "/images/shoes_sample.jpg"} style={{maxWidth:"50%", minWidth:"100px"}} className="img img-fluid img-rounded d-block mx-auto"/>
+                        <img src={item.detail.clothes_image ?? "/images/shoes_sample.jpg"} style={{maxWidth:"50%", minWidth:"100px"}} className="img img-fluid img-rounded d-block mx-auto"/>
                         <AtomsBreakLine length={2}/>
                     </div>
                 </div>
@@ -79,10 +73,10 @@ export default function ClothesDetailPage({params}) {
                 <div className="form-container">
                     <div style={{maxWidth:"50vw"}}>
                         <h2 className="mb-0 fw-bold">Edit Clothes</h2>
-                        <h5 className="text-secondary">This clothes has been added to your wardrobe since {convertDatetimeBasedLocal(items.detail.created_at)}{items.detail.updated_at && <span>and the last update was detected on {convertDatetimeBasedLocal(items.detail.updated_at)}</span>}</h5>
+                        <h5 className="text-secondary">This clothes has been added to your wardrobe since {convertDatetimeBasedLocal(item.detail.created_at)}{item.detail.updated_at && <span>and the last update was detected on {convertDatetimeBasedLocal(item.detail.updated_at)}</span>}</h5>
                     </div>
                     <AtomsBreakLine length={1}/>
-                    <ClothesDetailEditForm ctx="clothes_detail" item={items.detail}/>
+                    <ClothesDetailEditForm ctx="clothes_detail" item={item.detail}/>
                 </div>
                 <AtomsBreakLine length={1}/>
 
@@ -91,19 +85,19 @@ export default function ClothesDetailPage({params}) {
                         <div className="form-container" id="used_history-section">
                             <div style={{maxWidth:"50vw"}}>
                                 <h2 className="mb-0 fw-bold">Used History</h2>
-                                <h5 className="text-secondary">Start from <b>{convertDatetimeBasedLocal(items.last_used_history)}</b>, this clothes has been used for <b id="total_used-text">{items.total_used_history}</b> times. 
-                                    <ClothesDetailAddUsedHistory fetchClothes={fetchClothes} id={params.id} ctx="add_used_history" deleted_at={items.detail.deleted_at} with_button={true}/></h5>
+                                <h5 className="text-secondary">Start from <b>{convertDatetimeBasedLocal(item.last_used_history)}</b>, this clothes has been used for <b id="total_used-text">{item.total_used_history}</b> times. 
+                                    <ClothesDetailAddUsedHistory fetchClothes={fetchClothesDetail} id={params.id} ctx="add_used_history" deleted_at={item.detail.deleted_at} with_button={true}/></h5>
                             </div>
                             <AtomsBreakLine length={1}/>
-                            <ClothesDetailUsedHistory ctx="clothes_used_history" items={items.used_history} fetchClothes={fetchClothes} is_deleted={items.detail.deleted_at ? true : false}/>
+                            <ClothesDetailUsedHistory ctx="clothes_used_history" items={item.used_history} fetchClothes={fetchClothesDetail} is_deleted={item.detail.deleted_at ? true : false}/>
                         </div>
                     </div>
                     <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="form-container" id="schedule-section">
                             <h2 className="mb-0 fw-bold">Schedule</h2>
                             <h5 className="text-secondary">You can set weekly schedule for a clothes, so we can remind you night before the day of use. 
-                                    <ClothesDetailAddSchedule fetchClothes={fetchClothes} id={params.id} ctx="add_schedule" deleted_at={items.detail.deleted_at}/></h5>
-                            <ClothesDetailSchedule items={items.schedule} fetchClothes={fetchClothes}/>
+                                    <ClothesDetailAddSchedule fetchClothes={fetchClothesDetail} id={params.id} ctx="add_schedule" deleted_at={item.detail.deleted_at}/></h5>
+                            <ClothesDetailSchedule items={item.schedule} fetchClothes={fetchClothesDetail}/>
                         </div>
                     </div>
                 </div>
@@ -112,12 +106,12 @@ export default function ClothesDetailPage({params}) {
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                         <div className="form-container" id="outfit-section">
                             <h2 className="mb-0 fw-bold">Outfit</h2>
-                            <h5 className="text-secondary">This clothes {items.outfit ? <span>has found in {items.outfit.length} outfit</span> : <span>doesn&apost have found in any outfit</span>}</h5>
-                            <ClothesDetailSectionFoundedOutfit items={items.outfit}/>
+                            <h5 className="text-secondary">This clothes {item.outfit ? <span>has found in {item.outfit.length} outfit</span> : <span>doesn&apost have found in any outfit</span>}</h5>
+                            <ClothesDetailSectionFoundedOutfit items={item.outfit}/>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <ClothesDetailDeleteClothesById id={params.id} type_delete={items.detail.deleted_at ? 'hard' : 'soft'} deleted_at={items.detail.deleted_at} clothes_name={items.detail.clothes_name} fetchClothes={fetchClothes}/>
+                        <ClothesDetailDeleteClothesById id={params.id} type_delete={item.detail.deleted_at ? 'hard' : 'soft'} deleted_at={item.detail.deleted_at} clothes_name={item.detail.clothes_name} fetchClothes={fetchClothesDetail}/>
                     </div>
                 </div>
 

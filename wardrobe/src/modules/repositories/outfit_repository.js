@@ -1,6 +1,7 @@
 import { getLocal, storeLocal } from "../storages/local"
 import apiCall from '@/configs/axios'
 import Swal from "sweetalert2"
+import { messageError } from "../helpers/message"
 
 const MODULE_URL = "/api/v1/clothes/outfit"
 
@@ -103,9 +104,7 @@ export const fetchOutfitSummary = async (now, onSuccess, onError) => {
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
         const timeDiffInSec = oldTime ? Math.floor((now - oldTime) / 1000) : null
     
-        const fetchData = (data) => {
-            onSuccess(data)
-        }
+        const fetchData = (data) => onSuccess(data)
     
         if (timeDiffInSec !== null && timeDiffInSec < 540 && oldTimeHit) {
             const oldData = JSON.parse(getLocal("generated_outfit_summary"))
@@ -121,4 +120,14 @@ export const fetchOutfitSummary = async (now, onSuccess, onError) => {
     } catch (error) {
         onError(error)
     }    
+}
+
+export const fetchLastOutfit = async (onSuccess, onError) => {
+    try {
+        const response = await apiCall.get(`/api/v1/clothes/outfit/last`)
+        onSuccess(response.data.data)
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
 }

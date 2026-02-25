@@ -6,8 +6,8 @@ import AtomsBreakLine from '../../../components/atoms/atoms_breakline'
 import { convertDatetimeBasedLocal } from '../../../modules/helpers/converter'
 import { getLocal, storeLocal } from '../../../modules/storages/local'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
-import { messageError } from '@/modules/helpers/message'
 import Link from "next/link"
+import { fetchLastOutfit } from '@/modules/repositories/outfit_repository'
 
 export default function LandingSectionLastOutfit(props) {
     const [error, setError] = useState(null)
@@ -22,7 +22,17 @@ export default function LandingSectionLastOutfit(props) {
         const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         const today = new Date()
         setTodayName(daysOfWeek[today.getDay()])
-        fetchLastOutfit()
+        fetchLastOutfit(
+            (result) => {
+                setItems(result)
+                console.log(items)
+                setIsLoaded(true)
+            }, 
+            (error) => {
+                setError(error)
+                setIsLoaded(true)
+            }
+        )
         fetchWeather()
     }, [])
 
@@ -74,23 +84,6 @@ export default function LandingSectionLastOutfit(props) {
             fetchData()
             defineLastHitWeather(now)
         }
-    }
-
-    const fetchLastOutfit = () => {
-        Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/last`)
-        .then((res) => res.json())
-        .then(
-            (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data)
-            },
-            (error) => {
-                messageError(error)
-                setError(error)
-            }
-        )
     }
 
     if (error) {
