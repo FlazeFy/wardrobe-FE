@@ -4,7 +4,7 @@ import { getLocal, storeLocal } from '../../modules/storages/local.js'
 
 const MODULE_URL = "/api/v1/feedback"
 
-export const postFeedback = async (feedbackRate, feedbackBody, setFeedbackBody, setFeedbackRate, onError) => {
+export const postFeedback = async (feedbackRate, feedbackBody, onError) => {
     try {
         Swal.showLoading()
 
@@ -29,11 +29,6 @@ export const postFeedback = async (feedbackRate, feedbackBody, setFeedbackBody, 
                         icon: "success",
                         allowOutsideClick: false,
                         confirmButtonText: "Okay!"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            setFeedbackBody("")
-                            setFeedbackRate(0)
-                        }
                     })
                 } else {
                     Swal.fire({

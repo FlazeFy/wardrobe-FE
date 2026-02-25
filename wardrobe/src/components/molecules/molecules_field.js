@@ -35,7 +35,7 @@ export default function MoleculesField(props){
                     </div>
                 : props.type == 'rating' ?
                     <div id={props.id}>
-                        <ReactStars count={5} onChange={props.handleChange} size={24} half={false} color2={'#ffd700'}/>
+                        <ReactStars count={5} onChange={props.handleChange} value={props.defaultValue}  size={24} half={false} color2={'#ffd700'}/>
                     </div>
                 :
                     <></>
