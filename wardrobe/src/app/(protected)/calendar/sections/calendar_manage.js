@@ -6,7 +6,7 @@ import { useState } from "react"
 import Swal from "sweetalert2"
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box"
 import { getLocal } from "../../../../modules/storages/local"
-import { fetchCalendarDetail } from "@/modules/repositories/clothes_repository"
+import { getCalendarDetailRepo } from "@/modules/repositories/clothes_repository"
 
 export default function CalendarSectionManage(props) {
     const [error, setError] = useState(null)
@@ -14,11 +14,11 @@ export default function CalendarSectionManage(props) {
     const [items, setItems] = useState(null)
     const [isFetched, setIsFetched] = useState(false)
 
-    const fetchCalendar = () => {
+    const getCalendarRepo = () => {
         if (isFetched) return; 
 
         Swal.showLoading()
-        fetchCalendarDetail(
+        getCalendarDetailRepo(
             props.date,
             (result) => {
                 setIsLoaded(true)
@@ -33,7 +33,7 @@ export default function CalendarSectionManage(props) {
 
     return (
         <>
-            <button className="btn btn-warning w-100 mb-2" data-bs-target={`#manageCalendarModal_${props.date.replaceAll(' ','_')}`} data-bs-toggle="modal" onClick={fetchCalendar}><FontAwesomeIcon icon={faPenToSquare}/></button>
+            <button className="btn btn-warning w-100 mb-2" data-bs-target={`#manageCalendarModal_${props.date.replaceAll(' ','_')}`} data-bs-toggle="modal" onClick={getCalendarRepo}><FontAwesomeIcon icon={faPenToSquare}/></button>
             <div className="modal fade" id={`manageCalendarModal_${props.date.replaceAll(' ','_')}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">

@@ -3,10 +3,10 @@ import { convertDatetimeBasedLocal, getCleanTitleFromCtx } from '../../../../../
 import React from 'react'
 import { useState, useEffect } from "react"
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
-import RecoverClothesById from '../../detail/[id]/sections/recover_clothes_by_id'
+import PutRecoverClothesByIdRepo from '../../detail/[id]/sections/recover_clothes_by_id'
 import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
-import HardDeleteClothesById from './hard_delete_clothes_by_id'
-import { fetchTrash } from '@/modules/repositories/clothes_repository'
+import HarddeleteClothesByIdRepo from './hard_delete_clothes_by_id'
+import { getTrashRepo } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionAllDeletedClothes(props) {
     const [error, setError] = useState(null)
@@ -14,7 +14,7 @@ export default function ClothesSectionAllDeletedClothes(props) {
     const [items, setItems] = useState(null)
 
     useEffect(() => {
-        fetchTrash(
+        getTrashRepo(
             (res) => {
                 setIsLoaded(true)
                 setItems(res)
@@ -70,8 +70,8 @@ export default function ClothesSectionAllDeletedClothes(props) {
                                         <p className='m-0 mb-2'>{convertDatetimeBasedLocal(el.deleted_at)}</p>
                                     </td>
                                     <td>
-                                        <HardDeleteClothesById id={el.id} fetchTrash={fetchTrash}/>
-                                        <RecoverClothesById id={el.id} button_with_title={false} fetchTrash={fetchTrash}/>
+                                        <HarddeleteClothesByIdRepo id={el.id} getTrashRepo={getTrashRepo}/>
+                                        <PutRecoverClothesByIdRepo id={el.id} button_with_title={false} getTrashRepo={getTrashRepo}/>
                                     </td>
                                 </tr>
                             })

@@ -3,12 +3,12 @@ import { faCheck, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import MoleculesField from '../../../../components/molecules/molecules_field'
-import { postRegister } from '@/modules/repositories/auth_repository'
+import { postRegisterRepo } from '@/modules/repositories/auth_repository'
 
 export default function RegisterSectionForm(props) {
     // Services
     const handleSubmit = async (e) => {
-        postRegister(props)
+        postRegisterRepo(props)
     }   
 
     return (

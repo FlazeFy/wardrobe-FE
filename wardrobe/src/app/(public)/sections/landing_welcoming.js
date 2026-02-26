@@ -2,7 +2,7 @@
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
-import { fetchWelcomeStats } from "@/modules/repositories/general_repository"
+import { getWelcomeStatsRepo } from "@/modules/repositories/general_repository"
 import useAuthStore from "@/modules/store/auth_store"
 
 export default function LandingSectionWelcoming(props) {
@@ -14,7 +14,7 @@ export default function LandingSectionWelcoming(props) {
     useEffect(() => {
         Swal.showLoading()
         const now = new Date()
-        fetchWelcomeStats(
+        getWelcomeStatsRepo(
             now,
             (data) => {
                 setIsLoaded(true)

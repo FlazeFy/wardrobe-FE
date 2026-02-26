@@ -3,7 +3,7 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { postSaveOutfitHistory } from '@/modules/repositories/outfit_repository'
+import { postSaveOutfitHistoryRepo } from '@/modules/repositories/outfit_repository'
 
 export default function OutfitSectionPostOutfitHistory(props) {
     // Services
@@ -17,7 +17,7 @@ export default function OutfitSectionPostOutfitHistory(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                postSaveOutfitHistory(id,props)
+                postSaveOutfitHistoryRepo(id,props)
             } 
         })
     }

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
-import { fetchMostClothesCtx } from '@/modules/repositories/stats_repository'
+import { getMostClothesCtxRepo } from '@/modules/repositories/stats_repository'
 
 export default function EmbedMostClothesCtx(props) {
     const [error, setError] = useState(null)
@@ -18,7 +18,7 @@ export default function EmbedMostClothesCtx(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchMostClothesCtx(
+        getMostClothesCtxRepo(
             (result) => {
                 setItemsClothesType(result.clothes_type)  
                 setItemsClothesMerk(result.clothes_merk)  

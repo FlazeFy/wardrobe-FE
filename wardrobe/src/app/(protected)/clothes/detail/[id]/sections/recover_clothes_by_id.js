@@ -3,9 +3,9 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { recoverClothesById } from '@/modules/repositories/clothes_repository'
+import { PutRecoverClothesByIdRepo } from '@/modules/repositories/clothes_repository'
 
-export default function RecoverClothesById(props) {
+export default function PutRecoverClothesByIdRepo(props) {
     // Services
     const handleRecover = async (id) => {
         Swal.fire({
@@ -16,7 +16,7 @@ export default function RecoverClothesById(props) {
             confirmButtonText: "Yes, Recover it!",
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
-            if (result.isConfirmed) recoverClothesById(id, props.fetchTrash())
+            if (result.isConfirmed) PutRecoverClothesByIdRepo(id, props.getTrashRepo())
         })
     }
 

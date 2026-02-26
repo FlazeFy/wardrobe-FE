@@ -5,7 +5,7 @@ import { getLocal, storeLocal } from "../storages/local"
 
 const MODULE_URL = "/api/v1/clothes"
 
-export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
+export const postClothesRepo = async (clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
     clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,router) => {
     try {
         Swal.showLoading()
@@ -66,7 +66,7 @@ export const postClothes = async (clothesName,clothesDesc,clothesMerk,clothesSiz
     }
 }
 
-export const deleteClothesById = async (id,type_delete,action) => {
+export const deleteClothesByIdRepo = async (id,type_delete,action) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/${type_delete == 'hard' ? 'destroy' : 'delete'}/${id}`)
         if(response.status === 200){
@@ -84,7 +84,7 @@ export const deleteClothesById = async (id,type_delete,action) => {
     }
 } 
 
-export const deleteClothesUsedById = async (id,action) => {
+export const deleteClothesUsedByIdRepo = async (id,action) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/destroy_used/${id}`)
         if(response.status === 200){
@@ -102,7 +102,7 @@ export const deleteClothesUsedById = async (id,action) => {
     }
 }
 
-export const deleteUsedHistoryById = async (id,action) => {
+export const deleteUsedHistoryByIdRepo = async (id,action) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/destroy_used/${id}`)
         
@@ -121,7 +121,7 @@ export const deleteUsedHistoryById = async (id,action) => {
     }
 }
 
-export const recoverClothesById = async (id,action) => {
+export const PutRecoverClothesByIdRepo = async (id,action) => {
     try {
         let response = await apiCall.put(`${MODULE_URL}/recover/${id}`)
 
@@ -140,7 +140,7 @@ export const recoverClothesById = async (id,action) => {
     }
 } 
 
-export const postSchedule = async (day,isRemind,scheduleNote,props) => {
+export const postScheduleRepo = async (day,isRemind,scheduleNote,props) => {
     try {
         Swal.showLoading()
 
@@ -173,7 +173,7 @@ export const postSchedule = async (day,isRemind,scheduleNote,props) => {
     }
 }
 
-export const postUsedClothes = async (usedContext,clothesNotes,props) => {
+export const postUsedClothesRepo = async (usedContext,clothesNotes,props) => {
     try {
         const body = {
             "clothes_id" : props.id,
@@ -199,7 +199,7 @@ export const postUsedClothes = async (usedContext,clothesNotes,props) => {
     }
 }
 
-export const postOutfitClothes = async (selectedItem,props) => {
+export const getOutfitClothesRepo = async (selectedItem,props) => {
     try {
         // Payload
         const body = {
@@ -227,7 +227,7 @@ export const postOutfitClothes = async (selectedItem,props) => {
     }
 }
 
-export const fetchClothesSummary = async (now, onSuccess, onError) => {
+export const getClothesSummaryRepo = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-stats_summary")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
@@ -256,7 +256,7 @@ export const fetchClothesSummary = async (now, onSuccess, onError) => {
     }
 }
 
-export const fetchTrash = async (onSuccess, onError) => {
+export const getTrashRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/trash`)
         onSuccess(response.data.data.data)
@@ -271,7 +271,7 @@ export const fetchTrash = async (onSuccess, onError) => {
     }
 }
 
-export const fetchTotalClothesByType = async (onSuccess, onError) => {
+export const getTotalClothesByTypeRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`/api/v1/stats/clothes/by/clothes_type`)
         onSuccess(response.data)
@@ -281,7 +281,7 @@ export const fetchTotalClothesByType = async (onSuccess, onError) => {
     }
 }
 
-export const fetchTodaySchedule = async (dayName, onSuccess, onError) => {
+export const getTodayScheduleRepo = async (dayName, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/schedule/${dayName}`)
 
@@ -292,7 +292,7 @@ export const fetchTodaySchedule = async (dayName, onSuccess, onError) => {
     }
 }
 
-export const fetchAllClothesHeader = async (onSuccess, onNotFound, onError) => {
+export const getAllClothesHeaderRepo = async (onSuccess, onNotFound, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/header/all/desc`)
         onSuccess(response.data.data)
@@ -307,7 +307,7 @@ export const fetchAllClothesHeader = async (onSuccess, onNotFound, onError) => {
     }
 }
 
-export const fetchUnfinishedWash = async (onSuccess, onNotFound, onError) => {
+export const getUnfinishedWashRepo = async (onSuccess, onNotFound, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/wash/unfinished`)
         onSuccess(response.data.data)
@@ -322,7 +322,7 @@ export const fetchUnfinishedWash = async (onSuccess, onNotFound, onError) => {
     }
 }
 
-export const fetchTomorrowSchedule = async (day, onSuccess, onError) => {
+export const getTomorrowScheduleRepo = async (day, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/schedule/tomorrow/${day}`)
         onSuccess(response.data.data)
@@ -332,7 +332,7 @@ export const fetchTomorrowSchedule = async (day, onSuccess, onError) => {
     }
 }
 
-export const fetchUsedHistory = async (onSuccess, onError) => {
+export const getUsedHistoryRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/history/all/desc`)
         onSuccess(response.data.data)
@@ -342,7 +342,7 @@ export const fetchUsedHistory = async (onSuccess, onError) => {
     }
 }
 
-export const fetchClothesHeader = async (onSuccess, onError) => {
+export const getClothesHeaderRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/header/all/desc`)
         onSuccess(response.data.data)
@@ -352,7 +352,7 @@ export const fetchClothesHeader = async (onSuccess, onError) => {
     }
 }
 
-export const fetchMonthlyClothesUsed = async (year, onSuccess, onError) => {
+export const getMonthlyClothesUsedRepo = async (year, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/stats/clothes/monthly/used/${year}`)
         onSuccess(response.data)
@@ -362,7 +362,7 @@ export const fetchMonthlyClothesUsed = async (year, onSuccess, onError) => {
     }
 }
 
-export const fetchCalendar = async (month, year, onSuccess, onError) => {
+export const getCalendarRepo = async (month, year, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/stats/calendar/${month}/${year}`)
         onSuccess(response.data)
@@ -372,7 +372,7 @@ export const fetchCalendar = async (month, year, onSuccess, onError) => {
     }
 }
 
-export const fetchCalendarDetail = async (date,onSuccess,onError) => {
+export const getCalendarDetailRepo = async (date,onSuccess,onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/stats/calendar/detail/date/${date}`)
         onSuccess(response.data)
@@ -382,7 +382,7 @@ export const fetchCalendarDetail = async (date,onSuccess,onError) => {
     }
 }
 
-export const fetchLastClothesHistory = async (onSuccess, onNotFound, onError) => {
+export const getLastClothesHistoryRepo = async (onSuccess, onNotFound, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/history/last`)
         onSuccess(response.data)
@@ -397,7 +397,7 @@ export const fetchLastClothesHistory = async (onSuccess, onNotFound, onError) =>
     }
 }
 
-export const fetchClothesDetailByIDRepo = async (onSuccess, onError, id) => {
+export const getClothesDetailByIDRepo = async (onSuccess, onError, id) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/detail/${id}`)
         onSuccess(response.data.data)
@@ -407,7 +407,7 @@ export const fetchClothesDetailByIDRepo = async (onSuccess, onError, id) => {
     }
 }
 
-export const fetchAllClothesDetailRepo = async (onSuccess, onError, view, order) => {
+export const getAllClothesDetailRepo = async (onSuccess, onError, view, order) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/detail/${view}/${order}`)
         onSuccess(response.data.data)

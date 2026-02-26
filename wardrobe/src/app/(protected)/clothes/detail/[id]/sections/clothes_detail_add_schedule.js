@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../../components/molecules/molecules_field'
-import { postSchedule } from '@/modules/repositories/clothes_repository'
+import { postScheduleRepo } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesDetailAddSchedule(props) {
     const [error, setError] = useState(null)
@@ -24,7 +24,7 @@ export default function ClothesDetailAddSchedule(props) {
     },[])
 
     // Services
-    const handleSubmit = async (e) => postSchedule(day,isRemind,scheduleNote,props)
+    const handleSubmit = async (e) => postScheduleRepo(day,isRemind,scheduleNote,props)
 
     const preventDeleted = () => {
         Swal.fire({

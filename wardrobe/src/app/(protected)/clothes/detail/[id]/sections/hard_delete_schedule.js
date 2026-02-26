@@ -3,7 +3,7 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { deleteScheduleById } from '@/modules/repositories/schedule_repository'
+import { deleteScheduleByIdRepo } from '@/modules/repositories/schedule_repository'
 
 export default function HardDeleteSchedule(props) {
     // Services
@@ -16,7 +16,7 @@ export default function HardDeleteSchedule(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!",
         }).then(async (result) => {
-            if (result.isConfirmed) deleteScheduleById(id,props.fetchClothes())
+            if (result.isConfirmed) deleteScheduleByIdRepo(id,props.fetchClothes())
         })
     }
 

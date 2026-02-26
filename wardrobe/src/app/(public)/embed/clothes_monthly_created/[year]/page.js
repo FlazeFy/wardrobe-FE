@@ -1,7 +1,7 @@
 "use client"
 import MoleculesAlertBox from "@/components/molecules/molecules_alert_box"
 import MoleculesLineChart from "@/components/molecules/molecules_line_chart"
-import { fetchMonthlyClothes } from "@/modules/repositories/stats_repository"
+import { getMonthlyClothesRepo } from "@/modules/repositories/stats_repository"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 
@@ -12,7 +12,7 @@ export default function EmbedClothesMonthlyCreatedPage({params}) {
 
     useEffect(() => {
         Swal.showLoading()
-            fetchMonthlyClothes(
+            getMonthlyClothesRepo(
             params.year, 
             (data) => {
                 setIsLoaded(true)

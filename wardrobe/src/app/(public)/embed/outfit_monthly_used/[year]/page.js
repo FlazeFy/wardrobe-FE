@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '@/components/molecules/molecules_alert_box'
 import MoleculesNoData from '@/components/molecules/molecules_no_data'
-import { fetchOutfitMonthlyTotalUsed } from '@/modules/repositories/stats_repository'
+import { getOutfitMonthlyTotalUsedRepo } from '@/modules/repositories/stats_repository'
 
 export default function EmbedOutfitMonthlyTotalUsed({params}) {
     const [error, setError] = useState(null)
@@ -15,7 +15,7 @@ export default function EmbedOutfitMonthlyTotalUsed({params}) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchOutfitMonthlyTotalUsed(
+        getOutfitMonthlyTotalUsedRepo(
             params.year,
             (data) => {
                 setIsLoaded(true)

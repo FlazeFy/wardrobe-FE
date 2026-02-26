@@ -3,7 +3,7 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { deleteUsedHistoryById } from '@/modules/repositories/clothes_repository'
+import { deleteUsedHistoryByIdRepo } from '@/modules/repositories/clothes_repository'
 
 export default function UsedHardDeleteUsedHistory(props) {
     // Services
@@ -16,7 +16,7 @@ export default function UsedHardDeleteUsedHistory(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!",
         }).then(async (result) => {
-            if (result.isConfirmed) deleteUsedHistoryById(id,props.fetchClothes())
+            if (result.isConfirmed) deleteUsedHistoryByIdRepo(id,props.fetchClothes())
         })
     }
 

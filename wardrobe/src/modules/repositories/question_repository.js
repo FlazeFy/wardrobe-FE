@@ -3,7 +3,7 @@ import apiCall from '@/configs/axios'
 
 const MODULE_URL = "/api/v1/question"
 
-export const postQuestion = async (question, setQuestion, onError) => {
+export const postQuestionRepo = async (question, setQuestion, onError) => {
     try {
         Swal.showLoading()
 
@@ -47,7 +47,7 @@ export const postQuestion = async (question, setQuestion, onError) => {
     }
 }
 
-export const fetchFAQ = async (onSuccess, onError) => {
+export const getFAQRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/faq`)
         onSuccess(response.data.data)

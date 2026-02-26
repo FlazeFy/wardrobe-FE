@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import { getLocal, storeLocal } from '../../../../modules/storages/local'
-import { fetchTotalClothesByType } from '@/modules/repositories/clothes_repository'
+import { getTotalClothesByTypeRepo } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionTotalByType(props) {
     const [error, setError] = useState(null)
@@ -40,7 +40,7 @@ export default function ClothesSectionTotalByType(props) {
         }
 
         // Fetch repo
-        fetchTotalClothesByType(
+        getTotalClothesByTypeRepo(
             (result) => {
                 fetchDataHandler(result)
             },

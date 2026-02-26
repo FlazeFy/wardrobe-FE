@@ -5,7 +5,7 @@ import { messageError } from "../helpers/message"
 
 const MODULE_URL = "/api/v1/clothes/outfit"
 
-export const postSaveOutfit = async (onError) => {
+export const postSaveOutfitRepo = async (onError) => {
     try {
         // Payload
         const data = JSON.parse(getLocal('generated_outfit_history'))
@@ -31,7 +31,7 @@ export const postSaveOutfit = async (onError) => {
     }
 }
 
-export const postSaveOutfitHistory = async (id, props, onError) => {
+export const postSaveOutfitHistoryRepo = async (id, props, onError) => {
     try {
         // Payload
         const data = {
@@ -61,7 +61,7 @@ export const postSaveOutfitHistory = async (id, props, onError) => {
     }
 }
 
-export const fetchAllOutfit = async (page, onSuccess, onError) => {
+export const getAllOutfitRepo = async (page, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}?page=${page}`)
         onSuccess(response.data.data)
@@ -70,7 +70,7 @@ export const fetchAllOutfit = async (page, onSuccess, onError) => {
     }    
 }
 
-export const fetchOutfitMonthlyTotalUsedById = async (id, onSuccess, onError) => {
+export const getOutfitMonthlyTotalUsedRepoByIdRepo = async (id, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`http://127.0.0.1:8000/api/v1/stats/outfit/monthly/by_outfit/2025/${id}`)
         onSuccess(response.data.data)
@@ -79,7 +79,7 @@ export const fetchOutfitMonthlyTotalUsedById = async (id, onSuccess, onError) =>
     }    
 }
 
-export const deleteOutfitHistoryById = async (id, action, onError) => {
+export const deleteOutfitHistoryByIdRepo = async (id, action, onError) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/history/by/${id}`)
         
@@ -98,7 +98,7 @@ export const deleteOutfitHistoryById = async (id, action, onError) => {
     }
 }
 
-export const fetchOutfitSummary = async (now, onSuccess, onError) => {
+export const getOutfitSummaryRepo = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-generated_outfit_summary")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null
@@ -122,7 +122,7 @@ export const fetchOutfitSummary = async (now, onSuccess, onError) => {
     }    
 }
 
-export const fetchLastOutfit = async (onSuccess, onError) => {
+export const getLastOutfitRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`/api/v1/clothes/outfit/last`)
         onSuccess(response.data.data)
@@ -132,7 +132,7 @@ export const fetchLastOutfit = async (onSuccess, onError) => {
     }
 }
 
-export const fetchOutfitByIdRepo = async (onSuccess, onError, id) => {
+export const getOutfitByIdRepo = async (onSuccess, onError, id) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/by/${id}`)
         onSuccess(response.data.data)
@@ -142,10 +142,10 @@ export const fetchOutfitByIdRepo = async (onSuccess, onError, id) => {
     }
 }
 
-export const fetchOutfitHistoryByOutfitIdRepo = async (onSuccess, onError, id) => {
+export const getOutfitHistoryByOutfitIdRepo = async (onSuccess, onError, id) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/history/${id}`)
-        onSuccess(response.data.data)
+        onSuccess(response.data)
     } catch (error) {
         messageError(error)
         onError(error)

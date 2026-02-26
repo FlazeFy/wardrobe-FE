@@ -1,5 +1,5 @@
 "use client"
-import ProfileSectionHardDeleteHistory from '../../app/(protected)/profile/sections/profile_hard_delete_history'
+import ProfileSectiondeleteHistoryRepo from '../../app/(protected)/profile/sections/profile_hard_delete_history'
 import React from 'react'
 import { convertDatetimeBasedLocal } from '../../modules/helpers/converter'
 
@@ -11,7 +11,7 @@ export default function OrganismsHistoryBox(props) {
                     <h6 className='mb-0'>{props.items.history_type} {props.items.history_context}</h6>
                     <p className='mb-0 text-secondary'>At {convertDatetimeBasedLocal(props.items.created_at)}</p>
                 </div>
-                <ProfileSectionHardDeleteHistory id={props.items.id} fetchHistory={props.fetchHistory}/>
+                <ProfileSectiondeleteHistoryRepo id={props.items.id} getHistoryRepo={props.getHistoryRepo}/>
             </div>
         </div>
     )

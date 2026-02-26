@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import { convertDatetimeBasedLocal } from '../../../../../modules/helpers/converter'
-import { fetchLastClothesHistory } from '@/modules/repositories/clothes_repository'
+import { getLastClothesHistoryRepo } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesAddSectionLastHistory(props) {
     const [error, setError] = useState(null)
@@ -16,7 +16,7 @@ export default function ClothesAddSectionLastHistory(props) {
         Swal.showLoading()
 
         // Fetch repo
-        fetchLastClothesHistory(
+        getLastClothesHistoryRepo(
             (data) => {
                 Swal.close()
                 setIsLoaded(true)

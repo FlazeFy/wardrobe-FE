@@ -11,11 +11,11 @@ import Swal from "sweetalert2"
 import { convertDatetimeBasedLocal } from "../../../../../modules/helpers/converter"
 import OutfitSectionUsedById from "./sections/outfit_used_by_id"
 import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_history"
-import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes"
+import OutfitDetailgetOutfitClothesRepo from "./sections/outfit_post_outfit_clothes"
 import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used"
 import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes"
 import Link from "next/link"
-import { fetchOutfitByIdRepo, fetchOutfitHistoryByOutfitIdRepo } from "@/modules/repositories/outfit_repository"
+import { getOutfitByIdRepo, getOutfitHistoryByOutfitIdRepo } from "@/modules/repositories/outfit_repository"
 
 export default function ClothesOutfitPage({params, ...props}) {
     const [error, setError] = useState(null)
@@ -36,7 +36,7 @@ export default function ClothesOutfitPage({params, ...props}) {
 
     const fetchOutfit = () => {
         Swal.showLoading()
-        fetchOutfitByIdRepo(
+        getOutfitByIdRepo(
             (result) => {
                 setItems(result)
                 finish()
@@ -50,7 +50,7 @@ export default function ClothesOutfitPage({params, ...props}) {
 
     const fetchAllHistory = () => {
         Swal.showLoading()
-        fetchOutfitHistoryByOutfitIdRepo(
+        getOutfitHistoryByOutfitIdRepo(
             (result) => {
                 setUsedHistoryItems(result.data)
                 setUsedHistoryMaxPage(result.last_page)
@@ -108,7 +108,7 @@ export default function ClothesOutfitPage({params, ...props}) {
                                     <OutfitSectionPostOutfitHistory fetchOutfit={fetchOutfit} fetchAllHistory={fetchAllHistory} id={params.id}/>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <OutfitDetailPostOutfitClothes fetchOutfit={fetchOutfit} id={params.id} selectedClothes={items.clothes}/>
+                                    <OutfitDetailgetOutfitClothesRepo fetchOutfit={fetchOutfit} id={params.id} selectedClothes={items.clothes}/>
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ import OrganismsOutfit from "../../../../../components/organisms/organisms_outfi
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import MoleculesNoData from "../../../../../components/molecules/molecules_no_data"
-import { fetchAllOutfit } from "@/modules/repositories/outfit_repository"
+import { getAllOutfitRepo } from "@/modules/repositories/outfit_repository"
 
 export default function GeneratedSectionShowAllOutfit(props) {
     // Initial variables
@@ -23,7 +23,7 @@ export default function GeneratedSectionShowAllOutfit(props) {
 
     const getAllOutfit = (page) => {
         Swal.showLoading()
-        fetchAllOutfit(page,
+        getAllOutfitRepo(page,
         (result) => {
             setIsLoaded(true)
 

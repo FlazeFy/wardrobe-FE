@@ -6,7 +6,7 @@ import apiCall from '@/configs/axios'
 
 const MODULE_URL = "/api/v1"
 
-export const postLogin = async (username, password, router) => {
+export const postLoginRepo = async (username, password, router) => {
     try {
         // Payload
         const body = {
@@ -45,7 +45,7 @@ export const postLogin = async (username, password, router) => {
     }
 }
 
-export const postRegister = async (props) => {
+export const postRegisterRepo = async (props) => {
     try {
         // Payload
         const body = {
@@ -91,7 +91,7 @@ export const postRegister = async (props) => {
     }
 }
 
-export const postValidateRegister = async (token,router) => {
+export const postValidateRegisterRepo = async (token,router) => {
     try {
         // Payload
         const { username } = useAuthStore()
@@ -128,7 +128,7 @@ export const postValidateRegister = async (token,router) => {
     }
 }
 
-export const postSignOut = async (router) => {
+export const postSignOutRepo = async (router) => {
     try {
         let response = await apiCall.get(`${MODULE_URL}/logout`)
         

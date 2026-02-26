@@ -2,11 +2,11 @@
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { fetchExportCalendar } from '@/modules/repositories/export_repository'
+import { getExportRepoCalendarRepo } from '@/modules/repositories/export_repository'
 
 export default function CalendarSectionExportData(props) {
     // Services
-    const handleDownload = async () => fetchExportCalendar('excel',props.year,`calendar-${props.year}.xlsx`, 'data')
+    const handleDownload = async () => getExportRepoCalendarRepo('excel',props.year,`calendar-${props.year}.xlsx`, 'data')
 
     return (
         <div className="field ms-3">

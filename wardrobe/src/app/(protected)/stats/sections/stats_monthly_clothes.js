@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
-import { fetchMonthlyClothes } from '../../../../modules/repositories/stats_repository'
+import { getMonthlyClothesRepo } from '../../../../modules/repositories/stats_repository'
 
 export default function StatsMonthlyClothes(props) {
     const [error, setError] = useState(null)
@@ -15,7 +15,7 @@ export default function StatsMonthlyClothes(props) {
     useEffect(() => {
         Swal.showLoading()
         if (props.year) {
-            fetchMonthlyClothes(
+            getMonthlyClothesRepo(
             props.year, 
             (data) => {
                 setIsLoaded(true)

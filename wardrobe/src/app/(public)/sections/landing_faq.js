@@ -6,7 +6,7 @@ import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import MoleculesFAQBox from "../../../components/molecules/molecules_faq_box"
 import MoleculesAlertBox from "../../../components/molecules/molecules_alert_box"
-import { fetchFAQ } from "@/modules/repositories/question_repository"
+import { getFAQRepo } from "@/modules/repositories/question_repository"
 import Link from "next/link"
 
 export default function LandingSectionFAQ(props) {
@@ -16,7 +16,7 @@ export default function LandingSectionFAQ(props) {
     const [tokenKey, setTokenKey] = useState(null)
     const now = new Date()
 
-    const fetchFAQHandler = () => {
+    const getFAQRepoHandler = () => {
         const oldTimeHit = getLocal('last_hit-faq')
 
         const fetchData = (data) => {
@@ -37,7 +37,7 @@ export default function LandingSectionFAQ(props) {
         }
 
         // Fetch repo
-        fetchFAQ(
+        getFAQRepo(
             (data) => {
                 fetchData(data)
                 storeLocal('faq', JSON.stringify(data))
@@ -52,7 +52,7 @@ export default function LandingSectionFAQ(props) {
     useEffect(() => {
         Swal.showLoading()
         setTokenKey(getLocal('token_key'))
-        fetchFAQHandler()
+        getFAQRepoHandler()
     }, [])
 
     if (error) {

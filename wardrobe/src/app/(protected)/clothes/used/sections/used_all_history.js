@@ -4,7 +4,7 @@ import { convertDatetimeBasedLocal } from '../../../../../modules/helpers/conver
 import React, { useEffect, useState } from 'react'
 import UsedHardDeleteUsedHistory from './used_hard_delete_used_history'
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
-import { fetchUsedHistory } from '@/modules/repositories/clothes_repository'
+import { getUsedHistoryRepo } from '@/modules/repositories/clothes_repository'
 
 export default function UsedAllHistory(props) {
     const [error, setError] = useState(null)
@@ -12,7 +12,7 @@ export default function UsedAllHistory(props) {
     const [items, setItems] = useState(null)
 
     useEffect(() => {
-        fetchUsedHistory(
+        getUsedHistoryRepo(
             (result) => {
                 setIsLoaded(true)
                 setItems(result ? result.data :null)  
@@ -52,7 +52,7 @@ export default function UsedAllHistory(props) {
                                             {dt.clothes_note ?? <span className='text-secondary fst-italic'>- No Notes Provided -</span>}
                                         </td>
                                         <td>{convertDatetimeBasedLocal(dt.created_at)}</td>
-                                        <td className='text-center'><UsedHardDeleteUsedHistory id={dt.id} fetchClothes={fetchUsedHistory}/></td>
+                                        <td className='text-center'><UsedHardDeleteUsedHistory id={dt.id} fetchClothes={getUsedHistoryRepo}/></td>
                                     </tr>
                                 )
                             })

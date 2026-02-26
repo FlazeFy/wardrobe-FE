@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import OrganismsClothesWashBox from '../../../../../components/organisms/organisms_clothes_wash_box'
 import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
-import { fetchWashClothes } from '@/modules/repositories/wash_repository'
+import { getWashClothesRepo } from '@/modules/repositories/wash_repository'
 
 export default function WashSectionAllHistory(props) {
     const [error, setError] = useState(null)
@@ -13,7 +13,7 @@ export default function WashSectionAllHistory(props) {
     const [page, setPage] = useState(1)
 
     useEffect(() => {
-        fetchWashClothes(page, 
+        getWashClothesRepo(page, 
             (result) =>{
                 setIsLoaded(true)
                 setItems(result.status === 400 ? null : result.data.data)
@@ -34,7 +34,7 @@ export default function WashSectionAllHistory(props) {
                     items && items.length > 0 ? 
                         items.map((dt,idx) => {
                             return <div className='col-xl-6 col-lg-12 col-md-6 col-sm-12 col-12' key={idx}>
-                                <OrganismsClothesWashBox key={idx} item={dt} fetchWashClothes={fetchWashClothes}/>
+                                <OrganismsClothesWashBox key={idx} item={dt} getWashClothesRepo={getWashClothesRepo}/>
                             </div>
                         })
                     : 

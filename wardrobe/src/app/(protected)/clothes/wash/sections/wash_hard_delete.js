@@ -3,7 +3,7 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { deleteWashById } from '@/modules/repositories/wash_repository'
+import { deleteWashByIdRepo } from '@/modules/repositories/wash_repository'
 
 export default function WashSectionHardDeleteWash(props) {
 
@@ -17,7 +17,7 @@ export default function WashSectionHardDeleteWash(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
-            if (result.isConfirmed) deleteWashById(id, props.fetchWashClothes())
+            if (result.isConfirmed) deleteWashByIdRepo(id, props.getWashClothesRepo())
         })
     }
 

@@ -7,8 +7,8 @@ import MoleculesAlertBox from '../../../../../components/molecules/molecules_ale
 import MoleculesField from '../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../modules/storages/local'
 import { useRouter } from 'next/navigation'
-import { postClothes } from '@/modules/repositories/clothes_repository'
-import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
+import { postClothesRepo } from '@/modules/repositories/clothes_repository'
+import { getDictionaryByTypeRepo } from '@/modules/repositories/dictionary_repository'
 
 export default function ClothesAddForm(props) {
     const [error, setError] = useState(null)
@@ -88,7 +88,7 @@ export default function ClothesAddForm(props) {
         }
     
         // Fetch repo
-        fetchDictionary(
+        getDictionaryByTypeRepo(
             (data) => {
                 fetchData(data)
                 storeLocal('dct_all_dct', JSON.stringify(data))
@@ -108,7 +108,7 @@ export default function ClothesAddForm(props) {
 
     // Services
     const handleSubmit = async (e) => {
-        postClothes(clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
+        postClothesRepo(clothesName,clothesDesc,clothesMerk,clothesSize,clothesGender,clothesMadeFrom,clothesCategory,
             clothesType,clothesPrice,clothesBuyAt,clothesQty,clothesImage,isFaded,hasWashed,hasIroned,isFavorite,isScheduled,router)
     }
 

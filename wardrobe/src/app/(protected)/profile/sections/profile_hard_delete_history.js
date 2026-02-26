@@ -3,9 +3,9 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { hardDeleteHistory } from '@/modules/repositories/history_repository'
+import { deleteHistoryRepo } from '@/modules/repositories/history_repository'
 
-export default function ProfileSectionHardDeleteHistory(props) {
+export default function ProfileSectiondeleteHistoryRepo(props) {
 
     // Repositories
     const handleSubmit = async (id) => {
@@ -17,7 +17,7 @@ export default function ProfileSectionHardDeleteHistory(props) {
             confirmButtonText: "Yes, Delete it!",
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
-            if (result.isConfirmed) hardDeleteHistory(id,props.fetchHistory)
+            if (result.isConfirmed) deleteHistoryRepo(id,props.getHistoryRepo)
         })
     }
 

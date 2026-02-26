@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import { formatCurrency } from '../../../../modules/helpers/converter'
-import { fetchClothesSummary } from '@/modules/repositories/clothes_repository'
+import { getClothesSummaryRepo } from '@/modules/repositories/clothes_repository'
 
 export default function StatsSectionSummary(props) {
     const [error, setError] = useState(null)
@@ -14,7 +14,7 @@ export default function StatsSectionSummary(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchClothesSummary(
+        getClothesSummaryRepo(
             now, 
             (data) => {
                 setIsLoaded(true)

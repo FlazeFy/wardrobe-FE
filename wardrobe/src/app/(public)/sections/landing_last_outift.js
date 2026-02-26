@@ -7,7 +7,7 @@ import { convertDatetimeBasedLocal } from '../../../modules/helpers/converter'
 import { getLocal, storeLocal } from '../../../modules/storages/local'
 import MoleculesAlertBox from '../../../components/molecules/molecules_alert_box'
 import Link from "next/link"
-import { fetchLastOutfit } from '@/modules/repositories/outfit_repository'
+import { getLastOutfitRepo } from '@/modules/repositories/outfit_repository'
 
 export default function LandingSectionLastOutfit(props) {
     const [error, setError] = useState(null)
@@ -22,7 +22,7 @@ export default function LandingSectionLastOutfit(props) {
         const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         const today = new Date()
         setTodayName(daysOfWeek[today.getDay()])
-        fetchLastOutfit(
+        getLastOutfitRepo(
             (result) => {
                 setItems(result)
                 console.log(items)

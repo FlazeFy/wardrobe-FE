@@ -1,7 +1,7 @@
 "use client"
 import { convertDatetimeBasedLocal } from '../../../../../../modules/helpers/converter'
 import React from 'react'
-import HardDeleteClothesUsedById from './hard_delete_clothes_used_by_id'
+import HarddeleteClothesUsedByIdRepo from './hard_delete_clothes_used_by_id'
 
 export default function ClothesDetailUsedHistory(props) {
     if(props.items){
@@ -23,7 +23,7 @@ export default function ClothesDetailUsedHistory(props) {
                                     <td className='text-center'>{dt.used_context}</td>
                                     <td>{dt.clothes_note ?? <span className='text-secondary fst-italic'>- No Notes Provided -</span>}</td>
                                     <td>{convertDatetimeBasedLocal(dt.created_at)}</td>
-                                    <td className='text-center'><HardDeleteClothesUsedById id={dt.id} fetchClothes={props.fetchClothes} is_deleted={props.is_deleted}/></td>
+                                    <td className='text-center'><HarddeleteClothesUsedByIdRepo id={dt.id} fetchClothes={props.fetchClothes} is_deleted={props.is_deleted}/></td>
                                 </tr>
                             )
                         })

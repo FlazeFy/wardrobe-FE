@@ -3,7 +3,7 @@ import apiCall from '@/configs/axios'
 
 const MODULE_URL = "/api/v1/history"
 
-export const fetchHistory = async (page, onSuccess, onError) => {
+export const getHistoryRepo = async (page, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}?page=${page}`)
         onSuccess(response.data.data)
@@ -18,7 +18,7 @@ export const fetchHistory = async (page, onSuccess, onError) => {
     }    
 }
 
-export const hardDeleteHistory = async (id, action, onError) => {
+export const deleteHistoryRepo = async (id, action, onError) => {
     try {
         let response = await apiCall.delete(`${MODULE_URL}/destroy/${id}`)
         

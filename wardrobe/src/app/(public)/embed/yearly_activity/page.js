@@ -4,7 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '@/components/molecules/molecules_alert_box'
-import { fetchYearlyActivity } from '@/modules/repositories/stats_repository'
+import { getYearlyActivityRepo } from '@/modules/repositories/stats_repository'
 
 export default function EmbedYearlyActivity(props) {
     const [error, setError] = useState(null)
@@ -13,7 +13,7 @@ export default function EmbedYearlyActivity(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchYearlyActivity(
+        getYearlyActivityRepo(
             (result) => {
                 setIsLoaded(true)
                 setItems(result)

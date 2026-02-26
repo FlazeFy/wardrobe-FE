@@ -6,11 +6,11 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../../components/molecules/molecules_alert_box'
 import OrganismsClothesHeader from '../../../../../../components/organisms/organisms_clothes_header'
 import { getCleanTitleFromCtx } from '../../../../../../modules/helpers/converter'
-import { fetchClothesHeader, postOutfitClothes } from '@/modules/repositories/clothes_repository'
+import { getClothesHeaderRepo, getOutfitClothesRepo } from '@/modules/repositories/clothes_repository'
 import { messageError } from '@/modules/helpers/message'
 import MoleculesNoData from '@/components/molecules/molecules_no_data'
 
-export default function OutfitDetailPostOutfitClothes(props) {
+export default function OutfitDetailgetOutfitClothesRepo(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
@@ -23,7 +23,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchClothesHeader(
+        getClothesHeaderRepo(
             (result) => {
                 setIsLoaded(true)
                 setItems(result)
@@ -37,7 +37,7 @@ export default function OutfitDetailPostOutfitClothes(props) {
     },[])
 
     // Repositories
-    const handleSubmit = async (e) => postOutfitClothes(selectedItem,props)
+    const handleSubmit = async (e) => getOutfitClothesRepo(selectedItem,props)
 
     const handleAdd = (dt) => {
         const newClothes = {

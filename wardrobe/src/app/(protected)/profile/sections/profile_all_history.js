@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import OrganismsHistoryBox from '../../../../components/organisms/organisms_history_box'
-import { fetchHistory } from '@/modules/repositories/history_repository'
+import { getHistoryRepo } from '@/modules/repositories/history_repository'
 
 export default function ProfileSectionAllHistory(props) {
     const [error, setError] = useState(null)
@@ -15,13 +15,13 @@ export default function ProfileSectionAllHistory(props) {
     const [page, setPage] = useState(1)
 
     useEffect(() => {
-        handleFetchHistory(page)
+        handlegetHistoryRepo(page)
     }, [])
     
-    const handleFetchHistory = (page = 1) => {
+    const handlegetHistoryRepo = (page = 1) => {
         Swal.showLoading()
         // Repositories
-        fetchHistory(
+        getHistoryRepo(
             page,
             (result) => {
                 setIsLoaded(true)
@@ -47,7 +47,7 @@ export default function ProfileSectionAllHistory(props) {
                 {
                     items ? 
                         items.map((dt, idx) => (
-                            <OrganismsHistoryBox key={idx} items={dt} fetchHistory={handleFetchHistory}/>
+                            <OrganismsHistoryBox key={idx} items={dt} getHistoryRepo={handlegetHistoryRepo}/>
                         ))
                     : <MoleculesNoData title="No History Found"/>
                 }

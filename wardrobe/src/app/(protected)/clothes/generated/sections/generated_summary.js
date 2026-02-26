@@ -3,7 +3,7 @@ import MoleculesAlertBox from "../../../../../components/molecules/molecules_ale
 import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import { convertDatetimeBasedLocal } from "../../../../../modules/helpers/converter"
-import { fetchOutfitSummary } from "@/modules/repositories/outfit_repository"
+import { getOutfitSummaryRepo } from "@/modules/repositories/outfit_repository"
 
 export default function GeneratedSectionSummary(props){
     const [error, setError] = useState(null)
@@ -13,7 +13,7 @@ export default function GeneratedSectionSummary(props){
     
     useEffect(() => {
         Swal.showLoading()
-        fetchOutfitSummary(now, 
+        getOutfitSummaryRepo(now, 
             (result) =>{
                 setIsLoaded(true)
                 setItem(result)

@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { fetchRefreshToken } from "../repositories/user_repository"
+import { getRefreshTokenRepo } from "../repositories/user_repository"
 
 const useAuthStore = create((set, get) => ({
     username: "",
@@ -28,7 +28,7 @@ const useAuthStore = create((set, get) => ({
 
         if (state.isHydrated || state.username) return
         try {
-            const data = await fetchRefreshToken()
+            const data = await getRefreshTokenRepo()
 
             if (!data) {
                 set({ isHydrated: true })

@@ -11,7 +11,7 @@ import GeneratedSectionConfigurateTemplate from "./generated_configurate_templat
 import GeneratedSectionSaveOutfit from "./generated_save_outfit"
 import { getLocal, storeLocal } from "../../../../../modules/storages/local"
 import { messageError } from '@/modules/helpers/message'
-import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
+import { getDictionaryByTypeRepo } from '@/modules/repositories/dictionary_repository'
 
 export default function GeneratedSectionRandomOutift(props) {
     const [error, setError] = useState(null)
@@ -62,7 +62,7 @@ export default function GeneratedSectionRandomOutift(props) {
         }
 
         // Fetch repo
-        fetchDictionary(
+        getDictionaryByTypeRepo(
             (data) => {
                 fetchData(data)
                 storeLocal('dct_category_type', JSON.stringify(data))

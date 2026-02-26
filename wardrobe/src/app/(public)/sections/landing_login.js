@@ -5,7 +5,7 @@ import React from "react"
 import MoleculesField from '../../../components/molecules/molecules_field'
 import AtomsBreakLine from '../../../components/atoms/atoms_breakline'
 import { useRouter } from 'next/navigation'
-import { postLogin } from '@/modules/repositories/auth_repository'
+import { postLoginRepo } from '@/modules/repositories/auth_repository'
 import Link from "next/link"
 import { useForm } from "react-hook-form" 
 import { yupResolver } from "@hookform/resolvers/yup" 
@@ -22,7 +22,7 @@ export default function LandingSectionLogin(props) {
     })
 
     // Repositories
-    const onSubmit = async (val) => await postLogin(val.username,val.password,router)
+    const onSubmit = async (val) => await postLoginRepo(val.username,val.password,router)
 
     return (
         <div className='row' id={`${props.ctx}-section`}>

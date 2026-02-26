@@ -1,6 +1,6 @@
 "use client"
 import MoleculesAlertBox from "@/components/molecules/molecules_alert_box"
-import { fetchWelcomeStats } from "@/modules/repositories/general_repository"
+import { getWelcomeStatsRepo } from "@/modules/repositories/general_repository"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 import styles from "../../page.module.css"
@@ -13,7 +13,7 @@ export default function EmbedAppSummaryPage() {
     useEffect(() => {
         Swal.showLoading()
         const now = new Date()
-        fetchWelcomeStats(
+        getWelcomeStatsRepo(
             now,
             (data) => {
                 setIsLoaded(true)

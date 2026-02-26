@@ -4,9 +4,9 @@ import Swal from 'sweetalert2'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getLocal } from '../../../../modules/storages/local'
-import { postSaveOutfit } from '../../../../modules/repositories/outfit_repository'
+import { postSaveOutfitRepo } from '../../../../modules/repositories/outfit_repository'
 import { useRouter } from 'next/navigation'
-import { postSignOut } from '@/modules/repositories/auth_repository'
+import { postSignOutRepo } from '@/modules/repositories/auth_repository'
 
 export default function ProfileSectionSignOut(props) {
     const router = useRouter()
@@ -22,11 +22,11 @@ export default function ProfileSectionSignOut(props) {
                 confirmButtonText: "Yes, Sign Out!",
                 cancelButtonText: "No, Cancel!"
             }).then(async (result) => {
-                if (result.isConfirmed) postSignOut(router)
+                if (result.isConfirmed) postSignOutRepo(router)
             })
         }
         
-        const saveGeneratedOutfits = (token) => postSaveOutfit(token)
+        const saveGeneratedOutfits = (token) => postSaveOutfitRepo(token)
 
         const generatedOutfit = JSON.parse(getLocal('generated_outfit_history'))
         if(generatedOutfit && generatedOutfit.length > 0){

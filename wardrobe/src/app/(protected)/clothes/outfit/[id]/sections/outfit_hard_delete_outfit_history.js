@@ -3,7 +3,7 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { deleteOutfitHistoryById } from '@/modules/repositories/outfit_repository'
+import { deleteOutfitHistoryByIdRepo } from '@/modules/repositories/outfit_repository'
 
 export default function OutfitSectionHardDeleteOutfitHistory(props) {
     // Services
@@ -17,7 +17,7 @@ export default function OutfitSectionHardDeleteOutfitHistory(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                deleteOutfitHistoryById(id,()=>{
+                deleteOutfitHistoryByIdRepo(id,()=>{
                     props.fetchOutfit()
                     props.fetchAllHistory()
                 })

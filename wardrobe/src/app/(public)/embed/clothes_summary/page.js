@@ -1,7 +1,7 @@
 "use client"
 import MoleculesAlertBox from "@/components/molecules/molecules_alert_box"
 import { formatCurrency } from "@/modules/helpers/converter"
-import { fetchClothesSummary } from "@/modules/repositories/clothes_repository"
+import { getClothesSummaryRepo } from "@/modules/repositories/clothes_repository"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 import styles from "../../page.module.css"
@@ -14,7 +14,7 @@ export default function EmbedAppSummaryPage(props) {
     useEffect(() => {
         Swal.showLoading()
         const now = new Date()
-        fetchClothesSummary(
+        getClothesSummaryRepo(
             now,
             (data) => {
                 setIsLoaded(true)

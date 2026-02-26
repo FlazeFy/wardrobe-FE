@@ -3,13 +3,13 @@ import MoleculesField from '../../../../components/molecules/molecules_field'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
-import { postQuestion } from '@/modules/repositories/question_repository'
+import { postQuestionRepo } from '@/modules/repositories/question_repository'
 
 export default function ProfileSectionSendQuestion(props) {
     const [question, setQuestion] = useState("")
 
     // Repositories
-    const handleSubmit = async (e) => postQuestion(question,setQuestion)
+    const handleSubmit = async (e) => postQuestionRepo(question,setQuestion)
 
     return (
         <div id="question-section"> 

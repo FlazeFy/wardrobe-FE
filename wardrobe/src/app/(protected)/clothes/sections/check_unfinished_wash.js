@@ -7,7 +7,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import AtomsBreakLine from '../../../../components/atoms/atoms_breakline'
-import { fetchUnfinishedWash } from '@/modules/repositories/clothes_repository'
+import { getUnfinishedWashRepo } from '@/modules/repositories/clothes_repository'
 import Link from "next/link"
 
 export default function ClothesSectionUnfinishedWash(props) {
@@ -19,7 +19,7 @@ export default function ClothesSectionUnfinishedWash(props) {
         Swal.showLoading()
 
         // Fetch repo
-        fetchUnfinishedWash(
+        getUnfinishedWashRepo(
             (data) => {
                 Swal.close()
                 setIsLoaded(true)

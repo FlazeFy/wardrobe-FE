@@ -10,12 +10,12 @@ import MoleculesAlertBox from "../../../../../components/molecules/molecules_ale
 import ClothesDetailEditForm from "./sections/clothes_detail_edit_form"
 import ClothesDetailUsedHistory from "./sections/clothes_detail_used_history"
 import ClothesDetailAddUsedHistory from "./sections/clothes_detail_add_used_history"
-import ClothesDetailDeleteClothesById from "./sections/clothes_detail_delete"
+import ClothesDetaildeleteClothesByIdRepo from "./sections/clothes_detail_delete"
 import ClothesDetailSchedule from "./sections/clothes_detail_schedule"
 import ClothesDetailAddSchedule from "./sections/clothes_detail_add_schedule"
 import ClothesDetailSectionFoundedOutfit from "./sections/clothes_detail_founded_outfit"
 import DetailSectionClothesHeader from "./sections/detail_clothes_header"
-import { fetchClothesDetailByIDRepo } from "@/modules/repositories/clothes_repository"
+import { getClothesDetailByIDRepo } from "@/modules/repositories/clothes_repository"
 
 export default function ClothesDetailPage({params}) {
     const [error, setError] = useState(null)
@@ -28,7 +28,7 @@ export default function ClothesDetailPage({params}) {
 
     const fetchClothesDetail = () => {
         Swal.showLoading()
-        fetchClothesDetailByIDRepo(
+        getClothesDetailByIDRepo(
             (response) => {
                 setItem(response)
                 finish()
@@ -112,7 +112,7 @@ export default function ClothesDetailPage({params}) {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <ClothesDetailDeleteClothesById id={params.id} type_delete={item.detail.deleted_at ? 'hard' : 'soft'} deleted_at={item.detail.deleted_at} clothes_name={item.detail.clothes_name} fetchClothes={fetchClothesDetail}/>
+                        <ClothesDetaildeleteClothesByIdRepo id={params.id} type_delete={item.detail.deleted_at ? 'hard' : 'soft'} deleted_at={item.detail.deleted_at} clothes_name={item.detail.clothes_name} fetchClothes={fetchClothesDetail}/>
                     </div>
                 </div>
 

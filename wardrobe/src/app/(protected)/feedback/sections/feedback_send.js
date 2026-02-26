@@ -3,7 +3,7 @@ import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from "react"
 import MoleculesField from '../../../../components/molecules/molecules_field'
-import { postFeedback } from '@/modules/repositories/feedback_repository'
+import { postFeedbackRepo } from '@/modules/repositories/feedback_repository'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { feedbackSchema } from '@/modules/validators/feedback_validator'
@@ -17,7 +17,7 @@ export default function FeedbackSectionSend() {
 
     // Repositories
     const onSubmit = async (val) => {
-        await postFeedback(val.feedback_rate, val.feedback_body)
+        await postFeedbackRepo(val.feedback_rate, val.feedback_body)
         form.reset()
     }
 

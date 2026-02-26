@@ -5,7 +5,7 @@ import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_
 import { getLocal } from "../../../../modules/storages/local"
 import CalendarSectionExportDailyData from "./calendar_export_daily_data"
 import CalendarSectionManage from "./calendar_manage"
-import { fetchCalendar } from "@/modules/repositories/clothes_repository"
+import { getCalendarRepo } from "@/modules/repositories/clothes_repository"
 
 export default function CalendarSectionSchedule(props) {
     const [error, setError] = useState(null)
@@ -16,7 +16,7 @@ export default function CalendarSectionSchedule(props) {
     const [today, setToday] = useState() 
 
     useEffect(() => {
-        fetchCalendar(month, year, 
+        getCalendarRepo(month, year, 
             (result) => {
                 setIsLoaded(true)
                 setItems(result) 

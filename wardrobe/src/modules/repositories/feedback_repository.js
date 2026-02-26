@@ -4,7 +4,7 @@ import { getLocal, storeLocal } from '../../modules/storages/local.js'
 
 const MODULE_URL = "/api/v1/feedback"
 
-export const postFeedback = async (feedbackRate, feedbackBody, onError) => {
+export const postFeedbackRepo = async (feedbackRate, feedbackBody, onError) => {
     try {
         Swal.showLoading()
 
@@ -59,7 +59,7 @@ export const postFeedback = async (feedbackRate, feedbackBody, onError) => {
     }
 }
 
-export const fetchFeedback = async (now, onSuccess, onError) => {
+export const getFeedbackRepo = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-feedback_stats")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null

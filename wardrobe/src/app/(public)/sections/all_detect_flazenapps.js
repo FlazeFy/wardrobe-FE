@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Swal from 'sweetalert2'
-import { postLogin } from '@/modules/repositories/auth_repository'
+import { postLoginRepo } from '@/modules/repositories/auth_repository'
 
 export default function DetectFlazenAppsAlert() {
     const [showAlert, setShowAlert] = useState(false)
@@ -25,7 +25,7 @@ export default function DetectFlazenAppsAlert() {
 
     const handleLoginTestAcc = () => {
         Swal.showLoading()
-        postLogin('tester_flazenapps', 'tester123')
+        postLoginRepo('tester_flazenapps', 'tester123')
     }
 
     const handleRejectTestAcc = () => {

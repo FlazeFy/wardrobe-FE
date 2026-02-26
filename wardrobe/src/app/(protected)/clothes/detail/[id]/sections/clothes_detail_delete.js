@@ -7,9 +7,9 @@ import MoleculesField from '../../../../../../components/molecules/molecules_fie
 import { countDiffInDays } from '../../../../../../modules/helpers/converter'
 import RecoverClothesUsedById from './recover_clothes_by_id'
 import { useRouter } from 'next/navigation'
-import { deleteClothesById } from '@/modules/repositories/clothes_repository'
+import { deleteClothesByIdRepo } from '@/modules/repositories/clothes_repository'
 
-export default function ClothesDetailDeleteClothesById(props) {
+export default function ClothesDetaildeleteClothesByIdRepo(props) {
     const [isValidated, setIsValidated] = useState(false)
     const [clothesName, setClothesName] = useState('')
     const router = useRouter()
@@ -25,7 +25,7 @@ export default function ClothesDetailDeleteClothesById(props) {
             cancelButtonText: "No, Cancel!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                deleteClothesById(id,props.type_delete,props.type_delete == 'hard' ? router.push('/clothes'):props.fetchClothes())
+                deleteClothesByIdRepo(id,props.type_delete,props.type_delete == 'hard' ? router.push('/clothes'):props.fetchClothes())
             } 
         })
     }

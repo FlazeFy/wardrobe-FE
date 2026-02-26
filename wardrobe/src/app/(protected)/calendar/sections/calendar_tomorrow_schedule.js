@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 import MoleculesAlertBox from "../../../../components/molecules/molecules_alert_box"
 import AtomsBreakLine from "../../../../components/atoms/atoms_breakline"
-import fetchTomorrowSchedule from "@/modules/repositories/clothes_repository"
+import getTomorrowScheduleRepo from "@/modules/repositories/clothes_repository"
 
 export default function CalendarSectionTomorrowSchedule(props) {
     const [error, setError] = useState(null)
@@ -14,7 +14,7 @@ export default function CalendarSectionTomorrowSchedule(props) {
     useEffect(() => {
         const today = new Date().toLocaleDateString('en-US', { weekday: 'short' })
         Swal.showLoading()
-        fetchTomorrowSchedule(
+        getTomorrowScheduleRepo(
         today, 
         (result) => {
             setIsLoaded(true)

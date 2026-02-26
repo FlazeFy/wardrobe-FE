@@ -3,7 +3,7 @@ import apiCall from "@/configs/axios"
 
 const MODULE_URL = "/api/v1/stats"
 
-export const fetchMonthlyClothes = async (year, onSuccess, onError) => {
+export const getMonthlyClothesRepo = async (year, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/clothes/monthly/created_buyed/${year}`)
         onSuccess(response.data.data)
@@ -12,7 +12,7 @@ export const fetchMonthlyClothes = async (year, onSuccess, onError) => {
     }    
 }
 
-export const fetchMostClothesCtx = async (onSuccess, onError) => {
+export const getMostClothesCtxRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.post(`${MODULE_URL}/clothes/by/clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category`)
         onSuccess(response.data.data)
@@ -21,7 +21,7 @@ export const fetchMostClothesCtx = async (onSuccess, onError) => {
     }    
 }
 
-export const fetchMostUsedClothesDaily = async (onSuccess, onError) => {
+export const getMostUsedClothesDailyRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/clothes/most/used/daily`)
         onSuccess(response.data.data)
@@ -30,7 +30,7 @@ export const fetchMostUsedClothesDaily = async (onSuccess, onError) => {
     }    
 }
 
-export const fetchYearlyActivity = async (onSuccess, onError) => {
+export const getYearlyActivityRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/clothes/yearly/clothes_used`)
         onSuccess(response.data.data)
@@ -39,7 +39,7 @@ export const fetchYearlyActivity = async (onSuccess, onError) => {
     }    
 }
 
-export const fetchOutfitMonthlyTotalUsed = async (year, onSuccess, onError) => {
+export const getOutfitMonthlyTotalUsedRepo = async (year, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/outfit/monthly/by_outfit/${year}/all`)
         onSuccess(response.data.data)
@@ -48,7 +48,7 @@ export const fetchOutfitMonthlyTotalUsed = async (year, onSuccess, onError) => {
     }    
 }
 
-export const fetchOutfitMostUsed = async (year, onSuccess, onError) => {
+export const getOutfitMostUsedRepo = async (year, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/outfit/most/used/${year}`)
         onSuccess(response.data.data)
@@ -57,7 +57,7 @@ export const fetchOutfitMostUsed = async (year, onSuccess, onError) => {
     }
 }
 
-export const fetchYear = async (now, onSuccess, onError) => {
+export const getYearRepo = async (now, onSuccess, onError) => {
     try {
         const oldTimeHit = getLocal("last_hit-available_year_filter")
         const oldTime = oldTimeHit ? new Date(JSON.parse(oldTimeHit)) : null

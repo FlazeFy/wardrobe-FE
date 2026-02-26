@@ -4,7 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
-import { fetchMostUsedClothesDaily } from '@/modules/repositories/stats_repository'
+import { getMostUsedClothesDailyRepo } from '@/modules/repositories/stats_repository'
 
 export default function StatsSectionMostUsedClothesDaily(props) {
     const [error, setError] = useState(null)
@@ -14,7 +14,7 @@ export default function StatsSectionMostUsedClothesDaily(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchMostUsedClothesDaily(
+        getMostUsedClothesDailyRepo(
             (result) => {
                 setIsLoaded(true)
                 setItems(result)

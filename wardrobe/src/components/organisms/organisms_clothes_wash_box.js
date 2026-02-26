@@ -22,7 +22,7 @@ export default function OrganismsClothesWashBox(props) {
                 <a className='btn btn-primary'><FontAwesomeIcon icon={faRotateLeft}/> Wash Again</a>
                 <div>
                     <a className='btn btn-warning me-2'><FontAwesomeIcon icon={faPenToSquare}/></a>
-                    <WashSectionHardDeleteWash id={props.item.id} fetchWashClothes={props.fetchWashClothes}/>
+                    <WashSectionHardDeleteWash id={props.item.id} getWashClothesRepo={props.getWashClothesRepo}/>
                 </div>
             </div>
         </div>

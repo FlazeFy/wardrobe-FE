@@ -3,7 +3,7 @@ import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
 import Swal from "sweetalert2"
-import { postSaveOutfit } from "../../../../../modules/repositories/outfit_repository"
+import { postSaveOutfitRepo } from "../../../../../modules/repositories/outfit_repository"
 import { messageError } from "@/modules/helpers/message"
 
 export default function GeneratedSectionSaveLocalGenerated(props) {
@@ -19,7 +19,7 @@ export default function GeneratedSectionSaveLocalGenerated(props) {
             if (result.isConfirmed) {
                 Swal.showLoading()
                 try {
-                    postSaveOutfit()
+                    postSaveOutfitRepo()
                 } catch (error) {
                     messageError(error)
                 }

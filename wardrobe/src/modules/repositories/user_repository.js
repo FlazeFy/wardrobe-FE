@@ -2,7 +2,7 @@ import apiCall from "@/configs/axios"
 
 const MODULE_URL = "/api/v1/user"
 
-export const fetchRefreshToken = async () => {
+export const getRefreshTokenRepo = async () => {
     try {
         const res = await apiCall.get(`${MODULE_URL}/refresh`)
         if (!res.status === 200) return null
@@ -19,7 +19,7 @@ export const fetchRefreshToken = async () => {
     }
 }
 
-export const fetchMyProfileRepo = async (onSuccess, onError) => {
+export const getMyProfileRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/my`)
         onSuccess(response.data.data)

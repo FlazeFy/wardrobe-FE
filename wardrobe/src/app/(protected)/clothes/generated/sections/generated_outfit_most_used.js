@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import MoleculesChartBar from '../../../../../components/molecules/molecules_chart_bar'
 import MoleculesNoData from '../../../../../components/molecules/molecules_no_data'
-import { fetchOutfitMostUsed } from '@/modules/repositories/stats_repository'
+import { getOutfitMostUsedRepo } from '@/modules/repositories/stats_repository'
 import Swal from 'sweetalert2'
 
 export default function GeneratedSectionOutfitMostUsed(props) {
@@ -14,7 +14,7 @@ export default function GeneratedSectionOutfitMostUsed(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchOutfitMostUsed(
+        getOutfitMostUsedRepo(
             props.year, 
             (result) => {
                 setIsLoaded(true)

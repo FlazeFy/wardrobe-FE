@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../../modules/storages/local'
-import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
+import { getDictionaryByTypeRepo } from '@/modules/repositories/dictionary_repository'
 
 export default function ClothesDetailEditForm(props) {
     const [error, setError] = useState(null)
@@ -77,7 +77,7 @@ export default function ClothesDetailEditForm(props) {
             const oldData = JSON.parse(getLocal('dct_all_dct'))
             fetchData(oldData)
         } else {
-            fetchDictionary((result) => {
+            getDictionaryByTypeRepo((result) => {
                 setIsLoaded(true)
                 fetchData(result)
                 storeLocal('dct_all_dct', JSON.stringify(result))

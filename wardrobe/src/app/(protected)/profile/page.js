@@ -12,7 +12,7 @@ import ProfileSectionExportData from "./sections/profile_export_data"
 import ProfileSectionSendQuestion from "./sections/profile_post_question"
 import ProfileSectionSignOut from "./sections/profile_sign_out"
 import ProfileSectionPropsProfile from "./sections/profile_props_profile"
-import { fetchMyProfileRepo } from "@/modules/repositories/user_repository"
+import { getMyProfileRepo } from "@/modules/repositories/user_repository"
 
 export default function ProfilePage(props) {
     const [error, setError] = useState(null)
@@ -21,7 +21,7 @@ export default function ProfilePage(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchMyProfileRepo(
+        getMyProfileRepo(
             (result) => {
                 setItems(result)  
                 finish()

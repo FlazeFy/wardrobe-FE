@@ -3,9 +3,9 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { deleteClothesUsedById } from '@/modules/repositories/clothes_repository'
+import { deleteClothesUsedByIdRepo } from '@/modules/repositories/clothes_repository'
 
-export default function HardDeleteClothesUsedById(props) {
+export default function HarddeleteClothesUsedByIdRepo(props) {
     // Services
     const handleSubmit = async (id, is_deleted) => {
         if(is_deleted){
@@ -24,7 +24,7 @@ export default function HardDeleteClothesUsedById(props) {
                 confirmButtonText: "Yes, Delete it!",
                 cancelButtonText: "No, Cancel!"
             }).then(async (result) => {
-                if (result.isConfirmed) deleteClothesUsedById(id,props.fetchClothes())
+                if (result.isConfirmed) deleteClothesUsedByIdRepo(id,props.fetchClothes())
             })
         }
     }

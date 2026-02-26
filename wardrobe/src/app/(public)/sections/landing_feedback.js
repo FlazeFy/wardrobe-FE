@@ -4,7 +4,7 @@ import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
-import { fetchFeedback } from "@/modules/repositories/feedback_repository"
+import { getFeedbackRepo } from "@/modules/repositories/feedback_repository"
 import Link from "next/link"
 
 export default function LandingFeedback(props) {
@@ -17,7 +17,7 @@ export default function LandingFeedback(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchFeedback(
+        getFeedbackRepo(
             now,
             (data) => {
                 setIsLoaded(true)

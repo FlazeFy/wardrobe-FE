@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../../../components/molecules/molecules_no_data'
 import Link from "next/link"
-import { fetchAllClothesDetailRepo } from '@/modules/repositories/clothes_repository'
+import { getAllClothesDetailRepo } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionAllDetail(props) {
     const [error, setError] = useState(null)
@@ -17,7 +17,7 @@ export default function ClothesSectionAllDetail(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchAllClothesDetailRepo(
+        getAllClothesDetailRepo(
             (result) => {
                 setItems(result.data)
                 finish()

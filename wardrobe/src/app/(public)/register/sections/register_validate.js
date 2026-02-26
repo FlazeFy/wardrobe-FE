@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import PinInput from 'react-pin-input'
 import { useRouter } from 'next/navigation'
-import { postValidateRegister } from '@/modules/repositories/auth_repository'
+import { postValidateRegisterRepo } from '@/modules/repositories/auth_repository'
 
 export default function RegisterSectionValidate(props) {
     const [token, setToken] = useState("")
@@ -33,7 +33,7 @@ export default function RegisterSectionValidate(props) {
 
     // Services
     const handleSubmit = async (e, token) => {
-        postValidateRegister(token,router)
+        postValidateRegisterRepo(token,router)
     }
 
     return (

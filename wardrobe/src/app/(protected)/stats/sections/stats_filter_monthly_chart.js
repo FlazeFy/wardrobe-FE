@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../components/molecules/molecules_field'
-import { fetchYear } from '@/modules/repositories/stats_repository'
+import { getYearRepo } from '@/modules/repositories/stats_repository'
 
 export default function StatsSectionFilterMonthlyChart(props) {
     const [error, setError] = useState(null)
@@ -16,7 +16,7 @@ export default function StatsSectionFilterMonthlyChart(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchYear(
+        getYearRepo(
             now,
             (result) => {
                 setIsLoaded(true)

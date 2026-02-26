@@ -3,7 +3,7 @@ import apiCall from '@/configs/axios'
 
 const MODULE_URL = "/api/v1/clothes/wash"
 
-export const fetchWashClothes = async (page, onSuccess, onError) => {
+export const getWashClothesRepo = async (page, onSuccess, onError) => {
     try {
         const response = await apiCall.get(`${MODULE_URL}/history?page=${page}&is_detailed=true`)
         onSuccess(response.data)
@@ -17,7 +17,7 @@ export const fetchWashClothes = async (page, onSuccess, onError) => {
     }    
 }
 
-export const fetchWashSummary = async (onSuccess, onError) => {
+export const getWashSummaryRepo = async (onSuccess, onError) => {
     try {
         const response = await apiCall.get(`http://127.0.0.1:8000/api/v1/stats/wash/summary`)
         onSuccess(response.data)
@@ -31,7 +31,7 @@ export const fetchWashSummary = async (onSuccess, onError) => {
     }    
 }
 
-export const deleteWashById = async (id, action, onError) => {
+export const deleteWashByIdRepo = async (id, action, onError) => {
     try {
         let response = await apiCall.delete(`http://127.0.0.1:8000/api/v1/clothes/destroy_wash/${id}`)
         

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import MoleculesScheduleMiniBox from '../../../../components/molecules/molecules_schedule_mini_box'
-import { fetchTodaySchedule } from '@/modules/repositories/clothes_repository'
+import { getTodayScheduleRepo } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesCheckSchedule(props) {
     const [error, setError] = useState(null)
@@ -19,7 +19,7 @@ export default function ClothesCheckSchedule(props) {
         Swal.showLoading()
 
         // Fetch repo
-        fetchTodaySchedule(
+        getTodayScheduleRepo(
             dayName,
             (result) => {
                 Swal.close()

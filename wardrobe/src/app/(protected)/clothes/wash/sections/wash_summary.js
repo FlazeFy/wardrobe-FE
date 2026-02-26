@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import MoleculesAlertBox from '../../../../../components/molecules/molecules_alert_box'
 import { convertDatetimeBasedLocal } from '../../../../../modules/helpers/converter'
-import { fetchWashSummary } from '@/modules/repositories/wash_repository'
+import { getWashSummaryRepo } from '@/modules/repositories/wash_repository'
 
 export default function WashSectionSummary(props) {
     const [error, setError] = useState(null)
@@ -13,7 +13,7 @@ export default function WashSectionSummary(props) {
     const [hrWashDur, setHrWashDur] = useState(0)
     
     useEffect(() => {
-        fetchWashSummary(
+        getWashSummaryRepo(
             (result) => {
                 setIsLoaded(true)
                 setItem(result.status === 400 ? null : result.data)

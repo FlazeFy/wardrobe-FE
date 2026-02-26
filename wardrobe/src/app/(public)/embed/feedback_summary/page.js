@@ -1,6 +1,6 @@
 "use client"
 import MoleculesAlertBox from "@/components/molecules/molecules_alert_box"
-import { fetchFeedback } from "@/modules/repositories/feedback_repository"
+import { getFeedbackRepo } from "@/modules/repositories/feedback_repository"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 import styles from "../../page.module.css"
@@ -14,7 +14,7 @@ export default function EmbedFeedbackSummaryPage(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetchFeedback(
+        getFeedbackRepo(
             now,
             (data) => {
                 setIsLoaded(true)

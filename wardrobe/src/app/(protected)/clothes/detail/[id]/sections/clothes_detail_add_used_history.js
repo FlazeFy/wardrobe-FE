@@ -6,9 +6,9 @@ import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../../components/molecules/molecules_alert_box'
 import MoleculesField from '../../../../../../components/molecules/molecules_field'
 import { getLocal, storeLocal } from '../../../../../../modules/storages/local'
-import { postUsedClothes } from '@/modules/repositories/clothes_repository'
+import { postUsedClothesRepo } from '@/modules/repositories/clothes_repository'
 import { messageError } from '@/modules/helpers/message'
-import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
+import { getDictionaryByTypeRepo } from '@/modules/repositories/dictionary_repository'
 
 export default function ClothesDetailAddUsedHistory(props) {
     const [error, setError] = useState(null)
@@ -47,7 +47,7 @@ export default function ClothesDetailAddUsedHistory(props) {
             const oldData = JSON.parse(getLocal('dct_used_context'))
             fetchData(oldData)
         } else {
-            fetchDictionary(
+            getDictionaryByTypeRepo(
                 (result) => {
                     fetchData(result)
                     storeLocal('dct_used_context', JSON.stringify(result))
@@ -77,7 +77,7 @@ export default function ClothesDetailAddUsedHistory(props) {
     }
 
     // Repositories
-    const handleSubmit = async (e) => postUsedClothes(usedContext,clothesNotes,tokenKey,props)
+    const handleSubmit = async (e) => postUsedClothesRepo(usedContext,clothesNotes,tokenKey,props)
 
     if (error) {
         return <MoleculesAlertBox message={error.message} type='danger' context={props.ctx}/>
