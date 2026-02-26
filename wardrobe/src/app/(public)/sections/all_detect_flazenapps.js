@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Swal from 'sweetalert2'
+import { postLogin } from '@/modules/repositories/auth_repository'
 
 export default function DetectFlazenAppsAlert() {
     const [showAlert, setShowAlert] = useState(false)
@@ -24,28 +25,7 @@ export default function DetectFlazenAppsAlert() {
 
     const handleLoginTestAcc = () => {
         Swal.showLoading()
-
-        fetch('http://127.0.0.1:8000/api/v1/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: 'tester_flazenapps',
-                password: 'nopass123',
-            }),
-        })
-        .then((res) => res.json())
-        .then(() => {
-            Swal.close()
-            router.push('/')
-        })
-        .catch(() => {
-            Swal.close()
-            Swal.fire({
-                title: 'Oops!',
-                text: 'Something went wrong',
-                icon: 'error',
-            })
-        })
+        postLogin('tester_flazenapps', 'tester123')
     }
 
     const handleRejectTestAcc = () => {

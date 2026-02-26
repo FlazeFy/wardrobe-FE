@@ -1,5 +1,5 @@
 "use client"
-import styles from "../../../page.module.css"
+import styles from "../../../../page.module.css"
 import OrganismsNavbar from "../../../../../components/organisms/organisms_navbar"
 import AtomsBreakLine from "../../../../../components/atoms/atoms_breakline"
 import MoleculesFooter from "../../../../../components/molecules/molecules_footer"
@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import MoleculesAlertBox from "../../../../../components/molecules/molecules_alert_box"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { getLocal } from "../../../../../modules/storages/local"
 import Swal from "sweetalert2"
 import { convertDatetimeBasedLocal } from "../../../../../modules/helpers/converter"
 import OutfitSectionUsedById from "./sections/outfit_used_by_id"
@@ -15,8 +14,8 @@ import OutfitSectionPostOutfitHistory from "./sections/outfit_post_outfit_histor
 import OutfitDetailPostOutfitClothes from "./sections/outfit_post_outfit_clothes"
 import OutfitSectionMonthlyTotalUsed from "./sections/outfit_monthly_total_used"
 import OutfitSectionAttachedClothes from "./sections/outfit_attached_clothes"
-import { messageError } from "@/modules/helpers/message"
 import Link from "next/link"
+import { fetchOutfitByIdRepo, fetchOutfitHistoryByOutfitIdRepo } from "@/modules/repositories/outfit_repository"
 
 export default function ClothesOutfitPage({params, ...props}) {
     const [error, setError] = useState(null)
@@ -24,63 +23,44 @@ export default function ClothesOutfitPage({params, ...props}) {
     const [items, setItems] = useState(null)
     const [usedHistoryItems, setUsedHistoryItems] = useState(null)
     const [usedHistoryMaxPage, setUsedHistoryMaxPage] = useState(0)
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         fetchOutfit()
         fetchAllHistory()
     },[])
 
+    const finish = () => {
+        setIsLoaded(true)
+        Swal.close()
+    }
+
     const fetchOutfit = () => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/by/${params.id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenKey}`, 
-            },
-        })
-        .then(res => res.json())
-            .then(
+        fetchOutfitByIdRepo(
             (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItems(result.data)  
+                setItems(result)
+                finish()
             },
             (error) => {
-                setIsLoaded(true)
-                messageError(error)
                 setError(error)
-            }
+                finish()
+            }, params.id
         )
     }
 
     const fetchAllHistory = () => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/outfit/history/${params.id}`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${tokenKey}`, 
+        fetchOutfitHistoryByOutfitIdRepo(
+            (result) => {
+                setUsedHistoryItems(result.data)
+                setUsedHistoryMaxPage(result.last_page)
+                finish()
             },
-        })
-        .then((res) => {
-            if (!res.ok) throw new Error(res.status)
-            return res.json()
-        })
-        .then((result) => {
-            Swal.close()
-            setIsLoaded(true)
-            setUsedHistoryItems(result.data.data)
-            setUsedHistoryMaxPage(result.data.last_page)
-        })
-        .catch((error) => {
-            Swal.close()
-            if (error.message != 404) {
+            (error) => {
                 setError(error)
-                messageError(error)
-            } else {
-                setIsLoaded(true)
-            }
-        })
+                finish()
+            }, params.id
+        )
     }
 
     if (error) {

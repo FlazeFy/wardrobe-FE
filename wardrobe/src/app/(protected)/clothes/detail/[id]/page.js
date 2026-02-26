@@ -27,6 +27,7 @@ export default function ClothesDetailPage({params}) {
     },[])
 
     const fetchClothesDetail = () => {
+        Swal.showLoading()
         fetchClothesDetailByIDRepo(
             (response) => {
                 setItem(response)

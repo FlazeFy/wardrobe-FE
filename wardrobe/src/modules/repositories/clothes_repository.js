@@ -406,3 +406,13 @@ export const fetchClothesDetailByIDRepo = async (onSuccess, onError, id) => {
         onError(error)
     }
 }
+
+export const fetchAllClothesDetailRepo = async (onSuccess, onError, view, order) => {
+    try {
+        const response = await apiCall.get(`${MODULE_URL}/detail/${view}/${order}`)
+        onSuccess(response.data.data)
+    } catch (error) {
+        messageError(error)
+        onError(error)
+    }
+}

@@ -8,6 +8,7 @@ import OrganismsClothesHeader from '../../../../../../components/organisms/organ
 import { getCleanTitleFromCtx } from '../../../../../../modules/helpers/converter'
 import { fetchClothesHeader, postOutfitClothes } from '@/modules/repositories/clothes_repository'
 import { messageError } from '@/modules/helpers/message'
+import MoleculesNoData from '@/components/molecules/molecules_no_data'
 
 export default function OutfitDetailPostOutfitClothes(props) {
     const [error, setError] = useState(null)
@@ -160,11 +161,13 @@ export default function OutfitDetailPostOutfitClothes(props) {
                                         <h2 className="fw-bold">Available Clothes</h2>
                                         <div className='row'>
                                             {
-                                                items.map((dt, idx) => (
+                                                items && items.length > 0 ? items.map((dt, idx) => (
                                                     <div key={idx} className='col-lg-4 col-md-6 col-sm-6 col-12'>
                                                         <OrganismsClothesHeader items={dt} type="clothes_manage" handleClick={(e) => handleAdd(dt)}/>
                                                     </div>
                                                 ))
+                                                :
+                                                    <MoleculesNoData title="No clothes attached"/>
                                             }
                                         </div>
                                     </div>

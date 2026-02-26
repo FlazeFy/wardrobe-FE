@@ -1,6 +1,5 @@
 "use client"
 import { convertDatetimeBasedLocal, getCleanTitleFromCtx, numberToPrice } from '../../../../../../modules/helpers/converter'
-import { getLocal } from '../../../../../../modules/storages/local'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
@@ -8,42 +7,32 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../../../components/molecules/molecules_no_data'
-import { messageError } from '@/modules/helpers/message'
 import Link from "next/link"
+import { fetchAllClothesDetailRepo } from '@/modules/repositories/clothes_repository'
 
 export default function ClothesSectionAllDetail(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState(null)
-    const tokenKey = getLocal("token_key")
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/clothes/detail/all/desc`, {
-            headers: {
-                'Authorization': `Bearer ${tokenKey}`, 
+        fetchAllClothesDetailRepo(
+            (result) => {
+                setItems(result.data)
+                finish()
             },
-        })
-        .then(res => {
-            if (res.status === 404) {
-                setIsLoaded(true)
-                setItems(null)
-                return null
-            }
+            (error) => {
+                setError(error)
+                finish()
+            },
+            'all', 'desc'
+        )
+
+        const finish = () => {
+            setIsLoaded(true)
             Swal.close()
-            return res.json()
-        })
-        .then(result => {
-            if (result) {
-                setIsLoaded(true)
-                setItems(result.data.data)
-            }
-            Swal.close()
-        })
-        .catch(error => {
-            messageError(error)
-            setError(error)
-        })
+        }
     },[])
 
     if (error) {

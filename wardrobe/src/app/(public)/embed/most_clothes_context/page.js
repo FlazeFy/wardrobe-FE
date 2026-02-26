@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import MoleculesAlertBox from '../../../../components/molecules/molecules_alert_box'
 import MoleculesNoData from '../../../../components/molecules/molecules_no_data'
-import { messageError } from '@/modules/helpers/message'
+import { fetchMostClothesCtx } from '@/modules/repositories/stats_repository'
 
 export default function EmbedMostClothesCtx(props) {
     const [error, setError] = useState(null)
@@ -18,28 +18,25 @@ export default function EmbedMostClothesCtx(props) {
 
     useEffect(() => {
         Swal.showLoading()
-        fetch(`http://127.0.0.1:8000/api/v1/stats/clothes/by/clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(res => res.json())
-            .then(
+        fetchMostClothesCtx(
             (result) => {
-                Swal.close()
-                setIsLoaded(true)
-                setItemsClothesType(result.data.clothes_type)  
-                setItemsClothesMerk(result.data.clothes_merk)  
-                setItemsClothesSize(result.data.clothes_size)  
-                setItemsClothesMade(result.data.clothes_made_from)  
-                setItemsClothesCategory(result.data.clothes_category)  
-            },
+                setItemsClothesType(result.clothes_type)  
+                setItemsClothesMerk(result.clothes_merk)  
+                setItemsClothesSize(result.clothes_size)  
+                setItemsClothesMade(result.clothes_made_from)  
+                setItemsClothesCategory(result.clothes_category)  
+                finish()
+            }, 
             (error) => {
-                messageError(error)
                 setError(error)
-            }
+                finish()
+            }, 'clothes_type,clothes_merk,clothes_size,clothes_made_from,clothes_category'
         )
+        
+        const finish = () => {
+            setIsLoaded(true)
+            Swal.close()
+        }
     },[])
 
     if (error) {

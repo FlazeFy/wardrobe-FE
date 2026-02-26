@@ -1,4 +1,4 @@
-import styles from "../../../page.module.css"
+import styles from "../../../../page.module.css"
 import OrganismsNavbar from "../../../../../components/organisms/organisms_navbar"
 import AtomsBreakLine from "../../../../../components/atoms/atoms_breakline"
 import MoleculesFooter from "../../../../../components/molecules/molecules_footer"

@@ -8,6 +8,7 @@ import MoleculesField from '../../../../../../components/molecules/molecules_fie
 import { getLocal, storeLocal } from '../../../../../../modules/storages/local'
 import { postUsedClothes } from '@/modules/repositories/clothes_repository'
 import { messageError } from '@/modules/helpers/message'
+import { fetchDictionary } from '@/modules/repositories/dictionary_repository'
 
 export default function ClothesDetailAddUsedHistory(props) {
     const [error, setError] = useState(null)
@@ -20,6 +21,11 @@ export default function ClothesDetailAddUsedHistory(props) {
 
     // Dictionaries for select options
     const [usedContextDictionary, setUsedContextDictionary] = useState([])
+
+    const finish = () => {
+        setIsLoaded(true)
+        Swal.close()
+    }
 
     const fetchDct = () => {
         const oldTimeHit = getLocal('last_hit-dct_used_context')
@@ -41,24 +47,17 @@ export default function ClothesDetailAddUsedHistory(props) {
             const oldData = JSON.parse(getLocal('dct_used_context'))
             fetchData(oldData)
         } else {
-            fetch(`http://127.0.0.1:8000/api/v1/dct/used_context`, {
-                headers: {
-                    'Authorization': `Bearer ${tokenKey}`,
-                },
-            })
-            .then(res => res.json())
-                .then(
+            fetchDictionary(
                 (result) => {
-                    Swal.close()
-                    setIsLoaded(true)
-                    fetchData(result.data)
-                    storeLocal('dct_used_context', JSON.stringify(result.data))
+                    fetchData(result)
+                    storeLocal('dct_used_context', JSON.stringify(result))
                     storeLocal('last_hit-dct_used_context', JSON.stringify(now)) 
-                },
+                    finish()
+                }, 
                 (error) => {
-                    messageError(error)
                     setError(error)
-                }
+                    finish()
+                }, 'used_context'
             )
         }
     }

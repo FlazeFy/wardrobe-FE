@@ -13,7 +13,8 @@ export const fetchRefreshToken = async () => {
             role: res.data.role,
         }
     } catch (error) {
-        console.error("refresh token error:", error)
+        // Reset local storage if refresh token is error (possibly expired)
+        localStorage.clear()
         return null
     }
 }
